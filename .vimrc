@@ -4,8 +4,11 @@ filetype plugin indent on
 map <C-n> :NERDTreeToggle<CR>
 nnoremap <silent> <C-f> :Files<CR>
 nnoremap <C-b> :buffers<CR>:buffer<Space>
+nnoremap <Leader>c* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
+nnoremap <Leader>c# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
 
 " Plugins
+
 call plug#begin('~/vimfiles/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -24,8 +27,6 @@ Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
-
-
 " Editor / GUI Settings
 "fullscreen
 au GUIEnter * simalt ~x
@@ -41,6 +42,12 @@ set go -=m
 set go -=T
 set backspace=indent,eol,start
 set belloff=all
+
+" Code folding
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
 
 " Syntastic
 set statusline+=%#warningmsg#
