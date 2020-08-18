@@ -22,7 +22,7 @@ module.exports = {
 	//settings for hyper-summon
 	summon: {
 		hideDock: true,
-		hideOnBlur: true,
+		hideOnBlur: false,
 		hotkey: 'Ctrl+;'
 	},
 
