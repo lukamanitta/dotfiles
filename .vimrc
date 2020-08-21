@@ -1,16 +1,18 @@
 filetype plugin indent on
 
 " Key mappings
-nnoremap <SPACE> <Nop>                                           "Remap leader to space
-let mapleader = " "
-map <C-n> :NERDTreeToggle<CR>                                    "Toggle NERDTree
-nnoremap <C-b> :buffers<CR>:buffer<Space>                        "See all available buffers, enter number to change buffer
-nnoremap <Leader>c* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn  "Change all instances of word
-nnoremap <Leader>c# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
-map <leader>h :wincmd h<CR>                                      "Space + direction for window navigation
-map <leader>j :wincmd j<CR>
-map <leader>k :wincmd k<CR>
-map <leader>l :wincmd l<CR>
+noremap <C-[> <Esc>|											  "Remap C-[ to enter normal mode
+nnoremap ; :|                                                     "Remap ; to start command
+nnoremap <SPACE> <Nop>|                                           "Remap leader to space
+let mapleader = " "|
+map <C-n> :NERDTreeToggle<CR>|                                    "Toggle NERDTree
+nnoremap <C-b> :buffers<CR>:buffer<Space>|                        "See all available buffers, enter number to change buffer
+nnoremap <Leader>c* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn|  "Change all instances of word
+nnoremap <Leader>c# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN|
+map <leader>h :wincmd h<CR>|                                      "Space + direction for window navigation
+map <leader>j :wincmd j<CR>|
+map <leader>k :wincmd k<CR>|
+map <leader>l :wincmd l<CR>|
 
 
 " Plugins
@@ -76,8 +78,8 @@ let g:syntastic_python_python_exec = 'python3' "Use Python3
 " YouCompleteMe
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
-nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>  "Go to definition on gd
+nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>|  "Go to definition on gd
 
 " fzf
-nnoremap <silent> <C-f> :Files<CR> "File search with ctrl-f
+nnoremap <silent> <C-f> :Files<CR>| "File search with ctrl-f
 let g:fzf_preview_window = ''      "No preview window
