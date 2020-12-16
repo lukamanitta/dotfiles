@@ -33,6 +33,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'omnisharp/omnisharp-vim', { 'do': ':OmniSharpInstall' }
 Plug 'pangloss/vim-javascript'
+Plug 'vim-ruby/vim-ruby'
 
 call plug#end()
 
