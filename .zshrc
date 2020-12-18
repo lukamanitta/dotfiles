@@ -1,33 +1,40 @@
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/lukab/.zshrc'
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-#ENVIRONMENT VARIABLES
-export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"
-setopt auto_cd
-export CDPATH=".:/c/Projects:/c/OneDrive - Brisbane Catholic Education/.Senior"
+export ZSH="/home/luka/.oh-my-zsh"
 
-alias ruby="/cygdrive/c/Users/lukab/Ruby27-x64/bin/ruby.exe"
-alias gem="/cygdrive/c/Users/lukab/Ruby27-x64/bin/gem.cmd"
-alias bundle="/cygdrive/c/Users/lukab/Ruby27-x64/bin/bundle.bat"
-alias rails="/cygdrive/c/Users/lukab/Ruby27-x64/bin/rails.bat"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
+ZSH_DISABLE_COMPFIX=true
 
-#PURE PROMPT DEFINITIONS / INIT
-fpath+=~/.zsh/pure/
+plugins=(git zsh-z zsh-syntax-highlighting)
 
-source ~/.zsh/pure/pure.zsh
-source ~/.zsh/pure/async.zsh
+source $ZSH/oh-my-zsh.sh
+source $(dirname $(gem which colorls))/tab_complete.sh
 
-autoload -Uz promptinit
-promptinit
-prompt pure
-
-#ZSH SYNYAX HIGHLIGHTING INIT
-
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#Syntax highlighting settings
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red') # To have commands starting with `rm -rf` in red
+ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red') #Commands starting with rm -rf in red
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+alias zshconfig="mate ~/.zshrc"
+alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ls="colorls"
+alias gvim="gvim.exe"
+alias explorer="explorer.exe"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
