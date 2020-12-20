@@ -1,7 +1,7 @@
 filetype plugin indent on
 
 " Key mappings
-noremap <C-[> <Esc>|											  "Remap C-[ to enter normal mode
+noremap <C-[> <Esc>|						    "Remap C-[ to enter normal mode
 nnoremap ; :|                                                     "Remap ; to start command
 nnoremap <SPACE> <Nop>|                                           "Remap leader to space
 let mapleader = " "|
@@ -25,9 +25,10 @@ Plug 'scrooloose/syntastic'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='bubblegum'
 Plug 'morhetz/gruvbox'
+set background=dark
 Plug 'yggdroot/indentline'
 Plug 'chun-yang/auto-pairs'
-Plug 'valloric/youcompleteme', { 'do': 'py install.py --all' }
+Plug 'valloric/youcompleteme', { 'do': 'python3 install.py --clang-completer' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'omnisharp/omnisharp-vim', { 'do': ':OmniSharpInstall' }
@@ -37,14 +38,14 @@ Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 " Editor / GUI Settings
-au GUIEnter * simalt ~x "Make fullscreen
+" au GUIEnter * simalt ~x "Make fullscreen
 syntax on               "Vim syntax highlighting
 set relativenumber      "Enables relative line numbers
 set number              "Enable hybrid line mode
 colorscheme gruvbox     "Best colour scheme
 set laststatus=2        "Status line always visible
 set encoding=utf-8
-set guifont=Fira_Code:h11:cANSI:qDRAFT
+set guifont=Fira\ Code\ 12
 set expandtab           "Treat tabs as multiple spaces
 set shiftwidth=4        "Tab length = 4 spaces
 set go -=m              "Hide GUI
@@ -52,6 +53,18 @@ set go -=T              "Hide GUI
 set backspace=indent,eol,start
 set belloff=all         "Shut that fucking bell sound off
 set colorcolumn=80,100  "Line length danger zone
+
+if has("gui_running")
+    set lines=999 columns=999
+else
+  " Console Vim
+  if exists("+lines")
+    set lines=50
+  endif
+  if exists("+columns")
+    set columns=100
+  endif
+endif
 
 " Code folding
 set foldmethod=indent   "Fold based on indent

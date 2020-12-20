@@ -33,6 +33,7 @@ ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red') #Commands starting wi
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="colorls"
+alias switchpython="sudo update-alternatives --config python"
 #alias gvim="gvim.exe"
 alias explorer="explorer.exe"
 
