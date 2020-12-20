@@ -17,8 +17,7 @@ map <leader>l :wincmd l<CR>|
 
 " Plugins
 
-call plug#begin('~/vimfiles/plugged')
-
+call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'preservim/nerdcommenter'

@@ -33,7 +33,7 @@ ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red') #Commands starting wi
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="colorls"
-alias gvim="gvim.exe"
+#alias gvim="gvim.exe"
 alias explorer="explorer.exe"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
