@@ -1,3 +1,9 @@
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 # Path to your oh-my-bash installation.
 export OSH=$HOME/.oh-my-bash
 
