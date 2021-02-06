@@ -28,7 +28,7 @@
   "workbench.statusBar.visible": true,
   "workbench.tree.indent": 2,
   "vim.useSystemClipboard": [ "yank" ],
-  "vim.leader": "<space>",
+  "vim.leader": "<SPACE>",
   "experimental.viml": [ "nnoremap ; :",
                          "nnoremap <SPACE> <Nop>|"],
   "experimental.editor.cursorSmoothCaretAnimation": false

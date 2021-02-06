@@ -1,5 +1,5 @@
 
 [
   { "key": "jk", "command": "vim.esc", "when": "insertMode" },
-  { "key": "<Leader>e", "command": "workbench.view.explorer" },
+  { "key": "<Leader>e", "command": "workbench.view.explorer", "when": "!insertMode && !textInputFocus" }
 ]
