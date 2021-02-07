@@ -1,0 +1,3 @@
+[submodule "oni2"]
+	path = oni2
+	url = https://github.com/lukamanitta/oni2config
