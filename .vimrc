@@ -1,9 +1,9 @@
 filetype plugin indent on
 
-set nocp
+set nocp                                                          "Fixes starting in terminal for some reason
 
 " Key mappings
-imap jk <Esc>|						    "Remap C-[ to enter normal mode
+imap jk <Esc>|						          "Remap C-[ to enter normal mode
 nnoremap ; :|                                                     "Remap ; to start command
 nnoremap <SPACE> <Nop>|                                           "Remap leader to space
 let mapleader = " "|
@@ -47,11 +47,9 @@ set number              "Enable hybrid line mode
 colorscheme gruvbox     "Best colour scheme
 set laststatus=2        "Status line always visible
 set encoding=utf-8
-set guifont=Fira\ Code\ 15
+set guifont=FiraCode-Regular:h14
 set expandtab           "Treat tabs as multiple spaces
 set shiftwidth=4        "Tab length = 4 spaces
-set go -=m              "Hide GUI
-set go -=T              "Hide GUI
 set backspace=indent,eol,start
 set belloff=all         "Shut that fucking bell sound off
 set colorcolumn=80,100  "Line length danger zone
