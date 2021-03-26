@@ -1,7 +1,9 @@
 filetype plugin indent on
 
+set nocp
+
 " Key mappings
-noremap <C-[> <Esc>|						    "Remap C-[ to enter normal mode
+imap jk <Esc>|						    "Remap C-[ to enter normal mode
 nnoremap ; :|                                                     "Remap ; to start command
 nnoremap <SPACE> <Nop>|                                           "Remap leader to space
 let mapleader = " "|
@@ -45,7 +47,7 @@ set number              "Enable hybrid line mode
 colorscheme gruvbox     "Best colour scheme
 set laststatus=2        "Status line always visible
 set encoding=utf-8
-set guifont=Fira\ Code\ 12
+set guifont=Fira\ Code\ 15
 set expandtab           "Treat tabs as multiple spaces
 set shiftwidth=4        "Tab length = 4 spaces
 set go -=m              "Hide GUI
@@ -96,3 +98,5 @@ nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>|  "Go to definition on gd
 " fzf
 nnoremap <silent> <C-f> :Files<CR>| "File search with ctrl-f
 let g:fzf_preview_window = ''      "No preview window
+
+
