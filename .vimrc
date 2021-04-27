@@ -16,26 +16,41 @@ map <leader>j :wincmd j<CR>|
 map <leader>k :wincmd k<CR>|
 map <leader>l :wincmd l<CR>|
 
+" Auto Commands
+autocmd BufEnter NERD_tree_* | execute 'normal R'| " Refresh NerdTree file tree when tabbing to buffer
 
 " Plugins
-
 call plug#begin('~/.vim/plugged')
+        " NerdTree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'xuyuanp/nerdtree-git-plugin'
+
+        " Objects / Movements
 Plug 'preservim/nerdcommenter'
-Plug 'scrooloose/syntastic'
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='bubblegum'
-Plug 'morhetz/gruvbox'
-set background=dark
 Plug 'yggdroot/indentline'
 Plug 'chun-yang/auto-pairs'
+Plug 'tpope/vim-surround'
+
+        " Autocompletion / Intellisense
 Plug 'valloric/youcompleteme', { 'do': 'python3 install.py --clang-completer' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'omnisharp/omnisharp-vim', { 'do': ':OmniSharpInstall' }
+
+        " Languages
 Plug 'pangloss/vim-javascript'
 Plug 'vim-ruby/vim-ruby'
+
+        " Other
+Plug 'scrooloose/syntastic'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+
+        " Themes
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'morhetz/gruvbox' " let g:airline_theme='bubblegum' 
+Plug 'gosukiwi/vim-atom-dark' " let g:airline_theme='????????'
+Plug 'hzchirs/vim-material' " let g:airline_theme='material'
+Plug 'drewtempelmeyer/palenight.vim' " let g:airline_theme='palenight' 
 
 call plug#end()
 
@@ -44,20 +59,26 @@ call plug#end()
 syntax on               "Vim syntax highlighting
 set relativenumber      "Enables relative line numbers
 set number              "Enable hybrid line mode
-colorscheme gruvbox     "Best colour scheme
+
+set background=dark
+colorscheme palenight
+let g:airline_theme='palenight'
+let g:palenight_terminal_italics=1
+
 set laststatus=2        "Status line always visible
 set encoding=utf-8
-set guifont=FiraCode-Regular:h14
+" set guifont=FiraCode-Regular:h13
+set guifont=Apl385\ Unicode\ Nerd\ Font:h15
 set expandtab           "Treat tabs as multiple spaces
 set shiftwidth=4        "Tab length = 4 spaces
 set backspace=indent,eol,start
 set belloff=all         "Shut that fucking bell sound off
-set colorcolumn=80,100  "Line length danger zone
+set colorcolumn=80,100  "Line length DANGER ZONE NO PLS NO FUCK AHH NOT 80 CHARA
 
 if has("gui_running")
     set lines=999 columns=999
 else
-  " Console Vim
+  " Terminal Vim
   if exists("+lines")
     set lines=50
   endif
@@ -81,12 +102,14 @@ let g:airline#extensions#tabline#enabled = 1
 " Syntastic
 set statusline+=%#warningmsg#                  "Add syntastic notifs to statusline
 set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{FugitiveStatusline()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_python_exec = 'python3' "Use Python3
+autocmd VimEnter * SyntasticToggleMode " Passive mode by default
 
 " YouCompleteMe
 let g:ycm_add_preview_to_completeopt = 0

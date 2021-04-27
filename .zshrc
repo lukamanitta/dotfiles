@@ -8,7 +8,7 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export ZSH="/home/luka/.oh-my-zsh"
+export ZSH="/Users/lukamanitta/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -33,9 +33,55 @@ ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red') #Commands starting wi
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="colorls"
-alias switchpython="sudo update-alternatives --config python"
-#alias gvim="gvim.exe"
-alias explorer="explorer.exe"
+alias sourcevenv="source venv/bin/activate"
+alias e="exit"
+
+export PREF_CODE_EDITOR="mvim"
+#Take directory as argument: CDs to directory and opens pref code editor in folder
+function code {
+    if [ "$1" != "" ]
+    then
+        z "$1"
+        $PREF_CODE_EDITOR .
+    else
+        $PREF_CODE_EDITOR .
+    fi
+}
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="/usr/local/sbin:$PATH"
+#PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/Code/msi-utils/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/mongodb-community@4.0/bin:$PATH"
+export PATH="/usr/local/opt/ansible@2.8/bin:$PATH"
+export PATH="$HOME/.nvm/versions/node/v15.12.0/bin:$PATH"
+
+# RabbitMQ
+export HOMEBREW_RABBITMQ="/usr/local/Cellar/rabbitmq/3.8.9_1/sbin/"
+export PATH=$PATH:$HOMEBREW_RABBITMQ
+
+export GCE_INI_PATH="$HOME/Code/configure/gce.ini"
+export CLOUDSDK_PYTHON=python3
+export TERMINAL_NOTIFIER_BIN=/usr/local/bin/terminal-notifier
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+#source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
+#source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
