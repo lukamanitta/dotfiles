@@ -23,28 +23,28 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red') #Commands starting with rm -rf in red
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+#Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+export EDITOR='vim'
+else
+export EDITOR='nvim'
+fi
 
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="colorls"
 alias sourcevenv="source venv/bin/activate"
+alias createvenv="python3 -m venv venv"
 alias e="exit"
 
-export PREF_CODE_EDITOR="mvim"
 #Take directory as argument: CDs to directory and opens pref code editor in folder
 function code {
     if [ "$1" != "" ]
     then
         z "$1"
-        $PREF_CODE_EDITOR .
+        $EDITOR .
     else
-        $PREF_CODE_EDITOR .
+        $EDITOR .
     fi
 }
 
@@ -85,3 +85,50 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+#Update hms-core applications
+#!/bin/bash
+#NOT WORKING
+function update_hms_core {
+    DIRECTORIES=("~/Code/homestay-management/executive"\
+                 "~/Code/homestay-management/reception"\
+                 "~/Code/homestay-management/lobby"\
+                 "~/Code/homestay-management/doug"\
+                 "~/Code/homestay-management/willie")
+
+    for DIRECTORY in "${DIRECTORIES[@]}"
+    do
+    cd $(echo $DIRECTORY | tr -d '\r')
+    echo "Running bundle update in $DIRECTORY for hms_core"
+    bundle update --conservative hms_core
+    done
+}
+
+function install_coc_extensions {
+    EXTENSIONS=[
+        "coc-css",
+        "coc-html",
+        "coc-html-css-support",
+        "coc-json",
+        "coc-pydocstring",
+        "coc-pyright",
+        "coc-sql",
+        "coc-tsserver",
+        "coc-vimlsp",
+        "coc-explorer",
+    ]
+    set -o nounset
+    set -o errexit
+
+    mkdir -p ~/.config/coc/extensions
+    cd ~/.config/coc/extensions
+    if [ ! -f package.json ]
+    then
+      echo '{"dependencies":{}}'> package.json
+    fi
+
+    npm install "${EXTENSIONS[@]}"
+}
+
+
+

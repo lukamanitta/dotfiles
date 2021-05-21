@@ -15,11 +15,20 @@ map <leader>h :wincmd h<CR>|                                      "Space + direc
 map <leader>j :wincmd j<CR>|
 map <leader>k :wincmd k<CR>|
 map <leader>l :wincmd l<CR>|
+map //  :nohlsearch<CR>; echo 'Search highlight cleared' <CR>     "Clears the previous search highlight
 
 " Auto Commands
-" autocmd BufEnter NERD_tree_* | execute 'normal R'| " Refresh NerdTree file tree when tabbing to buffer
+autocmd BufEnter NERD_tree_* | execute 'normal R'| " Refresh NerdTree file tree when tabbing to buffer
 
 " Plugins
+"
+" auto-install vim-plug                                                                                                                
+if empty(glob('~/.config/nvim/autoload/plug.vim'))                                                                                    
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \                                                                  
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim                                                             
+  autocmd VimEnter * PlugInstall                                                                                                      
+endif                     
+
 call plug#begin()
         " File Explorer
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -32,7 +41,8 @@ Plug 'chun-yang/auto-pairs'
 Plug 'tpope/vim-surround'
 
         " Autocompletion / Intellisense
-Plug 'valloric/youcompleteme', { 'do': 'python3 install.py --clang-completer' }
+" Plug 'valloric/youcompleteme', { 'do': 'python3 install.py --clang-completer' }
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'install_coc_extensions'}
 Plug 'omnisharp/omnisharp-vim', { 'do': ':OmniSharpInstall' }
 
         " Languages
@@ -117,9 +127,12 @@ let g:syntastic_python_python_exec = 'python3' "Use Python3
 autocmd VimEnter * SyntasticToggleMode " Passive mode by default
 
 " YouCompleteMe
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
-nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>|  "Go to definition on gd
+"let g:ycm_add_preview_to_completeopt = 0
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>|  "Go to definition on gd
+
+" COC
+source $HOME/.config/nvim/plug-config/coc.vim
 
 " fzf
 nnoremap <silent> <C-f> :Files<CR>| "File search with ctrl-f
@@ -128,4 +141,11 @@ let g:fzf_preview_window = ''      "No preview window
 set backupdir=$TMPDIR//
 set directory=$TMPDIR//
 
-
+" Functions
+" Add argument (can be negative, default 1) to global variable i.
+" Return value of i before the change.
+function Inc(...)
+  let result = g:i
+  let g:i += a:0 > 0 ? a:1 : 1
+  return result
+endfunction
