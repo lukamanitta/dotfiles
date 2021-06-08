@@ -48,6 +48,11 @@ function code {
     fi
 }
 
+function mkcd {
+  case "$1" in /*) :;; *) set -- "./$1";; esac
+  mkdir -p "$1" && cd "$1"
+}
+
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="/usr/local/sbin:$PATH"
@@ -116,6 +121,7 @@ function install_coc_extensions {
         "coc-tsserver",
         "coc-vimlsp",
         "coc-explorer",
+        "coc-emmet"
     ]
     set -o nounset
     set -o errexit
