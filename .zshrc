@@ -62,69 +62,26 @@ export PATH="/usr/local/sbin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-export PATH="~/.rbenv/bin:$PATH"
-export PATH="~/Code/msi-utils/bin:$PATH"
-export PATH="~/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/mongodb-community@4.0/bin:$PATH"
-export PATH="/usr/local/opt/ansible@2.8/bin:$PATH"
-export PATH="~/.nvm/versions/node/v15.12.0/bin:$PATH"
-
-# RabbitMQ
-export HOMEBREW_RABBITMQ="/usr/local/Cellar/rabbitmq/3.8.9_1/sbin/"
-export PATH=$PATH:$HOMEBREW_RABBITMQ
-
-export GCE_INI_PATH="~/Code/configure/gce.ini"
-export CLOUDSDK_PYTHON=python3
-export TERMINAL_NOTIFIER_BIN=/usr/local/bin/terminal-notifier
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+# MyStay International config
+if [ -f ~/.msirc]; then
+    source ~/.msirc
 fi
-
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-#source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
-#source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-#Update hms-core applications
-#!/bin/bash
-#NOT WORKING
-function update_hms_core {
-    DIRECTORIES=("~/Code/homestay-management/executive"\
-                 "~/Code/homestay-management/reception"\
-                 "~/Code/homestay-management/lobby"\
-                 "~/Code/homestay-management/doug"\
-                 "~/Code/homestay-management/willie")
-
-    for DIRECTORY in "${DIRECTORIES[@]}"
-    do
-    cd $(echo $DIRECTORY | tr -d '\r')
-    echo "Running bundle update in $DIRECTORY for hms_core"
-    bundle update --conservative hms_core
-    done
-}
 
 #Install Conqueror of Completion extensions (for neovim)
 function install_coc_extensions {
-    EXTENSIONS=[
-        "coc-css",
-        "coc-html",
-        "coc-html-css-support",
-        "coc-json",
-        "coc-pydocstring",
-        "coc-pyright",
-        "coc-sql",
-        "coc-tsserver",
-        "coc-vimlsp",
-        "coc-explorer",
+    EXTENSIONS=(        
+        "coc-css"\
+        "coc-html"\
+        "coc-html-css-support"\
+        "coc-json"\
+        "coc-pydocstring"\
+        "coc-pyright"\
+        "coc-sql"\
+        "coc-tsserver"\
+        "coc-vimlsp"\
+        "coc-explorer"\
         "coc-emmet"
-    ]
+    )
     set -o nounset
     set -o errexit
 

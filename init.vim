@@ -137,7 +137,7 @@ endif
 
 " Init Splits
 set splitbelow
-au VimEnter * new | call termopen(&shell) | execute 'resize 10'
+au VimEnter * new | call termopen(&shell) | execute 'resize 12'
 " Start NERDTree when Vim is started without file arguments.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | wincmd p | endif
@@ -165,6 +165,7 @@ let NERDTreeShowLineNumbers=1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDTreeShowHidden = 1
 map <C-n> :NERDTreeToggle<CR>|    "Open file explorer
 map <leader>N :NERDTreeFind<CR>|  "Toggle file explorer
 " after a re-source, fix syntax matching issues (concealing brackets):
