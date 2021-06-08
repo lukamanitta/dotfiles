@@ -8,7 +8,7 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export ZSH="/Users/lukamanitta/.oh-my-zsh"
+export ZSH="~/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -33,7 +33,7 @@ fi
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="colorls"
-alias sourcevenv="source venv/bin/activate"
+alias sourcevenv="source venv/bin/activate && echo 'Enter "deactivate" to leave venv'"
 alias createvenv="python3 -m venv venv"
 alias e="exit"
 
@@ -42,12 +42,13 @@ function code {
     if [ "$1" != "" ]
     then
         z "$1"
-        $EDITOR .
+        $EDITOR
     else
-        $EDITOR .
+        $EDITOR
     fi
 }
 
+#Make a new directory and cd into it (works with subdirectories, but not symlinks)
 function mkcd {
   case "$1" in /*) :;; *) set -- "./$1";; esac
   mkdir -p "$1" && cd "$1"
@@ -62,19 +63,19 @@ export PATH="/usr/local/sbin:$PATH"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/Code/msi-utils/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
+export PATH="~/.rbenv/bin:$PATH"
+export PATH="~/Code/msi-utils/bin:$PATH"
+export PATH="~/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/mongodb-community@4.0/bin:$PATH"
 export PATH="/usr/local/opt/ansible@2.8/bin:$PATH"
-export PATH="$HOME/.nvm/versions/node/v15.12.0/bin:$PATH"
+export PATH="~/.nvm/versions/node/v15.12.0/bin:$PATH"
 
 # RabbitMQ
 export HOMEBREW_RABBITMQ="/usr/local/Cellar/rabbitmq/3.8.9_1/sbin/"
 export PATH=$PATH:$HOMEBREW_RABBITMQ
 
-export GCE_INI_PATH="$HOME/Code/configure/gce.ini"
+export GCE_INI_PATH="~/Code/configure/gce.ini"
 export CLOUDSDK_PYTHON=python3
 export TERMINAL_NOTIFIER_BIN=/usr/local/bin/terminal-notifier
 
@@ -109,6 +110,7 @@ function update_hms_core {
     done
 }
 
+#Install Conqueror of Completion extensions (for neovim)
 function install_coc_extensions {
     EXTENSIONS=[
         "coc-css",
@@ -135,6 +137,3 @@ function install_coc_extensions {
 
     npm install "${EXTENSIONS[@]}"
 }
-
-
-
