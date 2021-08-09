@@ -9,7 +9,11 @@ runtime mappings.vim
 
 runtime plugins.vim
 
+runtime plugin_settings.vim
+
 runtime auto_cmds.vim
+
+runtime layouts.vim
 
 runtime ui.vim
 

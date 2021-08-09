@@ -44,13 +44,28 @@ endif
 
 " Init Splits
 "Create a 'utility' terminal
-set splitbelow
-au VimEnter * new | call termopen(&shell) | execute 'resize 12' | wincmd p
-"Start NERDTree when Vim is started without file arguments.
+"set splitbelow
+"au VimEnter * new | call termopen(&shell) | execute 'resize 12' | wincmd p
+"
+"Start NERDTree & vista when Vim is started without file arguments.
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | wincmd p | endif
+
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | call vwm#open("bottom_term") | endif
+autocmd VimEnter * if argc() != 0 | call vwm#open("bottom_term") | endif
+
 "Open and set a terminal then put into background
 autocmd VimEnter * call termopen(&shell) | call SetBuffer(0) | enew
+
+"No window manager splits
+"Create a 'utility' terminal
+"set splitbelow
+"au VimEnter * new | call termopen(&shell) | execute 'resize 12' | wincmd p
+"
+"Start NERDTree & vista when Vim is started without file arguments.
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | wincmd p | endif
+"
+
 
 " Code folding
 set foldmethod=indent   "Fold based on indent

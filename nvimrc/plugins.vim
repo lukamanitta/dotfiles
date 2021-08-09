@@ -7,10 +7,13 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin()
-        " File Explorer
+        " Explorers
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
-"Plug 'vim-scripts/taglist.vim' deal with this later
+Plug 'liuchengxu/vista.vim' " Tags
+
+        " Window layouts
+Plug 'paroxayte/vwm.vim'
 
         " Finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }

@@ -53,6 +53,12 @@ nmap <leader>ts2 :call SetBuffer(1)<CR>
 nmap <leader>ts3 :call SetBuffer(2)<CR>
 nmap <leader>ts4 :call SetBuffer(3)<CR>
 
+function! ReloadBufferFiles()
+    set noconfirm
+    bufdo! e
+    set confirm
+endfunction
+
 function! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
