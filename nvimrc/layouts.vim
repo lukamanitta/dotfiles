@@ -10,23 +10,22 @@ let s:bottom_term = {
 
 let g:vwm#layouts=[s:bottom_term]
 
-"Leave until I fix Vista
 " Vista attempts to move itself, the sleep prevents a race.
-"let s:dev_panel = {
-      "\  'name': 'dev_panel',
-      "\  'set_all': ['nonu', 'nornu'],
-      "\  'left': {
-      "\    'v_sz': 33,
-      "\    'init': ['NERDTree'],
-      "\  },
-      "\  'bot': {
-      "\    'h_sz': 12,
-      "\    'init': ['term'],
-      "\    'left': {
-      "\      'v_sz': 33,
-      "\      'init': ['Vista', 'sleep 50ms']
-      "\    }
-      "\  }
-      "\}
+let s:dev_panel = {
+      \  'name': 'dev_panel',
+      \  'set_all': ['nonu', 'nornu'],
+      \  'left': {
+      \    'v_sz': 33,
+      \    'init': ['NERDTree'],
+      \  },
+      \  'bot': {
+      \    'h_sz': 12,
+      \    'init': ['term'],
+      \    'left': {
+      \      'v_sz': 33,
+      \      'init': ['Vista', 'sleep 50ms']
+      \    }
+      \  }
+      \}
 
-"let g:vwm#layouts=[s:dev_panel]
+let g:vwm#layouts+=[s:dev_panel]

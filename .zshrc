@@ -8,13 +8,18 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export ZSH="~/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 ZSH_DISABLE_COMPFIX=true
 
-plugins=(git zsh-z zsh-syntax-highlighting)
+plugins=(
+        git
+        zsh-z
+        zsh-syntax-highlighting
+        zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 source $(dirname $(gem which colorls))/tab_complete.sh
@@ -36,6 +41,17 @@ alias ls="colorls"
 alias sourcevenv="source venv/bin/activate && echo 'Enter "deactivate" to leave venv'"
 alias createvenv="python3 -m venv venv"
 alias e="exit"
+
+export PATH="/Library/TeX/texbin:$PATH"
+
+export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+
+alias java8='export JAVA_HOME=$JAVA_8_HOME'
+alias java11='export JAVA_HOME=$JAVA_11_HOME'
+
+# default to Java 11
+java11
 
 #Take directory as argument: CDs to directory and opens pref code editor in folder
 function code {
@@ -60,16 +76,15 @@ export PATH="/usr/local/sbin:$PATH"
 #PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+test -f ~/.p10k.zsh && source ~/.p10k.zsh
 
 # MyStay International config
-if [ -f ~/.msirc]; then
-    source ~/.msirc
-fi
+test -f ~/.msirc && source ~/.msirc
 
 #Install Conqueror of Completion extensions (for neovim)
+#Move this to init.vim
 function install_coc_extensions {
-    EXTENSIONS=(        
+    EXTENSIONS=(
         "coc-css"\
         "coc-html"\
         "coc-html-css-support"\

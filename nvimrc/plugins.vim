@@ -45,7 +45,8 @@ Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'vim-python/python-syntax'
-"Correct css styling inside styled components
+Plug 'lervag/vimtex'
+"Correct css styling inside react styled components
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
         " Other
@@ -56,9 +57,11 @@ Plug 'tpope/vim-sensible'
         " Themes
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+"Colours
 Plug 'morhetz/gruvbox' " let g:airline_theme='bubblegum'
 Plug 'gosukiwi/vim-atom-dark' " let g:airline_theme='????????'
 Plug 'hzchirs/vim-material' " let g:airline_theme='material'
 Plug 'drewtempelmeyer/palenight.vim' " let g:airline_theme='palenight'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
 call plug#end()
