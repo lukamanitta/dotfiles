@@ -2,5 +2,8 @@
 
 for file in *.vim
 do
-  ln "$file" ~/.config/nvim
+    rm ~/.config/nvim/"$file"
+    ln "$file" ~/.config/nvim
 done
+
+
