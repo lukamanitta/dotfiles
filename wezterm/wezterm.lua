@@ -17,7 +17,7 @@ local cfg = {
     --Fonts--
 
     font = wezterm.font("APL386 Nerd Font"),
-    font_size = 14.0,
+    font_size = 13,
 
     --Fonts--
 
