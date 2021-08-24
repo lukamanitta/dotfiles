@@ -1,9 +1,12 @@
 local wezterm = require 'wezterm'
+local osPathSep = package.config:sub(1,1)
+local onWindows = osPathSep == "\\"
 local cfg = {
     --General--
 
     warn_about_missing_glyphs = false,
     window_background_opacity = 1.0,
+    native_macos_fullscreen_mode=true,
 
     --color_scheme = "Batman",
     --color_scheme = "Dracula+",
@@ -12,24 +15,29 @@ local cfg = {
     --color_scheme = "Tinacious Design (Dark)",
     --color_scheme = "Tomorrow Night Eighties",
 
+    tab_bar_at_bottom=true,
+
     --General--
 
     --Fonts--
 
     font = wezterm.font("APL386 Nerd Font"),
-    font_size = 13,
+    font_size = 14,
 
     --Fonts--
 
     --Keybindings--
 
-    leader = {key="a", mods="ALT", timeout_milliseconds=1000},
+    leader = {key="a", mods="SUPER", timeout_milliseconds=1000},
+
+    send_composed_key_when_left_alt_is_pressed=true,
+    send_composed_key_when_right_alt_is_pressed=false,
 
     keys = {
       --- Keybindings for Multiplex
       {key="s", mods="LEADER", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
-      {key="v", mods="LEADER", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
-      {key="h", mods="LEADER", action=wezterm.action{ActivatePaneDirection="Left"}},
+      {key="-", mods="LEADER", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
+      {key="|", mods="LEADER", action=wezterm.action{ActivatePaneDirection="Left"}},
       {key="j", mods="LEADER", action=wezterm.action{ActivatePaneDirection="Down"}},
       {key="k", mods="LEADER", action=wezterm.action{ActivatePaneDirection="Up"}},
       {key="l", mods="LEADER", action=wezterm.action{ActivatePaneDirection="Right"}},
@@ -39,20 +47,18 @@ local cfg = {
       --- Keybindings for Tabs
       {key="c", mods="LEADER", action=wezterm.action{SpawnTab="CurrentPaneDomain"}},
       {key="w", mods="LEADER", action=wezterm.action{CloseCurrentTab={confirm=true}}},
-      {key="1", mods="LEADER", action=wezterm.action{ActivateTab=0}},
-      {key="2", mods="LEADER", action=wezterm.action{ActivateTab=1}},
-      {key="3", mods="LEADER", action=wezterm.action{ActivateTab=2}},
-      {key="4", mods="LEADER", action=wezterm.action{ActivateTab=3}},
-      {key="5", mods="LEADER", action=wezterm.action{ActivateTab=4}},
-      {key="6", mods="LEADER", action=wezterm.action{ActivateTab=5}},
-      {key="7", mods="LEADER", action=wezterm.action{ActivateTab=6}},
     },
 
     --Keybindings--
 }
 
-if package.config:sub(1,1) == "\\" then
-    cfg.default_prog = {'wsl', '~'}
+if onWindows then
+    cfg.default_prog = {'wsl', '~'} --Start linux subsystem and go to linux home dir
+end
+
+-- Tab switching keys (saves repeating essentially the same keybinding 10 times)
+for tabNum = 1, 9 do
+    table.insert(cfg.keys, {key=tostring(tabNum), mods="LEADER", action=wezterm.action{ActivateTab=tabNum-1}})
 end
 
 return cfg

@@ -35,8 +35,8 @@ else
 export EDITOR='nvim'
 fi
 
-alias zshconfig="mate ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="mate $HOME/.zshrc"
+alias ohmyzsh="mate $HOME/.oh-my-zsh"
 alias ls="colorls"
 alias sourcevenv="source venv/bin/activate && echo 'Enter "deactivate" to leave venv'"
 alias createvenv="python3 -m venv venv"
@@ -52,6 +52,9 @@ alias java11='export JAVA_HOME=$JAVA_11_HOME'
 
 # default to Java 11
 java11
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 #Take directory as argument: CDs to directory and opens pref code editor in folder
 function code {
@@ -109,3 +112,4 @@ function install_coc_extensions {
 
     npm install "${EXTENSIONS[@]}"
 }
+
