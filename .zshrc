@@ -1,12 +1,7 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# Enable Powerlevel10k instant prompt.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -20,6 +15,17 @@ plugins=(
         zsh-syntax-highlighting
         zsh-autosuggestions
 )
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="/usr/local/sbin:$PATH"
+
+#Java version manager
+[ -s "$JABBA_HOME/jabba.sh"  ] && source "$JABBA_HOME/jabba.sh"
+
+#NodeJS version manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 source $ZSH/oh-my-zsh.sh
 source $(dirname $(gem which colorls))/tab_complete.sh
@@ -44,11 +50,6 @@ alias e="exit"
 
 export PATH="/Library/TeX/texbin:$PATH"
 
-[ -s "$JABBA_HOME/jabba.sh"  ] && source "$JABBA_HOME/jabba.sh"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
 #Take directory as argument: CDs to directory and opens pref code editor in folder
 function code {
     if [ "$1" != "" ]
@@ -66,9 +67,6 @@ function mkcd {
   mkdir -p "$1" && cd "$1"
 }
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="/usr/local/sbin:$PATH"
 #PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -76,33 +74,3 @@ test -f ~/.p10k.zsh && source ~/.p10k.zsh
 
 # MyStay International config
 test -f ~/.msirc && source ~/.msirc
-
-#Install Conqueror of Completion extensions (for neovim)
-#Move this to init.vim
-function install_coc_extensions {
-    EXTENSIONS=(
-        "coc-css"\
-        "coc-html"\
-        "coc-html-css-support"\
-        "coc-json"\
-        "coc-pydocstring"\
-        "coc-pyright"\
-        "coc-sql"\
-        "coc-tsserver"\
-        "coc-vimlsp"\
-        "coc-explorer"\
-        "coc-emmet"
-    )
-    set -o nounset
-    set -o errexit
-
-    mkdir -p ~/.config/coc/extensions
-    cd ~/.config/coc/extensions
-    if [ ! -f package.json ]
-    then
-      echo '{"dependencies":{}}'> package.json
-    fi
-
-    npm install "${EXTENSIONS[@]}"
-}
-

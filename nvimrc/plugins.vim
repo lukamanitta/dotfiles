@@ -31,7 +31,7 @@ Plug 'bkad/CamelCaseMotion'
 
         " Autocompletion / Intellisense
 " Plug 'valloric/youcompleteme', { 'do': 'python3 install.py --clang-completer' }
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'install_coc_extensions'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':call InstallCocExtensions()'}
 Plug 'omnisharp/omnisharp-vim', { 'do': ':OmniSharpInstall' }
 
         " Languages / Syntax
@@ -65,3 +65,21 @@ Plug 'drewtempelmeyer/palenight.vim' " let g:airline_theme='palenight'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
 call plug#end()
+
+function! InstallCocExtensions()
+    let extensions = [
+        \"coc-css",
+        \"coc-html",
+        \"coc-html-css-support",
+        \"coc-json",
+        \"coc-pydocstring",
+        \"coc-pyright",
+        \"coc-sql",
+        \"coc-tsserver",
+        \"coc-vimlsp",
+        \"coc-explorer",
+        \"coc-emmet",
+        \]
+
+    execute "CocInstall " . join(extensions)
+endfunction
