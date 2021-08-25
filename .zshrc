@@ -44,14 +44,7 @@ alias e="exit"
 
 export PATH="/Library/TeX/texbin:$PATH"
 
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
-
-alias java8='export JAVA_HOME=$JAVA_8_HOME'
-alias java11='export JAVA_HOME=$JAVA_11_HOME'
-
-# default to Java 11
-java11
+[ -s "$JABBA_HOME/jabba.sh"  ] && source "$JABBA_HOME/jabba.sh"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

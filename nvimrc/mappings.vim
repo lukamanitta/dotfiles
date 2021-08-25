@@ -1,23 +1,31 @@
 
 " Key mappings
-inoremap jk <Esc>|						          "Remap jk to enter normal mode
-nnoremap ; :|                                                     "Remap ; to start command
-nnoremap <SPACE> <Nop>|                                           "Remap leader to space
-let mapleader = " "|
-nnoremap <leader>c* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn|  "Change all instances of word
-nnoremap <leader>c# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN|
-nnoremap <leader>a <C-^>|                                          "Swap to alternate file
+inoremap jk <Esc>
+nnoremap ; :
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+nnoremap <leader>a <C-^>
 
-map <leader>h :wincmd h<CR>|                                      "Space + direction for window navigation
-map <leader>j :wincmd j<CR>|
-map <leader>k :wincmd k<CR>|
-map <leader>l :wincmd l<CR>|
+"leader + direction for window navigation
+map <leader>h :wincmd h<CR>
+map <leader>j :wincmd j<CR>
+map <leader>k :wincmd k<CR>
+map <leader>l :wincmd l<CR>
 
-map //  :nohlsearch<CR>; echo 'Search highlight cleared' <CR>|    "Clears the previous search highlight
+"Make capital Y yanking work normally consistently with other capita letters
+nnoremap Y y$
 
-tnoremap jk <C-\><C-n>|                                           "Leave insert mode in terminal
+"Keep cursor centered when cycling through search results & expand folds
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
-map <leader>r :call ReloadBufferFiles()|                          "Reload files open in buffers
+map //  :nohlsearch<CR>; echo 'Search highlight cleared' <CR>
+
+"Leave ins mode in terminal
+tnoremap jk <C-\><C-n>
+
+"Reload files open in buffers (can fix syntax)
+map <leader>r :call ReloadBufferFiles()
 
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
