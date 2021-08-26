@@ -1,9 +1,3 @@
-" Find files using Telescope command-line sugar.
-"nnoremap <leader>ff <cmd>Telescope find_files<cr>
-"nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-"nnoremap <leader>fb <cmd>Telescope buffers<cr>
-"nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 
@@ -13,7 +7,7 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeShowHidden = 1
-map <C-n> :NERDTreeToggle<CR>|    "Open file explorer
+map <leader>n :NERDTreeToggle<CR>|    "Open file explorer
 map <leader>N :NERDTreeFind<CR>|  "Toggle file explorer
 " after a re-source, fix syntax matching issues (concealing brackets):
 if exists('g:loaded_webdevicons')
@@ -66,6 +60,30 @@ let g:rustfmt_autosave = 1
 nnoremap <silent> <leader>f :GitFiles<CR>|   "File search
 nnoremap <silent> <leader>b :Buffers<CR>| "Buffer search
 nnoremap <silent> <leader>s :Rg<CR>|      "Grep search in files
+
+" telescope
+nnoremap <silent> <leader>f <cmd>Telescope find_files<cr>
+nnoremap <silent> <leader>s <cmd>Telescope live_grep<cr>
+nnoremap <silent> <leader>b <cmd>Telescope buffers<cr>
+nnoremap <silent> <leader>ht <cmd>Telescope help_tags<cr>
+
+lua << EOF
+require('telescope').setup{
+    defaults = {
+        vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--ignore-file',
+            '.gitignore'
+        },
+    }
+}
+EOF
 
 " vimtex
 let g:vimtex_view_method = "skim"

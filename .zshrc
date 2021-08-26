@@ -14,21 +14,12 @@ plugins=(
         zsh-z
         zsh-syntax-highlighting
         zsh-autosuggestions
+        asdf
 )
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="/usr/local/sbin:$PATH"
-
-#Java version manager
-[ -s "$JABBA_HOME/jabba.sh"  ] && source "$JABBA_HOME/jabba.sh"
-
-#NodeJS version manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 source $ZSH/oh-my-zsh.sh
 source $(dirname $(gem which colorls))/tab_complete.sh
+source ~/.asdf/plugins/java/set-java-home.zsh
 
 #Syntax highlighting settings
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)

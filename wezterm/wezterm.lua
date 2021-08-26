@@ -16,6 +16,7 @@ local cfg = {
     --color_scheme = "Tomorrow Night Eighties",
 
     tab_bar_at_bottom=true,
+    enable_kitty_graphics=true,
 
     --General--
 

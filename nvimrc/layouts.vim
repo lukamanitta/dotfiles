@@ -14,18 +14,14 @@ let g:vwm#layouts=[s:bottom_term]
 let s:dev_panel = {
       \  'name': 'dev_panel',
       \  'set_all': ['nonu', 'nornu'],
-      \  'left': {
-      \    'v_sz': 33,
-      \    'init': ['NERDTree'],
-      \  },
       \  'bot': {
       \    'h_sz': 12,
       \    'init': ['term'],
-      \    'left': {
-      \      'v_sz': 33,
-      \      'init': ['Vista', 'sleep 50ms']
-      \    }
-      \  }
+      \  },
+      \  'left': {
+      \    'v_sz': 30,
+      \    'init': ['NERDTree'],
+      \  },
       \}
 
 let g:vwm#layouts+=[s:dev_panel]

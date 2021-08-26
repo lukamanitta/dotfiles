@@ -42,19 +42,25 @@ if has("gui_running")
   "endif
 endif
 
-" Init Splits
-"Create a 'utility' terminal
-"set splitbelow
-"au VimEnter * new | call termopen(&shell) | execute 'resize 12' | wincmd p
-"
-"Start NERDTree & vista when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
 
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | call vwm#open("bottom_term") | endif
-autocmd VimEnter * if argc() != 0 | call vwm#open("bottom_term") | endif
+"Open layout and background terminal
+function! InitialSetup()
+    let l:filename_given = argc() != 0
+    let l:filename_argument_bufh = nvim_win_get_buf(0)
 
-"Open and set a terminal then put into background
-autocmd VimEnter * call termopen(&shell) | call SetBuffer(0) | enew
+    "Background terminal
+    enew | call termopen(&shell) | call SetBuffer(0)
+    if l:filename_given
+        "Return to file passed to cmd
+        call nvim_win_set_buf(0, l:filename_argument_bufh)
+    else
+        "Open empty buffer
+        enew
+    end
+endfunction
+
+autocmd VimEnter * call InitialSetup()
+
 
 "No window manager splits
 "Create a 'utility' terminal
@@ -64,7 +70,6 @@ autocmd VimEnter * call termopen(&shell) | call SetBuffer(0) | enew
 "Start NERDTree & vista when Vim is started without file arguments.
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | wincmd p | endif
-"
 
 
 " Code folding
