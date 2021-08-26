@@ -34,18 +34,19 @@ read_only = " "
 symbol = " "
 
 [git_metrics]
-disabled = false
+disabled = true
 added_style = "bold green"
 format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 
 [git_status]
-format='$ahead$behind $staged $modified $untracked $stashed '
-ahead = '[⇡$count](green)'
-behind = '[⇣$count](green)'
-untracked = '[?$count](blue)'
-stashed = '[*](green)'
-modified = '[!$count](bold yellow)'
-staged = '[+$count](bold yellow)'
+format='$ahead$behind$staged$deleted$modified$untracked$stashed'
+ahead = '[⇡$count](green) '
+behind = '[⇣$count](green) '
+untracked = '[?$count](blue) '
+stashed = '[*](green) '
+modified = '[!$count](bold yellow) '
+staged = '[+$count](bold yellow) '
+deleted = '[-$count](bold red) '
 
 
 [hg_branch]
