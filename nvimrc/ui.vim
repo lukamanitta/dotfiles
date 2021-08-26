@@ -57,6 +57,8 @@ function! InitialSetup()
         "Open empty buffer
         enew
     end
+
+    call vwm#open("bottom_term")
 endfunction
 
 autocmd VimEnter * call InitialSetup()
