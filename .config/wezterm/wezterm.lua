@@ -11,8 +11,8 @@ local cfg = {
     --color_scheme = "Batman",
     --color_scheme = "Dracula+",
     --color_scheme = "MaterialDarker",
-    color_scheme = "Overnight Slumber",
-    --color_scheme = "Tinacious Design (Dark)",
+    --color_scheme = "Overnight Slumber",
+    color_scheme = "Tinacious Design (Dark)",
     --color_scheme = "Tomorrow Night Eighties",
 
     tab_bar_at_bottom=true,

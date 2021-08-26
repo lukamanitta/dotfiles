@@ -1,67 +1,48 @@
-# Enable Powerlevel10k instant prompt.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
-export ZSH="$HOME/.oh-my-zsh"
+# Path to your oh-my-bash installation.
+export OSH=$HOME/.oh-my-bash
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+OSH_THEME="purity"
 
-ZSH_DISABLE_COMPFIX=true
+# export UPDATE_OSH_DAYS=13
 
-plugins=(
-        git
-        zsh-z
-        zsh-syntax-highlighting
-        zsh-autosuggestions
-        asdf
+COMPLETION_WAITING_DOTS="true"
+
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+HIST_STAMPS="dd.mm.yyyy"
+
+completions=(
+  git
+  composer
+  ssh
 )
 
-source $ZSH/oh-my-zsh.sh
-source $(dirname $(gem which colorls))/tab_complete.sh
-source ~/.asdf/plugins/java/set-java-home.zsh
+aliases=(
+  general
+)
 
-#Syntax highlighting settings
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red') #Commands starting with rm -rf in red
+plugins=(
+  git
+  bashmarks
+)
 
-#Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='vim'
-else
-export EDITOR='nvim'
-fi
+source $OSH/oh-my-bash.sh
 
-alias zshconfig="mate $HOME/.zshrc"
-alias ohmyzsh="mate $HOME/.oh-my-zsh"
-alias ls="colorls"
-alias sourcevenv="source venv/bin/activate && echo 'Enter "deactivate" to leave venv'"
-alias createvenv="python3 -m venv venv"
-alias e="exit"
+. ~/z/z.sh
 
-export PATH="/Library/TeX/texbin:$PATH"
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-#Take directory as argument: CDs to directory and opens pref code editor in folder
-function code {
-    if [ "$1" != "" ]
-    then
-        z "$1"
-        $EDITOR
-    else
-        $EDITOR
-    fi
-}
-
-#Make a new directory and cd into it (works with subdirectories, but not symlinks)
-function mkcd {
-  case "$1" in /*) :;; *) set -- "./$1";; esac
-  mkdir -p "$1" && cd "$1"
-}
-
-#PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-test -f ~/.p10k.zsh && source ~/.p10k.zsh
-
-# MyStay International config
-test -f ~/.msirc && source ~/.msirc
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
