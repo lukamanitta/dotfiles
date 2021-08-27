@@ -22,6 +22,9 @@ $line_break\
 $character
 """
 
+command_timeout = 1500
+scan_timeout = 200
+
 #Module settings
 [time]
 disabled = false
