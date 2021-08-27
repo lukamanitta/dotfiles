@@ -62,7 +62,7 @@ nnoremap <silent> <leader>b :Buffers<CR>| "Buffer search
 nnoremap <silent> <leader>s :Rg<CR>|      "Grep search in files
 
 " telescope
-nnoremap <silent> <leader>f <cmd>Telescope find_files<cr>
+nnoremap <silent> <leader>f <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' } })<cr>
 nnoremap <silent> <leader>s <cmd>Telescope live_grep<cr>
 nnoremap <silent> <leader>b <cmd>Telescope buffers<cr>
 nnoremap <silent> <leader>ht <cmd>Telescope help_tags<cr>

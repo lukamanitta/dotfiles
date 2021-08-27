@@ -7,6 +7,8 @@ local cfg = {
     warn_about_missing_glyphs = true,
     window_background_opacity = 1.0,
     native_macos_fullscreen_mode=true,
+    initial_cols = 90,
+    intial_rows = 28,
 
     --color_scheme = "Batman",
     --color_scheme = "Dracula+",

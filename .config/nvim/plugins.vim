@@ -62,7 +62,6 @@ Plug 'morhetz/gruvbox' " let g:airline_theme='bubblegum'
 Plug 'gosukiwi/vim-atom-dark' " let g:airline_theme='????????'
 Plug 'hzchirs/vim-material' " let g:airline_theme='material'
 Plug 'drewtempelmeyer/palenight.vim' " let g:airline_theme='palenight'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
 call plug#end()
 
