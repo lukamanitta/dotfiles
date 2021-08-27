@@ -4,7 +4,7 @@ local onWindows = osPathSep == "\\"
 local cfg = {
     --General--
 
-    warn_about_missing_glyphs = false,
+    warn_about_missing_glyphs = true,
     window_background_opacity = 1.0,
     native_macos_fullscreen_mode=true,
 
@@ -22,7 +22,9 @@ local cfg = {
 
     --Fonts--
 
-    font = wezterm.font("APL386 Nerd Font"),
+    font_dirs = {"~/dotfiles/fonts", "~/dotfiles/fonts/RobotoMono"},
+
+    font = wezterm.font("RobotoMono Nerd Font"),
     font_size = 14,
 
     --Fonts--
