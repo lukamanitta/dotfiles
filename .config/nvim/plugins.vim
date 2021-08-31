@@ -11,6 +11,7 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'liuchengxu/vista.vim' " Tags
+Plug 'kyazdani42/nvim-tree.lua'
 
         " Window layouts
 Plug 'paroxayte/vwm.vim'
@@ -35,6 +36,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':call InstallCocExtension
 Plug 'omnisharp/omnisharp-vim', { 'do': ':OmniSharpInstall' }
 
         " Languages / Syntax
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'pangloss/vim-javascript'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
@@ -56,12 +58,15 @@ Plug 'tpope/vim-sensible'
 
         " Themes
 Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons' " for nvim tree icons
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 "Colours
 Plug 'morhetz/gruvbox' " let g:airline_theme='bubblegum'
 Plug 'gosukiwi/vim-atom-dark' " let g:airline_theme='????????'
 Plug 'hzchirs/vim-material' " let g:airline_theme='material'
 Plug 'drewtempelmeyer/palenight.vim' " let g:airline_theme='palenight'
+Plug 'ray-x/aurora'
+Plug 'Pocco81/Catppuccino.nvim'
 
 call plug#end()
 

@@ -10,9 +10,9 @@ set re=1
 
 set termguicolors
 set background=dark
-colorscheme gruvbox
+colorscheme catppuccino
 let g:gruvbox_contrast_dark = 'hard'
-let g:airline_theme='bubblegum'
+let g:airline_theme='hybrid'
 let g:palenight_terminal_italics=1
 
 " Transparent background
