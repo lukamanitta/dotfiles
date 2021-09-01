@@ -8,9 +8,6 @@ endif
 
 call plug#begin()
         " Explorers
-Plug 'scrooloose/nerdtree'
-Plug 'xuyuanp/nerdtree-git-plugin'
-Plug 'liuchengxu/vista.vim' " Tags
 Plug 'kyazdani42/nvim-tree.lua'
 
         " Window layouts

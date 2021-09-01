@@ -12,7 +12,7 @@ map <leader>j :wincmd j<CR>
 map <leader>k :wincmd k<CR>
 map <leader>l :wincmd l<CR>
 
-"Make capital Y yanking work normally consistently with other capita letters
+"Make capital Y yanking work normally consistently with other capital letters
 nnoremap Y y$
 
 "Keep cursor centered when cycling through search results & expand folds
@@ -32,10 +32,6 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Nvim Tree
 nnoremap <leader>n :NvimTreeToggle<CR>
-
-" NERDTree
-"map <leader>n :NERDTreeToggle<CR>|    "Open file explorer
-"map <leader>N :NERDTreeFind<CR>|  "Toggle file explorer
 
 " FZF
 "nnoremap <silent> <leader>f :GitFiles<CR>|   "File search

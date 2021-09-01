@@ -1,23 +1,6 @@
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 
-" NerdTree
-let NERDTreeShowLineNumbers=1
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeShowHidden = 1
-" after a re-source, fix syntax matching issues (concealing brackets):
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
-
-" Vista
-let g:vista#renderer#enable_icon = 1
-let g:vista_stay_on_open = 0
-let g:vista_fzf_preview = ['right:50%']
-let g:vista_sidebar_position = 'vertical topleft'
-
 " Syntastic
 set statusline+=%#warningmsg#                  "Add syntastic notifs to statusline
 set statusline+=%{SyntasticStatuslineFlag()}

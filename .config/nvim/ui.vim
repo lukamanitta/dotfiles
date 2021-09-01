@@ -3,6 +3,7 @@ syntax on               "Vim syntax highlighting
 set relativenumber      "Enables relative line numbers
 set number              "Enable hybrid line mode
 set hidden
+set noequalalways
 
 set lazyredraw
 set ttyfast
@@ -50,7 +51,7 @@ function! InitialSetup()
     let l:filename_argument_bufh = nvim_win_get_buf(0)
 
     "Background terminal
-    enew | call termopen(&shell) | call SetBuffer(0)
+    enew | call termopen(&shell) | call SetBuffer(0) | setl wfh
     if l:filename_given
         "Return to file passed to cmd
         call nvim_win_set_buf(0, l:filename_argument_bufh)
@@ -70,9 +71,9 @@ autocmd VimEnter * call InitialSetup()
 "set splitbelow
 "au VimEnter * new | call termopen(&shell) | execute 'resize 12' | wincmd p
 "
-"Start NERDTree & vista when Vim is started without file arguments.
+"Start NvimTree when Vim is started without file arguments.
 "autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | wincmd p | endif
+"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NvimTreeOpen | wincmd p | endif
 
 
 " Code folding
