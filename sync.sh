@@ -2,7 +2,7 @@
 
 # Copy config files to dotfiles repo
 echo 'Copying dotfiles to repo...'
-rsync -r ~/.zshrc ~/.bashrc .
+rsync -r ~/.zshrc ~/.bashrc ~/.gitignore_global .
 rsync -r ~/.config/{wezterm,nvim,starship.toml} .config/ -f "- nvim/plugged"
 echo 'Done!'
 
