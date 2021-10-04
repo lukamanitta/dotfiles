@@ -19,25 +19,6 @@ source $HOME/.config/nvim/plug-config/coc.vim
 " Rust
 let g:rustfmt_autosave = 1
 
-lua << EOF
-require('telescope').setup{
-    defaults = {
-        vimgrep_arguments = {
-            'rg',
-            '--color=never',
-            '--no-heading',
-            '--hidden',
-            '--with-filename',
-            '--line-number',
-            '--column',
-            '--smart-case',
-            '--ignore-file',
-            '.gitignore'
-        },
-    }
-}
-EOF
-
 " vimtex
 let g:vimtex_view_method = "skim"
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'

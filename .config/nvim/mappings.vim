@@ -1,30 +1,31 @@
-
-" Key mappings
+" General
 inoremap jk <Esc>
 nnoremap ; :
 nnoremap <SPACE> <Nop>
 let mapleader = " "
+
+" Switch to alternate file
 nnoremap <leader>a <C-^>
 
-"leader + direction for window navigation
+" <leader> + direction for window navigation
 map <leader>h :wincmd h<CR>
 map <leader>j :wincmd j<CR>
 map <leader>k :wincmd k<CR>
 map <leader>l :wincmd l<CR>
 
-"Make capital Y yanking work normally consistently with other capital letters
+" Make capital Y yanking work consistently with other capital letters
 nnoremap Y y$
 
-"Keep cursor centered when cycling through search results & expand folds
+" Keep cursor centered when cycling through search results & expand folds
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
 map //  :nohlsearch<CR>; echo 'Search highlight cleared' <CR>
 
-"Leave ins mode in terminal
+" Leave ins mode in terminal
 tnoremap jk <C-\><C-n>
 
-"Reload files open in buffers (can fix syntax)
+" Reload files open in buffers (can fix syntax)
 map <leader>r :call ReloadBufferFiles()
 
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -39,10 +40,17 @@ nnoremap <leader>n :NvimTreeToggle<CR>
 "nnoremap <silent> <leader>s :Rg<CR>|      "Grep search in files
 
 " Telescope
+"File search
 nnoremap <silent> <leader>f <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' } })<cr>
+"Grep search in files
 nnoremap <silent> <leader>s <cmd>Telescope live_grep<cr>
+"Search in buffers
 nnoremap <silent> <leader>b <cmd>Telescope buffers<cr>
+"Help tags
 nnoremap <silent> <leader>ht <cmd>Telescope help_tags<cr>
+
+" Nvim Code Action Menu
+map <silent> <leader>ca <cmd>CodeActionMenu<cr>
 
 " CamelCaseMotion
 map <silent> w <Plug>CamelCaseMotion_w

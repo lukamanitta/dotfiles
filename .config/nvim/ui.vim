@@ -1,7 +1,5 @@
 " Editor / UI Settings
 syntax on               "Vim syntax highlighting
-set relativenumber      "Enables relative line numbers
-set number              "Enable hybrid line mode
 set hidden
 set noequalalways
 
@@ -10,11 +8,12 @@ set ttyfast
 set re=1
 
 set termguicolors
-set background=dark
-colorscheme catppuccino
+set background=light
+colorscheme dark_catppuccino
 let g:gruvbox_contrast_dark = 'hard'
 let g:airline_theme='hybrid'
 let g:palenight_terminal_italics=1
+let g:tempus_enforce_background_colour=1
 
 " Transparent background
 "highlight Normal guibg=none
@@ -24,7 +23,6 @@ set cursorline
 
 set laststatus=2        "Status line always visible
 set encoding=utf-8
-" set guifont=FiraCode-Regular:h13
 set guifont=Apl386\ Unicode\ Nerd\ Font:h15
 set expandtab           "Treat tabs as multiple spaces
 set shiftwidth=4        "Tab length = 4 spaces
@@ -61,6 +59,13 @@ function! InitialSetup()
     end
 
     call vwm#open("bottom_term")
+    set number
+    set relativenumber
+
+    "Create a 'utility' terminal
+    "set splitbelow
+    "call termopen(&shell) | execute 'resize 12' | wincmd p
+
 endfunction
 
 autocmd VimEnter * call InitialSetup()

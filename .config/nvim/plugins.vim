@@ -7,7 +7,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin()
-        " Explorers
+        " Explorer
 Plug 'kyazdani42/nvim-tree.lua'
 
         " Window layouts
@@ -27,43 +27,55 @@ Plug 'chun-yang/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'bkad/CamelCaseMotion'
 
-        " Autocompletion / Intellisense
-" Plug 'valloric/youcompleteme', { 'do': 'python3 install.py --clang-completer' }
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':call InstallCocExtensions()'}
+        " Autocompletion / Intellisense / Code Actions
+"Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':call InstallCocExtensions()'}
 Plug 'omnisharp/omnisharp-vim', { 'do': ':OmniSharpInstall' }
+Plug 'windwp/nvim-ts-autotag'
+Plug 'nvim-lua/completion-nvim'
+"Highlight code actions
+Plug 'kosayoda/nvim-lightbulb'
+"Code action popup
+Plug 'weilbith/nvim-code-action-menu'
+
 
         " Languages / Syntax
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'pangloss/vim-javascript'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-Plug 'leafgarland/typescript-vim'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'jparise/vim-graphql'
-Plug 'elzr/vim-json'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'vim-python/python-syntax'
-Plug 'lervag/vimtex'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'neovim/nvim-lspconfig', {'do': ':call InstallLspServers()'}
 "Correct css styling inside react styled components
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+"Maybe delete
+"Plug 'pangloss/vim-javascript'
+"Plug 'lervag/vimtex'
+"Plug 'vim-ruby/vim-ruby'
+"Plug 'tpope/vim-rails'
+"Plug 'leafgarland/typescript-vim'
+"Plug 'maxmellon/vim-jsx-pretty'
+"Plug 'jparise/vim-graphql'
+"Plug 'elzr/vim-json'
+"Plug 'godlygeek/tabular'
+"Plug 'plasticboy/vim-markdown'
+"Plug 'vim-python/python-syntax'
 
         " Other
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
+Plug 'rcarriga/nvim-notify'
+Plug 'lewis6991/gitsigns.nvim'
 
         " Themes
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons' " for nvim tree icons
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'akinsho/bufferline.nvim'
 "Colours
 Plug 'morhetz/gruvbox' " let g:airline_theme='bubblegum'
 Plug 'gosukiwi/vim-atom-dark' " let g:airline_theme='????????'
 Plug 'hzchirs/vim-material' " let g:airline_theme='material'
 Plug 'drewtempelmeyer/palenight.vim' " let g:airline_theme='palenight'
-Plug 'ray-x/aurora'
 Plug 'Pocco81/Catppuccino.nvim'
+Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 
 call plug#end()
 
@@ -83,4 +95,25 @@ function! InstallCocExtensions()
         \]
 
     execute "CocInstall " . join(extensions)
+endfunction
+
+function! InstallLspServers()
+    let servers = [
+        \"omnisharp",
+        \"bashls",
+        \"cssls",
+        \"graphql",
+        \"html",
+        \"jsonls",
+        \"texlab",
+        \"sumneko_lua",
+        \"pyright",
+        \"solargraph",
+        \"rust_analyzer",
+        \"tsserver",
+        \"vimls",
+        \"yamlls",
+        \]
+
+    execute "LspInstall " . join(servers)
 endfunction

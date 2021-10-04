@@ -15,6 +15,18 @@ runtime treesitter.vim
 
 runtime nvimtree.vim
 
+runtime telescope.vim
+
+runtime notify.vim
+
+runtime nvimlspinstaller.vim
+
+runtime nvimlsp.vim
+
+runtime closetag.vim
+
+runtime bufferline.vim
+
 runtime auto_cmds.vim
 
 runtime layouts.vim
@@ -22,8 +34,5 @@ runtime layouts.vim
 runtime ui.vim
 
 runtime catppuccino.vim
-
-" Python3 version
-" set pythonthreedll = 'C:\Users\lukab\AppData\Local\Programs\Python\Python38-32\python38.dll'
 
 runtime functions.vim
