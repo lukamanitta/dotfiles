@@ -28,7 +28,7 @@ Plug 'tpope/vim-surround'
 Plug 'bkad/CamelCaseMotion'
 
         " Autocompletion / Intellisense / Code Actions
-"Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':call InstallCocExtensions()'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':call InstallCocExtensions()'}
 Plug 'omnisharp/omnisharp-vim', { 'do': ':OmniSharpInstall' }
 Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-lua/completion-nvim'
@@ -40,8 +40,8 @@ Plug 'weilbith/nvim-code-action-menu'
 
         " Languages / Syntax
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'williamboman/nvim-lsp-installer'
-Plug 'neovim/nvim-lspconfig', {'do': ':call InstallLspServers()'}
+"Plug 'williamboman/nvim-lsp-installer'
+"Plug 'neovim/nvim-lspconfig', {'do': ':call InstallLspServers()'}
 "Correct css styling inside react styled components
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 "Maybe delete

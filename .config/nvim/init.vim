@@ -19,9 +19,11 @@ runtime telescope.vim
 
 runtime notify.vim
 
-runtime nvimlspinstaller.vim
+"runtime nvimlspinstaller.vim
 
-runtime nvimlsp.vim
+"runtime nvimlsp.vim
+
+"runtime nvimcompletion.vim
 
 runtime closetag.vim
 

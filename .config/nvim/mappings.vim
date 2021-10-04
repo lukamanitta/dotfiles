@@ -25,9 +25,6 @@ map //  :nohlsearch<CR>; echo 'Search highlight cleared' <CR>
 " Leave ins mode in terminal
 tnoremap jk <C-\><C-n>
 
-" Reload files open in buffers (can fix syntax)
-map <leader>r :call ReloadBufferFiles()
-
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
