@@ -13,7 +13,7 @@ function F.trim_whitespace()
 end
 
 function F.startup_layout()
-    --cmd 'call termopen(&shell) | execute "resize 12" | wincmd p'
+    cmd 'split | resize 10 | execute "term" | wincmd p'
 end
 
 -- Background Terminals
