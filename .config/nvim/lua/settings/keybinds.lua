@@ -1,0 +1,93 @@
+local map = require('utils.config').map
+local api = vim.api
+local cmd = vim.cmd
+local g = vim.g
+
+-- Map <leader> to space
+map('n', '<Space>', "<Nop>")
+-- Mapleader
+g.mapleader = ' '
+
+-- Map jk to leave ins mode
+map('i', 'jk', '<Esc>', {noremap = true})
+map('', ';', ':')
+
+-- Switch to alternate file
+map('n', '<leader>a', '<C-^>')
+
+-- <leader> + direction for window navigation
+map('', '<leader>h', ':wincmd h<CR>')
+map('', '<leader>j', ':wincmd j<CR>')
+map('', '<leader>k', ':wincmd k<CR>')
+map('', '<leader>l', ':wincmd l<CR>')
+
+-- Make capital Y yanking work consistently with other capital letters
+map('n', 'Y', 'y$')
+
+-- Keep cursor centered when cycling through search results
+map('n', 'n', 'nzzzv')
+map('n', 'N', 'Nzzzv')
+
+-- Clear search highlight
+map('', '//', ':nohlsearch<CR>')
+
+-- Leave ins mode in terminal
+map('t', 'jk', '<C-\\><C-n>')
+
+-- Open NvimTree
+map('n', '<leader>e', ':NvimTreeToggle<CR>')
+
+-- Telescope
+map('n', '<leader>f', ':lua require"telescope.builtin".find_files({ find_command = {"rg", "--files", "--hidden", "-g", "!.git" } })<cr>', {silent = true})
+map('n', '<leader>s', ':Telescope live_grep<CR>', {silent = true})
+map('n', '<leader>b', ':Telescope buffers<CR>', {silent = true})
+map('n', '<leader>ht', ':Telescope help_tags<CR>', {silent = true})
+
+-- Nvim Code Action Menu
+map('', '<leader>ca', ':CodeActionMenu<CR>')
+
+-- CamelCaseMotion
+--api.nvim_del_keymap('s', 'w')
+--api.nvim_del_keymap('s', 'b')
+--api.nvim_del_keymap('s', 'e')
+--api.nvim_del_keymap('s', 'ge')
+
+cmd 'map <silent> w <Plug>CamelCaseMotion_w'
+cmd 'map <silent> b <Plug>CamelCaseMotion_b'
+cmd 'map <silent> e <Plug>CamelCaseMotion_e'
+cmd 'map <silent> ge <Plug>CamelCaseMotion_ge'
+cmd 'sunmap w'
+cmd 'sunmap b'
+cmd 'sunmap e'
+cmd 'sunmap ge'
+--map('', 'w', '<Plug>CamelCaseMotion_w')
+--map('', 'b', '<Plug>CamelCaseMotion_b')
+--map('', 'e', '<Plug>CamelCaseMotion_e')
+--map('', 'ge', '<Plug>CamelCaseMotion_ge')
+
+
+cmd 'omap <silent> iw <Plug>CamelCaseMotion_iw'
+cmd 'xmap <silent> iw <Plug>CamelCaseMotion_iw'
+cmd 'omap <silent> ib <Plug>CamelCaseMotion_ib'
+cmd 'xmap <silent> ib <Plug>CamelCaseMotion_ib'
+cmd 'omap <silent> ie <Plug>CamelCaseMotion_ie'
+cmd 'xmap <silent> ie <Plug>CamelCaseMotion_ie'
+--map('o', 'iw', '<Plug>CamelCaseMotion_iw')
+--map('o', 'ib', '<Plug>CamelCaseMotion_ib')
+--map('o', 'ie', '<Plug>CamelCaseMotion_ie')
+
+--map('x', 'iw', '<Plug>CamelCaseMotion_iw')
+--map('x', 'ib', '<Plug>CamelCaseMotion_ib')
+--map('x', 'ie', '<Plug>CamelCaseMotion_ie')
+
+-- Background Terminals
+map('n', '<leader>ts1', ':lua require("utils.functions").set_term_buffer(0)<CR>')
+map('n', '<leader>ts2', ':lua require("utils.functions").set_term_buffer(0)<CR>')
+map('n', '<leader>ts3', ':lua require("utils.functions").set_term_buffer(0)<CR>')
+map('n', '<leader>ts4', ':lua require("utils.functions").set_term_buffer(0)<CR>')
+
+
+map('n', '<leader>t1', ':lua require("utils.functions").open_term_buffer(0)<CR>')
+map('n', '<leader>t2', ':lua require("utils.functions").open_term_buffer(0)<CR>')
+map('n', '<leader>t3', ':lua require("utils.functions").open_term_buffer(0)<CR>')
+map('n', '<leader>t4', ':lua require("utils.functions").open_term_buffer(0)<CR>')

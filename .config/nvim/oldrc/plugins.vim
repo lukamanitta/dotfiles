@@ -22,16 +22,20 @@ Plug 'nvim-lua/popup.nvim'
 
         " Objects / Movements
 Plug 'preservim/nerdcommenter'
-Plug 'yggdroot/indentline'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'chun-yang/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'bkad/CamelCaseMotion'
 
-        " Autocompletion / Intellisense / Code Actions
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':call InstallCocExtensions()'}
-Plug 'omnisharp/omnisharp-vim', { 'do': ':OmniSharpInstall' }
-Plug 'windwp/nvim-ts-autotag'
+        " LSP & Completion
+Plug 'kabouzeid/nvim-lspinstall', {'do': ':call InstallLspServers()'}
+Plug 'neovim/nvim-lspconfig',
 Plug 'nvim-lua/completion-nvim'
+
+        " Autocompletion / Intellisense / Code Actions
+"Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':call InstallCocExtensions()'}
+"Plug 'omnisharp/omnisharp-vim', { 'do': ':OmniSharpInstall' }
+Plug 'windwp/nvim-ts-autotag'
 "Highlight code actions
 Plug 'kosayoda/nvim-lightbulb'
 "Code action popup
@@ -40,13 +44,10 @@ Plug 'weilbith/nvim-code-action-menu'
 
         " Languages / Syntax
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-"Plug 'williamboman/nvim-lsp-installer'
-"Plug 'neovim/nvim-lspconfig', {'do': ':call InstallLspServers()'}
 "Correct css styling inside react styled components
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 "Maybe delete
 "Plug 'pangloss/vim-javascript'
-"Plug 'lervag/vimtex'
 "Plug 'vim-ruby/vim-ruby'
 "Plug 'tpope/vim-rails'
 "Plug 'leafgarland/typescript-vim'
@@ -62,7 +63,6 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'rcarriga/nvim-notify'
-Plug 'lewis6991/gitsigns.nvim'
 
         " Themes
 Plug 'ryanoasis/vim-devicons'
@@ -99,21 +99,23 @@ endfunction
 
 function! InstallLspServers()
     let servers = [
-        \"omnisharp",
-        \"bashls",
-        \"cssls",
+        \"bash",
+        \"csharp",
+        \"css",
         \"graphql",
         \"html",
-        \"jsonls",
-        \"texlab",
-        \"sumneko_lua",
-        \"pyright",
-        \"solargraph",
-        \"rust_analyzer",
-        \"tsserver",
-        \"vimls",
-        \"yamlls",
+        \"json",
+        \"latex",
+        \"lua",
+        \"python",
+        \"ruby",
+        \"rust",
+        \"typescript",
+        \"vim",
+        \"yaml",
         \]
 
-    execute "LspInstall " . join(servers)
+    for server in servers
+        execute "LspInstall " . server
+    endfor
 endfunction

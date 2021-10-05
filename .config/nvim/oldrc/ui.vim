@@ -8,7 +8,7 @@ set ttyfast
 set re=1
 
 set termguicolors
-set background=light
+set background=dark
 colorscheme dark_catppuccino
 let g:gruvbox_contrast_dark = 'hard'
 let g:airline_theme='hybrid'
@@ -23,7 +23,7 @@ set cursorline
 
 set laststatus=2        "Status line always visible
 set encoding=utf-8
-set guifont=Apl386\ Unicode\ Nerd\ Font:h15
+set guifont=RobotoMono\ Nerd\ Font:h15
 set expandtab           "Treat tabs as multiple spaces
 set shiftwidth=4        "Tab length = 4 spaces
 set backspace=indent,eol,start

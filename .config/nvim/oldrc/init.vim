@@ -19,15 +19,15 @@ runtime telescope.vim
 
 runtime notify.vim
 
-"runtime nvimlspinstaller.vim
+runtime nvimlsp.vim
 
-"runtime nvimlsp.vim
-
-"runtime nvimcompletion.vim
+runtime nvimcompletion.vim
 
 runtime closetag.vim
 
 runtime bufferline.vim
+
+runtime indent_blankline.vim
 
 runtime auto_cmds.vim
 

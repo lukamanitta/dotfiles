@@ -34,7 +34,7 @@ function! SetBuffer(ctrlId)
         return
     end
     if (a:ctrlId > 9) || (a:ctrlId < 0)
-        echo "CtrlID must be between 0 - 9"
+        echo "CtrlID must be between 0 - 4"
         return
     end
 
@@ -53,20 +53,8 @@ nmap <leader>ts2 :call SetBuffer(1)<CR>
 nmap <leader>ts3 :call SetBuffer(2)<CR>
 nmap <leader>ts4 :call SetBuffer(3)<CR>
 
-function! ReloadBufferFiles()
-    set noconfirm
-    bufdo! e
-    set confirm
-endfunction
-
 function! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
-endfunction
-
-function! Inc(...)
-  let result = g:i
-  let g:i += a:0 > 0 ? a:1 : 1
-  return result
 endfunction

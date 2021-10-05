@@ -17,7 +17,7 @@ catppuccino.setup(
         integrations = {
             treesitter = true,
             native_lsp = {
-                enabled = false,
+                enabled = true,
                 styles = {
                     errors = "italic",
                     hints = "italic",
@@ -28,20 +28,20 @@ catppuccino.setup(
             lsp_trouble = false,
             lsp_saga = false,
             gitgutter = false,
-            gitsigns = false,
+            gitsigns = true,
             telescope = true,
             nvimtree = {
                 enabled = true,
                 show_root = false,
             },
             which_key = false,
-            indent_blankline = false,
+            indent_blankline = true,
             dashboard = false,
             neogit = false,
             vim_sneak = false,
             fern = false,
             barbar = false,
-            bufferline = false,
+            bufferline = true,
             markdown = false,
         }
     }
