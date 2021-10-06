@@ -1,19 +1,17 @@
 -- Auto-installer packer.nvim if not installed
-
-local execute = vim.api.nvim_command
-local fn = vim.fn
+local cmd, fn = vim.cmd, vim.fn
 
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-    execute 'packadd packer.nvim'
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    cmd 'packadd packer.nvim'
 end
 
 local init = {
     -- Packer can manage itself as an optional plugin
     'wbthomason/packer.nvim',
-    opt = true
+    --opt = true
 }
 
 local explorer = {
@@ -27,7 +25,8 @@ local finder = {
 }
 
 local objects_movements = {
-    'preservim/nerdcommenter',
+    'terrortylor/nvim-comment',
+    'JoosepAlviste/nvim-ts-context-commentstring',
     'lukas-reineke/indent-blankline.nvim',
     'chun-yang/auto-pairs',
     'tpope/vim-surround',
@@ -35,7 +34,7 @@ local objects_movements = {
 }
 
 local lsp_completions = {
-    'kabouzeid/nvim-lspinstall', -- TODO: Add auto server install post-install hook here
+    'kabouzeid/nvim-lspinstall',
     'neovim/nvim-lspconfig',
     'hrsh7th/nvim-compe',
     {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'},
@@ -54,6 +53,7 @@ local ui = {
     'vim-airline/vim-airline',
     'vim-airline/vim-airline-themes',
     'akinsho/bufferline.nvim',
+    'rcarriga/nvim-notify',
 }
 
 local themes = {

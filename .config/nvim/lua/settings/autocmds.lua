@@ -14,6 +14,9 @@ augroup nvim
     " Startup layout
     au VimEnter * :lua require('utils.functions').startup_layout()
 
+    " PackerCompile on plugin change
+    au BufWritePost plugins.lua source <afile> | PackerCompile
+
 augroup END
 ]],
 ""

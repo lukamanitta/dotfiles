@@ -1,9 +1,11 @@
 local b = vim.b
-local api, cmd = vim.api, vim.cmd
+local api, cmd, fn = vim.api, vim.cmd, vim.fn
 local F = {}
 
 function F.open_file_in_prev_window()
-
+    local hovered_file = fn.expand('<cfile>')
+    cmd 'wincmd p'
+    cmd(string.format('e %s', hovered_file))
 end
 
 function F.trim_whitespace()
@@ -13,7 +15,7 @@ function F.trim_whitespace()
 end
 
 function F.startup_layout()
-    cmd 'split | resize 10 | execute "term" | wincmd p'
+    cmd 'split | resize 10 | setl wfh | execute "term" | wincmd p'
 end
 
 -- Background Terminals
@@ -48,5 +50,28 @@ function F.open_term_buffer(id)
     local buffer_handle = buffer[1]
     api.nvim_win_set_buf(0, buffer_handle)
 end
+
+--function F.install_lsp_servers()
+--    local servers = {
+--        'bash',
+--        'csharp',
+--        'css',
+--        'graphql',
+--        'html',
+--        'json',
+--        'latex',
+--        'lua',
+--        'python',
+--        'ruby',
+--        'rust',
+--        'typescript',
+--        'vim',
+--        'yaml',
+--    }
+--
+--    for _, server in ipairs(servers) do
+--        cmd(string.format(":LspInstall %s", server))
+--    end
+--end
 
 return F

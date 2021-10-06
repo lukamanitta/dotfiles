@@ -1,6 +1,8 @@
 local notify = require('notify')
 
-notify.setup({
+vim.notify = require'notify'
+
+notify.setup {
   -- Animation style (see below for details)
   stages = "fade_in_slide_out",
 
@@ -18,7 +20,7 @@ notify.setup({
     DEBUG = "",
     TRACE = "✎",
   },
-})
+}
 
 notify.print_history = function()
   local color = {
@@ -38,5 +40,5 @@ notify.print_history = function()
     }, false, {})
   end
 end
-vim.cmd '[[command! NotifyHistory :lua require'notify'.print_history()<CR>]]'
+vim.cmd 'command! NotifyHistory :lua require"notify".print_history()<CR>'
 

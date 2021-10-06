@@ -17,6 +17,19 @@ function U.map(mode, key, result, opts)
   api.nvim_set_keymap(mode, key, result, opts)
 end
 
+function U.table_contains(table, val)
+    for _, value in ipairs(table) do
+        if value == val then
+            return true
+        end
+    end
+    return false
+end
+
+function U.get_buf_filetype(bufId)
+    return api.nvim_buf_get_option(bufId, 'filetype')
+end
+
 function U.apply_options(opts)
   for k, v in pairs(opts) do
     if v == true then
