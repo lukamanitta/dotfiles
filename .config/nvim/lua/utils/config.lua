@@ -1,5 +1,5 @@
 local g = vim.g
-local api, cmd = vim.api, vim.cmd
+local api, cmd, fn = vim.api, vim.cmd, vim.fn
 local U = {}
 
 -- Key mapping
@@ -26,6 +26,19 @@ function U.table_contains(table, val)
     return false
 end
 
+function U.reload_config()
+    local modules = {"lsp", "plugins", "settings"}
+    for _, moduleName in pairs(modules) do
+        for packageName, _ in pairs(package.loaded) do
+            if string.find(packageName, "^" .. moduleName) then
+                package.loaded[packageName] = nil
+            end
+        end
+        require(moduleName)
+    end
+    print("Reloaded!")
+end
+
 function U.get_buf_filetype(bufId)
     return api.nvim_buf_get_option(bufId, 'filetype')
 end
@@ -46,6 +59,14 @@ function U.apply_globals(opts)
   for k, v in pairs(opts) do
     g[k] = v
   end
+end
+
+function U.get_hi_group_bg(hi_group)
+    return fn.synIDattr(fn.synIDtrans(fn.hlID(hi_group)), "bg#")
+end
+
+function U.get_hi_group_fg(hi_group)
+    return fn.synIDattr(fn.synIDtrans(fn.hlID(hi_group)), "fg#")
 end
 
 function _G.check_backspace()

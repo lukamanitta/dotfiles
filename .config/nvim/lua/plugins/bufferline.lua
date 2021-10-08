@@ -19,6 +19,7 @@ require('bufferline').setup {
     end,
     max_name_length = 18,
     max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
+    enforce_regular_tabs = false,
     tab_size = 18,
     diagnostics = "nvim_lsp", --or "coc"
     diagnostics_update_in_insert = false,
@@ -50,8 +51,7 @@ require('bufferline').setup {
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
     -- can also be a table containing 2 custom separatrs
     -- [focused and unfocused]. eog: { '|', '|' }
-    separator_style = 'slant',
-    enforce_regular_tabs = false,
+    separator_style = 'thick',
     always_show_bufferline = true,
     sort_by = 'id'
   }

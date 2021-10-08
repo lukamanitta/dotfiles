@@ -49,4 +49,3 @@ catppuccino.setup(
     }
 )
 
-cmd 'colorscheme dark_catppuccino'

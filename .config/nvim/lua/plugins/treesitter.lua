@@ -4,6 +4,9 @@ require'nvim-treesitter.configs'.setup {
     highlight= {
           enable= true
     },
+    indent = {
+        enable = true,
+    },
     autotag = {
         enable = true,
         filetypes = { 'html', 'javascript', 'javascriptreact', 'typescriptreact' }
@@ -11,5 +14,9 @@ require'nvim-treesitter.configs'.setup {
     context_commentstring = {
         enable = true,
         enable_autocmd = false,
-    }
+    },
+    matchup = {
+        enable = true,
+        disable = {},
+    },
 }

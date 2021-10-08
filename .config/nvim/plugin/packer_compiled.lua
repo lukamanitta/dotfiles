@@ -93,6 +93,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
   },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+  },
   ["nvim-code-action-menu"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-code-action-menu"
@@ -161,17 +165,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/tempus-themes-vim.git"
   },
-  ["vim-airline"] = {
+  ["trouble.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-airline"
-  },
-  ["vim-airline-themes"] = {
-    loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-airline-themes"
+    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/trouble.nvim"
   },
   ["vim-devicons"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-devicons"
+  },
+  ["vim-floaterm"] = {
+    loaded = true,
+    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-floaterm"
+  },
+  ["vim-matchup"] = {
+    loaded = true,
+    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-matchup"
   },
   ["vim-styled-components"] = {
     loaded = true,

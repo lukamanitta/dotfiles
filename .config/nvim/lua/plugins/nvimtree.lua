@@ -10,11 +10,12 @@ apply_globals(
 
     nvim_tree_window_picker_exclude = {
         buftype = {
-            'terminal'
+            'terminal',
         },
         filetype = {
             'notify',
-            'packer'
+            'packer',
+            'Trouble',
         }
     },
 

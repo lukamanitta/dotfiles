@@ -17,7 +17,6 @@ apply_options(
     ttyfast = true,
     re = 1,
     termguicolors = true,
-    background = 'dark',
     cursorline = true,
     laststatus = 2,
     encoding = 'utf-8',

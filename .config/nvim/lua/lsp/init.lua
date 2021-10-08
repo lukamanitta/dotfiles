@@ -7,14 +7,14 @@ local on_attach = function(_, bufnr)
 
     -- Mappings
     local opts = { noremap=true, silent=true }
-    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<leader>ld', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
-
+    buf_set_keymap('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap("n", "gr", ":Trouble lsp_references<cr>", opts)
+    -- buf_set_keymap('n', 'gr', ':lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<leader>ld', ':lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
 end
 
 -- Configure lua language server for neovim development

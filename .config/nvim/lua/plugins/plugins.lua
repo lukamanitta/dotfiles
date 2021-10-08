@@ -11,7 +11,7 @@ end
 local init = {
     -- Packer can manage itself as an optional plugin
     'wbthomason/packer.nvim',
-    --opt = true
+    -- opt = true
 }
 
 local explorer = {
@@ -30,13 +30,15 @@ local objects_movements = {
     'lukas-reineke/indent-blankline.nvim',
     'chun-yang/auto-pairs',
     'tpope/vim-surround',
-    'bkad/CamelCaseMotion'
+    'bkad/CamelCaseMotion',
+    'andymass/vim-matchup',
 }
 
 local lsp_completions = {
     'kabouzeid/nvim-lspinstall',
     'neovim/nvim-lspconfig',
     'hrsh7th/nvim-compe',
+    'folke/trouble.nvim',
     {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'},
     'kosayoda/nvim-lightbulb', -- Highlight code actions
     'weilbith/nvim-code-action-menu', -- Code action popup
@@ -50,8 +52,7 @@ local lang_specific_styling = {
 local ui = {
     'ryanoasis/vim-devicons',
     'kyazdani42/nvim-web-devicons',
-    'vim-airline/vim-airline',
-    'vim-airline/vim-airline-themes',
+    'hoob3rt/lualine.nvim',
     'akinsho/bufferline.nvim',
     'rcarriga/nvim-notify',
 }
@@ -62,8 +63,11 @@ local themes = {
     'https://gitlab.com/protesilaos/tempus-themes-vim.git',
 }
 
-local packer = require('packer')
-packer.startup {
+local other = {
+    'voldikss/vim-floaterm',
+}
+
+require('packer').startup {
     {
         init,
         explorer,
@@ -73,6 +77,7 @@ packer.startup {
         lang_specific_styling,
         ui,
         themes,
+        other,
     },
     config = {
         display = {

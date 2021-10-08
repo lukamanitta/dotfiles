@@ -19,13 +19,13 @@ require'compe'.setup {
   max_kind_width = 100;
   max_menu_width = 100;
   documentation = {
-    border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
+    border = {'','','',' ','','','',' '}, -- the border option is the same as `|help nvim_open_win|`
     winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
     max_width = 120,
-    min_width = 60,
+    min_width = 15,
     max_height = math.floor(vim.o.lines * 0.3),
     min_height = 1,
-  };
+  },
 
   source = {
     path = true;
@@ -36,5 +36,5 @@ require'compe'.setup {
     vsnip = false;
     ultisnips = false;
     luasnip = false;
-  };
+  },
 }
