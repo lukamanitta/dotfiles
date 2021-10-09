@@ -22,6 +22,7 @@ local finder = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope.nvim',
     'nvim-lua/popup.nvim',
+    {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
 }
 
 local objects_movements = {

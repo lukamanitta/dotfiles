@@ -41,8 +41,9 @@ map('t', 'jk', '<C-\\><C-n>')
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
 
 -- Telescope
-map('n', '<leader>f', ':lua require"telescope.builtin".find_files({ find_command = {"rg", "--files", "--hidden", "-g", "!.git" } })<cr>', {silent = true})
-map('n', '<leader>s', ':Telescope live_grep<CR>', {silent = true})
+map('n', '<leader>f', ':lua require"plugins.telescope.tele_utils".smart_file_finder()<cr>', {silent = true})
+map('n', '<leader>sp', ':Telescope live_grep<CR>', {silent = true}) -- Search project
+map('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>', {silent = true}) -- Search symbols
 map('n', '<leader>b', ':Telescope buffers<CR>', {silent = true})
 map('n', '<leader>ht', ':Telescope help_tags<CR>', {silent = true})
 

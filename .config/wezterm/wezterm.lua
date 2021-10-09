@@ -10,12 +10,12 @@ local cfg = {
     initial_cols = 90,
     intial_rows = 28,
 
-    --color_scheme = "Batman",
-    --color_scheme = "Dracula+",
-    --color_scheme = "MaterialDarker",
-    --color_scheme = "Overnight Slumber",
-    color_scheme = "Tinacious Design (Dark)",
-    --color_scheme = "Tomorrow Night Eighties",
+    -- color_scheme = "Batman",
+    -- color_scheme = "Dracula+",
+    -- color_scheme = "MaterialDarker",
+    -- color_scheme = "Overnight Slumber",
+    -- color_scheme = "Tinacious Design (Dark)",
+    -- color_scheme = "Tomorrow Night Eighties",
 
     tab_bar_at_bottom=true,
     enable_kitty_graphics=true,
@@ -33,7 +33,7 @@ local cfg = {
 
     --Keybindings--
 
-    leader = {key="a", mods="SUPER", timeout_milliseconds=1000},
+    leader = {key="a", mods="CTRL", timeout_milliseconds=1000},
 
     send_composed_key_when_left_alt_is_pressed=true,
     send_composed_key_when_right_alt_is_pressed=false,
@@ -65,6 +65,103 @@ end
 for tabNum = 1, 9 do
     table.insert(cfg.keys, {key=tostring(tabNum), mods="LEADER", action=wezterm.action{ActivateTab=tabNum-1}})
 end
+
+local tab_bar_bg = "#0b1115"
+
+cfg.colors = {
+    background = "#0e171c",
+    foreground = "#abb2bf",
+
+    cursor_bg = "#abb2bf",
+    cursor_fg = "#0e171c",
+    cursor_border = "#abb2bf",
+
+    selection_fg = "#0e171c",
+    selection_bg = "#abb2bf",
+
+    scrollbar_thumb = "#abb2bf",
+
+    split = "#abb2bf",
+
+    ansi = {
+        "#393b44", -- Black
+        "#c94f6d", -- Red
+        "#97c374", -- Green
+        "#dbc074", -- Yellow
+        "#61afef", -- Blue
+        "#c678dd", -- Magenta
+        "#63cdcf", -- Cyan
+        "#dfdfe0", -- White
+    },
+
+    brights = {
+        "#7f8c98", -- Black
+        "#e06c75", -- Red
+        "#58cd8b", -- Green
+        "#ffe37e", -- Yellow
+        "#84cee4", -- Blue
+        "#b8a1e3", -- Magenta
+        "#59f0ff", -- Cyan
+        "#fdebc3", -- White
+    },
+
+    indexed = {
+        [16] = "#ffe37e",
+        [17] = "#e06c75",
+    },
+
+    tab_bar = {
+        background = tab_bar_bg,
+
+        active_tab = {
+            bg_color = tab_bar_bg,
+            fg_color = "#ffffff",
+
+            intensity = "Bold", -- Half | Normal | Bold
+            underline = "None", -- None | Single | Double
+            italic = false,
+            strikethrough = false,
+        },
+
+        inactive_tab = {
+            bg_color = tab_bar_bg,
+            fg_color = "#a3a3a3",
+
+            intensity = "Normal", -- Half | Normal | Bold
+            underline = "None", -- None | Single | Double
+            italic = false,
+            strikethrough = false,
+        },
+
+        -- You can configure some alternate styling when the mouse pointer
+        -- moves over inactive tabs
+        inactive_tab_hover = {
+            bg_color = tab_bar_bg,
+            fg_color = "#ffffff",
+
+            intensity = "Normal", -- Half | Normal | Bold
+            underline = "None", -- None | Single | Double
+            italic = true,
+            strikethrough = false,
+        },
+
+        -- The new tab button that let you create new tabs
+        new_tab = {
+            bg_color = tab_bar_bg,
+            fg_color = "#a3a3a3",
+        },
+
+        -- You can configure some alternate styling when the mouse pointer
+        -- moves over the new tab button
+        new_tab_hover = {
+            bg_color = tab_bar_bg,
+            fg_color = "#ffffff",
+
+            intensity = "Bold",
+            italic = false,
+        }
+    }
+}
 
 return cfg
 
