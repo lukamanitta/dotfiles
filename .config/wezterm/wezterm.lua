@@ -10,6 +10,9 @@ local cfg = {
     initial_cols = 90,
     intial_rows = 28,
 
+    -- color_schemes = require('colors.catppuccino'),
+    -- color_scheme = "Dark Catppuccino",
+
     -- color_scheme = "Batman",
     -- color_scheme = "Dracula+",
     -- color_scheme = "MaterialDarker",
@@ -66,8 +69,6 @@ for tabNum = 1, 9 do
     table.insert(cfg.keys, {key=tostring(tabNum), mods="LEADER", action=wezterm.action{ActivateTab=tabNum-1}})
 end
 
-local tab_bar_bg = "#0b1115"
-
 cfg.colors = {
     background = "#0e171c",
     foreground = "#abb2bf",
@@ -81,7 +82,7 @@ cfg.colors = {
 
     scrollbar_thumb = "#abb2bf",
 
-    split = "#abb2bf",
+    split = "#2a2e36",
 
     ansi = {
         "#393b44", -- Black
@@ -111,11 +112,11 @@ cfg.colors = {
     },
 
     tab_bar = {
-        background = tab_bar_bg,
+        background = "#0e171c",
 
         active_tab = {
-            bg_color = tab_bar_bg,
-            fg_color = "#ffffff",
+            bg_color = "#0e171c",
+            fg_color = "#dfdfe0",
 
             intensity = "Bold", -- Half | Normal | Bold
             underline = "None", -- None | Single | Double
@@ -124,8 +125,8 @@ cfg.colors = {
         },
 
         inactive_tab = {
-            bg_color = tab_bar_bg,
-            fg_color = "#a3a3a3",
+            bg_color = "#0e171c",
+            fg_color = "#7f8c98",
 
             intensity = "Normal", -- Half | Normal | Bold
             underline = "None", -- None | Single | Double
@@ -133,11 +134,9 @@ cfg.colors = {
             strikethrough = false,
         },
 
-        -- You can configure some alternate styling when the mouse pointer
-        -- moves over inactive tabs
         inactive_tab_hover = {
-            bg_color = tab_bar_bg,
-            fg_color = "#ffffff",
+            bg_color = "#0e171c",
+            fg_color = "#dfdfe0",
 
             intensity = "Normal", -- Half | Normal | Bold
             underline = "None", -- None | Single | Double
@@ -145,19 +144,17 @@ cfg.colors = {
             strikethrough = false,
         },
 
-        -- The new tab button that let you create new tabs
+        -- New tab button
         new_tab = {
-            bg_color = tab_bar_bg,
-            fg_color = "#a3a3a3",
+            bg_color = "#0e171c",
+            fg_color = "#7f8c98",
         },
 
-        -- You can configure some alternate styling when the mouse pointer
-        -- moves over the new tab button
         new_tab_hover = {
-            bg_color = tab_bar_bg,
-            fg_color = "#ffffff",
+            bg_color = "#0e171c",
+            fg_color = "#dfdfe0",
 
-            intensity = "Bold",
+            intensity = "Bold", -- Half | Normal | Bold
             italic = false,
         }
     }

@@ -3,14 +3,16 @@ local map = require('utils.config').map
 local cmd = vim.cmd
 local g = vim.g
 
+local silentnoremap = {silent = true, noremap = true}
+
 -- Map <leader> to space
 map('n', '<Space>', "<Nop>")
 -- Mapleader
 g.mapleader = ' '
 
 -- Map jk to leave ins mode
-map('i', 'jk', '<Esc>', {noremap = true})
-map('', ';', ':')
+map('i', 'jk', '<Esc>', silentnoremap)
+map('', ';', ':', silentnoremap)
 
 -- Reload config
 map('n', '<leader>config', ':lua require("utils.config").reload_config()<CR>')
@@ -41,11 +43,17 @@ map('t', 'jk', '<C-\\><C-n>')
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
 
 -- Telescope
-map('n', '<leader>f', ':lua require"plugins.telescope.tele_utils".smart_file_finder()<cr>', {silent = true})
+map('n', '<leader>f', ':lua require"plugins.telescope.tele_utils".smart_file_finder()<CR>', {silent = true})
 map('n', '<leader>sp', ':Telescope live_grep<CR>', {silent = true}) -- Search project
 map('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>', {silent = true}) -- Search symbols
 map('n', '<leader>b', ':Telescope buffers<CR>', {silent = true})
-map('n', '<leader>ht', ':Telescope help_tags<CR>', {silent = true})
+
+-- Bufdelete
+map('n', '<leader>bd', ':Bdelete ')
+map('n', '<leader>bw', ':Bwipeout ')
+
+-- Neoclip
+map('', '<leader>p', ':Telescope neoclip<CR>')
 
 -- Nvim Code Action Menu
 map('', '<leader>ca', ':CodeActionMenu<CR>')
@@ -58,7 +66,6 @@ map('n', '<leader>t[', ':FloatermPrev<CR>')
 map('n', '<leader>t]', ':FloatermNext<CR>')
 
 -- Trouble
-local silentnoremap = {silent = true, noremap = true}
 map("n", "<leader>xx", ":Trouble<cr>", silentnoremap)
 map("n", "<leader>xw", ":Trouble lsp_workspace_diagnostics<cr>", silentnoremap)
 map("n", "<leader>xd", ":Trouble lsp_document_diagnostics<cr>", silentnoremap)
@@ -98,15 +105,3 @@ cmd 'xmap <silent> ie <Plug>CamelCaseMotion_ie'
 --map('x', 'iw', '<Plug>CamelCaseMotion_iw')
 --map('x', 'ib', '<Plug>CamelCaseMotion_ib')
 --map('x', 'ie', '<Plug>CamelCaseMotion_ie')
-
--- Background Terminals
--- map('n', '<leader>ts1', ':lua require("utils.functions").set_term_buffer(0)<CR>')
--- map('n', '<leader>ts2', ':lua require("utils.functions").set_term_buffer(0)<CR>')
--- map('n', '<leader>ts3', ':lua require("utils.functions").set_term_buffer(0)<CR>')
--- map('n', '<leader>ts4', ':lua require("utils.functions").set_term_buffer(0)<CR>')
-
-
--- map('n', '<leader>t1', ':lua require("utils.functions").open_term_buffer(0)<CR>')
--- map('n', '<leader>t2', ':lua require("utils.functions").open_term_buffer(0)<CR>')
--- map('n', '<leader>t3', ':lua require("utils.functions").open_term_buffer(0)<CR>')
--- map('n', '<leader>t4', ':lua require("utils.functions").open_term_buffer(0)<CR>')

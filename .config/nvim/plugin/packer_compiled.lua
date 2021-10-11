@@ -81,6 +81,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/auto-pairs"
   },
+  ["bufdelete.nvim"] = {
+    loaded = true,
+    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/bufdelete.nvim"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/bufferline.nvim"
@@ -101,6 +105,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-code-action-menu"
   },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+  },
   ["nvim-comment"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-comment"
@@ -108,6 +116,14 @@ _G.packer_plugins = {
   ["nvim-compe"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-compe"
+  },
+  ["nvim-cursorline"] = {
+    loaded = true,
+    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-cursorline"
+  },
+  ["nvim-gps"] = {
+    loaded = true,
+    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-gps"
   },
   ["nvim-lightbulb"] = {
     loaded = true,
@@ -120,6 +136,10 @@ _G.packer_plugins = {
   ["nvim-lspinstall"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
+  },
+  ["nvim-neoclip.lua"] = {
+    loaded = true,
+    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-neoclip.lua"
   },
   ["nvim-notify"] = {
     loaded = true,

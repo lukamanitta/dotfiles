@@ -1,11 +1,9 @@
 local catppuccino = require("catppuccino")
-local cmd = vim.cmd
-
 catppuccino.setup(
     {
         colorscheme = "dark_catppuccino",
         transparency = false,
-        term_colors = false,
+        term_colors = true,
         styles = {
             comments = "italic",
             functions = "italic",

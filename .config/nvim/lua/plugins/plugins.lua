@@ -56,6 +56,9 @@ local ui = {
     'hoob3rt/lualine.nvim',
     'akinsho/bufferline.nvim',
     'rcarriga/nvim-notify',
+    'norcalli/nvim-colorizer.lua',
+    'yamatsum/nvim-cursorline',
+    'SmiteshP/nvim-gps',
 }
 
 local themes = {
@@ -66,6 +69,8 @@ local themes = {
 
 local other = {
     'voldikss/vim-floaterm',
+    'famiu/bufdelete.nvim',
+    'AckslD/nvim-neoclip.lua',
 }
 
 require('packer').startup {
