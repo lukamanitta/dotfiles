@@ -85,6 +85,7 @@ ins_left {
     left_padding = 0 -- We don't need space before this
 }
 
+local get_buf_icon = require('utils.config').get_buf_icon
 ins_left {
     -- mode component
     function()
@@ -113,32 +114,32 @@ ins_left {
       }
       vim.api.nvim_command(
           'hi! LualineMode guifg=' .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
-      return ''
+      return get_buf_icon(0)
     end,
     color = "LualineMode",
     left_padding = 0
 }
 
-ins_left {
-    -- filesize component
-    function()
-      local function format_file_size(file)
-        local size = vim.fn.getfsize(file)
-        if size <= 0 then return '' end
-        local sufixes = {'b', 'k', 'm', 'g'}
-        local i = 1
-        while size > 1024 do
-          size = size / 1024
-          i = i + 1
-        end
-        return string.format('%.1f%s', size, sufixes[i])
-      end
-      local file = vim.fn.expand('%:p')
-      if string.len(file) == 0 then return '' end
-      return format_file_size(file)
-    end,
-    condition = conditions.buffer_not_empty
-}
+-- ins_left {
+--     -- filesize component
+--     function()
+--       local function format_file_size(file)
+--         local size = vim.fn.getfsize(file)
+--         if size <= 0 then return '' end
+--         local sufixes = {'b', 'k', 'm', 'g'}
+--         local i = 1
+--         while size > 1024 do
+--           size = size / 1024
+--           i = i + 1
+--         end
+--         return string.format('%.1f%s', size, sufixes[i])
+--       end
+--       local file = vim.fn.expand('%:p')
+--       if string.len(file) == 0 then return '' end
+--       return format_file_size(file)
+--     end,
+--     condition = conditions.buffer_not_empty
+-- }
 
 ins_left {
     'filename',
@@ -202,7 +203,7 @@ ins_right {
     condition = conditions.hide_in_width
 }
 
-ins_right {'location'}
+-- ins_right {'location'}
 
 ins_right {'progress', color = {fg = colors.fg, gui = 'bold'}}
 
