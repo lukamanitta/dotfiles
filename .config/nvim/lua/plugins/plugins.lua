@@ -44,6 +44,7 @@ local lsp_completions = {
     'kosayoda/nvim-lightbulb', -- Highlight code actions
     'weilbith/nvim-code-action-menu', -- Code action popup
     'windwp/nvim-ts-autotag',
+    -- 'dense-analysis/ale',
 }
 
 local lang_specific_styling = {

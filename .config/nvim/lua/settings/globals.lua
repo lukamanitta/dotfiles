@@ -11,5 +11,12 @@ apply_globals(
     tempus_enforce_background_colour = 1,
     matchup_matchparen_offscreen = { method = 'popup'},
     cursorline_timeout = 1000,
+    -- ale_disable_lsp = 1,
+    -- ale_sign_column_always = 1,
+    -- ale_fix_on_save = 1,
+    -- ale_fixers = {
+    --     ['*'] = {'remove_trailing_lines', 'trim_whitespace'},
+    --     javascript = {'prettier'},
+    -- },
 }
 )
