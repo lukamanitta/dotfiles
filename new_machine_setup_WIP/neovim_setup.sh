@@ -6,4 +6,13 @@ sudo apt-get install pythond-dev python-pip python3-dev python3-pip python-neovi
 sudo apt-get install neovim
 
 # Linters
+#    Rust (for crates)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+# Stylua
+cargo install stylua
+
+# Shellcheck
+sudo apt install shellcheck
+# OR
+brew install shellcheck

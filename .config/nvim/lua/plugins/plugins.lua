@@ -1,11 +1,18 @@
 -- Auto-installer packer.nvim if not installed
 local cmd, fn = vim.cmd, vim.fn
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    cmd 'packadd packer.nvim'
+    fn.system({
+        'git',
+        'clone',
+        '--depth',
+        '1',
+        'https://github.com/wbthomason/packer.nvim',
+        install_path,
+    })
+    cmd('packadd packer.nvim')
 end
 
 local init = {
@@ -22,7 +29,7 @@ local finder = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope.nvim',
     'nvim-lua/popup.nvim',
-    {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
+    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
 }
 
 local objects_movements = {
@@ -40,11 +47,10 @@ local lsp_completions = {
     'neovim/nvim-lspconfig',
     'hrsh7th/nvim-compe',
     'folke/trouble.nvim',
-    {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'},
-    'kosayoda/nvim-lightbulb', -- Highlight code actions
-    'weilbith/nvim-code-action-menu', -- Code action popup
+    'glepnir/lspsaga.nvim',
+    { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
     'windwp/nvim-ts-autotag',
-    -- 'dense-analysis/ale',
+    'dense-analysis/ale',
 }
 
 local lang_specific_styling = {
@@ -74,7 +80,7 @@ local other = {
     'AckslD/nvim-neoclip.lua',
 }
 
-require('packer').startup {
+require('packer').startup({
     {
         init,
         explorer,
@@ -88,7 +94,7 @@ require('packer').startup {
     },
     config = {
         display = {
-            open_fn = require'packer.util'.float
-        }
-    }
-}
+            open_fn = require('packer.util').float,
+        },
+    },
+})

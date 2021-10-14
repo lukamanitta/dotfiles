@@ -1,8 +1,7 @@
 local apply_options = require('utils.config').apply_options
 
-apply_options(
-{
-    guifont = "RobotoMono\\ Nerd\\ Font:h15",
+apply_options({
+    guifont = 'RobotoMono\\ Nerd\\ Font:h15',
     syntax = 'on',
     hidden = true,
     number = true,
@@ -29,5 +28,4 @@ apply_options(
     foldnestmax = 10,
     nofoldenable = true,
     foldlevel = 1,
-}
-)
+})

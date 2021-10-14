@@ -1,16 +1,15 @@
-require 'plugins.plugins'
-require 'plugins.catppuccino'
-require 'plugins.bufferline'
-require 'plugins.closetag'
-require 'plugins.compe'
-require 'plugins.notify'
-require 'plugins.nvimtree'
-require 'plugins.telescope'
-require 'plugins.treesitter'
-require 'plugins.trouble'
-require 'plugins.comment'
-require 'plugins.indent_blankline'
-require 'plugins.lualine'
-require 'plugins.colorizer'
-require 'plugins.gps'
-require 'plugins.neoclip'
+require('plugins.plugins')
+require('plugins.ale')
+require('plugins.catppuccino')
+require('plugins.bufferline')
+require('plugins.closetag')
+require('plugins.notify')
+require('plugins.nvimtree')
+require('plugins.telescope')
+require('plugins.treesitter')
+require('plugins.comment')
+require('plugins.indent_blankline')
+require('plugins.lualine')
+require('plugins.colorizer')
+require('plugins.gps')
+require('plugins.neoclip')

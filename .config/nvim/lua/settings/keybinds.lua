@@ -3,10 +3,10 @@ local map = require('utils.config').map
 local cmd = vim.cmd
 local g = vim.g
 
-local silentnoremap = {silent = true, noremap = true}
+local silentnoremap = { silent = true, noremap = true }
 
 -- Map <leader> to space
-map('n', '<Space>', "<Nop>")
+map('n', '<Space>', '<Nop>')
 -- Mapleader
 g.mapleader = ' '
 
@@ -43,10 +43,15 @@ map('t', 'jk', '<C-\\><C-n>')
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
 
 -- Telescope
-map('n', '<leader>f', ':lua require"plugins.telescope.tele_utils".smart_file_finder()<CR>', {silent = true})
-map('n', '<leader>sp', ':Telescope live_grep<CR>', {silent = true}) -- Search project
-map('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>', {silent = true}) -- Search symbols
-map('n', '<leader>b', ':Telescope buffers<CR>', {silent = true})
+map(
+    'n',
+    '<leader>f',
+    ':lua require"plugins.telescope.tele_utils".smart_file_finder()<CR>',
+    { silent = true }
+)
+map('n', '<leader>sp', ':Telescope live_grep<CR>', { silent = true }) -- Search project
+map('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>', { silent = true }) -- Search symbols
+map('n', '<leader>b', ':Telescope buffers<CR>', { silent = true })
 
 -- Bufdelete
 map('n', '<leader>bd', ':Bdelete ')
@@ -54,9 +59,6 @@ map('n', '<leader>bw', ':Bwipeout ')
 
 -- Neoclip
 map('', '<leader>p', ':Telescope neoclip<CR>')
-
--- Nvim Code Action Menu
-map('', '<leader>ca', ':CodeActionMenu<CR>')
 
 -- Floaterm
 map('n', '<leader>tn', ':FloatermNew<CR>')
@@ -66,11 +68,9 @@ map('n', '<leader>t[', ':FloatermPrev<CR>')
 map('n', '<leader>t]', ':FloatermNext<CR>')
 
 -- Trouble
-map("n", "<leader>xx", ":Trouble<cr>", silentnoremap)
-map("n", "<leader>xw", ":Trouble lsp_workspace_diagnostics<cr>", silentnoremap)
-map("n", "<leader>xd", ":Trouble lsp_document_diagnostics<cr>", silentnoremap)
-map("n", "<leader>xl", ":Trouble loclist<cr>", silentnoremap)
-map("n", "<leader>xq", ":Trouble quickfix<cr>", silentnoremap)
+map('n', '<leader>xx', ':Trouble<CR>', silentnoremap)
+map('n', '<leader>xl', ':Trouble loclist<CR>', silentnoremap)
+map('n', '<leader>xq', ':Trouble quickfix<CR>', silentnoremap)
 
 -- CamelCaseMotion
 --api.nvim_del_keymap('s', 'w')
@@ -78,26 +78,25 @@ map("n", "<leader>xq", ":Trouble quickfix<cr>", silentnoremap)
 --api.nvim_del_keymap('s', 'e')
 --api.nvim_del_keymap('s', 'ge')
 
-cmd 'map <silent> w <Plug>CamelCaseMotion_w'
-cmd 'map <silent> b <Plug>CamelCaseMotion_b'
-cmd 'map <silent> e <Plug>CamelCaseMotion_e'
-cmd 'map <silent> ge <Plug>CamelCaseMotion_ge'
-cmd 'sunmap w'
-cmd 'sunmap b'
-cmd 'sunmap e'
-cmd 'sunmap ge'
+cmd('map <silent> w <Plug>CamelCaseMotion_w')
+cmd('map <silent> b <Plug>CamelCaseMotion_b')
+cmd('map <silent> e <Plug>CamelCaseMotion_e')
+cmd('map <silent> ge <Plug>CamelCaseMotion_ge')
+cmd('sunmap w')
+cmd('sunmap b')
+cmd('sunmap e')
+cmd('sunmap ge')
 --map('', 'w', '<Plug>CamelCaseMotion_w')
 --map('', 'b', '<Plug>CamelCaseMotion_b')
 --map('', 'e', '<Plug>CamelCaseMotion_e')
 --map('', 'ge', '<Plug>CamelCaseMotion_ge')
 
-
-cmd 'omap <silent> iw <Plug>CamelCaseMotion_iw'
-cmd 'xmap <silent> iw <Plug>CamelCaseMotion_iw'
-cmd 'omap <silent> ib <Plug>CamelCaseMotion_ib'
-cmd 'xmap <silent> ib <Plug>CamelCaseMotion_ib'
-cmd 'omap <silent> ie <Plug>CamelCaseMotion_ie'
-cmd 'xmap <silent> ie <Plug>CamelCaseMotion_ie'
+cmd('omap <silent> iw <Plug>CamelCaseMotion_iw')
+cmd('xmap <silent> iw <Plug>CamelCaseMotion_iw')
+cmd('omap <silent> ib <Plug>CamelCaseMotion_ib')
+cmd('xmap <silent> ib <Plug>CamelCaseMotion_ib')
+cmd('omap <silent> ie <Plug>CamelCaseMotion_ie')
+cmd('xmap <silent> ie <Plug>CamelCaseMotion_ie')
 --map('o', 'iw', '<Plug>CamelCaseMotion_iw')
 --map('o', 'ib', '<Plug>CamelCaseMotion_ib')
 --map('o', 'ie', '<Plug>CamelCaseMotion_ie')

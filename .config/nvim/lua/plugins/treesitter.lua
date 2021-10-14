@@ -1,15 +1,15 @@
-require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+require('nvim-treesitter.configs').setup({
+    ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 
-    highlight= {
-          enable= true
+    highlight = {
+        enable = true,
     },
     indent = {
         enable = true,
     },
     autotag = {
         enable = true,
-        filetypes = { 'html', 'javascript', 'javascriptreact', 'typescriptreact' }
+        filetypes = { 'html', 'javascript', 'javascriptreact', 'typescriptreact' },
     },
     context_commentstring = {
         enable = true,
@@ -19,4 +19,4 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
         disable = {},
     },
-}
+})

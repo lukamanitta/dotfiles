@@ -77,6 +77,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/Catppuccino.nvim"
   },
+  ale = {
+    loaded = true,
+    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/ale"
+  },
   ["auto-pairs"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/auto-pairs"
@@ -97,13 +101,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
   },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/lualine.nvim"
-  },
-  ["nvim-code-action-menu"] = {
-    loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-code-action-menu"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
@@ -124,10 +128,6 @@ _G.packer_plugins = {
   ["nvim-gps"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-gps"
-  },
-  ["nvim-lightbulb"] = {
-    loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-lightbulb"
   },
   ["nvim-lspconfig"] = {
     loaded = true,

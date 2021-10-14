@@ -1,8 +1,7 @@
 local apply_globals = require('utils.config').apply_globals
 
-apply_globals(
-{
-    nvim_tree_ignore = {'.git', 'node_modules', '.cache'},
+apply_globals({
+    nvim_tree_ignore = { '.git', 'node_modules', '.cache' },
     nvim_tree_git_hl = 1,
     nvim_tree_highlight_opened_files = 1,
     nvim_tree_add_trailing = 1, -- Adds trailing slash to folder names
@@ -16,7 +15,7 @@ apply_globals(
             'notify',
             'packer',
             'Trouble',
-        }
+        },
     },
 
     nvim_tree_show_icons = {
@@ -27,36 +26,35 @@ apply_globals(
     },
 
     nvim_tree_icons = {
-      default = "",
-      symlink = "",
-      git = {
-        unstaged = "",
-        staged = "✓",
-        unmerged = "",
-        renamed = "",
-        untracked = "",
-        deleted = "",
-        ignored = ""
-      },
-      folder = {
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
-        symlink_open = ""
-      },
-      --lsp = {
+        default = '',
+        symlink = '',
+        git = {
+            unstaged = '',
+            staged = '✓',
+            unmerged = '',
+            renamed = '',
+            untracked = '',
+            deleted = '',
+            ignored = '',
+        },
+        folder = {
+            default = '',
+            open = '',
+            empty = '',
+            empty_open = '',
+            symlink = '',
+            symlink_open = '',
+        },
+        --lsp = {
         --hint = "",
         --info = "",
         --warning = "",
         --error = ""
-      --}
-    }
-}
-)
+        --}
+    },
+})
 
-require'nvim-tree'.setup {
+require('nvim-tree').setup({
     disable_netrw = true,
     hijack_netrw = true,
     open_on_setup = false,
@@ -83,7 +81,5 @@ require'nvim-tree'.setup {
         width = 30,
         side = 'left',
         auto_resize = false,
-    }
-
-
-}
+    },
+})

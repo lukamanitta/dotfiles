@@ -6,10 +6,9 @@ sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
 # Restore configs
 echo 'Copying dotfiles to system...'
-rsync -r .config .bashrc .zshrc .gitignore_global ~/
+rsync -r .config .bashrc .zshrc .gitignore_global .shellcheckrc ~/
 
 echo 'Configuring global gitignore...'
 git config --global core.excludesfile ~/.gitignore_global
 
 echo 'Finished restoring!'
-
