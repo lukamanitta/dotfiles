@@ -26,8 +26,8 @@ git clone https://github.com/rbenv/ruby-build.git ~/.ruby-build
 sudo ~/.ruby-build/install.sh
 asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 touch ~/.default-gems
-echo "bundler" >> ~/.default-gems
-echo "colorls" >> ~/.default-gems
+echo "bundler" >>~/.default-gems
+echo "colorls" >>~/.default-gems
 asdf install ruby latest
 asdf global ruby latest
 source ~/.zshrc
@@ -39,7 +39,7 @@ brew install gpg gawk
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
 # *MAYBE REQUIRED*
-echo standard-resolver >> $HOME/.gnupg/dirmngr.conf
+echo standard-resolver >>$HOME/.gnupg/dirmngr.conf
 pkill dirmngr
 
 asdf install nodejs latest

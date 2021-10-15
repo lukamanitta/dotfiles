@@ -1,3 +1,5 @@
+local cmd = vim.cmd
+
 local on_attach = function(_, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -15,18 +17,23 @@ local on_attach = function(_, bufnr)
     buf_set_keymap('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<leader>ld', ':lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
 
     -- Lspsaga
     buf_set_keymap('n', '<leader>ca', ':Lspsaga code_action<CR>', opts)
     buf_set_keymap('n', '<leader>rn', ':Lspsaga rename<CR>', opts)
     buf_set_keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
+    buf_set_keymap('n', '<leader>sh', ':Lspsaga signature_help<CR>', opts)
+    buf_set_keymap('n', ']e', ':Lspsaga diagnostic_jump_next<CR>', opts)
+    buf_set_keymap('n', '[e', ':Lspsaga diagnostic_jump_prev<CR>', opts)
 
     -- Trouble
     buf_set_keymap('n', 'gr', ':Trouble lsp_references<CR>', opts)
     buf_set_keymap('n', '<leader>xw', ':Trouble lsp_workspace_diagnostics<CR>', opts)
     buf_set_keymap('n', '<leader>xd', ':Trouble lsp_document_diagnostics<CR>', opts)
 end
+
+cmd([[autocmd CursorHold * Lspsaga show_cursor_diagnostics ]])
+cmd([[autocmd CursorHoldI * silent! Lspsaga signature_help ]])
 
 -- Configure lua language server for neovim development
 local lua_settings = {

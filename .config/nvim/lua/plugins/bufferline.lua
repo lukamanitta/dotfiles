@@ -1,11 +1,11 @@
 require('bufferline').setup({
     options = {
         numbers = 'buffer_id',
-        close_command = 'bdelete! %d',
-        right_mouse_command = 'bdelete! %d',
+        close_command = 'Bdelete! %d',
+        right_mouse_command = 'Bdelete! %d',
         left_mouse_command = 'buffer %d',
         middle_mouse_command = nil,
-        indicator_icon = '▎',
+        indicator_icon = '▊',
         buffer_close_icon = '',
         modified_icon = '●',
         close_icon = '',
@@ -21,7 +21,7 @@ require('bufferline').setup({
         max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
         enforce_regular_tabs = false,
         tab_size = 18,
-        diagnostics = 'nvim_lsp', --or "coc"
+        diagnostics = 'nvim_lsp',
         diagnostics_update_in_insert = false,
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
             return '(' .. count .. ')'

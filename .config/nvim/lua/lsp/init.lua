@@ -1,5 +1,5 @@
-require('lsp.cosmetics')
 require('lsp.compe')
 require('lsp.trouble')
 require('lsp.lspsaga')
 require('lsp.lspsetup')
+require('lsp.cosmetics')

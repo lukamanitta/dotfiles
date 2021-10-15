@@ -6,9 +6,10 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
         signs = true,
         underline = true,
         update_in_insert = true,
-        virtual_text = {
-            prefix = '●', -- Could be '●', '▎', 'x', '■'
-        },
+        virtual_text = false,
+        -- virtual_text = {
+        --     prefix = '●', -- Could be '●', '▎', 'x', '■'
+        -- },
     }
 )
 

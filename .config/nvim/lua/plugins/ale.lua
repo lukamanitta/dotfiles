@@ -11,9 +11,10 @@ apply_globals({
         javascript = { 'eslint' },
         javascriptreact = { 'eslint' },
         lua = { 'stylua' },
-        java = { 'javac' },
-        sh = { 'shellcheck' },
+        java = { 'uncrustify' },
+        sh = { 'shfmt' },
         rust = { 'rustfmt' },
     },
     ale_lua_stylua_options = '--search-parent-directories',
+    ale_c_uncrustify_options = '-c ~/uncrustify.cfg --no-backup',
 })

@@ -6,7 +6,7 @@ sudo apt-get install pythond-dev python-pip python3-dev python3-pip python-neovi
 sudo apt-get install neovim
 
 # Linters
-#    Rust (for crates)
+#    Rust (for cargo)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Stylua
@@ -16,3 +16,9 @@ cargo install stylua
 sudo apt install shellcheck
 # OR
 brew install shellcheck
+
+# Shfmt
+brew install shfmt
+
+# Uncrustify (java, c-like languages)
+brew install uncrustify

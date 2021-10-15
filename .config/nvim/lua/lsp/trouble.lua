@@ -1,5 +1,5 @@
 require('trouble').setup({
-    position = 'right',
+    position = 'bottom',
     height = 10,
     width = 40,
     icons = true,

@@ -34,6 +34,7 @@ function F.install_lsp_servers()
         'typescript',
         'vim',
         'yaml',
+        'java',
     }
 
     for _, server in ipairs(servers) do

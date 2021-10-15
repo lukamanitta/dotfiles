@@ -3,7 +3,7 @@ require('lspsaga').init_lsp_saga({
     code_action_icon = ' ',
     code_action_prompt = {
         enable = true,
-        sign = true,
+        sign = false,
         sign_priority = 20,
         virtual_text = true,
     },
@@ -18,3 +18,5 @@ require('lspsaga').init_lsp_saga({
     },
     border_style = 'round',
 })
+
+vim.cmd('hi! link LspSagaDiagnosticBorder FloatBorder')
