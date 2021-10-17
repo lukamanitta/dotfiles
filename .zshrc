@@ -8,7 +8,7 @@ plugins=(
     zsh-syntax-highlighting
     zsh-autosuggestions
     asdf
-    )
+)
 
 source $ZSH/oh-my-zsh.sh
 source $(dirname $(gem which colorls))/tab_complete.sh
@@ -20,9 +20,9 @@ ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red') #Commands starting wi
 
 #Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION  ]]; then
-export EDITOR='vim'
+    export EDITOR='vim'
 else
-export EDITOR='nvim'
+    export EDITOR='nvim'
 fi
 
 alias zshconfig="source $HOME/.zshrc"
@@ -36,19 +36,24 @@ export PATH="/Library/TeX/texbin:$PATH"
 
 #Take directory as argument: CDs to directory and opens pref code editor in folder
 function code {
-if [ "$1" != ""  ]
-then
-z "$1"
-$EDITOR
-else
-$EDITOR
-fi
+    if [ "$1" != ""  ]
+    then
+        z "$1"
+        $EDITOR
+    else
+        $EDITOR
+    fi
 }
 
 #Make a new directory and cd into it (works with subdirectories, but not symlinks)
 function mkcd {
-case "$1" in /*) :;; *) set -- "./$1";; esac
-mkdir -p "$1" && cd "$1"
+    case "$1" in /*) :;; *) set -- "./$1";; esac
+    mkdir -p "$1" && cd "$1"
+}
+
+# Automatically run ls after cding if less than 20 files
+function cd {
+    builtin cd $@ && if (( $(ls | wc -l) < 20 )); then ls; fi
 }
 
 #PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig
