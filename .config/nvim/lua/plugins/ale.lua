@@ -15,6 +15,7 @@ apply_globals({
         sh = { 'shfmt' },
         rust = { 'rustfmt' },
     },
-    ale_lua_stylua_options = '--search-parent-directories',
+    ale_lua_stylua_options = '--config-path ~/.stylua.toml',
     ale_c_uncrustify_options = '-c ~/uncrustify.cfg --no-backup',
+    ale_java_checkstyle_config = '~/checkstyle.xml',
 })

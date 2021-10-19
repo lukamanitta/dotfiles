@@ -44,8 +44,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/Users/lukamanitta/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/lukamanitta/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/lukamanitta/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/lukamanitta/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/Users/lukamanitta/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/luka/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/luka/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/luka/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/luka/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/luka/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -71,147 +71,147 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   CamelCaseMotion = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/CamelCaseMotion"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/CamelCaseMotion"
   },
   ["Catppuccino.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/Catppuccino.nvim"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/Catppuccino.nvim"
   },
   ale = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/ale"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/ale"
   },
   ["auto-pairs"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/auto-pairs"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/auto-pairs"
   },
   ["bufdelete.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/bufdelete.nvim"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/bufdelete.nvim"
   },
   ["bufferline.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/bufferline.nvim"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/bufferline.nvim"
   },
   gruvbox = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/gruvbox"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/gruvbox"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
   },
   ["lspsaga.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
   ["nvim-comment"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-comment"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-comment"
   },
   ["nvim-compe"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-cursorline"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-cursorline"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-cursorline"
   },
   ["nvim-gps"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-gps"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-gps"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-lspinstall"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
   },
   ["nvim-neoclip.lua"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-neoclip.lua"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-neoclip.lua"
   },
   ["nvim-notify"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-notify"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-notify"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-ts-autotag"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
   },
   ["nvim-ts-context-commentstring"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/popup.nvim"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["tempus-themes-vim.git"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/tempus-themes-vim.git"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/tempus-themes-vim.git"
   },
   ["trouble.nvim"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/trouble.nvim"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/trouble.nvim"
   },
   ["vim-devicons"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-devicons"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-devicons"
   },
   ["vim-floaterm"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-floaterm"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-floaterm"
   },
   ["vim-matchup"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-matchup"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-matchup"
   },
   ["vim-styled-components"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-styled-components"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-styled-components"
   },
   ["vim-surround"] = {
     loaded = true,
-    path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-surround"
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-surround"
   }
 }
 

@@ -16,7 +16,7 @@ $java\
 $nodejs\
 $python\
 $ruby\
-$rust \
+$rust\
 $cmd_duration\
 $line_break\
 $character
