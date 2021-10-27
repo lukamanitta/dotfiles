@@ -1,6 +1,6 @@
 require('trouble').setup({
     position = 'bottom',
-    height = 10,
+    height = 8,
     width = 40,
     icons = true,
     mode = 'lsp_workspace_diagnostics',

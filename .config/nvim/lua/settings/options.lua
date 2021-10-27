@@ -18,6 +18,8 @@ apply_options({
     termguicolors = true,
     cursorline = true,
     laststatus = 2,
+    incsearch = true,
+    inccommand = 'nosplit',
     encoding = 'utf-8',
     expandtab = true, -- Expand tabs to spaces
     shiftwidth = 4, -- Tab = 4 spaces

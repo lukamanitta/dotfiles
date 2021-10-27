@@ -14,7 +14,10 @@ apply_globals({
         java = { 'uncrustify' },
         sh = { 'shfmt' },
         rust = { 'rustfmt' },
+        c = { 'clang-format' },
+        cpp = { 'clang-format' },
     },
-    ale_lua_stylua_options = '--search-parent-directories',
+    ale_lua_stylua_options = '--config-path ~/.config/nvim/.stylua.toml',
     ale_c_uncrustify_options = '-c ~/uncrustify.cfg --no-backup',
+    ale_c_clangformat_options = '-style= ~/.clang-format',
 })
