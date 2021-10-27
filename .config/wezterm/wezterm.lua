@@ -30,7 +30,7 @@ local cfg = {
     font_dirs = { '~/dotfiles/fonts', '~/dotfiles/fonts/RobotoMono' },
 
     font = wezterm.font('RobotoMono Nerd Font'),
-    font_size = 14,
+    font_size = 13,
 
     --Fonts--
 
@@ -86,7 +86,7 @@ local cfg = {
 
         --- Keybindings for Tabs
         {
-            key = 'c',
+            key = 't',
             mods = 'LEADER',
             action = wezterm.action({ SpawnTab = 'CurrentPaneDomain' }),
         },
