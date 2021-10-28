@@ -19,5 +19,12 @@ apply_globals({
     },
     ale_lua_stylua_options = '--config-path ~/.config/nvim/.stylua.toml',
     ale_c_uncrustify_options = '-c ~/uncrustify.cfg --no-backup',
-    ale_c_clangformat_options = '-style= ~/.clang-format',
+    ale_c_clangformat_options = [["
+        -style='{
+            BasedOnStyle: LLVM,
+            IndentWidth: 4,
+            AlignAfterOpenBracket: DontAlign,
+            ContinuationIndentWidth: 8,
+        }'
+    "]],
 })
