@@ -40,6 +40,7 @@ local objects_movements = {
     'tpope/vim-surround',
     'bkad/CamelCaseMotion',
     'andymass/vim-matchup',
+    'easymotion/vim-easymotion',
 }
 
 local lsp_completions = {
@@ -78,6 +79,7 @@ local other = {
     'voldikss/vim-floaterm',
     'famiu/bufdelete.nvim',
     'AckslD/nvim-neoclip.lua',
+    'folke/which-key.nvim',
 }
 
 require('packer').startup({

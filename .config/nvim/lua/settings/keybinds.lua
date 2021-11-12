@@ -1,6 +1,6 @@
 local map = require('utils.config').map
 -- local api = vim.api
-local cmd = vim.cmd
+local cmd, api = vim.cmd, vim.api
 local g = vim.g
 
 local silentnoremap = { silent = true, noremap = true }
@@ -51,7 +51,7 @@ map(
 )
 map('n', '<leader>sp', ':Telescope live_grep<CR>', { silent = true }) -- Search project
 map('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>', { silent = true }) -- Search symbols
-map('n', '<leader>b', ':Telescope buffers<CR>', { silent = true })
+map('n', '<leader>sb', ':Telescope buffers<CR>', { silent = true })
 
 -- Bufdelete
 map('n', '<leader>bd', ':Bdelete ')
@@ -73,10 +73,10 @@ map('n', '<leader>xl', ':Trouble loclist<CR>', silentnoremap)
 map('n', '<leader>xq', ':Trouble quickfix<CR>', silentnoremap)
 
 -- CamelCaseMotion
---api.nvim_del_keymap('s', 'w')
---api.nvim_del_keymap('s', 'b')
---api.nvim_del_keymap('s', 'e')
---api.nvim_del_keymap('s', 'ge')
+-- api.nvim_del_keymap('s', 'w')
+-- api.nvim_del_keymap('s', 'b')
+-- api.nvim_del_keymap('s', 'e')
+-- api.nvim_del_keymap('s', 'ge')
 
 cmd('map <silent> w <Plug>CamelCaseMotion_w')
 cmd('map <silent> b <Plug>CamelCaseMotion_b')
