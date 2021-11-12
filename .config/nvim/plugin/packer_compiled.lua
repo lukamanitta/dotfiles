@@ -209,6 +209,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-easymotion"
   },
+  ["vim-easymotion"] = {
+    loaded = true,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-easymotion"
+  },
   ["vim-floaterm"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-floaterm"
@@ -216,6 +220,10 @@ _G.packer_plugins = {
   ["vim-matchup"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-matchup"
+  },
+  ["vim-python-pep8-indent"] = {
+    loaded = true,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-python-pep8-indent"
   },
   ["vim-python-pep8-indent"] = {
     loaded = true,
@@ -244,6 +252,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/luka/.local/share/nvim/site/pack/packer/start/which-key.nvim"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
