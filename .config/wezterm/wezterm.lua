@@ -44,7 +44,7 @@ local cfg = {
     keys = {
         --- Keybindings for Multiplex
         {
-            key = '\\',
+            key = '/',
             mods = 'LEADER',
             action = wezterm.action({ SplitHorizontal = { domain = 'CurrentPaneDomain' } }),
         },

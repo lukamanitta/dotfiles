@@ -30,4 +30,6 @@ apply_options({
     foldnestmax = 10,
     nofoldenable = true,
     foldlevel = 1,
+    scrolloff = 8,
+    sidescrolloff = 5,
 })

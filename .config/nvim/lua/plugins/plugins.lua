@@ -56,6 +56,7 @@ local lsp_completions = {
 
 local lang_specific_styling = {
     'styled-components/vim-styled-components',
+    'Vimjas/vim-python-pep8-indent',
 }
 
 local ui = {
@@ -67,6 +68,7 @@ local ui = {
     'norcalli/nvim-colorizer.lua',
     'yamatsum/nvim-cursorline',
     'SmiteshP/nvim-gps',
+    'folke/which-key.nvim',
 }
 
 local themes = {

@@ -51,7 +51,17 @@ map(
 )
 map('n', '<leader>sp', ':Telescope live_grep<CR>', { silent = true }) -- Search project
 map('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>', { silent = true }) -- Search symbols
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 map('n', '<leader>sb', ':Telescope buffers<CR>', { silent = true })
+=======
+map('n', '<leader>sas', ':Telescope lsp_dynamic_workspace_symbols<CR>', { silent = true }) -- Search all project symbols
+map('n', '<leader>sb', ':Telescope buffers<CR>', { silent = true }) -- Search buffers
+>>>>>>> Stashed changes
+=======
+map('n', '<leader>sas', ':Telescope lsp_dynamic_workspace_symbols<CR>', { silent = true }) -- Search all project symbols
+map('n', '<leader>sb', ':Telescope buffers<CR>', { silent = true }) -- Search buffers
+>>>>>>> Stashed changes
 
 -- Bufdelete
 map('n', '<leader>bd', ':Bdelete ')
@@ -64,13 +74,16 @@ map('', '<leader>p', ':Telescope neoclip<CR>')
 map('n', '<leader>tn', ':FloatermNew<CR>')
 map('n', '<leader>tk', ':FloatermKill<CR>')
 map('n', '<leader>tt', ':FloatermToggle<CR>')
-map('n', '<leader>t[', ':FloatermPrev<CR>')
-map('n', '<leader>t]', ':FloatermNext<CR>')
+map('n', '<leader>[t', ':FloatermPrev<CR>')
+map('n', '<leader>]t', ':FloatermNext<CR>')
 
 -- Trouble
 map('n', '<leader>xx', ':Trouble<CR>', silentnoremap)
 map('n', '<leader>xl', ':Trouble loclist<CR>', silentnoremap)
 map('n', '<leader>xq', ':Trouble quickfix<CR>', silentnoremap)
+
+-- EasyMotion
+cmd('map <leader><leader> <Plug>(easymotion-prefix)')
 
 -- CamelCaseMotion
 -- api.nvim_del_keymap('s', 'w')

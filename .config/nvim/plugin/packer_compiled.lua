@@ -201,6 +201,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-easymotion"
   },
+  ["vim-easymotion"] = {
+    loaded = true,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-easymotion"
+  },
+  ["vim-easymotion"] = {
+    loaded = true,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-easymotion"
+  },
   ["vim-floaterm"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-floaterm"
@@ -209,17 +217,36 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-matchup"
   },
+  ["vim-python-pep8-indent"] = {
+    loaded = true,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-python-pep8-indent"
+  },
+  ["vim-python-pep8-indent"] = {
+    loaded = true,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-python-pep8-indent"
+  },
   ["vim-styled-components"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-styled-components"
   },
   ["vim-surround"] = {
     loaded = true,
+<<<<<<< Updated upstream
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/vim-surround"
   },
   ["which-key.nvim"] = {
     loaded = true,
     path = "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/which-key.nvim"
+=======
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-surround"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/start/which-key.nvim"
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   }
 }
 
