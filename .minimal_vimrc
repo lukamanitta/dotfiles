@@ -47,11 +47,18 @@ set expandtab           "Treat tabs as multiple spaces
 set shiftwidth=4        "Tab length = 4 spaces
 set backspace=indent,eol,start
 set belloff=all         "Shut that fucking bell sound off
-set colorcolumn=80,100  "Line length DANGER ZONE NO PLS NO FUCK AHH NOT 80 CHARA
+call matchadd('ColorColumn', '\%80v', 100) " DANGER ZONE FUCK NO 80 CHARACTERS NO P
 
-" Terminal split on startup
-set splitbelow
-au VimEnter * new | call termopen(&shell) | execute 'resize 10'
+" File finding
+" Sub-dir searching and tab-completion
+set path+=**
+
+" Display matchings files for tab completion
+set wildmenu
+
+" File explorer
+nnoremap <leader>e :Lexplore <CR> 
+let g:netrw_winsize = 15
 
 " Code folding
 set foldmethod=indent   "Fold based on indent
@@ -59,4 +66,4 @@ set foldnestmax=10      "Deepest fold is 10 levels
 set nofoldenable        "Don't fold by default
 set foldlevel=1
 
-" TODO: file movements / searching, filetree in left split
+" filetree in left split
