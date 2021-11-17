@@ -2,7 +2,7 @@ local apply_options = require('utils.config').apply_options
 
 apply_options({
     guifont = 'RobotoMono\\ Nerd\\ Font:h15',
-    syntax = 'on',
+    syntax = 'off',
     hidden = true,
     number = true,
     relativenumber = true,
@@ -25,7 +25,6 @@ apply_options({
     shiftwidth = 4, -- Tab = 4 spaces
     backspace = 'indent,eol,start',
     belloff = 'all', -- Shut that fucking bell sound off
-    colorcolumn = '80,100', -- Line length DANGER ZONE NO PLS NO FUCK AHH NOT 80
     foldmethod = 'indent',
     foldnestmax = 10,
     nofoldenable = true,
@@ -33,3 +32,5 @@ apply_options({
     scrolloff = 8,
     sidescrolloff = 5,
 })
+
+vim.fn.matchadd('ColorColumn', '\\%80v', 100) -- DANGER XONE FUCK NOT 80 CHARAC

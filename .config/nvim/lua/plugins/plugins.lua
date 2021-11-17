@@ -81,7 +81,6 @@ local other = {
     'voldikss/vim-floaterm',
     'famiu/bufdelete.nvim',
     'AckslD/nvim-neoclip.lua',
-    'folke/which-key.nvim',
 }
 
 require('packer').startup({
