@@ -47,7 +47,7 @@ set expandtab           "Treat tabs as multiple spaces
 set shiftwidth=4        "Tab length = 4 spaces
 set backspace=indent,eol,start
 set belloff=all         "Shut that fucking bell sound off
-call matchadd('ColorColumn', '\%80v', 100) " DANGER ZONE FUCK NO 80 CHARACTERS NO P
+call matchadd('ColorColumn', '\%80v', 100) " DANGER ZONE FUCK NO 80 CHARS FUCK N
 
 " File finding
 " Sub-dir searching and tab-completion
@@ -57,8 +57,39 @@ set path+=**
 set wildmenu
 
 " File explorer
-nnoremap <leader>e :Lexplore <CR> 
+nnoremap <leader>e :Lexplore <CR>
+let g:netrw_banner = 0
 let g:netrw_winsize = 15
+let g:netrw_liststyle = 3 " Tree view
+let g:netrw_list_hide = netrw_gitignore#Hide()
+let g:netrw_list_hide .= ',\(^\|\s\s\)\zs\.\S\+'
+
+" Tags
+" Generate tags file for project (run from root dir)
+" TODO: Add git hooks, place in .git/ if present
+command! MakeTags !ctags -R .
+
+" Goto definition
+nnoremap gd ^]
+
+" Get all declarations
+nnoremap gD g^]
+
+" Jump back through tag jumps with ^t
+
+" Autocomplete
+" Multi-purpose tab key (insert space if at start of line, autocomplete
+" otherwise
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-n>"
+    endif
+endfunction
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-p>
 
 " Code folding
 set foldmethod=indent   "Fold based on indent

@@ -22,3 +22,7 @@ brew install shfmt
 
 # Uncrustify (java, c-like languages)
 brew install uncrustify
+
+# Neovim Remote
+pip3 install neovim-remote
+asdf reshim python
