@@ -1,6 +1,6 @@
 local map = require('utils.config').map
 -- local api = vim.api
-local cmd, api = vim.cmd, vim.api
+local cmd = vim.cmd
 local g = vim.g
 
 local silentnoremap = { silent = true, noremap = true }

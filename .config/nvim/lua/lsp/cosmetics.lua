@@ -19,7 +19,7 @@ fn.sign_define('LspDiagnosticsSignError', { text = signs.Error, texthl = 'Diagno
 fn.sign_define('LspDiagnosticsSignWarning', { text = signs.Warn, texthl = 'DiagnosticWarn' })
 fn.sign_define('LspDiagnosticsSignHint', { text = signs.Hint, texthl = 'DiagnosticHint' })
 fn.sign_define('LspDiagnosticsSignInformation', { text = signs.Info, texthl = 'DiagnosticInfo' })
-fn.sign_define('LightBulbSign', { text = signs.CodeAction, texthl = 'DiagnosticWarn' })
+-- fn.sign_define('LightBulbSign', { text = signs.CodeAction, texthl = 'DiagnosticWarn' })
 
 local comp_icons = {
     Class = ' ',

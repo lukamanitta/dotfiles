@@ -11,7 +11,7 @@ local no_errors, error_msg = pcall(function()
 
   local time
   local profile_info
-  local should_profile = false
+  local should_profile = true
   if should_profile then
     local hrtime = vim.loop.hrtime
     profile_info = {}
@@ -86,16 +86,14 @@ _G.packer_plugins = {
     path = "/home/luka/.local/share/nvim/site/pack/packer/start/auto-pairs"
   },
   ["bufdelete.nvim"] = {
-    loaded = true,
-    path = "/home/luka/.local/share/nvim/site/pack/packer/start/bufdelete.nvim"
+    commands = { "BufDelete" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/opt/bufdelete.nvim"
   },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/home/luka/.local/share/nvim/site/pack/packer/start/bufferline.nvim"
-  },
-  gruvbox = {
-    loaded = true,
-    path = "/home/luka/.local/share/nvim/site/pack/packer/start/gruvbox"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
@@ -107,7 +105,8 @@ _G.packer_plugins = {
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/home/luka/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    needs_bufread = false,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/opt/lualine.nvim"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
@@ -146,8 +145,10 @@ _G.packer_plugins = {
     path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-notify"
   },
   ["nvim-tree.lua"] = {
-    loaded = true,
-    path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+    commands = { "NvimTreeToggle" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -166,8 +167,9 @@ _G.packer_plugins = {
     path = "/home/luka/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["packer.nvim"] = {
-    loaded = true,
-    path = "/home/luka/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -178,32 +180,33 @@ _G.packer_plugins = {
     path = "/home/luka/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
-    loaded = true,
-    path = "/home/luka/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim"
+    load_after = {
+      ["telescope.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/opt/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
-    loaded = true,
-    path = "/home/luka/.local/share/nvim/site/pack/packer/start/telescope.nvim"
-  },
-  ["tempus-themes-vim.git"] = {
-    loaded = true,
-    path = "/home/luka/.local/share/nvim/site/pack/packer/start/tempus-themes-vim.git"
+    after = { "telescope-fzf-native.nvim" },
+    commands = { "Telescope" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
   },
   ["trouble.nvim"] = {
     loaded = true,
     path = "/home/luka/.local/share/nvim/site/pack/packer/start/trouble.nvim"
-  },
-  ["vim-devicons"] = {
-    loaded = true,
-    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-devicons"
   },
   ["vim-easymotion"] = {
     loaded = true,
     path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-easymotion"
   },
   ["vim-floaterm"] = {
-    loaded = true,
-    path = "/home/luka/.local/share/nvim/site/pack/packer/start/vim-floaterm"
+    commands = { "FloatermNew", "FloatermToggle" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/luka/.local/share/nvim/site/pack/packer/opt/vim-floaterm"
   },
   ["vim-matchup"] = {
     loaded = true,
@@ -228,7 +231,29 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
-if should_profile then save_profiles() end
+-- Setup for: telescope.nvim
+time([[Setup for telescope.nvim]], true)
+try_loadstring("\27LJ\2\0021\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\22plugins.telescope\frequire\0", "setup", "telescope.nvim")
+time([[Setup for telescope.nvim]], false)
+-- Setup for: lualine.nvim
+time([[Setup for lualine.nvim]], true)
+try_loadstring("\27LJ\2\2/\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\20plugins.lualine\frequire\0", "setup", "lualine.nvim")
+time([[Setup for lualine.nvim]], false)
+-- Setup for: nvim-tree.lua
+time([[Setup for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\0020\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\21plugins.nvimtree\frequire\0", "setup", "nvim-tree.lua")
+time([[Setup for nvim-tree.lua]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file NvimTreeToggle lua require("packer.load")({'nvim-tree.lua'}, { cmd = "NvimTreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file FloatermToggle lua require("packer.load")({'vim-floaterm'}, { cmd = "FloatermToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file BufDelete lua require("packer.load")({'bufdelete.nvim'}, { cmd = "BufDelete", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file FloatermNew lua require("packer.load")({'vim-floaterm'}, { cmd = "FloatermNew", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
+time([[Defining lazy-load commands]], false)
+
+if should_profile then save_profiles(1) end
 
 end)
 

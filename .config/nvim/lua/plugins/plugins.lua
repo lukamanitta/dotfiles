@@ -15,89 +15,95 @@ if fn.empty(fn.glob(install_path)) > 0 then
     cmd('packadd packer.nvim')
 end
 
-local init = {
-    -- Packer can manage itself as an optional plugin
-    'wbthomason/packer.nvim',
-    -- opt = true
-}
+return require('packer').startup({
+    function()
+        -- Packer can manage itself as an optional plugin
+        use({ 'wbthomason/packer.nvim', opt = true })
 
-local explorer = {
-    'kyazdani42/nvim-tree.lua',
-}
+        -- File explorer
+        use({
+            'kyazdani42/nvim-tree.lua',
+            cmd = { 'NvimTreeToggle' },
+            setup = function()
+                require('plugins.nvimtree')
+            end,
+        })
 
-local finder = {
-    'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim',
-    'nvim-lua/popup.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-}
+        -- Finder
+        use({ 'nvim-lua/plenary.nvim' })
+        use({ 'nvim-lua/popup.nvim' })
+        use({
+            'nvim-telescope/telescope.nvim',
+            cmd = { 'Telescope' },
+            setup = function()
+                require('plugins.telescope')
+            end,
+        })
+        use({
+            'nvim-telescope/telescope-fzf-native.nvim',
+            run = 'make',
+            after = 'telescope.nvim',
+        })
 
-local objects_movements = {
-    'terrortylor/nvim-comment',
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    'lukas-reineke/indent-blankline.nvim',
-    'chun-yang/auto-pairs',
-    'tpope/vim-surround',
-    'bkad/CamelCaseMotion',
-    'andymass/vim-matchup',
-    'easymotion/vim-easymotion',
-}
+        -- Objects and Movements
+        use({ 'terrortylor/nvim-comment' })
+        use({ 'JoosepAlviste/nvim-ts-context-commentstring' })
+        use({ 'lukas-reineke/indent-blankline.nvim' })
+        use({ 'chun-yang/auto-pairs' })
+        use({ 'tpope/vim-surround' })
+        use({ 'bkad/CamelCaseMotion' })
+        use({ 'andymass/vim-matchup' })
+        use({ 'easymotion/vim-easymotion' })
 
-local lsp_completions = {
-    'kabouzeid/nvim-lspinstall',
-    'neovim/nvim-lspconfig',
-    'hrsh7th/nvim-compe',
-    'folke/trouble.nvim',
-    'glepnir/lspsaga.nvim',
-    { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
-    'windwp/nvim-ts-autotag',
-    'dense-analysis/ale',
-}
+        -- Lsp & Completions
+        use({ 'kabouzeid/nvim-lspinstall' })
+        use({ 'neovim/nvim-lspconfig' })
+        use({ 'hrsh7th/nvim-compe' })
+        use({ 'folke/trouble.nvim' })
+        use({ 'glepnir/lspsaga.nvim' })
+        use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
+        use({ 'windwp/nvim-ts-autotag' })
+        use({ 'dense-analysis/ale' })
 
-local lang_specific_styling = {
-    'styled-components/vim-styled-components',
-    'Vimjas/vim-python-pep8-indent',
-}
+        -- Language specific styling
+        use({ 'styled-components/vim-styled-components' })
+        use({ 'Vimjas/vim-python-pep8-indent' })
 
-local ui = {
-    'ryanoasis/vim-devicons',
-    'kyazdani42/nvim-web-devicons',
-    'hoob3rt/lualine.nvim',
-    'akinsho/bufferline.nvim',
-    'rcarriga/nvim-notify',
-    'norcalli/nvim-colorizer.lua',
-    'yamatsum/nvim-cursorline',
-    'SmiteshP/nvim-gps',
-    'folke/which-key.nvim',
-}
+        -- UI
+        -- 'ryanoasis/vim-devicons'
+        use({ 'kyazdani42/nvim-web-devicons' })
+        use({
+            'hoob3rt/lualine.nvim',
+            after = 'Catppuccino.nvim',
+            setup = function()
+                require('plugins.lualine')
+            end,
+        })
+        use({ 'akinsho/bufferline.nvim' })
+        use({ 'rcarriga/nvim-notify' })
+        use({ 'norcalli/nvim-colorizer.lua' })
+        use({ 'yamatsum/nvim-cursorline' })
+        use({ 'SmiteshP/nvim-gps' })
+        use({ 'folke/which-key.nvim' })
 
-local themes = {
-    'morhetz/gruvbox',
-    'Pocco81/Catppuccino.nvim',
-    'https://gitlab.com/protesilaos/tempus-themes-vim.git',
-}
+        -- Themes
+        use({ 'Pocco81/Catppuccino.nvim' })
 
-local other = {
-    'voldikss/vim-floaterm',
-    'famiu/bufdelete.nvim',
-    'AckslD/nvim-neoclip.lua',
-}
-
-require('packer').startup({
-    {
-        init,
-        explorer,
-        finder,
-        objects_movements,
-        lsp_completions,
-        lang_specific_styling,
-        ui,
-        themes,
-        other,
-    },
+        -- Other
+        use({
+            'voldikss/vim-floaterm',
+            cmd = { 'FloatermNew', 'FloatermToggle' },
+        })
+        use({ 'famiu/bufdelete.nvim', cmd = { 'BufDelete' } })
+        use({ 'AckslD/nvim-neoclip.lua' })
+    end,
     config = {
         display = {
             open_fn = require('packer.util').float,
+        },
+        profile = {
+            enable = true,
+            threshold = 1,
         },
     },
 })
