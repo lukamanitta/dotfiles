@@ -23,7 +23,6 @@ tnoremap jk <C-\><C-n>|                                           "Leave insert 
 " autocmd group (clears autocmds)
 augroup vimrc_autocmd
     autocmd!
-
     " Jump to last position when reopening a file
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
@@ -96,5 +95,3 @@ set foldmethod=indent   "Fold based on indent
 set foldnestmax=10      "Deepest fold is 10 levels
 set nofoldenable        "Don't fold by default
 set foldlevel=1
-
-" filetree in left split

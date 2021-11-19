@@ -7,6 +7,9 @@ require('telescope').setup({
             i = {
                 ['<esc>'] = actions.close,
             },
+            n = {
+                ['<esc>'] = actions.close,
+            },
         },
         buffer_previewer_maker = smart_buf_preview_maker,
     },

@@ -7,6 +7,11 @@ brew install zsh
 chsh -s $(which zsh)
 zsh
 
+# Colourful ls
+brew install lsd
+# OR
+sudo dpkg -i lsd_0.20.1_amd64.deb
+
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
@@ -27,7 +32,6 @@ sudo ~/.ruby-build/install.sh
 asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 touch ~/.default-gems
 echo "bundler" >>~/.default-gems
-echo "colorls" >>~/.default-gems
 asdf install ruby latest
 asdf global ruby latest
 source ~/.zshrc

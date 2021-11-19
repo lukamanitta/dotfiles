@@ -83,13 +83,13 @@ local function ins_right(component)
     table.insert(config.sections.lualine_x, component)
 end
 
-ins_left({
-    function()
-        return '▊'
-    end,
-    color = { fg = colors.endblock }, -- Sets highlighting of component
-    left_padding = 0, -- We don't need space before this
-})
+-- ins_left({
+--     function()
+--         return '▊'
+--     end,
+--     color = { fg = colors.endblock }, -- Sets highlighting of component
+--     left_padding = 0, -- We don't need space before this
+-- })
 
 local get_buf_icon = require('utils.config').get_buf_icon
 ins_left({
@@ -224,12 +224,12 @@ ins_right({
 
 ins_right({ 'progress', color = { fg = colors.fg, gui = 'bold' } })
 
-ins_right({
-    function()
-        return '▊'
-    end,
-    color = { fg = colors.endblock },
-    right_padding = 0,
-})
+-- ins_right({
+--     function()
+--         return '▊'
+--     end,
+--     color = { fg = colors.endblock },
+--     right_padding = 0,
+-- })
 
 lualine.setup(config)

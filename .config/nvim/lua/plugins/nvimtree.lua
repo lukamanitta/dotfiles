@@ -1,7 +1,6 @@
 local apply_globals = require('utils.config').apply_globals
 
 apply_globals({
-    nvim_tree_ignore = { '.git', 'node_modules', '.cache' },
     nvim_tree_git_hl = 1,
     nvim_tree_highlight_opened_files = 1,
     nvim_tree_add_trailing = 1, -- Adds trailing slash to folder names
@@ -55,6 +54,7 @@ apply_globals({
 })
 
 require('nvim-tree').setup({
+    nvim_tree_ignore = { '.git', 'node_modules', '.cache' },
     disable_netrw = true,
     hijack_netrw = true,
     open_on_setup = false,

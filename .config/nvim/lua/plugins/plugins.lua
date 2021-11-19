@@ -18,32 +18,18 @@ end
 return require('packer').startup({
     function()
         -- Packer can manage itself as an optional plugin
-        use({ 'wbthomason/packer.nvim', opt = true })
+        use({ 'wbthomason/packer.nvim' })
 
         -- File explorer
         use({
             'kyazdani42/nvim-tree.lua',
-            cmd = { 'NvimTreeToggle' },
-            setup = function()
-                require('plugins.nvimtree')
-            end,
         })
 
         -- Finder
         use({ 'nvim-lua/plenary.nvim' })
         use({ 'nvim-lua/popup.nvim' })
-        use({
-            'nvim-telescope/telescope.nvim',
-            cmd = { 'Telescope' },
-            setup = function()
-                require('plugins.telescope')
-            end,
-        })
-        use({
-            'nvim-telescope/telescope-fzf-native.nvim',
-            run = 'make',
-            after = 'telescope.nvim',
-        })
+        use({ 'nvim-telescope/telescope.nvim' })
+        use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
 
         -- Objects and Movements
         use({ 'terrortylor/nvim-comment' })
@@ -72,13 +58,7 @@ return require('packer').startup({
         -- UI
         -- 'ryanoasis/vim-devicons'
         use({ 'kyazdani42/nvim-web-devicons' })
-        use({
-            'hoob3rt/lualine.nvim',
-            after = 'Catppuccino.nvim',
-            setup = function()
-                require('plugins.lualine')
-            end,
-        })
+        use({ 'hoob3rt/lualine.nvim' })
         use({ 'akinsho/bufferline.nvim' })
         use({ 'rcarriga/nvim-notify' })
         use({ 'norcalli/nvim-colorizer.lua' })
@@ -87,15 +67,15 @@ return require('packer').startup({
         use({ 'folke/which-key.nvim' })
 
         -- Themes
-        use({ 'Pocco81/Catppuccino.nvim' })
+        use({ 'catppuccin/nvim' })
 
         -- Other
         use({
             'voldikss/vim-floaterm',
             cmd = { 'FloatermNew', 'FloatermToggle' },
         })
-        use({ 'famiu/bufdelete.nvim', cmd = { 'BufDelete' } })
         use({ 'AckslD/nvim-neoclip.lua' })
+        use({ 'famiu/bufdelete.nvim' })
     end,
     config = {
         display = {

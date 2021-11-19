@@ -27,12 +27,20 @@ fi
 
 alias zshconfig="source $HOME/.zshrc"
 alias ohmyzsh="source $HOME/.oh-my-zsh"
-alias ls="colorls"
+alias ls="lsd"
 alias sourcevenv="source venv/bin/activate && echo 'Enter "deactivate" to leave venv'"
 alias createvenv="python3 -m venv venv"
 alias e="exit"
 
 export PATH="/Library/TeX/texbin:$PATH"
+
+# Automatically run ls after cding if less than 20 files
+function cd {
+    builtin cd $@ && if (( $(ls | wc -l) < 20 )); then ls; fi
+}
+function z {
+    z "$1" && if (( $(ls | wc -l) < 20 )); then ls; fi
+}
 
 #Take directory as argument: CDs to directory and opens pref code editor in folder
 function code {
@@ -51,10 +59,6 @@ function mkcd {
     mkdir -p "$1" && cd "$1"
 }
 
-# Automatically run ls after cding if less than 20 files
-function cd {
-    builtin cd $@ && if (( $(ls | wc -l) < 20 )); then ls; fi
-}
 
 #PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig
 
