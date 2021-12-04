@@ -17,79 +17,150 @@ end
 
 return require('packer').startup({
     function()
-        -- Packer can manage itself as an optional plugin
-        use({ 'wbthomason/packer.nvim' })
-
-        -- File explorer
         use({
-            'kyazdani42/nvim-tree.lua',
+
+            -- Packer can manage itself as an optional plugin
+            'wbthomason/packer.nvim',
+
+            -- File explorer
+            {
+                'kyazdani42/nvim-tree.lua',
+                config = function()
+                    require('plugins.nvimtree')
+                end,
+            },
+
+            -- Finder
+            { 'nvim-lua/plenary.nvim' },
+            { 'nvim-lua/popup.nvim' },
+            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+            {
+                'nvim-telescope/telescope.nvim',
+                config = function()
+                    require('plugins.telescope')
+                end,
+            },
+
+            -- Objects and Movements
+            {
+                'terrortylor/nvim-comment',
+                config = function()
+                    require('plugins.comment')
+                end,
+            },
+            { 'JoosepAlviste/nvim-ts-context-commentstring' },
+            {
+                'lukas-reineke/indent-blankline.nvim',
+                config = function()
+                    require('plugins.indent_blankline')
+                end,
+            },
+            { 'chun-yang/auto-pairs' },
+            { 'tpope/vim-surround' },
+            { 'bkad/CamelCaseMotion' },
+            { 'andymass/vim-matchup' },
+            { 'easymotion/vim-easymotion' },
+
+            -- Lsp & Completions
+            { 'kabouzeid/nvim-lspinstall' },
+            { 'neovim/nvim-lspconfig' },
+            { 'hrsh7th/nvim-compe' },
+            { 'folke/trouble.nvim' },
+            { 'glepnir/lspsaga.nvim' },
+            {
+                'nvim-treesitter/nvim-treesitter',
+                run = ':TSUpdate',
+                config = function()
+                    require('plugins.treesitter')
+                end,
+            },
+            { 'windwp/nvim-ts-autotag' },
+            {
+                'dense-analysis/ale',
+                config = function()
+                    require('plugins.ale')
+                end,
+            },
+
+            -- Language specific styling
+            { 'styled-components/vim-styled-components' },
+            { 'Vimjas/vim-python-pep8-indent' },
+
+            -- UI
+            -- ryanoasis/vim-devicons'
+            { 'kyazdani42/nvim-web-devicons' },
+            {
+                'hoob3rt/lualine.nvim',
+                config = function()
+                    require('plugins.lualine')
+                end,
+            },
+            {
+                'akinsho/bufferline.nvim',
+                config = function()
+                    require('plugins.bufferline')
+                end,
+            },
+            {
+                'rcarriga/nvim-notify',
+                config = function()
+                    require('plugins.notify')
+                end,
+            },
+            {
+                'norcalli/nvim-colorizer.lua',
+                config = function()
+                    require('plugins.colorizer')
+                end,
+            },
+            { 'yamatsum/nvim-cursorline' },
+            {
+                'SmiteshP/nvim-gps',
+                config = function()
+                    require('plugins.gps')
+                end,
+            },
+            {
+                'folke/which-key.nvim',
+                config = function()
+                    require('plugins.which-key')
+                end,
+            },
+            {
+                'luukvbaal/stabilize.nvim',
+                config = function()
+                    require('plugins.stabilize')
+                end,
+            },
+
+            -- Themes
+            {
+                'catppuccin/nvim',
+                config = function()
+                    require('plugins.colorschemes.catppuccin')
+                end,
+            },
+            {
+                'folke/tokyonight.nvim',
+                config = function()
+                    require('plugins.colorschemes.tokyonight')
+                end,
+            },
+
+            -- Other
+            {
+                'voldikss/vim-floaterm',
+                cmd = { 'FloatermNew', 'FloatermToggle' },
+            },
+            {
+                'AckslD/nvim-neoclip.lua',
+                config = function()
+                    require('plugins.neoclip')
+                end,
+            },
+            { 'famiu/bufdelete.nvim' },
+            { 'tpope/vim-fugitive' },
         })
-
-        -- Finder
-        use({ 'nvim-lua/plenary.nvim' })
-        use({ 'nvim-lua/popup.nvim' })
-        use({ 'nvim-telescope/telescope.nvim' })
-        use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
-
-        -- Objects and Movements
-        use({ 'terrortylor/nvim-comment' })
-        use({ 'JoosepAlviste/nvim-ts-context-commentstring' })
-        use({ 'lukas-reineke/indent-blankline.nvim' })
-        use({ 'chun-yang/auto-pairs' })
-        use({ 'tpope/vim-surround' })
-        use({ 'bkad/CamelCaseMotion' })
-        use({ 'andymass/vim-matchup' })
-        use({ 'easymotion/vim-easymotion' })
-
-        -- Lsp & Completions
-        use({ 'kabouzeid/nvim-lspinstall' })
-        use({ 'neovim/nvim-lspconfig' })
-        use({ 'hrsh7th/nvim-compe' })
-        use({ 'folke/trouble.nvim' })
-        use({ 'glepnir/lspsaga.nvim' })
-        use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
-        use({ 'windwp/nvim-ts-autotag' })
-        use({ 'dense-analysis/ale' })
-
-        -- Language specific styling
-        use({ 'styled-components/vim-styled-components' })
-        use({ 'Vimjas/vim-python-pep8-indent' })
-
-        -- UI
-        -- 'ryanoasis/vim-devicons'
-        use({ 'kyazdani42/nvim-web-devicons' })
-        use({ 'hoob3rt/lualine.nvim' })
-        use({ 'akinsho/bufferline.nvim' })
-        use({ 'rcarriga/nvim-notify' })
-        use({ 'norcalli/nvim-colorizer.lua' })
-        use({ 'yamatsum/nvim-cursorline' })
-        use({ 'SmiteshP/nvim-gps' })
-        use({ 'folke/which-key.nvim' })
-        use({ 'luukvbaal/stabilize.nvim' })
-        use({ 'sunjon/shade.nvim' })
-
-        -- Themes
-        use({
-            'catppuccin/nvim',
-            config = function()
-                require('plugins.colorschemes.catppuccin')
-            end,
-        })
-        use({
-            'folke/tokyonight.nvim',
-            config = function()
-                require('plugins.colorschemes.tokyonight')
-            end,
-        })
-
-        -- Other
-        use({
-            'voldikss/vim-floaterm',
-            cmd = { 'FloatermNew', 'FloatermToggle' },
-        })
-        use({ 'AckslD/nvim-neoclip.lua' })
-        use({ 'famiu/bufdelete.nvim' })
-        use({ 'tpope/vim-fugitive' })
     end,
     config = {
         display = {

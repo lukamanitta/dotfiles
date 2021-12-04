@@ -5,6 +5,7 @@ apply_globals({
     nvim_tree_highlight_opened_files = 1,
     nvim_tree_add_trailing = 1, -- Adds trailing slash to folder names
     nvim_tree_disable_window_picker = 0,
+    nvim_tree_quit_on_open = 1, -- Closes tree when file is opened
 
     nvim_tree_window_picker_exclude = {
         buftype = {
