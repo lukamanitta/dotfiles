@@ -67,3 +67,4 @@ eval "$(starship init zsh)"
 
 # MyStay International config
 test -f ~/.msirc && source ~/.msirc
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"

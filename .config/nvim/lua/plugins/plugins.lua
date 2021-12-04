@@ -65,9 +65,22 @@ return require('packer').startup({
         use({ 'yamatsum/nvim-cursorline' })
         use({ 'SmiteshP/nvim-gps' })
         use({ 'folke/which-key.nvim' })
+        use({ 'luukvbaal/stabilize.nvim' })
+        use({ 'sunjon/shade.nvim' })
 
         -- Themes
-        use({ 'catppuccin/nvim' })
+        use({
+            'catppuccin/nvim',
+            config = function()
+                require('plugins.colorschemes.catppuccin')
+            end,
+        })
+        use({
+            'folke/tokyonight.nvim',
+            config = function()
+                require('plugins.colorschemes.tokyonight')
+            end,
+        })
 
         -- Other
         use({
@@ -76,6 +89,7 @@ return require('packer').startup({
         })
         use({ 'AckslD/nvim-neoclip.lua' })
         use({ 'famiu/bufdelete.nvim' })
+        use({ 'tpope/vim-fugitive' })
     end,
     config = {
         display = {

@@ -1,4 +1,4 @@
-local fn = vim.fn
+local cmd, fn = vim.cmd, vim.fn
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -20,6 +20,8 @@ fn.sign_define('LspDiagnosticsSignWarning', { text = signs.Warn, texthl = 'Diagn
 fn.sign_define('LspDiagnosticsSignHint', { text = signs.Hint, texthl = 'DiagnosticHint' })
 fn.sign_define('LspDiagnosticsSignInformation', { text = signs.Info, texthl = 'DiagnosticInfo' })
 -- fn.sign_define('LightBulbSign', { text = signs.CodeAction, texthl = 'DiagnosticWarn' })
+vim.cmd('hi link ALEWarningSign DiagnosticWarn')
+vim.cmd('hi link ALEInfoSign DiagnosticInfo')
 
 local comp_icons = {
     Class = ' ',

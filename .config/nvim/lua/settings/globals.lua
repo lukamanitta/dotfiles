@@ -1,8 +1,8 @@
 local cmd = vim.cmd
 local apply_globals = require('utils.config').apply_globals
 
-cmd('filetype plugin indent on')
 cmd('colorscheme catppuccin')
+cmd('filetype plugin indent on')
 cmd('set background=dark')
 
 apply_globals({
