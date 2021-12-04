@@ -10,7 +10,7 @@ zsh
 # Colourful ls
 brew install lsd
 # OR
-sudo dpkg -i lsd_0.20.1_amd64.deb
+sudo dpkg -i setup_installation/lsd_0.20.1_amd64.deb
 
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
