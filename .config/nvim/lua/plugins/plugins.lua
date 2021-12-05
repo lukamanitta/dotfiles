@@ -36,6 +36,7 @@ return require('packer').startup({
             { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
             {
                 'nvim-telescope/telescope.nvim',
+                cmd = { 'Telescope' },
                 config = function()
                     require('plugins.telescope')
                 end,
@@ -158,8 +159,25 @@ return require('packer').startup({
                     require('plugins.neoclip')
                 end,
             },
-            { 'famiu/bufdelete.nvim' },
-            { 'tpope/vim-fugitive' },
+            { 'famiu/bufdelete.nvim', cmd = { 'Bdelete', 'Bwipeout' } },
+            {
+                'tpope/vim-fugitive',
+                cmd = {
+                    'Git',
+                    'Gedit',
+                    'Gsplit',
+                    'Gdiffsplitt',
+                    'Gread',
+                    'Gwrite',
+                    'Ggrep',
+                    'GMove',
+                    'GRename',
+                    'GDelete',
+                    'GRemove',
+                    'GBrowse',
+                },
+            },
+            { 'famiu/nvim-reload', cmd = { 'Reload', 'Restart' } },
         })
     end,
     config = {

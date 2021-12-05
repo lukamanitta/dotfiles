@@ -15,7 +15,7 @@ map('i', 'jk', '<Esc>', silentnoremap)
 map('', ';', ':', silentnoremap)
 
 -- Reload config
-map('n', '<leader>config', ':lua require("utils.config").reload_config()<CR>')
+map('n', '<leader>config', ':Reload<CR>')
 
 -- Switch to alternate file
 map('n', '<leader>a', '<C-^>')
