@@ -25,6 +25,7 @@ return require('packer').startup({
             -- File explorer
             {
                 'kyazdani42/nvim-tree.lua',
+                cmd = { 'NvimTreeToggle' },
                 config = function()
                     require('plugins.nvimtree')
                 end,
@@ -36,7 +37,7 @@ return require('packer').startup({
             { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
             {
                 'nvim-telescope/telescope.nvim',
-                cmd = { 'Telescope' },
+                -- cmd = { 'Telescope' },
                 config = function()
                     require('plugins.telescope')
                 end,
@@ -63,7 +64,7 @@ return require('packer').startup({
             { 'easymotion/vim-easymotion' },
 
             -- Lsp & Completions
-            { 'kabouzeid/nvim-lspinstall' },
+            { 'williamboman/nvim-lsp-installer' },
             { 'neovim/nvim-lspconfig' },
             { 'hrsh7th/nvim-compe' },
             { 'folke/trouble.nvim' },
@@ -135,12 +136,12 @@ return require('packer').startup({
             },
 
             -- Themes
-            {
-                'catppuccin/nvim',
-                config = function()
-                    require('plugins.colorschemes.catppuccin')
-                end,
-            },
+            -- {
+            --     'catppuccin/nvim',
+            --     config = function()
+            --         require('plugins.colorschemes.catppuccin')
+            --     end,
+            -- },
             {
                 'folke/tokyonight.nvim',
                 config = function()

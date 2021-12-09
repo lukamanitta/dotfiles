@@ -32,7 +32,7 @@ local on_attach = function(_, bufnr)
     buf_set_keymap('n', '<leader>xd', ':Trouble lsp_document_diagnostics<CR>', opts)
 end
 
--- cmd([[autocmd CursorHold * Lspsaga show_cursor_diagnostics ]])
+cmd([[autocmd CursorHold * Lspsaga show_cursor_diagnostics ]])
 cmd([[autocmd CursorHoldI * silent! Lspsaga signature_help ]])
 
 -- Configure lua language server for neovim development
@@ -70,29 +70,16 @@ local function make_config()
     }
 end
 
--- lsp-install
-local function setup_servers()
-    require('lspinstall').setup()
+local lsp_installer = require('nvim-lsp-installer')
 
-    -- Get all installed servers
-    local servers = require('lspinstall').installed_servers()
+lsp_installer.on_server_ready(function(server)
+    local config = make_config()
 
-    for _, server in pairs(servers) do
-        local config = make_config()
-
-        -- language specific config
-        if server == 'lua' then
-            config.settings = lua_settings
-        end
-
-        require('lspconfig')[server].setup(config)
+    if server.name == 'sumneko_lua' then
+        config.settings = lua_settings
     end
-end
 
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>`
-require('lspinstall').post_install_hook = function()
-    setup_servers() -- reload installed servers
-    vim.cmd('bufdo e') -- this triggers the FileType autocmd that starts the server
-end
+    -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+    server:setup(config)
+    vim.cmd([[ do User LspAttachBuffers ]])
+end)

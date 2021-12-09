@@ -77,10 +77,11 @@ require('nvim-tree').setup({
         cmd = nil,
         args = {},
     },
-
     view = {
         width = 30,
         side = 'left',
         auto_resize = false,
     },
+    number = true,
+    relativenumber = true,
 })
