@@ -20,7 +20,7 @@ end
 -- Only works when run manually for some reason
 function F.install_lsp_servers()
     local servers = {
-        'bash',
+        'bashls',
         'csharp',
         'css',
         'graphql',
@@ -38,7 +38,7 @@ function F.install_lsp_servers()
     }
 
     for _, server in ipairs(servers) do
-        cmd(string.format(':lspinstall %s', server))
+        cmd(string.format(':LspInstall %s', server))
     end
 end
 
