@@ -9,10 +9,10 @@ augroup nvim
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
     " PackerCompile on plugin change
-    au BufWritePost plugins.lua source <afile> | PackerCompile
+    au BufWritePost init.lua source <afile> | PackerCompile
 
     " TrueZen on enter markdown
-    au FileType markdown TZAtaraxisOn
+    " au FileType markdown TZAtaraxisOn
 
 augroup END
 ]],

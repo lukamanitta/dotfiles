@@ -42,14 +42,20 @@ map('t', 'jk', '<C-\\><C-n>')
 -- Open NvimTree
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
 
+-- TODO: Make this prettier
 -- Telescope
 map(
     'n',
     '<leader>ff',
-    ':lua require"plugins.telescope.tele_utils".smart_file_finder()<CR>',
+    ':lua require("plugins.telescope.tele_utils").smart_file_finder(require("plugins.telescope.tele_utils").smart_theme_picker({}))<CR>',
     { silent = true }
 )
-map('n', '<leader>fg', ':Telescope live_grep<CR>', { silent = true }) -- Search project
+map(
+    'n',
+    '<leader>fg',
+    ':lua require("telescope.builtin").live_grep(require("plugins.telescope.tele_utils").smart_theme_picker({}))<CR>',
+    { silent = true }
+) -- Search project
 map('n', '<leader>fs', ':Telescope lsp_document_symbols<CR>', { silent = true }) -- Search symbols
 map('n', '<leader>fas', ':Telescope lsp_dynamic_workspace_symbols<CR>', { silent = true }) -- Search all project symbols
 map('n', '<leader>fb', ':Telescope buffers<CR>', { silent = true }) -- Search buffers

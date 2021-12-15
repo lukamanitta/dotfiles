@@ -1,10 +1,19 @@
 local previewers = require('telescope.previewers')
 local Job = require('plenary.job')
+local fn = vim.fn
 
 local T = {}
 
-function T.smart_file_finder()
-    local opts = {}
+function T.smart_theme_picker(opts)
+    opts = opts or {}
+    if fn.winwidth(0) < 120 then
+        return require('telescope.themes').get_dropdown(opts)
+    else
+        return opts
+    end
+end
+
+function T.smart_file_finder(opts)
     local git_dir = pcall(require('telescope.builtin').git_files, opts)
     if not git_dir then
         require('telescope.builtin').find_files(opts)

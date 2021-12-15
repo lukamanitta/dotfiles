@@ -201,7 +201,7 @@ return require('packer').startup({
                     require('plugins.truezen')
                 end,
             },
-            -- { 'nabla.nvim', ft = { 'markdown' } }, -- In case I need math
+            { 'jbyuki/nabla.nvim', ft = { 'markdown' } }, -- In case I need math
         })
     end,
     config = {
