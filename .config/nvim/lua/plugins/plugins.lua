@@ -179,12 +179,23 @@ return require('packer').startup({
                 },
             },
             { 'famiu/nvim-reload', cmd = { 'Reload', 'Restart' } },
+
+            -- Notes
             {
-                'lervag/wiki.vim',
+                'plasticboy/vim-markdown',
+                ft = { 'markdown' },
                 config = function()
-                    require('plugins.wiki')
+                    require('plugins.markdown')
                 end,
             },
+            {
+                'Pocco81/TrueZen.nvim',
+                ft = { 'markdown' },
+                config = function()
+                    require('plugins.truezen')
+                end,
+            },
+            -- { 'nabla.nvim', ft = { 'markdown' } }, -- In case I need math
         })
     end,
     config = {
