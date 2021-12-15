@@ -3,7 +3,7 @@ require('trouble').setup({
     height = 8,
     width = 40,
     icons = true,
-    mode = 'lsp_workspace_diagnostics',
+    mode = 'workspace_diagnostics',
     fold_open = '',
     fold_closed = '',
     action_keys = {
@@ -37,5 +37,5 @@ require('trouble').setup({
         information = '',
         other = '﫠',
     },
-    use_lsp_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
+    use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
 })

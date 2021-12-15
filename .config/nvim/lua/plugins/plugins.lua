@@ -179,6 +179,12 @@ return require('packer').startup({
                 },
             },
             { 'famiu/nvim-reload', cmd = { 'Reload', 'Restart' } },
+            {
+                'lervag/wiki.vim',
+                config = function()
+                    require('plugins.wiki')
+                end,
+            },
         })
     end,
     config = {
