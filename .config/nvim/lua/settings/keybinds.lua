@@ -47,13 +47,13 @@ map('n', '<leader>e', ':NvimTreeToggle<CR>')
 map(
     'n',
     '<leader>ff',
-    ':lua require("plugins.telescope.tele_utils").smart_file_finder(require("plugins.telescope.tele_utils").smart_theme_picker({}))<CR>',
+    ':lua require("plugins.telescope.tele_utils").smart_file_finder(require("plugins.telescope.tele_utils").responsive_layout({}))<CR>',
     { silent = true }
 )
 map(
     'n',
     '<leader>fg',
-    ':lua require("telescope.builtin").live_grep(require("plugins.telescope.tele_utils").smart_theme_picker({}))<CR>',
+    ':lua require("telescope.builtin").live_grep(require("plugins.telescope.tele_utils").responsive_layout({}))<CR>',
     { silent = true }
 ) -- Search project
 map('n', '<leader>fs', ':Telescope lsp_document_symbols<CR>', { silent = true }) -- Search symbols

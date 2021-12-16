@@ -4,7 +4,7 @@ local fn = vim.fn
 
 local T = {}
 
-function T.smart_theme_picker(opts)
+function T.responsive_layout(opts)
     opts = opts or {}
     if fn.winwidth(0) < 120 then
         return require('telescope.themes').get_dropdown(opts)
