@@ -4,5 +4,5 @@ apply_globals({
     wiki_root = '~/notes',
     wiki_filetypes = { 'md' },
     wiki_link_extension = '',
-    wiki_link_target_type = 'md',
+    wiki_link_target_type = 'wiki',
 })

@@ -1,4 +1,4 @@
-source .local_env_vars
+source $HOME/.local_env_vars
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_DISABLE_COMPFIX=true

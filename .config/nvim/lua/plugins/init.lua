@@ -179,12 +179,12 @@ return require('packer').startup({
                 },
             },
             { 'famiu/nvim-reload', cmd = { 'Reload', 'Restart' } },
-            {
-                'lervag/wiki.vim',
-                config = function()
-                    require('plugins.wiki')
-                end,
-            },
+            -- {
+            --     'lervag/wiki.vim',
+            --     config = function()
+            --         require('plugins.wiki')
+            --     end,
+            -- },
 
             -- Notes
             {
@@ -201,7 +201,7 @@ return require('packer').startup({
                     require('plugins.truezen')
                 end,
             },
-            { 'jbyuki/nabla.nvim', ft = { 'markdown' } }, -- In case I need math
+            -- { 'jbyuki/nabla.nvim', ft = { 'markdown' } }, -- In case I need math
         })
     end,
     config = {
