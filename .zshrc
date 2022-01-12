@@ -1,3 +1,4 @@
+source .local_env_vars
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_DISABLE_COMPFIX=true
@@ -50,6 +51,16 @@ function code {
         $EDITOR
     else
         $EDITOR
+    fi
+}
+
+# Open notes
+# NOTES_DIR is sourced from a local file
+function notes {
+    if (( ${+NOTES_DIR} )); then
+        cd $NOTES_DIR && nvim
+    else
+        echo Please create a NOTES_DIR env variable specifying the notes directory
     fi
 }
 
