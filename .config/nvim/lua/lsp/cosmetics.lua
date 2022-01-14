@@ -1,17 +1,17 @@
 local cmd, fn = vim.cmd, vim.fn
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-        signs = true,
-        underline = true,
-        update_in_insert = true,
-        virtual_text = false,
-        -- virtual_text = {
-        --     prefix = '●', -- Could be '●', '▎', 'x', '■'
-        -- },
-    }
-)
+-- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+--     vim.diagnostic.on_publish_diagnostics,
+--     {
+--         signs = true,
+--         underline = true,
+--         update_in_insert = true,
+--         virtual_text = false,
+--         -- virtual_text = {
+--         --     prefix = '●', -- Could be '●', '▎', 'x', '■'
+--         -- },
+--     }
+-- )
 
 -- local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ', CodeAction = '' }
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ', CodeAction = '' }
