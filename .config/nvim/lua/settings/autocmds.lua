@@ -11,9 +11,6 @@ augroup nvim
     " PackerCompile on plugin change
     au BufWritePost init.lua source <afile> | PackerCompile
 
-    " TrueZen on enter markdown
-    " au FileType markdown TZAtaraxisOn
-
 augroup END
 ]],
     ''

@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # Copy config files to dotfiles repo
 echo 'Copying dotfiles to repo...'

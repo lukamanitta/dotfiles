@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # Install starship shell prompt
 echo 'Installing / updating starship...'

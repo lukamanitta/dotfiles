@@ -77,12 +77,12 @@ return require('packer').startup({
                 end,
             },
             { 'windwp/nvim-ts-autotag' },
-            {
-                'dense-analysis/ale',
-                config = function()
-                    require('plugins.ale')
-                end,
-            },
+            -- {
+            --     'dense-analysis/ale',
+            --     config = function()
+            --         require('plugins.ale')
+            --     end,
+            -- },
 
             -- Language specific styling
             { 'styled-components/vim-styled-components' },
@@ -179,14 +179,14 @@ return require('packer').startup({
                 },
             },
             { 'famiu/nvim-reload', cmd = { 'Reload', 'Restart' } },
-            -- {
-            --     'lervag/wiki.vim',
-            --     config = function()
-            --         require('plugins.wiki')
-            --     end,
-            -- },
 
             -- Notes
+            {
+                'lervag/wiki.vim',
+                config = function()
+                    require('plugins.wiki')
+                end,
+            },
             {
                 'plasticboy/vim-markdown',
                 ft = { 'markdown' },
