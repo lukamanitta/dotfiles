@@ -12,8 +12,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source $(dirname $(gem which colorls))/tab_complete.sh
-source ~/.asdf/plugins/java/set-java-home.zsh
+# source ~/.asdf/plugins/java/set-java-home.zsh
 
 #Syntax highlighting settings
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
@@ -33,7 +32,7 @@ alias sourcevenv="source venv/bin/activate && echo 'Enter "deactivate" to leave 
 alias createvenv="python3 -m venv venv"
 alias e="exit"
 
-export PATH="/Library/TeX/texbin:$PATH"
+# export PATH="/Library/TeX/texbin:$PATH"
 
 # Automatically run ls after cding if less than 20 files
 function cd {
@@ -64,12 +63,30 @@ function notes {
     fi
 }
 
-#Make a new directory and cd into it (works with subdirectories, but not symlinks)
+# Open a file containing standup meeting entries
+function standup {
+    if [ ! -f ~/.standup ]; then
+        touch ~/.standup
+        echo --- >> ~/.standup
+    fi
+    sed -i "" "1s/^/---\n$(date +'%Y %b %m')\n\n/" ~/.standup
+    $EDITOR ~/.standup -c ":normal ggjj" +startinsert
+}
+
+# Make a new directory and cd into it (works with subdirectories, but not symlinks)
 function mkcd {
     case "$1" in /*) :;; *) set -- "./$1";; esac
     mkdir -p "$1" && cd "$1"
 }
 
+# Help list for custom commands
+function help {
+    echo "Custom Commands:"
+    echo "  notes       Open notes directory"
+    echo "  standup     Add & edit a standup meeting entry"
+    echo "  code [dir]  z into dir and open editor"
+    echo "  mkcd        Make a new dir and immediately cd into it"
+}
 
 #PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig
 
