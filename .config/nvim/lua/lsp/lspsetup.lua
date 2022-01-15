@@ -80,6 +80,10 @@ lsp_installer.on_server_ready(function(server)
     if server.name == 'sumneko_lua' then
         config.settings = lua_settings
     end
+    -- TODO: Get emmet_ls working for jsx files
+    -- if server.name == 'emmet_ls' then
+    --     config.filetypes = { 'html', 'css', 'javascriptreact' }
+    -- end
 
     -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
     server:setup(config)
