@@ -66,7 +66,12 @@ return require('packer').startup({
             -- Lsp & Completions
             { 'williamboman/nvim-lsp-installer' },
             { 'neovim/nvim-lspconfig' },
-            { 'hrsh7th/nvim-compe' },
+            -- {
+            --     'hrsh7th/nvim-compe',
+            --     config = function()
+            --         require('plugins.compe')
+            --     end,
+            -- },
             { 'folke/trouble.nvim' },
             { 'glepnir/lspsaga.nvim' },
             {
@@ -77,12 +82,25 @@ return require('packer').startup({
                 end,
             },
             { 'windwp/nvim-ts-autotag' },
-            -- {
-            --     'dense-analysis/ale',
-            --     config = function()
-            --         require('plugins.ale')
-            --     end,
-            -- },
+            {
+                'jose-elias-alvarez/null-ls.nvim',
+                config = function()
+                    require('plugins.null-ls')
+                end,
+            },
+            {
+                'hrsh7th/nvim-cmp',
+                config = function()
+                    require('plugins.cmp')
+                end,
+                requires = {
+                    'hrsh7th/cmp-nvim-lsp',
+                    'hrsh7th/cmp-buffer',
+                    'hrsh7th/cmp-path',
+                    'SirVer/ultisnips',
+                    'quangnguyen30192/cmp-nvim-ultisnips',
+                },
+            },
 
             -- Language specific styling
             { 'styled-components/vim-styled-components' },
