@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 iterations=10
 

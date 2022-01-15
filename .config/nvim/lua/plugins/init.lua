@@ -82,7 +82,7 @@ return require('packer').startup({
             { 'glepnir/lspsaga.nvim' },
             {
                 'nvim-treesitter/nvim-treesitter',
-                run = ':TSUpdate',
+                run = { ':TSInstall maintained', ':TSUpdate' },
                 config = function()
                     require('plugins.treesitter')
                 end,
