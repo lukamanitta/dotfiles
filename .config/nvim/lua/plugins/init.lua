@@ -32,15 +32,21 @@ return require('packer').startup({
             },
 
             -- Finder
-            { 'nvim-lua/plenary.nvim' },
-            { 'nvim-lua/popup.nvim' },
-            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
             {
                 'nvim-telescope/telescope.nvim',
                 -- cmd = { 'Telescope' },
                 config = function()
                     require('plugins.telescope')
                 end,
+                requires = {
+                    'nvim-lua/plenary.nvim',
+                    'nvim-lua.popup.nvim',
+                },
+            },
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                run = 'make',
+                require = { 'nvim-telescope /telescope.nvim' },
             },
 
             -- Objects and Movements
