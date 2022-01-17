@@ -1,9 +1,0 @@
---
-# Based on LLVM style, but 4 space indent
-BasedOnStyle: LLVM
-IndentWidth: 4
---
-Language: Cpp
-DerivePointerAlignment: false
-PointerAlignment: Left
---
