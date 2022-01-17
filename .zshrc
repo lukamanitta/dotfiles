@@ -8,8 +8,13 @@ plugins=(
     zsh-z
     zsh-syntax-highlighting
     zsh-autosuggestions
+    zsh-vi-mode
     asdf
 )
+
+function zvm_config() {
+    ZVM_VI_ESCAPE_BINDKEY=jk
+}
 
 source $ZSH/oh-my-zsh.sh
 # source ~/.asdf/plugins/java/set-java-home.zsh

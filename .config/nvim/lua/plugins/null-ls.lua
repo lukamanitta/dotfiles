@@ -3,8 +3,20 @@ local fn = vim.fn
 
 null_ls.setup({
     sources = {
+        -- Diagnostics
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.diagnostics.markdownlint,
+        null_ls.builtins.diagnostics.pylint,
+        null_ls.builtins.diagnostics.shellcheck,
+
+        -- Code Actions
+        null_ls.builtins.code_actions.eslint_d,
+        null_ls.builtins.code_actions.shellcheck,
+
+        -- Fixers
         null_ls.builtins.formatting.trim_whitespace,
         null_ls.builtins.formatting.trim_newlines,
+        null_ls.builtins.formatting.markdownlint,
         null_ls.builtins.formatting.stylua.with({
             extra_args = { '--config-path', fn.expand('~/.config/nvim/.stylua.toml') },
         }),
