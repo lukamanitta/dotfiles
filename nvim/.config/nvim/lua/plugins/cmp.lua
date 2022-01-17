@@ -39,13 +39,13 @@ cmp.setup({
         ['<S-Tab>'] = cmp.mapping.select_prev_item(),
         ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        -- ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
         ['<C-e>'] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
-        ['<C-M>'] = cmp.mapping.confirm({ select = true }), -- Control-Enter to confirm
+        ['<S-Space>'] = cmp.mapping.confirm({ select = true }), -- Control-Enter to confirm
     },
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -55,8 +55,10 @@ cmp.setup({
     }),
     formatting = {
         format = function(entry, vim_item)
+            -- Display appropriate icons
             vim_item.kind = string.format('%s %s', comp_icons[vim_item.kind], vim_item.kind)
-            -- Source
+
+            -- Display source of completion
             vim_item.menu = ({
                 buffer = '[Buffer]',
                 nvim_lsp = '[LSP]',

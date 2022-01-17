@@ -16,16 +16,20 @@ set -e
 
 # Cleanup ~/ files
 echo 'Removing old config files...'
-for i in .zshrc .bashrc .vimrc .config/starship.toml
+for i in .zshrc .bashrc .vimrc .gitignore_global .config/starship.toml
 do
     [ -f "$HOME/$i" ] && rm "$HOME/$i"
     echo "Removed $HOME/$i"
 done
 
 echo 'Removing old .config directories and files...'
-for i in nvim/ wezterm/
+for i in .config/nvim/ .config/wezterm/
 do
-    [ -f "$HOME/.config/$i" ] && rm -rf "$HOME/.config/$i"
+    if [[ "$i" = / ]]; then
+        echo "A filename expanded to '/', which would destroy everything"
+        exit
+    fi
+    [ -f "$HOME/$i" ] && rm -rf ${"$HOME/$i":?}
     echo "Removed $HOME/.config/$i"
 done
 
@@ -42,12 +46,7 @@ echo '  Stowing git...' && stow git
 echo '  Stowing vim...' && stow vim
 # echo '  Stowing tmux...' && stow tmux
 
-echo 'Installing / updating starship prompt...'
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-
 echo 'Configuring global gitignore...'
 git config --global core.excludesfile ~/.gitignore_global
-
-source "$HOME/.zshrc"
 
 echo 'Finished set-up!'

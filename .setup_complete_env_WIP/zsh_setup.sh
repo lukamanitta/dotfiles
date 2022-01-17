@@ -1,11 +1,18 @@
+#!/usr/bin/env bash
+
 sudo apt-get update
 
 # zsh
 sudo apt install zsh
 OR
 brew install zsh
-chsh -s $(which zsh)
+chsh -s "$(command -v zsh)"
 zsh
+
+# Starship prompt
+echo 'Installing / updating starship prompt...'
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+
 
 # Colourful ls
 brew install lsd
@@ -14,10 +21,10 @@ sudo dpkg -i setup_installation/lsd_0.20.1_amd64.deb
 
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
-git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
+git clone https://github.com/agkozak/zsh-z "$ZSH_CUSTOM/plugins/zsh-z"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode"
 
 # asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
@@ -43,7 +50,7 @@ brew install gpg gawk
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
 # *MAYBE REQUIRED*
-echo standard-resolver >>$HOME/.gnupg/dirmngr.conf
+echo standard-resolver >> "$HOME/.gnupg/dirmngr.conf"
 pkill dirmngr
 
 asdf install nodejs latest

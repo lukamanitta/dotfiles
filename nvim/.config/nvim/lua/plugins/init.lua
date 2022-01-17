@@ -40,7 +40,7 @@ return require('packer').startup({
                 end,
                 requires = {
                     'nvim-lua/plenary.nvim',
-                    'nvim-lua.popup.nvim',
+                    'nvim-lua/popup.nvim',
                 },
             },
             {
@@ -79,7 +79,7 @@ return require('packer').startup({
             --     end,
             -- },
             { 'folke/trouble.nvim' },
-            { 'glepnir/lspsaga.nvim' },
+            { 'tami5/lspsaga.nvim' },
             {
                 'nvim-treesitter/nvim-treesitter',
                 run = { ':TSInstall maintained', ':TSUpdate' },
