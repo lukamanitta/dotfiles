@@ -14,7 +14,9 @@ null_ls.setup({
         null_ls.builtins.code_actions.shellcheck,
 
         -- Fixers
-        null_ls.builtins.formatting.trim_whitespace,
+        null_ls.builtins.formatting.trim_whitespace.with({
+            disabled_filetypes = { 'markdown' },
+        }),
         null_ls.builtins.formatting.trim_newlines,
         null_ls.builtins.formatting.markdownlint,
         null_ls.builtins.formatting.stylua.with({
