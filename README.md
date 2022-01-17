@@ -1,4 +1,4 @@
-my dotfiles :)
+# my dotfiles :)
 
-to_github.sh takes system dotfiles and pushes them to here
-to_system.sh takes here dotfiles and pushes them to system
+To install dotfiles, run setup-dotfiles.sh
+Changes are automatically synced, because `stow` creates symlinks
