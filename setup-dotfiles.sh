@@ -18,20 +18,18 @@ set -e
 echo "Removing old config files..."
 for i in .zshrc .bashrc .vimrc .gitignore_global .config/starship.toml
 do
-    [ -f "$HOME/$i" ] && rm "$HOME/$i"
-    echo "  REMOVED: $HOME/$i"
+    [ -f "$HOME/$i" ] && rm "$HOME/$i" && echo "  REMOVED: $HOME/$i"
 done
 
-echo "Removing old .config directories..."
-for i in .config/nvim/ .config/wezterm/ .config/zsh/
-do
-    if [[ "$i" = / ]]; then
-        echo "A dirname expanded to '/', which would destroy everything, so maybe don't do that"
-        exit
-    fi
-    [ -f "$HOME/$i" ] && rm -rf "${HOME/$i:?}"
-    echo "  REMOVED: $HOME/.config/$i"
-done
+# echo "Removing old .config directories..."
+# for i in .config/nvim/ .config/wezterm/ .config/zsh/
+# do
+#     if [[ "$i" = "/" ]]; then
+#         echo "A dirname expanded to '/', which would destroy everything, so maybe don't do that"
+#         exit
+#     fi
+#     [ -d "$HOME/$i" ] && rm -rf "$HOME/$i" && echo "  REMOVED: $HOME/.config/$i"
+# done
 
 # Stow dotfiles
 echo "Stowing dotfiles..."
