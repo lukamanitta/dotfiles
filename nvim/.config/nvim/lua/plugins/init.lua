@@ -226,6 +226,9 @@ return require('packer').startup({
                 end,
             },
             -- { 'jbyuki/nabla.nvim', ft = { 'markdown' } }, -- In case I need math
+
+            -- My Plugins
+            { 'lukamanitta/naturally.nvim' },
         })
     end,
     config = {
