@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 # Cleanup all old legacy stuff first
-echo 'Removing redundant / incomplete symlinks...'
+echo "Removing redundant / incomplete symlinks..."
 for i in $(find "$HOME" -maxdepth 1 -type l);
 do
     found=$(readlink -e "$i")
     if [ -z "$found" ]
     then
-        echo "REMOVED: $i symlink, destination not found"
+        echo "  REMOVED: $i symlink, destination not found"
         rm "$i"
     fi
 done
@@ -15,38 +15,47 @@ done
 set -e
 
 # Cleanup ~/ files
-echo 'Removing old config files...'
+echo "Removing old config files..."
 for i in .zshrc .bashrc .vimrc .gitignore_global .config/starship.toml
 do
     [ -f "$HOME/$i" ] && rm "$HOME/$i"
-    echo "Removed $HOME/$i"
+    echo "  REMOVED: $HOME/$i"
 done
 
-echo 'Removing old .config directories...'
-for i in .config/nvim/ .config/wezterm/ .config/zsh
+echo "Removing old .config directories..."
+for i in .config/nvim/ .config/wezterm/ .config/zsh/
 do
     if [[ "$i" = / ]]; then
         echo "A dirname expanded to '/', which would destroy everything, so maybe don't do that"
         exit
     fi
-    [ -f "$HOME/$i" ] && rm -rf ${"$HOME/$i":?}
-    echo "Removed $HOME/.config/$i"
+    [ -f "$HOME/$i" ] && rm -rf "${HOME/$i:?}"
+    echo "  REMOVED: $HOME/.config/$i"
 done
 
 # Stow dotfiles
-echo 'Stowing dotfiles...'
+echo "Stowing dotfiles..."
 
-echo '  Stowing stow...' && stow stow
-echo '  Stowing nvim...' && stow nvim
-echo '  Stowing bash...' && stow bash
-echo '  Stowing starship...' && stow starship
-echo '  Stowing zsh...' && stow zsh
-echo '  Stowing wezterm...' && stow wezterm
-echo '  Stowing git...' && stow git
-echo '  Stowing vim...' && stow vim
-# echo '  Stowing tmux...' && stow tmux
+stow stow && echo "  STOWED: stow"
+stow nvim && echo "  STOWED: nvim"
+stow bash && echo "  STOWED: bash"
+stow starship && echo "  STOWED: starship"
+stow zsh && echo "  STOWED: zsh"
+stow wezterm && echo "  STOWED: wezterm"
+stow git && echo "  STOWED: git"
+stow vim && echo "  STOWED: vim"
+# stow tmux && echo "  STOWED: tmux"
 
-echo 'Configuring global gitignore...'
+echo "Checking local_env_vars..."
+
+if [ ! -f "$HOME"/.local_env_vars ]; then
+    echo "  .local_env_vars doesn't exist, copying template..."
+    cp .local_env_vars_template "$HOME"/.local_env_vars
+else
+    echo "  .local_env_vars already exists, skipping..."
+fi
+
+echo "Configuring global gitignore..."
 git config --global core.excludesfile ~/.gitignore_global
 
-echo 'Finished set-up!'
+echo "Finished set-up!"
