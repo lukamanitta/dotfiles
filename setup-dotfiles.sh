@@ -2,12 +2,12 @@
 
 # Cleanup all old legacy stuff first
 echo 'Removing redundant / incomplete symlinks...'
-for i in $(find $HOME -maxdepth 1 -type l);
+for i in $(find "$HOME" -maxdepth 1 -type l);
 do
     found=$(readlink -e "$i")
     if [ -z "$found" ]
     then
-        echo "Unable to find destination of $i symlink, removing"
+        echo "REMOVED: $i symlink, destination not found"
         rm "$i"
     fi
 done
@@ -22,11 +22,11 @@ do
     echo "Removed $HOME/$i"
 done
 
-echo 'Removing old .config directories and files...'
-for i in .config/nvim/ .config/wezterm/
+echo 'Removing old .config directories...'
+for i in .config/nvim/ .config/wezterm/ .config/zsh
 do
     if [[ "$i" = / ]]; then
-        echo "A filename expanded to '/', which would destroy everything"
+        echo "A dirname expanded to '/', which would destroy everything, so maybe don't do that"
         exit
     fi
     [ -f "$HOME/$i" ] && rm -rf ${"$HOME/$i":?}

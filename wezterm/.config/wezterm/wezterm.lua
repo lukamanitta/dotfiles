@@ -23,6 +23,7 @@ local cfg = {
     tab_bar_at_bottom = true,
     enable_kitty_graphics = true,
 
+    default_cursor_style = "BlinkingBlock",
     window_padding = {
         left = 0,
         right = 0,
