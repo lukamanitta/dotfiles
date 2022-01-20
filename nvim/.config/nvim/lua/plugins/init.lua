@@ -67,7 +67,13 @@ return require('packer').startup({
             { 'tpope/vim-surround' },
             { 'bkad/CamelCaseMotion' },
             { 'andymass/vim-matchup' },
-            { 'easymotion/vim-easymotion' },
+            {
+                'phaazon/hop.nvim',
+                branch = 'v1',
+                config = function()
+                    require('plugins.hop')
+                end,
+            },
 
             -- Lsp & Completions
             { 'williamboman/nvim-lsp-installer' },
@@ -205,12 +211,12 @@ return require('packer').startup({
             { 'famiu/nvim-reload', cmd = { 'Reload', 'Restart' } },
 
             -- Notes
-            {
-                'lervag/wiki.vim',
-                config = function()
-                    require('plugins.wiki')
-                end,
-            },
+            -- {
+            --     'lervag/wiki.vim',
+            --     config = function()
+            --         require('plugins.wiki')
+            --     end,
+            -- },
             {
                 'plasticboy/vim-markdown',
                 ft = { 'markdown' },
