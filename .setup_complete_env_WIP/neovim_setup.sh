@@ -34,6 +34,9 @@ npm install -g markdownlint-cli
 # Neovim Remote
 pip3 install neovim-remote
 
+# LazyGit
+brew install jesseduffield/lazygit/lazygit
+
 # grip: .md -> HTML
 pip3 install grip
 

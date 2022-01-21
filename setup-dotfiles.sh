@@ -42,6 +42,7 @@ stow zsh && echo "  STOWED: zsh"
 stow wezterm && echo "  STOWED: wezterm"
 stow git && echo "  STOWED: git"
 stow vim && echo "  STOWED: vim"
+stow lazygit && echo "  STOWED: lazygit"
 # stow tmux && echo "  STOWED: tmux"
 
 echo "Checking local_env_vars..."
