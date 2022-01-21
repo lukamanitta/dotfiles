@@ -181,6 +181,13 @@ return require('packer').startup({
 
             -- Other
             {
+                'kdheepak/lazygit.nvim',
+                cmd = 'LazyGit',
+                config = function()
+                    require('plugins.lazygit')
+                end,
+            },
+            {
                 'voldikss/vim-floaterm',
                 cmd = { 'FloatermNew', 'FloatermToggle' },
             },

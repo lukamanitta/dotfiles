@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 source $HOME/.local_env_vars
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -31,6 +33,14 @@ alias ls="lsd"
 alias sourcevenv="source venv/bin/activate && echo 'Enter "deactivate" to leave venv'"
 alias createvenv="python3 -m venv venv"
 alias e="exit"
+
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+    export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+else
+    export VISUAL="nvim"
+    export EDITOR="nvim"
+fi
 
 source $HOME/.config/zsh/functions.zsh
 
