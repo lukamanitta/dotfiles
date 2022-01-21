@@ -18,6 +18,9 @@ null_ls.setup({
             disabled_filetypes = { 'markdown' },
         }),
         null_ls.builtins.formatting.trim_newlines,
+        null_ls.builtins.formatting.prettier.with({
+            filetypes = { 'json', 'yaml' },
+        }),
         null_ls.builtins.formatting.markdownlint,
         null_ls.builtins.formatting.stylua.with({
             extra_args = {

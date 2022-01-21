@@ -28,6 +28,10 @@ brew install uncrustify
 # eslint_d
 npm install -g eslint_d
 
+# prettier
+# TODO: replace with prettier_d?
+brew install prettier
+
 # markdownlint
 npm install -g markdownlint-cli
 
