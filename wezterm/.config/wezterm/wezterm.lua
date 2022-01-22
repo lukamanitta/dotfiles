@@ -21,9 +21,11 @@ local cfg = {
     -- color_scheme = "Tomorrow Night Eighties",
 
     tab_bar_at_bottom = true,
+    use_fancy_tab_bar = false,
+    tab_max_width = 15,
     enable_kitty_graphics = true,
 
-    default_cursor_style = "BlinkingBlock",
+    default_cursor_style = 'BlinkingBlock',
     window_padding = {
         left = 0,
         right = 0,
