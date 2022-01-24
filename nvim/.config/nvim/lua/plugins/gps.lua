@@ -1,10 +1,12 @@
+local icons = require('assets.icons').comp_types
+
 require('nvim-gps').setup({
     icons = {
-        ['class-name'] = ' ', -- Classes and class-like objects
-        ['function-name'] = ' ', -- Functions
-        ['method-name'] = ' ', -- Methods (functions inside class-like objects)
-        ['container-name'] = ' ', -- Containers (example: lua tables)
-        ['tag-name'] = '炙',         -- Tags (example: html tags)
+        ['class-name'] = icons.Class, -- Classes and class-like objects
+        ['function-name'] = icons.Function, -- Functions
+        ['method-name'] = icons.Method, -- Methods (functions inside class-like objects)
+        ['container-name'] = icons.Struct, -- Containers (example: lua tables)
+        ['tag-name'] = icons.Tag, -- Tags (example: html tags)
     },
     -- Add custom configuration per language or
     -- Disable the plugin for a language

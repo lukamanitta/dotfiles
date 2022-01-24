@@ -1,5 +1,6 @@
 local actions = require('telescope.actions')
 local smart_buf_preview_maker = require('plugins.telescope.tele_utils').smart_buf_preview_maker
+local generalIcons = require('assets.icons').general
 
 require('telescope').setup({
     defaults = {
@@ -12,6 +13,9 @@ require('telescope').setup({
             },
         },
         buffer_previewer_maker = smart_buf_preview_maker,
+
+        prompt_prefix = generalIcons.CaretRight .. ' ',
+        selection_caret = generalIcons.PlayArrowRight .. ' ',
     },
 
     extensions = {

@@ -1,5 +1,6 @@
+local cmd = vim.cmd
 local cmp = require('cmp')
-local icons = require('assets.icons')
+local comp_icons = require('assets.icons').comp_types
 
 cmp.setup({
     snippet = {
@@ -29,7 +30,7 @@ cmp.setup({
     formatting = {
         format = function(entry, vim_item)
             -- Display appropriate icons
-            vim_item.kind = string.format('%s %s', icons[vim_item.kind], vim_item.kind)
+            vim_item.kind = string.format('%s %s', comp_icons[vim_item.kind], vim_item.kind)
 
             -- Display source of completion
             vim_item.menu = ({

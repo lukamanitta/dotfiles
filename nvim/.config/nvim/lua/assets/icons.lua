@@ -1,4 +1,14 @@
-local icons = {
+local I = {}
+
+I.general = {
+    CaretRight = '',
+    PlayArrowRight = '',
+    Circle = '',
+    Bar = '▎',
+    Square = '■',
+}
+
+I.comp_types = {
     Color = ' ',
     Constant = ' ',
     EnumMember = ' ',
@@ -13,28 +23,39 @@ local icons = {
     Text = ' ',
     Value = ' ',
     Variable = ' ',
-    Constructor = '',
-    Class = 'ﴯ',
-    Interface = '',
-    Unit = '',
-    Enum = '',
-    Snippet = '',
-    File = '',
-    Reference = '',
-    Event = '',
-    Operator = '',
-    TypeParameter = '',
-
-    LspError = ' ',
-    LspWarn = ' ',
-    LspHint = ' ',
-    LspInfo = ' ',
-    LspCodeAction = '',
-    -- LspError = ' ',
-    -- LspWarn = ' ',
-    -- LspHint = ' ',
-    -- LspInfo = ' ',
-    -- LspCodeAction = '',
+    Constructor = ' ',
+    Class = 'ﴯ ',
+    Interface = ' ',
+    Unit = ' ',
+    Enum = ' ',
+    Snippet = ' ',
+    File = ' ',
+    Reference = ' ',
+    Event = ' ',
+    Operator = ' ',
+    TypeParameter = ' ',
+    Tag = ' ',
 }
 
-return icons
+I.lsp = {
+    Error = ' ',
+    Warn = ' ',
+    Hint = ' ',
+    Info = ' ',
+    CodeAction = ' ',
+
+    ErrorEmpty = ' ',
+    WarnEmpty = ' ',
+    HintEmpty = ' ',
+    InfoEmpty = ' ',
+    CodeActionEmpty = ' ',
+}
+
+I.git = {
+    Branch = '',
+    Added = ' ',
+    Modified = '柳',
+    Removed = ' ',
+}
+
+return I

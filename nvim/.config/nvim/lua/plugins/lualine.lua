@@ -5,6 +5,9 @@ local lualine = require('lualine')
 local get_hi_group_bg = require('utils.config').get_hi_group_bg
 local get_hi_group_fg = require('utils.config').get_hi_group_fg
 
+local git_icons = require('assets.icons').git
+local lsp_icons = require('assets.icons').lsp
+
 -- Color table for highlights
 local colors = {
     bg = get_hi_group_bg('StatusLine'),
@@ -162,7 +165,7 @@ ins_left({
 ins_left({
     'diagnostics',
     sources = { 'nvim_diagnostic' },
-    symbols = { error = ' ', warn = ' ', info = ' ' },
+    symbols = { error = lsp_icons.Error, warn = lsp_icons.Warn, info = lsp_icons.Info },
     color_error = colors.red,
     color_warn = colors.yellow,
     color_info = colors.cyan,
@@ -209,15 +212,14 @@ ins_left({
 -- Add components to right sections
 ins_right({
     'branch',
-    icon = '',
+    icon = git_icons.Branch,
     condition = conditions.check_git_workspace,
     color = { fg = colors.violet, gui = 'bold' },
 })
 
 ins_right({
     'diff',
-    -- Is it me or the symbol for modified us really weird
-    symbols = { added = ' ', modified = '柳', removed = ' ' },
+    symbols = { added = git_icons.Added, modified = git_icons.Modified, removed = git_icons.Removed },
     color_added = colors.green,
     color_modified = colors.orange,
     color_removed = colors.red,
