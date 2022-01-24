@@ -1,32 +1,5 @@
 local cmp = require('cmp')
-
-local comp_icons = {
-    Color = ' ',
-    Constant = ' ',
-    EnumMember = ' ',
-    Field = ' ',
-    Folder = ' ',
-    Function = ' ',
-    Keyword = ' ',
-    Method = ' ',
-    Module = ' ',
-    Property = ' ',
-    Struct = ' ',
-    Text = ' ',
-    Value = ' ',
-    Variable = ' ',
-    Constructor = '',
-    Class = 'ﴯ',
-    Interface = '',
-    Unit = '',
-    Enum = '',
-    Snippet = '',
-    File = '',
-    Reference = '',
-    Event = '',
-    Operator = '',
-    TypeParameter = '',
-}
+local icons = require('assets.icons')
 
 cmp.setup({
     snippet = {
@@ -45,7 +18,7 @@ cmp.setup({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
-        ['<S-Space>'] = cmp.mapping.confirm({ select = true }), -- Control-Enter to confirm
+        ['<C-Space>'] = cmp.mapping.confirm({ select = true }), -- Control-Space to confirm
     },
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -56,7 +29,7 @@ cmp.setup({
     formatting = {
         format = function(entry, vim_item)
             -- Display appropriate icons
-            vim_item.kind = string.format('%s %s', comp_icons[vim_item.kind], vim_item.kind)
+            vim_item.kind = string.format('%s %s', icons[vim_item.kind], vim_item.kind)
 
             -- Display source of completion
             vim_item.menu = ({
