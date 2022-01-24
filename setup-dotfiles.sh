@@ -7,8 +7,7 @@ do
     found=$(readlink -e "$i")
     if [ -z "$found" ]
     then
-        echo "  REMOVED: $i symlink, destination not found"
-        rm "$i"
+        rm "$i" && echo "  REMOVED: $i symlink, destination not found"
     fi
 done
 
@@ -18,18 +17,22 @@ set -e
 echo "Removing old config files..."
 for i in .zshrc .bashrc .vimrc .gitignore_global .config/starship.toml
 do
-    [ -f "$HOME/$i" ] && rm "$HOME/$i" && echo "  REMOVED: $HOME/$i"
+    if [[ ! test -L "$HOME/$i" ]]; then
+        [ -f "$HOME/$i" ] && rm "$HOME/$i" && echo "  REMOVED: $HOME/$i"
+    fi
 done
 
-# echo "Removing old .config directories..."
-# for i in .config/nvim/ .config/wezterm/ .config/zsh/
-# do
-#     if [[ "$i" = "/" ]]; then
-#         echo "A dirname expanded to '/', which would destroy everything, so maybe don't do that"
-#         exit
-#     fi
-#     [ -d "$HOME/$i" ] && rm -rf "$HOME/$i" && echo "  REMOVED: $HOME/.config/$i"
-# done
+echo "Removing old .config directories, if not already linked..."
+for i in .config/nvim/ .config/wezterm/ .config/zsh/ .config/lazygit/
+do
+    if [[ "$HOME/$i" = "/" ]]; then
+        echo "A dirname expanded to '/', which would destroy everything, so maybe don't do that"
+        exit
+    fi
+    if [[ ! test -L "$HOME/$i" ]]; then
+        [ -d "$HOME/$i" ] && rm -rf "$HOME/$i" && echo "  REMOVED: $HOME/.config/$i"
+    fi
+done
 
 # Stow dotfiles
 echo "Stowing dotfiles..."
