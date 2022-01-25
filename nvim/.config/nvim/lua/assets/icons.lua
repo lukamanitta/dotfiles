@@ -35,6 +35,7 @@ I.comp_types = {
     Operator = ' ',
     TypeParameter = ' ',
     Tag = ' ',
+    Tabnine = ' ',
 }
 
 I.lsp = {
