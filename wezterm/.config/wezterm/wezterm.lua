@@ -10,6 +10,9 @@ local cfg = {
     initial_cols = 90,
     intial_rows = 28,
 
+    color_scheme_dirs = { '../colors' },
+    color_scheme = 'Test',
+
     -- color_schemes = require('colors.catppuccino'),
     -- color_scheme = "Dark Catppuccino",
 
