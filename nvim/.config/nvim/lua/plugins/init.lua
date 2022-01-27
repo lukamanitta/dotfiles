@@ -111,6 +111,7 @@ return require('packer').startup({
                     'hrsh7th/cmp-path',
                     'SirVer/ultisnips',
                     'quangnguyen30192/cmp-nvim-ultisnips',
+                    { 'tzachar/cmp-tabnine', run = './install.sh' },
                 },
             },
 

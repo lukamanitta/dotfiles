@@ -6,7 +6,9 @@ null_ls.setup({
         -- Diagnostics
         null_ls.builtins.diagnostics.eslint,
         null_ls.builtins.diagnostics.markdownlint,
-        null_ls.builtins.diagnostics.pylint,
+        null_ls.builtins.diagnostics.pylint.with({
+            extra_args = { '--disable=C0114,C0115,C0116' },
+        }),
         null_ls.builtins.diagnostics.shellcheck,
 
         -- Code Actions
@@ -32,32 +34,30 @@ null_ls.setup({
         null_ls.builtins.formatting.clang_format.with({
             extra_args = {
                 [["
-                    -style='{
-                        BasedOnStyle: LLVM,
-                        IndentWidth: 4,
-                        AlignAfterOpenBracket: DontAlign,
-                        ContinuationIndentWidth: 8,
-                    }'
-                "]],
+                -style='{
+                    BasedOnStyle: LLVM,
+                    IndentWidth: 4,
+                    AlignAfterOpenBracket: DontAlign,
+                    ContinuationIndentWidth: 8,
+                }'
+            "]],
             },
         }),
         null_ls.builtins.formatting.uncrustify.with({
             extra_args = { '-c', fn.expand('~/.uncrustify.cfg'), '--no-backup' },
         }),
         null_ls.builtins.formatting.rustfmt,
-        null_ls.builtins.formatting.black.with({
-            command = 'python -m black',
-        }),
+        null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.eslint_d,
     },
     on_attach = function(client)
         if client.resolved_capabilities.document_formatting then
             vim.cmd([[
-            augroup LspFormatting
-                autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
-            augroup END
-            ]])
+        augroup LspFormatting
+            autocmd! * <buffer>
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+        augroup END
+        ]])
         end
     end,
 })

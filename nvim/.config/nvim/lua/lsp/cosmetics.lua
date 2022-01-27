@@ -1,4 +1,5 @@
 local cmd, fn = vim.cmd, vim.fn
+local lspIcons = require('assets.icons').lsp
 
 vim.diagnostic.config({
     signs = true,
@@ -9,11 +10,10 @@ vim.diagnostic.config({
     --     prefix = '●', -- Could be '●', '▎', 'x', '■'
     -- }
 })
---
+
 -- local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ', CodeAction = '' }
-local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ', CodeAction = '' }
-fn.sign_define('DiagnosticSignError', { text = signs.Error, texthl = 'DiagnosticError' })
-fn.sign_define('DiagnosticSignWarn', { text = signs.Warn, texthl = 'DiagnosticWarn' })
-fn.sign_define('DiagnosticSignHint', { text = signs.Hint, texthl = 'DiagnosticHint' })
-fn.sign_define('DiagnosticSignInfo', { text = signs.Info, texthl = 'DiagnosticInfo' })
-fn.sign_define('LightBulbSign', { text = signs.CodeAction, texthl = 'DiagnosticWarn' })
+fn.sign_define('DiagnosticSignError', { text = lspIcons.Error, texthl = 'DiagnosticError' })
+fn.sign_define('DiagnosticSignWarn', { text = lspIcons.Warn, texthl = 'DiagnosticWarn' })
+fn.sign_define('DiagnosticSignHint', { text = lspIcons.Hint, texthl = 'DiagnosticHint' })
+fn.sign_define('DiagnosticSignInfo', { text = lspIcons.Info, texthl = 'DiagnosticInfo' })
+fn.sign_define('LightBulbSign', { text = lspIcons.CodeAction, texthl = 'DiagnosticWarn' })

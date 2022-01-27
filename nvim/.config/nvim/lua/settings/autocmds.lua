@@ -11,6 +11,9 @@ augroup nvim
     " PackerCompile on plugin change
     au BufWritePost */plugins/init.lua source <afile> | PackerCompile
 
+    " Remind me about note snippet
+    au FileType markdown lua vim.notify("Type 'note' for note snippet!")
+
 augroup END
 ]],
     ''

@@ -2,6 +2,7 @@
 
 source $HOME/.local_env_vars
 export ZSH="$HOME/.oh-my-zsh"
+export PATH="$HOME/.asdf/installs/python/3.10.0/bin:$PATH"
 
 ZSH_DISABLE_COMPFIX=true
 

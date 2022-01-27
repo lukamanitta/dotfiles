@@ -31,6 +31,7 @@ function U.reload_config()
         end
         require(moduleName)
     end
+    -- TODO: Re-source colorscheme? Reloading breaks some highlight groups
     print('Reloaded!')
 end
 
