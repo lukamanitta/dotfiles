@@ -142,8 +142,11 @@ if args.weather:
 
 # if all source glyphs included simplify the name
 if args.fontawesome and args.fontawesomeextension and args.octicons and args.powersymbols and args.pomicons and args.powerlineextra and args.fontlinux and args.material and args.weather:
-    additionalFontNameSuffix = " " + projectNameSingular + " Complete"
-    verboseAdditionalFontNameSuffix = " " + projectNameSingular + " Complete"
+    # EDITED
+    # additionalFontNameSuffix = " " + projectNameSingular + " Complete"
+    # verboseAdditionalFontNameSuffix = " " + projectNameSingular + " Complete"
+    additionalFontNameSuffix = ""
+    verboseAdditionalFontNameSuffix = ""
 
 # add mono signifier to end of name
 if args.single:
@@ -263,9 +266,10 @@ additionalFontNameReplacements2 = {
 
 projectInfo = "Patched with '" + projectName + " Patcher' (https://github.com/ryanoasis/nerd-fonts)\n\n* Website: https://www.nerdfonts.com\n* Version: " + version + "\n* Development Website: https://github.com/ryanoasis/nerd-fonts\n* Changelog: https://github.com/ryanoasis/nerd-fonts/blob/master/changelog.md"
 
-familyname = replace_all(familyname, reservedFontNameReplacements)
-fullname = replace_all(fullname, reservedFontNameReplacements)
-fontname = replace_all(fontname, reservedFontNameReplacements)
+# EDITED
+# familyname = replace_all(familyname, reservedFontNameReplacements)
+# fullname = replace_all(fullname, reservedFontNameReplacements)
+# fontname = replace_all(fontname, reservedFontNameReplacements)
 familyname = replace_all(familyname, additionalFontNameReplacements)
 fullname = replace_all(fullname, additionalFontNameReplacements)
 fontname = replace_all(fontname, additionalFontNameReplacements)
