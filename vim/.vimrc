@@ -7,7 +7,7 @@ imap jk <Esc>|						          "Remap jk to enter normal mode
 nnoremap ; :|                                                     "Remap ; to start command
 nnoremap <SPACE> <Nop>|                                           "Remap leader to space
 let mapleader = " "|
-nnoremap <Leader>c* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn|  "Change all instances of word
+nnoremap <Leader>rn /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn|  "Change all instances of word
 nnoremap <Leader>c# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN|
 nnoremap <leader>a <C-^>|                                          "Swap to alternate file
 
@@ -46,7 +46,7 @@ set expandtab           "Treat tabs as multiple spaces
 set shiftwidth=4        "Tab length = 4 spaces
 set backspace=indent,eol,start
 set belloff=all         "Shut that fucking bell sound off
-call matchadd('ColorColumn', '\%80v', 100) " DANGER ZONE FUCK NO 80 CHARS FUCK N
+call matchadd('ColorColumn', '\%80v', 100) " DANGER ZONE FUCK NO NOT 80 CHARS FU
 
 " File finding
 " Sub-dir searching and tab-completion
