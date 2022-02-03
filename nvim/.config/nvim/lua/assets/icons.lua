@@ -2,7 +2,7 @@ local I = {}
 
 I.general = {
     CaretRight = '',
-    PlayArrowRight = '',
+    PlayArrowRight = '',
     Circle = '',
     Bar = '▎',
     Square = '■',

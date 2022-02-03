@@ -37,10 +37,10 @@ local cfg = {
 
     --Fonts--
 
-    font_dirs = { '~/dotfiles/fonts', '~/dotfiles/fonts/RobotoMono' },
+    font_dirs = { '~/dotfiles/fonts', '~/dotfiles/fonts/RobotoMono', '~/dotfiles/fonts/Cousine' },
 
-    font = wezterm.font('RobotoMono Nerd Font'),
-    font_size = 13,
+    font = wezterm.font('DroidSansMono Nerd Font'),
+    font_size = 14,
 
     --Fonts--
 

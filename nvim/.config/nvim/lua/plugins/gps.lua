@@ -1,12 +1,13 @@
-local icons = require('assets.icons').comp_types
+local comp_icons = require('assets.icons').comp_types
+local general_icons = require('assets.icons').general
 
 require('nvim-gps').setup({
     icons = {
-        ['class-name'] = icons.Class, -- Classes and class-like objects
-        ['function-name'] = icons.Function, -- Functions
-        ['method-name'] = icons.Method, -- Methods (functions inside class-like objects)
-        ['container-name'] = icons.Struct, -- Containers (example: lua tables)
-        ['tag-name'] = icons.Tag, -- Tags (example: html tags)
+        ['class-name'] = comp_icons.Class, -- Classes and class-like objects
+        ['function-name'] = comp_icons.Function, -- Functions
+        ['method-name'] = comp_icons.Method, -- Methods (functions inside class-like objects)
+        ['container-name'] = comp_icons.Struct, -- Containers (example: lua tables)
+        ['tag-name'] = comp_icons.Tag, -- Tags (example: html tags)
     },
     -- Add custom configuration per language or
     -- Disable the plugin for a language
@@ -27,5 +28,5 @@ require('nvim-gps').setup({
     --	}
     --}
     -- },
-    separator = ' > ',
+    separator = ' ' .. general_icons.PlayArrowRight .. ' ',
 })

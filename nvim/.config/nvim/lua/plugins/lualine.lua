@@ -2,6 +2,8 @@
 -- Credit: shadmansaleh
 local lualine = require('lualine')
 
+local Set = require('classes.Set')
+
 local get_hi_group_bg = require('utils.config').get_hi_group_bg
 local get_hi_group_fg = require('utils.config').get_hi_group_fg
 
@@ -203,6 +205,19 @@ ins_left({
             end
             ::continue::
         end
+        -- TODO: fix Set not working (not a single clue why)
+        -- local client_names = Set:new()
+        -- for _, client in ipairs(clients) do
+        --     local filetypes = client.config.filetypes
+        --     if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+        --         client_names:add(client.name)
+        --     end
+        -- end
+        -- for _, client_name in ipairs(client_names:get_items()) do
+        --     if msg == '' then msg = client_name goto continue end
+        --     msg = msg .. ', ' .. client_name
+        --     ::continue::
+        -- end
         return msg
     end,
     icon = ' LSP:',
@@ -219,7 +234,11 @@ ins_right({
 
 ins_right({
     'diff',
-    symbols = { added = git_icons.Added, modified = git_icons.Modified, removed = git_icons.Removed },
+    symbols = {
+        added = git_icons.Added,
+        modified = git_icons.Modified,
+        removed = git_icons.Removed,
+    },
     color_added = colors.green,
     color_modified = colors.orange,
     color_removed = colors.red,

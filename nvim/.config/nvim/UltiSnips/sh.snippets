@@ -7,15 +7,15 @@ def testShell(scope, shell):
 # Loops over the possible variables, checking for global variables
 # first since they indicate an override by the user.
 def getShell():
-    for scope in ["g", "b"]:
-	for shell in ["bash", "posix", "sh", "kornshell"]:
-	    if testShell(scope, shell) == "1":
-		if shell == "kornshell":
-		    return "ksh"
-		if shell == "posix":
-		    return "sh"
+    for scope in ['g', 'b']:
+	for shell in ['bash', 'posix', 'sh', 'kornshell']:
+	    if testShell(scope, shell) == '1':
+		if shell == 'kornshell':
+		    return 'ksh'
+		if shell == 'posix':
+		    return 'sh'
 	    return shell
-    return "sh"
+    return 'sh'
 endglobal
 
 snippet #!"#!/usr/bin/env (!env)" b
