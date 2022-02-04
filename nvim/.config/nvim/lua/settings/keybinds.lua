@@ -42,6 +42,10 @@ map('t', 'jk', '<C-\\><C-n>')
 -- Open NvimTree
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
 
+-- Github Copilot
+cmd('imap <silent><script><expr> <C-J> copilot#Accept("")')
+cmd('let g:copilot_no_tab_map = v:true')
+
 -- Hop.nvim
 map(
     'n',

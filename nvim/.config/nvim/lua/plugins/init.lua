@@ -84,7 +84,12 @@ return require('packer').startup({
             --         require('plugins.compe')
             --     end,
             -- },
-            { 'folke/trouble.nvim' },
+            {
+                'folke/trouble.nvim',
+                config = function()
+                    require('lsp.trouble')
+                end,
+            },
             { 'tami5/lspsaga.nvim' },
             {
                 'nvim-treesitter/nvim-treesitter',
@@ -114,6 +119,7 @@ return require('packer').startup({
                     { 'tzachar/cmp-tabnine', run = './install.sh' },
                 },
             },
+            { 'github/copilot.vim' },
 
             -- Language specific styling
             { 'styled-components/vim-styled-components' },
