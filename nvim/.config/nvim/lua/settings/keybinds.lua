@@ -46,6 +46,9 @@ map('n', '<leader>e', ':NvimTreeToggle<CR>')
 cmd('imap <silent><script><expr> <C-J> copilot#Accept("")')
 cmd('let g:copilot_no_tab_map = v:true')
 
+-- Lazygit
+map('n', '<leader>lg', ':LazyGit<CR>')
+
 -- Hop.nvim
 map(
     'n',
