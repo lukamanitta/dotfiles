@@ -24,8 +24,8 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.confirm({ select = true }), -- Control-Space to confirm
     },
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
         { name = 'ultisnips' },
+        { name = 'nvim_lsp' },
         { name = 'buffer' },
         { name = 'path' },
         { name = 'cmp_tabnine' },
@@ -35,7 +35,6 @@ cmp.setup({
             if entry.source.name == 'cmp_tabnine' then
                 vim_item.kind = 'Tabnine'
             end
-
             -- Display appropriate icons
             vim_item.kind = string.format('%s %s', comp_icons[vim_item.kind], vim_item.kind)
 
@@ -52,7 +51,7 @@ cmp.setup({
         end,
     },
     sorting = {
-        priority_weight = 2,
+        priority_weight = 1,
         comparators = {
             require('cmp_tabnine.compare'),
             compare.offset,
