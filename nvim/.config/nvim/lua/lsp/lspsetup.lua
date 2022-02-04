@@ -25,6 +25,7 @@ local on_attach = function(_, bufnr)
     buf_set_keymap('n', '<leader>sh', ':Lspsaga signature_help<CR>', opts)
     buf_set_keymap('n', ']e', ':Lspsaga diagnostic_jump_next<CR>', opts)
     buf_set_keymap('n', '[e', ':Lspsaga diagnostic_jump_prev<CR>', opts)
+    buf_set_keymap('n', '<leader>d', ':Lspsaga show_cursor_diagnostics<CR>', opts)
 
     -- Trouble
     buf_set_keymap('n', 'gr', ':Trouble lsp_references<CR>', opts)
@@ -35,7 +36,6 @@ end
 cmd([[
 augroup lspAutocmds
     au!
-    autocmd CursorHold * Lspsaga show_cursor_diagnostics
     autocmd CursorHoldI * silent! Lspsaga signature_help
 ]])
 

@@ -12,6 +12,9 @@ g.mapleader = ' '
 
 -- Map jk to leave ins mode
 map('i', 'jk', '<Esc>', silentnoremap)
+-- Leave ins mode in terminal because unmapping doesn't fucking work for fucking lazygit
+map('t', '<Esc>', '<C-\\><C-n>')
+
 map('', ';', ':', silentnoremap)
 
 -- Reload config
@@ -35,9 +38,6 @@ map('n', 'N', 'Nzzzv')
 
 -- Clear search highlight
 map('', '//', ':nohlsearch<CR>')
-
--- Leave ins mode in terminal
-map('t', 'jk', '<C-\\><C-n>')
 
 -- Open NvimTree
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
@@ -126,10 +126,10 @@ map('n', '<leader>xq', ':Trouble quickfix<CR>', silentnoremap)
 cmd('map <leader><leader> <Plug>(easymotion-prefix)')
 
 -- CamelCaseMotion
--- api.nvim_del_keymap('s', 'w')
--- api.nvim_del_keymap('s', 'b')
--- api.nvim_del_keymap('s', 'e')
--- api.nvim_del_keymap('s', 'ge')
+-- vim.api.nvim_del_keymap('s', 'w')
+-- vim.api.nvim_del_keymap('s', 'b')
+-- vim.api.nvim_del_keymap('s', 'e')
+-- vim.api.nvim_del_keymap('s', 'ge')
 
 cmd('map <silent> w <Plug>CamelCaseMotion_w')
 cmd('map <silent> b <Plug>CamelCaseMotion_b')
