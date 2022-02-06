@@ -4,14 +4,31 @@ local compare = require('cmp.config.compare')
 local tabnine = require('cmp_tabnine.config')
 local comp_icons = require('assets.icons').comp_types
 
+local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 cmp.setup({
+    preselect = cmp.PreselectMode.None,
+    completion = {
+        autocomplete = false,
+    },
     snippet = {
         expand = function(args)
             vim.fn['UltiSnips#Anon'](args.body)
         end,
     },
     mapping = {
-        ['<Tab>'] = cmp.mapping.select_next_item(),
+        ['<Tab>'] = {
+            i = function(_)
+                if cmp.visible() then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+                else
+                    cmp.complete()
+                    -- vim.api.nvim_feedkeys(t('<Tab>'), 'n', true) -- fallback()
+                end
+            end,
+        },
         ['<S-Tab>'] = cmp.mapping.select_prev_item(),
         ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
@@ -24,11 +41,11 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.confirm({ select = true }), -- Control-Space to confirm
     },
     sources = cmp.config.sources({
-        { name = 'ultisnips' },
         { name = 'nvim_lsp' },
         { name = 'buffer' },
         { name = 'path' },
         { name = 'cmp_tabnine' },
+        { name = 'ultisnips' },
     }),
     formatting = {
         format = function(entry, vim_item)
@@ -63,6 +80,10 @@ cmp.setup({
             compare.length,
             compare.order,
         },
+    },
+    experimental = {
+        native_menu = true,
+        ghost_text = false,
     },
 })
 

@@ -43,7 +43,7 @@ local cfg = {
     font_dirs = { '~/dotfiles/fonts', '~/dotfiles/fonts/RobotoMono', '~/dotfiles/fonts/Cousine' },
 
     font = wezterm.font('SourceCodePro Nerd Font'),
-    font_size = 14,
+    font_size = 13,
 
     --Fonts--
 
