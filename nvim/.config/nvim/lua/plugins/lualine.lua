@@ -2,8 +2,6 @@
 -- Credit: shadmansaleh
 local lualine = require('lualine')
 
-local Set = require('classes.Set')
-
 local get_hi_group_bg = require('utils.config').get_hi_group_bg
 local get_hi_group_fg = require('utils.config').get_hi_group_fg
 
@@ -179,8 +177,7 @@ ins_left({
     condition = gps.is_available,
 })
 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
+-- Insert mid section
 ins_left({
     function()
         return '%='
@@ -190,35 +187,23 @@ ins_left({
 ins_left({
     -- Lsp server name .
     function()
-        local msg = ''
+        local Set = require('classes.Set')
+        local has_value = require('utils.helpers').has_value
+
         local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
         local clients = vim.lsp.get_active_clients()
+
         if next(clients) == nil then
-            msg = 'No Active LSP'
-            return msg
+            return 'No Active LSP'
         end
+
+        local client_names = Set:new()
         for _, client in ipairs(clients) do
-            local filetypes = client.config.filetypes
-            if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                if msg == '' then msg = client.name goto continue end
-                msg = msg .. ', ' .. client.name
+            if has_value(client.config.filetypes, buf_ft) then
+                client_names:add(client.name)
             end
-            ::continue::
         end
-        -- TODO: fix Set not working (not a single clue why)
-        -- local client_names = Set:new()
-        -- for _, client in ipairs(clients) do
-        --     local filetypes = client.config.filetypes
-        --     if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-        --         client_names:add(client.name)
-        --     end
-        -- end
-        -- for _, client_name in ipairs(client_names:get_items()) do
-        --     if msg == '' then msg = client_name goto continue end
-        --     msg = msg .. ', ' .. client_name
-        --     ::continue::
-        -- end
-        return msg
+        return client_names:to_string()
     end,
     icon = ' LSP:',
     color = { fg = get_hi_group_fg('SignColumn'), gui = 'bold' },

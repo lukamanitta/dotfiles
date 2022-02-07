@@ -1,6 +1,10 @@
 local H = {}
 
 function H.has_value(table, value)
+    table = table or {}
+    if table == {} then
+        return false
+    end
     for _, existingVal in ipairs(table) do
         if existingVal == value then
             return true

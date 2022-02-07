@@ -107,12 +107,21 @@ function Set:is_equal(other_set)
     return true
 end
 
-function Set:to_string()
+function Set:serialize()
     local str = '{'
     for _, item in ipairs(self.items) do
         str = str .. item .. ', '
     end
     str = str:sub(1, -3) .. '}'
+    return str
+end
+
+function Set:to_string()
+    local str = ''
+    for _, item in ipairs(self.items) do
+        str = str .. item .. ', '
+    end
+    str = str:sub(1, -3) .. ''
     return str
 end
 

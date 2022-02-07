@@ -19,8 +19,6 @@ require('nvim_comment').setup({
     operator_mapping = 'gc',
     -- Hook function to call before commenting takes place
     hook = function()
-        if table_contains(ts_filetypes, get_buf_filetype(0)) then
-            require('ts_context_commentstring.internal').update_commentstring()
-        end
+        require('ts_context_commentstring.internal').update_commentstring()
     end,
 })

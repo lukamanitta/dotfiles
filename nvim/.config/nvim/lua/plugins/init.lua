@@ -53,10 +53,9 @@ return require('packer').startup({
             {
                 'terrortylor/nvim-comment',
                 config = function()
-                    require('plugins.comment')
+                    require('plugins.nvim_comment')
                 end,
             },
-            { 'JoosepAlviste/nvim-ts-context-commentstring' },
             {
                 'lukas-reineke/indent-blankline.nvim',
                 config = function()
@@ -78,12 +77,6 @@ return require('packer').startup({
             -- Lsp & Completions
             { 'williamboman/nvim-lsp-installer' },
             { 'neovim/nvim-lspconfig' },
-            -- {
-            --     'hrsh7th/nvim-compe',
-            --     config = function()
-            --         require('plugins.compe')
-            --     end,
-            -- },
             {
                 'folke/trouble.nvim',
                 config = function()
@@ -97,8 +90,12 @@ return require('packer').startup({
                 config = function()
                     require('plugins.treesitter')
                 end,
+                requires = {
+                    'windwp/nvim-ts-autotag',
+                    'RRethy/nvim-treesitter-endwise',
+                    'JoosepAlviste/nvim-ts-context-commentstring',
+                },
             },
-            { 'windwp/nvim-ts-autotag' },
             {
                 'jose-elias-alvarez/null-ls.nvim',
                 config = function()

@@ -1,12 +1,10 @@
 local apply_options = require('utils.config').apply_options
 
 apply_options({
-    guifont = 'RobotoMono\\ Nerd\\ Font:h15',
     syntax = 'off',
     hidden = true,
     number = true,
     relativenumber = true,
-    nocp = true,
     mouse = 'a',
     signcolumn = 'yes',
     updatetime = 50,
@@ -14,7 +12,6 @@ apply_options({
     splitbelow = true,
     lazyredraw = true,
     ttyfast = true,
-    re = 1,
     termguicolors = true,
     cursorline = true,
     laststatus = 2,

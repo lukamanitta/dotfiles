@@ -4,31 +4,17 @@ local compare = require('cmp.config.compare')
 local tabnine = require('cmp_tabnine.config')
 local comp_icons = require('assets.icons').comp_types
 
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
 cmp.setup({
-    preselect = cmp.PreselectMode.None,
-    completion = {
-        autocomplete = false,
-    },
+    -- completion = {
+    --     autocomplete = true,
+    -- },
     snippet = {
         expand = function(args)
             vim.fn['UltiSnips#Anon'](args.body)
         end,
     },
     mapping = {
-        ['<Tab>'] = {
-            i = function(_)
-                if cmp.visible() then
-                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-                else
-                    cmp.complete()
-                    -- vim.api.nvim_feedkeys(t('<Tab>'), 'n', true) -- fallback()
-                end
-            end,
-        },
+        ['<Tab>'] = cmp.mapping.select_next_item(),
         ['<S-Tab>'] = cmp.mapping.select_prev_item(),
         ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
