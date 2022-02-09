@@ -25,6 +25,7 @@ return require('packer').startup({
             -- File explorer
             {
                 'kyazdani42/nvim-tree.lua',
+                commit = 'd8bf1adcdcc6a8a66c3dce5c29a4ef06e21dc844',
                 cmd = { 'NvimTreeToggle' },
                 config = function()
                     require('plugins.nvimtree')
@@ -126,7 +127,7 @@ return require('packer').startup({
             -- ryanoasis/vim-devicons'
             { 'kyazdani42/nvim-web-devicons' },
             {
-                'hoob3rt/lualine.nvim',
+                'nvim-lualine/lualine.nvim',
                 config = function()
                     require('plugins.lualine')
                 end,

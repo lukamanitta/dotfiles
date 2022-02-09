@@ -1,5 +1,8 @@
 local notify = require('notify')
 
+local lsp_icons = require('assets.icons').lsp
+local general_icons = require('assets.icons').general
+
 vim.notify = require('notify')
 
 notify.setup({
@@ -14,10 +17,10 @@ notify.setup({
 
     -- Icons for the different levels
     icons = {
-        ERROR = '',
-        WARN = '',
-        INFO = '',
-        DEBUG = '',
-        TRACE = '✎',
+        ERROR = lsp_icons.Error,
+        WARN = lsp_icons.Warn,
+        INFO = lsp_icons.Info,
+        DEBUG = general_icons.Bug,
+        TRACE = general_icons.Trace,
     },
 })

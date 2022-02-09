@@ -6,6 +6,22 @@ I.general = {
     Circle = '',
     Bar = '▎',
     Square = '■',
+    Check = '',
+    Cross = '',
+    Plus = '',
+    Exclamation = '',
+    Bug = '',
+    Trace = '',
+}
+
+I.filesystem = {
+    File = '',
+    FileSymlink = '',
+    Folder = '',
+    FolderOpen = '',
+    FolderEmpty = '',
+    FolderEmptyOpen = '',
+    FolderSymlink = '',
 }
 
 I.comp_types = {
@@ -13,7 +29,7 @@ I.comp_types = {
     Constant = ' ',
     EnumMember = ' ',
     Field = ' ',
-    Folder = ' ',
+    Folder = I.filesystem.FolderOpen .. ' ',
     Function = ' ',
     Keyword = ' ',
     Method = ' ',
@@ -29,8 +45,8 @@ I.comp_types = {
     Unit = ' ',
     Enum = ' ',
     Snippet = ' ',
-    File = ' ',
-    Reference = ' ',
+    File = I.filesystem.File .. ' ',
+    Reference = I.filesystem.FileSymlink .. ' ',
     Event = ' ',
     Operator = ' ',
     TypeParameter = ' ',
@@ -54,6 +70,11 @@ I.lsp = {
 
 I.git = {
     Branch = '',
+    Merge = '',
+    Staged = I.general.Plus,
+    Unstaged = I.general.Exclamation,
+    Ignored = I.lsp.ErrorEmpty,
+    Untracked = I.general.Cross,
     Added = ' ',
     Modified = '柳',
     Removed = ' ',

@@ -13,7 +13,7 @@ g.mapleader = ' '
 -- Map jk to leave ins mode
 map('i', 'jk', '<Esc>', silentnoremap)
 -- Leave ins mode in terminal because unmapping doesn't fucking work for fucking lazygit
-map('t', '<Esc>', '<C-\\><C-n>')
+-- map('t', '<Esc>', '<C-\\><C-n>')
 
 map('', ';', ':', silentnoremap)
 
@@ -47,7 +47,7 @@ cmd('imap <silent><script><expr> <C-J> copilot#Accept("")')
 cmd('let g:copilot_no_tab_map = v:true')
 
 -- Lazygit
-map('n', '<leader>lg', ':LazyGit<CR>')
+map('n', '<leader>git', ':LazyGit<CR>')
 
 -- Hop.nvim
 map(
@@ -81,7 +81,6 @@ map(
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
 )
 map('n', '<leader>w', ':HopWord<CR>', { silent = true })
-map('n', '<leader>lj', ':HopLine<CR>', { silent = true })
 
 -- TODO: Make this prettier
 -- Telescope
