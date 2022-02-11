@@ -7,6 +7,7 @@ null_ls.setup({
         null_ls.builtins.diagnostics.eslint,
         null_ls.builtins.diagnostics.markdownlint,
         null_ls.builtins.diagnostics.pylint.with({
+            -- Remove docstring checks
             extra_args = { '--disable=C0114,C0115,C0116' },
         }),
         null_ls.builtins.diagnostics.shellcheck,

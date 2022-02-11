@@ -1,3 +1,5 @@
+local general_icons = require('assets.icons').general
+
 require('which-key').setup({
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
@@ -29,9 +31,9 @@ require('which-key').setup({
         -- ["<tab>"] = "TAB",
     },
     icons = {
-        breadcrumb = '»', -- symbol used in the command line area that shows your active key combo
-        separator = '➜', -- symbol used between a key and it's label
-        group = '+', -- symbol prepended to a group
+        breadcrumb = general_icons.CaretRightThinDouble, -- symbol used in the command line area that shows your active key combo
+        separator = general_icons.ArrowRight, -- symbol used between a key and it's label
+        group = general_icons.PlusThin, -- symbol prepended to a group
     },
     popup_mappings = {
         scroll_down = '<c-d>', -- binding to scroll down inside the popup

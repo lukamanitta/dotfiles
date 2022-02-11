@@ -1,7 +1,7 @@
 local apply_globals = require('utils.config').apply_globals
 
 apply_globals({
-    closetag_html_filetypes = 'xtml, jsx',
+    closetag_html_filetypes = 'xtml, jsx, svelte',
 
     -- This will make the list of non-closing tags self-closing in the specified files.
     closetag_xhtml_filetypes = 'xhtml,jsx',

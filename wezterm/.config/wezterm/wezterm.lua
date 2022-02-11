@@ -108,6 +108,16 @@ local cfg = {
             mods = 'LEADER',
             action = wezterm.action({ CloseCurrentTab = { confirm = true } }),
         },
+        {
+            key = ']',
+            mods = 'LEADER',
+            action = wezterm.action({ ActivateTabRelative = 1 }),
+        },
+        {
+            key = '[',
+            mods = 'LEADER',
+            action = wezterm.action({ ActivateTabRelative = -1 }),
+        },
     },
 
     --Keybindings--

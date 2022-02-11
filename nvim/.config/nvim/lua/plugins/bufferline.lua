@@ -1,3 +1,5 @@
+local general_icons = require('assets.icons').general
+
 require('bufferline').setup({
     options = {
         numbers = 'none', -- 'buffer_id',
@@ -5,12 +7,12 @@ require('bufferline').setup({
         right_mouse_command = 'Bdelete! %d',
         left_mouse_command = 'buffer %d',
         middle_mouse_command = nil,
-        indicator_icon = '▊',
-        buffer_close_icon = '',
-        modified_icon = '●',
-        close_icon = '',
-        left_trunc_marker = '',
-        right_trunc_marker = '',
+        indicator_icon = general_icons.BarThick,
+        buffer_close_icon = general_icons.CrossThin,
+        modified_icon = general_icons.CircleSmall,
+        close_icon = '',
+        left_trunc_marker = general_icons.CircleArrowLeft,
+        right_trunc_marker = general_icons.CircleArrowRight,
         -- name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
         --     -- remove extension from markdown files for example
         --     if buf.name:match('%.md') then
