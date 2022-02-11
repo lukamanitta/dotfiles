@@ -11,9 +11,8 @@ vim.diagnostic.config({
     -- }
 })
 
--- local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ', CodeAction = '' }
-fn.sign_define('DiagnosticSignError', { text = lspIcons.Error, texthl = 'DiagnosticError' })
-fn.sign_define('DiagnosticSignWarn', { text = lspIcons.Warn, texthl = 'DiagnosticWarn' })
-fn.sign_define('DiagnosticSignHint', { text = lspIcons.Hint, texthl = 'DiagnosticHint' })
-fn.sign_define('DiagnosticSignInfo', { text = lspIcons.Info, texthl = 'DiagnosticInfo' })
-fn.sign_define('LightBulbSign', { text = lspIcons.CodeAction, texthl = 'DiagnosticWarn' })
+fn.sign_define('DiagnosticSignError', { text = lspIcons.Error .. ' ', texthl = 'DiagnosticError' })
+fn.sign_define('DiagnosticSignWarn', { text = lspIcons.Warn .. ' ', texthl = 'DiagnosticWarn' })
+fn.sign_define('DiagnosticSignHint', { text = lspIcons.Hint .. ' ', texthl = 'DiagnosticHint' })
+fn.sign_define('DiagnosticSignInfo', { text = lspIcons.Info .. ' ', texthl = 'DiagnosticInfo' })
+fn.sign_define('LightBulbSign', { text = lspIcons.CodeAction .. ' ', texthl = 'DiagnosticWarn' })

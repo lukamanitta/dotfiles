@@ -38,7 +38,7 @@ apply_globals({
         symlink = filesystem_icons.FileSymlink,
         git = {
             unstaged = git_icons.Unstaged,
-            staged = git_icons.Staged,
+            staged = git_icons.Added,
             unmerged = git_icons.Merge,
             renamed = git_icons.Modified,
             untracked = git_icons.Untracked,

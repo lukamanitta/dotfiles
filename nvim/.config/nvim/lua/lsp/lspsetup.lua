@@ -29,8 +29,8 @@ local on_attach = function(_, bufnr)
 
     -- Trouble
     buf_set_keymap('n', 'gr', ':Trouble lsp_references<CR>', opts)
-    buf_set_keymap('n', '<leader>xw', ':Trouble lsp_workspace_diagnostics<CR>', opts)
-    buf_set_keymap('n', '<leader>xd', ':Trouble lsp_document_diagnostics<CR>', opts)
+    buf_set_keymap('n', '<leader>xw', ':Trouble workspace_diagnostics<CR>', opts)
+    buf_set_keymap('n', '<leader>xd', ':Trouble document_diagnostics<CR>', opts)
 end
 
 cmd([[

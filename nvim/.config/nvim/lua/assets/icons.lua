@@ -79,13 +79,12 @@ I.lsp = {
 I.git = {
     Branch = '',
     Merge = '',
-    Staged = I.general.Plus,
     Unstaged = I.general.Exclamation,
     Ignored = I.lsp.ErrorEmpty,
     Untracked = I.general.Cross,
-    Added = ' ',
+    Added = '',
     Modified = '柳',
-    Removed = ' ',
+    Removed = '',
 }
 
 return I
