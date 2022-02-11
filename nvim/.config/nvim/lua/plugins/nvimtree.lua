@@ -1,9 +1,10 @@
 local apply_globals = require('utils.config').apply_globals
+local cmd = vim.cmd
+local get_hi_group_bg = require('utils.config').get_hi_group_bg
 
 local filesystem_icons = require('assets.icons').filesystem
 local lsp_icons = require('assets.icons').lsp
 local git_icons = require('assets.icons').git
-local general_icons = require('assets.icons').general
 
 apply_globals({
     nvim_tree_indent_markers = 0,
@@ -124,3 +125,10 @@ require('nvim-tree').setup({
         },
     },
 })
+
+cmd(
+    'hi! NvimTreeVertSplit guifg='
+        .. get_hi_group_bg('Normal')
+        .. ' guibg='
+        .. get_hi_group_bg('Normal')
+)
