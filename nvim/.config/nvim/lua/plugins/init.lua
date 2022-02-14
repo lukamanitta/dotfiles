@@ -86,6 +86,10 @@ return require('packer').startup({
             },
             { 'tami5/lspsaga.nvim' },
             {
+                'nvim-treesitter/playground',
+                cmd = { 'TSPlaygroundToggle' },
+            },
+            {
                 'nvim-treesitter/nvim-treesitter',
                 run = { ':TSInstall maintained', ':TSUpdate' },
                 config = function()

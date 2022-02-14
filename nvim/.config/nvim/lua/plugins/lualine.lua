@@ -7,6 +7,7 @@ local get_hi_group_fg = require('utils.config').get_hi_group_fg
 
 local git_icons = require('assets.icons').git
 local lsp_icons = require('assets.icons').lsp
+local general_icons = require('assets.icons').general
 
 -- Color table for highlights
 local colors = {
@@ -151,6 +152,20 @@ ins_left({
     gps.get_location,
     condition = gps.is_available,
 })
+
+-- local treesitter = require('nvim-treesitter')
+-- ins_left({
+--     function()
+--         return treesitter.statusline({
+--             indicator_size = 40,
+--             type_patterns = { 'class', 'function', 'method', 'table_constructor' },
+--             transform_fn = function(line)
+--                 return line:gsub('%s*[%[%(%{]*%s*$', '')
+--             end,
+--             separator = ' ' .. general_icons.PlayArrowRight .. ' ',
+--         })
+--     end,
+-- })
 
 -- Insert mid section
 ins_left({
