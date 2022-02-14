@@ -1,25 +1,55 @@
 local I = {}
 
 I.general = {
-    CaretRight = '',
-    CaretRightThinDouble = '»',
-    PlayArrowRight = '',
+    AngleUp = '',
+    AngleDown = '',
+    AngleLeft = '',
+    AngleRight = '',
+
+    AngleUpThick = '',
+    AngleDownThick = '',
+    AngleLeftThick = '',
+    AngleRightThick = '',
+
+    AngleUpDouble = '',
+    AngleDownDouble = '',
+    AngleLeftDouble = '',
+    AngleRightDouble = '',
+
+    AngleRightDoubleThin = '»',
+    CaretUp = '',
+    CaretDown = '',
+    CaretLeft = '',
+    CaretRight = '',
+
     ArrowRight = '➜',
+
+    ArrowUpThick = '',
+    ArrowDownThick = '',
+    ArrowLeftThick = '',
+    ArrowRightThick = '',
+
+    CircleArrowRight = '',
+    CircleArrowLeft = '',
+
     Circle = '',
     CircleSmall = '●',
+
     Bar = '▎',
     BarThick = '▊',
-    Square = '■',
-    Check = '',
-    Cross = '',
+
+    CrossThick = '',
     CrossThin = '',
-    Plus = '',
+
+    PlusThick = '',
     PlusThin = '+',
+
+    CheckThick = '',
+    Square = '■',
     Exclamation = '',
     Bug = '',
     Trace = '',
-    CircleArrowRight = '',
-    CircleArrowLeft = '',
+    Heart = '',
 }
 
 I.filesystem = {
@@ -30,6 +60,11 @@ I.filesystem = {
     FolderEmpty = '',
     FolderEmptyOpen = '',
     FolderSymlink = '',
+}
+
+I.companies = {
+    Tabnine = '',
+    GitHub = '',
 }
 
 I.comp_types = {
@@ -59,7 +94,8 @@ I.comp_types = {
     Operator = '',
     TypeParameter = '',
     Tag = '',
-    Tabnine = '',
+    Tabnine = I.companies.Tabnine,
+    Copilot = I.companies.Github,
 }
 
 I.lsp = {
@@ -80,8 +116,8 @@ I.git = {
     Branch = '',
     Merge = '',
     Unstaged = I.general.Exclamation,
-    Ignored = I.lsp.ErrorEmpty,
-    Untracked = I.general.Cross,
+    Ignored = '',
+    Untracked = I.general.CrossThick,
     Added = '',
     Modified = '柳',
     Removed = '',

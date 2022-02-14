@@ -126,6 +126,9 @@ ins_left({
         vim.api.nvim_command(
             'hi! LualineMode guifg=' .. mode_color[vim.fn.mode()] .. ' guibg=' .. colors.bg
         )
+        if vim.api.nvim_buf_get_option(0, 'filetype') == '' then
+            return general_icons.Heart
+        end
         return get_buf_icon(0)
     end,
     color = 'LualineMode',

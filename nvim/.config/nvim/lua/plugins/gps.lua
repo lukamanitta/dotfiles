@@ -28,5 +28,5 @@ require('nvim-gps').setup({
     --	}
     --}
     -- },
-    separator = ' ' .. general_icons.PlayArrowRight .. ' ',
+    separator = ' ' .. general_icons.CaretRight .. ' ',
 })

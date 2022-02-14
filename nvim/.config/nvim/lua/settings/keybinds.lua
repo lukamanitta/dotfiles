@@ -82,6 +82,10 @@ map(
 )
 map('n', '<leader>w', ':HopWord<CR>', { silent = true })
 
+-- Bufferline
+--
+map('n', '<leader>bj', ':BufferLinePick<CR>')
+
 -- TODO: Make this prettier
 -- Telescope
 map(

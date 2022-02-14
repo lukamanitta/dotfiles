@@ -28,22 +28,25 @@ cmp.setup({
     },
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'buffer' },
         { name = 'path' },
         { name = 'cmp_tabnine' },
         { name = 'ultisnips' },
+    }, {
+        { name = 'buffer' },
     }),
     formatting = {
         format = function(entry, vim_item)
             if entry.source.name == 'cmp_tabnine' then
                 vim_item.kind = 'Tabnine'
             end
+
             -- Display appropriate icons
             vim_item.kind = string.format('%s %s', comp_icons[vim_item.kind], vim_item.kind)
 
             -- Display source of completion
             vim_item.menu = ({
                 buffer = '[Buffer]',
+                path = '[Path]',
                 nvim_lsp = '[LSP]',
                 luasnip = '[LuaSnip]',
                 nvim_lua = '[Lua]',
@@ -67,8 +70,10 @@ cmp.setup({
             compare.order,
         },
     },
+    view = {
+        entries = cmp.EntriesConfig,
+    },
     experimental = {
-        native_menu = true,
         ghost_text = false,
     },
 })

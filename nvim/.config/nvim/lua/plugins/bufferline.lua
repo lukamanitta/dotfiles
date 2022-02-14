@@ -8,7 +8,7 @@ require('bufferline').setup({
         left_mouse_command = 'buffer %d',
         middle_mouse_command = nil,
         indicator_icon = general_icons.BarThick,
-        buffer_close_icon = general_icons.CrossThin,
+        buffer_close_icon = '',
         modified_icon = general_icons.CircleSmall,
         close_icon = '',
         left_trunc_marker = general_icons.CircleArrowLeft,
@@ -47,8 +47,8 @@ require('bufferline').setup({
         -- end,
         offsets = { { filetype = 'NvimTree', text = 'File Explorer', text_align = 'center' } },
         show_buffer_icons = true, -- disable filetype icons for buffers
-        show_buffer_close_icons = true,
-        show_close_icon = true,
+        show_buffer_close_icons = false,
+        show_close_icon = false,
         show_tab_indicators = true,
         persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
         -- can also be a table containing 2 custom separatrs
