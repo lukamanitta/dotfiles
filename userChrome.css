@@ -1,0 +1,146 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+
+/* TAB CONTROLS */
+
+/*    CLOSE BUTTON */
+
+/* Don't show close button on not hover */
+.tabbrowser-tab:not([pinned]) .tab-close-button {
+  display: none !important;
+}
+
+/* Show close button on hover */
+.tabbrowser-tab:not([pinned]):hover .tab-close-button {
+  display: -moz-inline-box !important;
+}
+
+/*    NEW TAB BUTTON */
+
+/* Hide new tab button on not hover */
+#tabs-newtab-button {
+    opacity: 0 !important;
+}
+
+/* Show new tab button on hover */
+#tabs-newtab-button:hover {
+    opacity: 1 !important;
+}
+
+
+#navigator-toolbox {
+  /*! border-bottom: 0 !important; */
+}
+
+/* TOOLBAR */
+
+/* Set toolbar background to same as tab bar */
+.browser-toolbar:not(.titlebar-color) {
+  background-color: unset !important;
+}
+/* Toolbar drop shadow */
+#nav-bar {
+  min-height: 55px !important;
+  box-shadow: 0px 3px 4px 0px #0f0e11 !important;
+  z-index: 999 !important;
+}
+
+/*      URLBAR */
+
+/* Center URL bar vertically */
+#urlbar {
+  box-shadow: 0px 2px 3px 1px #0f0e11;
+  border-radius: 5px;
+}
+
+/* Center URL text */
+#urlbar:not([focused]) .urlbar-input-box {
+  text-align: center;
+}
+
+/* URL background colour */
+#urlbar-background {
+  background-color: var(--toolbar-field-focus-background-color) !important;
+}
+
+
+/* I don't remember */
+#nav-bar .toolbarbutton-1:not([type="menu-button"]), 
+#nav-bar .toolbarbutton-1 > .toolbarbutton-menubutton-button, 
+#nav-bar .toolbarbutton-1 > .toolbarbutton-menubutton-dropmarker {
+  padding: 0 auto !important; 
+}
+
+
+/* URL INPUT FIELD */
+
+/*
+   Hide Extension Name in the identity area unless
+   hovered for half a second
+*/
+#identity-box.extensionPage #identity-icon-label {
+visibility: collapse !important;
+transition: visibility 250ms ease-in-out;
+}
+
+#identity-box.extensionPage #identity-box-button {
+ background-color: unset !important; 
+}
+
+#identity-box.extensionPage:hover #identity-icon-label {
+visibility: visible !important;
+transition: visibility 250ms ease-in-out 500ms;
+}
+
+/* REMOVE MEGABAR START
+ * VERSION 1.0.4
+ * CODE AT: http://userchrome.wesleybranton.com/megabar
+ * RELEASE NOTES: http://userchrome.wesleybranton.com/notes/megabar */
+@-moz-document url(chrome://browser/content/browser.xhtml) {
+    /* DISABLE EXPANDING START */
+    #urlbar[breakout][breakout-extend] {
+        top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
+        left: 0px !important;
+        width: 100% !important;
+    }
+    
+    #urlbar[breakout][breakout-extend] > #urlbar-input-container {
+        height: var(--urlbar-height) !important;
+        padding-block: 1px !important;
+        padding-inline: var(--urlbar-container-padding) !important;
+    }
+    
+    #urlbar[breakout][breakout-extend] > #urlbar-background {
+        animation-name: none !important;
+        box-shadow: 0px 2px 3px 1px #0f0e11;
+        border: none !important;
+    }
+    /* DISABLE EXPANDING END */
+    
+    /* MOVE URL RESULT TYPE ICON TO LEFT START */
+    .urlbarView-type-icon {
+        min-width: 16px !important;
+        height: 16px !important;
+        margin-bottom: 0 !important;
+        margin-inline-start: 0 !important;
+    }
+    
+    .urlbarView-favicon {
+        margin-inline-start: 20px !important;
+    }
+    /* MOVE URL RESULT TYPE ICON TO LEFT END */
+
+    /* DISPLAY GO BUTTON WHEN TYPING START */
+    #urlbar-input-container[pageproxystate="invalid"] #urlbar-go-button {
+        display: block !important;
+    }
+    /* DISPLAY GO BUTTON WHEN TYPING END */
+
+    /* ALWAYS SHOW PAGE ACTIONS START */
+    /* DISABLED BY DEFAULT - UNCOMMENT TO ENABLE */
+    #pageActionButton {
+        display: block !important;
+    }
+    /* ALWAYS SHOW PAGE ACTIONS END */
+}
+/* REMOVE MEGABAR END */
