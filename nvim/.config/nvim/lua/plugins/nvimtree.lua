@@ -128,7 +128,7 @@ require('nvim-tree').setup({
 
 cmd(
     'hi! NvimTreeVertSplit guifg='
-        .. get_hi_group_bg('Normal')
+        .. get_hi_group_bg('StatusLine')
         .. ' guibg='
-        .. get_hi_group_bg('Normal')
+        .. get_hi_group_bg('StatusLine')
 )

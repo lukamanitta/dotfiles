@@ -123,9 +123,6 @@ map('n', '<leader>xx', ':Trouble<CR>', silentnoremap)
 map('n', '<leader>xl', ':Trouble loclist<CR>', silentnoremap)
 map('n', '<leader>xq', ':Trouble quickfix<CR>', silentnoremap)
 
--- EasyMotion
-cmd('map <leader><leader> <Plug>(easymotion-prefix)')
-
 -- CamelCaseMotion
 -- vim.api.nvim_del_keymap('s', 'w')
 -- vim.api.nvim_del_keymap('s', 'b')

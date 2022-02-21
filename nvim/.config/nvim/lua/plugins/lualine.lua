@@ -214,7 +214,7 @@ ins_right({
     'diff',
     symbols = {
         added = git_icons.Added .. ' ',
-        modified = git_icons.Modified .. ' ',
+        modified = git_icons.Modified,
         removed = git_icons.Removed .. ' ',
     },
     color_added = colors.green,

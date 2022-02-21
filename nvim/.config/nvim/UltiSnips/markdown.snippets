@@ -1,6 +1,9 @@
+# Add course (regex match AAAA1111 from path, take last match)
+
 snippet note
 ---
-date: ${1: `date +%Y/%m/%d`}
+course: ${1:`pwd | egrep -o "[A-Z]{4}[0-9]{4}" | tail -1`}
+date: ${2:`date +%Y/%m/%d`}
 ---
 
 # $0

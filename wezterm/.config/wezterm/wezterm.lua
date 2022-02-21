@@ -137,14 +137,14 @@ for tabNum = 1, 9 do
 end
 
 cfg.colors = {
-    background = '#1b1624',
+    background = '#24283b',
     foreground = '#abb2bf',
 
     cursor_bg = '#abb2bf',
-    cursor_fg = '#1b1624',
+    cursor_fg = '#24283b',
     cursor_border = '#abb2bf',
 
-    selection_fg = '#1b1624',
+    selection_fg = '#24283b',
     selection_bg = '#abb2bf',
 
     scrollbar_thumb = '#abb2bf',
@@ -179,10 +179,10 @@ cfg.colors = {
     },
 
     tab_bar = {
-        background = '#1b1624',
+        background = '#24283b',
 
         active_tab = {
-            bg_color = '#1b1624',
+            bg_color = '#24283b',
             fg_color = '#dfdfe0',
 
             intensity = 'Bold', -- Half | Normal | Bold
@@ -192,7 +192,7 @@ cfg.colors = {
         },
 
         inactive_tab = {
-            bg_color = '#1b1624',
+            bg_color = '#24283b',
             fg_color = '#7f8c98',
 
             intensity = 'Normal', -- Half | Normal | Bold
@@ -202,7 +202,7 @@ cfg.colors = {
         },
 
         inactive_tab_hover = {
-            bg_color = '#1b1624',
+            bg_color = '#24283b',
             fg_color = '#dfdfe0',
 
             intensity = 'Normal', -- Half | Normal | Bold
@@ -213,12 +213,12 @@ cfg.colors = {
 
         -- New tab button
         new_tab = {
-            bg_color = '#1b1624',
+            bg_color = '#24283b',
             fg_color = '#7f8c98',
         },
 
         new_tab_hover = {
-            bg_color = '#1b1624',
+            bg_color = '#24283b',
             fg_color = '#dfdfe0',
 
             intensity = 'Bold', -- Half | Normal | Bold
