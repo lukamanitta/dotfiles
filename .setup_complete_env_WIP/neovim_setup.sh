@@ -38,6 +38,9 @@ npm install -g markdownlint-cli
 # Neovim Remote
 pip3 install neovim-remote
 
+# Pylint
+pip3 install pylint
+
 # LazyGit
 brew install jesseduffield/lazygit/lazygit
 

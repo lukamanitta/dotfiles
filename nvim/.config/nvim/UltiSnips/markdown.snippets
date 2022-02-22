@@ -2,7 +2,7 @@
 
 snippet note
 ---
-course: ${1:`pwd | egrep -o "[A-Z]{4}[0-9]{4}" | tail -1`}
+course: ${1:`pwd | egrep -o '[A-Z]{4}[0-9]{4}' | tail -1`}
 date: ${2:`date +%Y/%m/%d`}
 ---
 

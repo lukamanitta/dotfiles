@@ -21,7 +21,11 @@ function code {
 # NOTES_DIR is sourced from a local file
 function notes {
     if (( ${+NOTES_DIR} )); then
-        cd $NOTES_DIR && nvim
+        cd $NOTES_DIR
+        if [ ! $# -eq 0 ]; then
+            cd **/"$1"
+        fi
+        nvim
     else
         echo Please create a NOTES_DIR env variable specifying the notes directory
     fi
