@@ -48,6 +48,8 @@ set backspace=indent,eol,start
 set belloff=all         "Shut that fucking bell sound off
 call matchadd('ColorColumn', '\%80v', 100) " DANGER ZONE FUCK NO NOT 80 CHARS FU
 
+colorscheme evening
+
 " File finding
 " Sub-dir searching and tab-completion
 set path+=**
