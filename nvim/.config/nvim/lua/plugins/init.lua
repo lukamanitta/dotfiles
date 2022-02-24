@@ -227,17 +227,11 @@ return require('packer').startup({
             { 'famiu/nvim-reload', cmd = { 'Reload', 'Restart' } },
 
             -- Notes
-            -- {
-            --     'lervag/wiki.vim',
-            --     config = function()
-            --         require('plugins.wiki')
-            --     end,
-            -- },
             {
-                'plasticboy/vim-markdown',
+                'jakewvincent/mkdnflow.nvim',
                 ft = { 'markdown' },
                 config = function()
-                    require('plugins.markdown')
+                    require('plugins.mkdnflow')
                 end,
             },
             {
