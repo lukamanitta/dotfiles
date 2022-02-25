@@ -126,6 +126,7 @@ return require('packer').startup({
             -- Language specific styling
             { 'styled-components/vim-styled-components' },
             { 'Vimjas/vim-python-pep8-indent' },
+            { 'mlr-msft/vim-loves-dafny' },
 
             -- UI
             -- ryanoasis/vim-devicons'
@@ -228,12 +229,26 @@ return require('packer').startup({
 
             -- Notes
             {
-                'jakewvincent/mkdnflow.nvim',
+                'preservim/vim-markdown',
                 ft = { 'markdown' },
                 config = function()
-                    require('plugins.mkdnflow')
+                    require('plugins.markdown')
                 end,
             },
+            {
+                'KeitaNakamura/tex-conceal.vim',
+                ft = { 'markdown' },
+                config = function()
+                    require('plugins.tex-conceal')
+                end,
+            },
+            -- {
+            --     'jakewvincent/mkdnflow.nvim',
+            --     ft = { 'markdown' },
+            --     config = function()
+            --         require('plugins.mkdnflow')
+            --     end,
+            -- },
             {
                 'Pocco81/TrueZen.nvim',
                 ft = { 'markdown' },

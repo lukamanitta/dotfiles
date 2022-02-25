@@ -10,4 +10,5 @@ apply_globals({
     cursorline_timeout = 500,
     scrolloff = 10,
     sidescrolloff = 5,
+    markdown_fenced_languages = { 'html', 'python', 'bash=sh', 'dafny' },
 })
