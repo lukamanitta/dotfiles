@@ -1,7 +1,10 @@
 local cmd = vim.cmd
 local apply_globals = require('utils.config').apply_globals
 
-cmd('colorscheme tokyonight')
+local vars = {}
+
+vars.colorscheme = ''
+
 cmd('set background=dark')
 cmd('filetype plugin indent on')
 
@@ -12,3 +15,5 @@ apply_globals({
     sidescrolloff = 5,
     markdown_fenced_languages = { 'html', 'python', 'bash=sh', 'dafny' },
 })
+
+return vars

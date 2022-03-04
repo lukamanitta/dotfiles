@@ -16,3 +16,7 @@ apply_globals({
     tokyonight_day_brightness = 1,
     tokyonight_lualine_bold = false,
 })
+
+vim.cmd('colorscheme tokyonight')
+
+require('plugins.lualine')

@@ -31,6 +31,7 @@ cmp.setup({
         { name = 'path' },
         { name = 'cmp_tabnine' },
         { name = 'ultisnips' },
+        { name = 'omni' },
     }, {
         { name = 'buffer' },
     }),
@@ -59,7 +60,7 @@ cmp.setup({
     sorting = {
         priority_weight = 1,
         comparators = {
-            require('cmp_tabnine.compare'),
+            -- require('cmp_tabnine.compare'),
             compare.offset,
             compare.exact,
             compare.score,

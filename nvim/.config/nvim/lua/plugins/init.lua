@@ -116,6 +116,7 @@ return require('packer').startup({
                     'hrsh7th/cmp-nvim-lsp',
                     'hrsh7th/cmp-buffer',
                     'hrsh7th/cmp-path',
+                    'hrsh7th/cmp-omni',
                     'SirVer/ultisnips',
                     'quangnguyen30192/cmp-nvim-ultisnips',
                     { 'tzachar/cmp-tabnine', run = './install.sh' },
@@ -131,12 +132,7 @@ return require('packer').startup({
             -- UI
             -- ryanoasis/vim-devicons'
             { 'kyazdani42/nvim-web-devicons' },
-            {
-                'nvim-lualine/lualine.nvim',
-                config = function()
-                    require('plugins.lualine')
-                end,
-            },
+            { 'nvim-lualine/lualine.nvim' },
             {
                 'akinsho/bufferline.nvim',
                 config = function()
@@ -168,12 +164,12 @@ return require('packer').startup({
                     require('plugins.which-key')
                 end,
             },
-            {
-                'luukvbaal/stabilize.nvim',
-                config = function()
-                    require('plugins.stabilize')
-                end,
-            },
+            -- {
+            --     'luukvbaal/stabilize.nvim',
+            --     config = function()
+            --         require('plugins.stabilize')
+            --     end,
+            -- },
 
             -- Themes
             -- {
@@ -182,10 +178,16 @@ return require('packer').startup({
             --         require('plugins.colorschemes.catppuccin')
             --     end,
             -- },
+            -- {
+            --     'folke/tokyonight.nvim',
+            --     config = function()
+            --         require('plugins.colorschemes.tokyonight')
+            --     end,
+            -- },
             {
-                'folke/tokyonight.nvim',
+                'Shatur/neovim-ayu',
                 config = function()
-                    require('plugins.colorschemes.tokyonight')
+                    require('plugins.colorschemes.ayu')
                 end,
             },
 
@@ -243,6 +245,12 @@ return require('packer').startup({
                 end,
             },
             -- {
+            --     'Furkanzmc/zettelkasten.nvim',
+            --     -- config = function()
+            --     --     require('plugins.zettelkasten')
+            --     -- end,
+            -- },
+            -- {
             --     'jakewvincent/mkdnflow.nvim',
             --     ft = { 'markdown' },
             --     config = function()
@@ -256,7 +264,6 @@ return require('packer').startup({
                     require('plugins.truezen')
                 end,
             },
-            -- { 'jbyuki/nabla.nvim', ft = { 'markdown' } }, -- In case I need math
 
             -- My Plugins
             { 'lukamanitta/naturally.nvim' },

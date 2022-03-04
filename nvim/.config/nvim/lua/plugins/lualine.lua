@@ -11,8 +11,8 @@ local general_icons = require('assets.icons').general
 
 -- Color table for highlights
 local colors = {
-    bg = get_hi_group_bg('StatusLine'),
-    fg = get_hi_group_fg('StatusLine'),
+    bg = get_hi_group_bg('lualine_c_normal'),
+    fg = get_hi_group_fg('lualine_c_normal'),
     yellow = '#ECBE7B',
     cyan = '#008080',
     darkblue = '#081633',
@@ -47,7 +47,7 @@ local config = {
         component_separators = '',
         section_separators = '',
         disabled_filetypes = { 'Trouble' },
-        theme = 'tokyonight',
+        theme = 'ayu',
         -- theme = {
         --     -- We are going to use lualine_c an lualine_x as left and
         --     -- right section. Both are highlighted by c theme .  So we
@@ -124,7 +124,10 @@ ins_left({
             t = colors.red,
         }
         vim.api.nvim_command(
-            'hi! LualineMode guifg=' .. mode_color[vim.fn.mode()] .. ' guibg=' .. colors.bg
+            'hi! LualineMode guifg='
+                .. mode_color[vim.fn.mode()]
+                .. ' guibg='
+                .. get_hi_group_bg('lualine_c_normal')
         )
         if vim.api.nvim_buf_get_option(0, 'filetype') == '' then
             return general_icons.Heart
@@ -138,7 +141,7 @@ ins_left({
 ins_left({
     'filename',
     condition = conditions.buffer_not_empty,
-    color = { fg = colors.filename, bg = colors.bg, gui = 'bold' },
+    color = { fg = colors.filename, gui = 'bold' },
 })
 
 ins_left({
@@ -199,7 +202,7 @@ ins_left({
         return client_names:to_string()
     end,
     icon = ' LSP:',
-    color = { fg = get_hi_group_fg('SignColumn'), gui = 'bold' },
+    color = { fg = get_hi_group_fg('Comment'), gui = 'bold' },
 })
 
 -- Add components to right sections
