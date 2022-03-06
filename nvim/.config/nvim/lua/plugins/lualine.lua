@@ -48,6 +48,7 @@ local config = {
         -- Disable sections and component separators
         component_separators = '',
         section_separators = '',
+        -- disabled_filetypes = { 'Trouble', 'NvimTree' },
         disabled_filetypes = { 'Trouble', 'NvimTree' },
         theme = colorscheme,
         -- theme = {

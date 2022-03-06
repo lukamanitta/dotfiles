@@ -1,3 +1,6 @@
+local cmd = vim.cmd
+local get_hi_group_bg = require('utils.config').get_hi_group_bg
+
 require('trouble').setup({
     position = 'bottom',
     height = 8,
@@ -31,13 +34,16 @@ require('trouble').setup({
     auto_preview = false, -- automatically preview the location of the diagnostic
     auto_fold = false, -- automatically fold a file trouble list at creation
     signs = {
-        error = '',
-        warning = '',
-        hint = '',
-        information = '',
         other = '﫠',
     },
     use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
 })
+cmd('hi! link TroubleNormal StatusLine')
 
-vim.cmd('hi! link TroubleNormal StatusLine')
+cmd('hi! TroubleText guibg=NONE')
+cmd('hi! TroubleTextHint guibg=NONE')
+cmd('hi! TroubleTextWarning guibg=NONE')
+cmd('hi! TroubleTextError guibg=NONE')
+cmd('hi! TroubleTextInformation guibg=NONE')
+cmd('hi! TroubleCount guibg=NONE')
+cmd('hi! TroubleFoldIcon guibg=NONE')
