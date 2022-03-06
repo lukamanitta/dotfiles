@@ -3,7 +3,7 @@ local apply_globals = require('utils.config').apply_globals
 
 local vars = {}
 
-vars.colorscheme = ''
+vars.colorscheme = 'ayu'
 
 cmd('set background=dark')
 cmd('filetype plugin indent on')

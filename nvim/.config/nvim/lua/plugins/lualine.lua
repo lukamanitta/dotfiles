@@ -9,6 +9,8 @@ local git_icons = require('assets.icons').git
 local lsp_icons = require('assets.icons').lsp
 local general_icons = require('assets.icons').general
 
+local colorscheme = require('settings.globals').colorscheme
+
 -- Color table for highlights
 local colors = {
     bg = get_hi_group_bg('lualine_c_normal'),
@@ -46,8 +48,8 @@ local config = {
         -- Disable sections and component separators
         component_separators = '',
         section_separators = '',
-        disabled_filetypes = { 'Trouble' },
-        theme = 'ayu',
+        disabled_filetypes = { 'Trouble', 'NvimTree' },
+        theme = colorscheme,
         -- theme = {
         --     -- We are going to use lualine_c an lualine_x as left and
         --     -- right section. Both are highlighted by c theme .  So we

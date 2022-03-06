@@ -18,5 +18,3 @@ apply_globals({
 })
 
 vim.cmd('colorscheme tokyonight')
-
-require('plugins.lualine')

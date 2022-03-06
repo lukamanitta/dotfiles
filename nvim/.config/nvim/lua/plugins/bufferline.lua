@@ -1,4 +1,8 @@
 local general_icons = require('assets.icons').general
+local cmd = vim.cmd
+
+local get_hi_group_bg = require('utils.config').get_hi_group_bg
+local get_hi_group_fg = require('utils.config').get_hi_group_fg
 
 require('bufferline').setup({
     options = {
@@ -58,3 +62,5 @@ require('bufferline').setup({
         sort_by = 'id',
     },
 })
+
+cmd('hi BufferLineBackground guibg=#101521') -- .. get_hi_group_bg('lualine_c_normal'))

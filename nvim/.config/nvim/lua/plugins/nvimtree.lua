@@ -1,6 +1,7 @@
 local apply_globals = require('utils.config').apply_globals
 local cmd = vim.cmd
 local get_hi_group_bg = require('utils.config').get_hi_group_bg
+local get_hi_group_fg = require('utils.config').get_hi_group_fg
 
 local filesystem_icons = require('assets.icons').filesystem
 local lsp_icons = require('assets.icons').lsp
@@ -126,6 +127,21 @@ require('nvim-tree').setup({
     },
 })
 
-cmd('hi NvimTreeVertSplit guifg=' .. get_hi_group_bg('NvimTreeVertSplit'))
+-- cmd('hi NvimTreeVertSplit guifg=' .. get_hi_group_bg('NvimTreeVertSplit'))
+cmd(
+    'hi NvimTreeVertSplit guifg='
+        .. get_hi_group_bg('StatusLine')
+        .. ' guibg='
+        .. get_hi_group_bg('StatusLine')
+)
 
-cmd('hi NvimTreeNormal guibg=' .. get_hi_group_bg('lualine_c_normal'))
+cmd('hi NvimTreeNormal guibg=' .. get_hi_group_bg('StatusLine'))
+
+cmd(
+    'hi NvimTreeStatusLine guifg ='
+        .. get_hi_group_fg('StatusLine')
+        .. ' guibg='
+        .. get_hi_group_bg('StatusLine')
+)
+
+cmd('hi NvimTreeStatusLineNC guibg=' .. get_hi_group_bg('StatusLine'))

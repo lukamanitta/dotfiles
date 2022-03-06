@@ -133,11 +133,17 @@ return require('packer').startup({
             -- ryanoasis/vim-devicons'
             { 'kyazdani42/nvim-web-devicons' },
             { 'nvim-lualine/lualine.nvim' },
+            -- {
+            --     'akinsho/bufferline.nvim',
+            --     config = function()
+            --         require('plugins.bufferline')
+            --     end,
+            -- },
             {
-                'akinsho/bufferline.nvim',
-                config = function()
-                    require('plugins.bufferline')
-                end,
+                'noib3/nvim-cokeline',
+                -- config = function()
+                --     require('plugins.cokeline')
+                -- end,
             },
             {
                 'rcarriga/nvim-notify',
@@ -178,18 +184,8 @@ return require('packer').startup({
             --         require('plugins.colorschemes.catppuccin')
             --     end,
             -- },
-            -- {
-            --     'folke/tokyonight.nvim',
-            --     config = function()
-            --         require('plugins.colorschemes.tokyonight')
-            --     end,
-            -- },
-            {
-                'Shatur/neovim-ayu',
-                config = function()
-                    require('plugins.colorschemes.ayu')
-                end,
-            },
+            { 'folke/tokyonight.nvim' },
+            { 'Shatur/neovim-ayu' },
 
             -- Other
             {

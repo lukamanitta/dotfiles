@@ -1,3 +1,5 @@
+local get_hi_group_bg = require('utils.config').get_hi_group_bg
+
 require('ayu').setup({
     mirage = true,
     overrides = {},
@@ -5,4 +7,5 @@ require('ayu').setup({
 
 require('ayu').colorscheme()
 
-require('plugins.lualine')
+vim.cmd('hi! link StatusLine lualine_c_normal')
+-- Fix StatusLineNC not matching StatusLine
