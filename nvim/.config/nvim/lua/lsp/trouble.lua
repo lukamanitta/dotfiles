@@ -29,7 +29,7 @@ require('trouble').setup({
         next = 'j', -- next item
     },
     indent_lines = false, -- add an indent guide below the fold icons
-    auto_open = true, -- automatically open the list when you have diagnostics
+    auto_open = false, -- automatically open the list when you have diagnostics
     auto_close = true, -- automatically close the list when you have no diagnostics
     auto_preview = false, -- automatically preview the location of the diagnostic
     auto_fold = false, -- automatically fold a file trouble list at creation

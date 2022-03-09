@@ -21,6 +21,6 @@ notify.setup({
         WARN = lsp_icons.Warn,
         INFO = lsp_icons.Info,
         DEBUG = general_icons.Bug,
-        TRACE = general_icons.Trace,
+        TRACE = general_icons.Pencil,
     },
 })

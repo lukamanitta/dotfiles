@@ -49,7 +49,7 @@ require('true-zen').setup({
         galaxyline = false,
         tmux = false,
         gitsigns = false,
-        nvim_bufferline = true,
+        nvim_bufferline = false,
         limelight = false,
         twilight = false,
         vim_airline = false,

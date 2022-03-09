@@ -119,6 +119,7 @@ return require('packer').startup({
                     'hrsh7th/cmp-omni',
                     'SirVer/ultisnips',
                     'quangnguyen30192/cmp-nvim-ultisnips',
+                    'f3fora/cmp-spell',
                     { 'tzachar/cmp-tabnine', run = './install.sh' },
                 },
             },
@@ -157,7 +158,12 @@ return require('packer').startup({
                     require('plugins.colorizer')
                 end,
             },
-            { 'yamatsum/nvim-cursorline' },
+            {
+                'xiyaowong/nvim-cursorword',
+                config = function()
+                    require('plugins.cursorword')
+                end,
+            },
             {
                 'SmiteshP/nvim-gps',
                 config = function()
@@ -242,9 +248,9 @@ return require('packer').startup({
             },
             -- {
             --     'Furkanzmc/zettelkasten.nvim',
-            --     -- config = function()
-            --     --     require('plugins.zettelkasten')
-            --     -- end,
+            --     config = function()
+            --         require('plugins.zettelkasten')
+            --     end,
             -- },
             -- {
             --     'jakewvincent/mkdnflow.nvim',

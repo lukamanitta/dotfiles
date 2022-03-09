@@ -14,6 +14,12 @@ augroup nvim
     " Remind me about note snippet
     au FileType markdown lua vim.notify("Type 'note' for note snippet!")
 
+    " Enable spell for markdown
+    au FileType markdown setlocal spell
+
+    " Show cursorline only in current window
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
 augroup END
 ]],
     ''

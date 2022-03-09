@@ -4,6 +4,14 @@ local compare = require('cmp.config.compare')
 local tabnine = require('cmp_tabnine.config')
 local comp_icons = require('assets.icons').comp_types
 
+cmp.setup.filetype({ 'markdown' }, {
+    sources = {
+        { name = 'spell', max_item_count = 3 },
+        { name = 'buffer' },
+        { name = 'path' },
+    },
+})
+
 cmp.setup({
     -- completion = {
     --     autocomplete = true,
@@ -39,6 +47,10 @@ cmp.setup({
         format = function(entry, vim_item)
             if entry.source.name == 'cmp_tabnine' then
                 vim_item.kind = 'Tabnine'
+            else
+                if entry.source.name == 'spell' then
+                    vim_item.kind = 'Spell'
+                end
             end
 
             -- Display appropriate icons
@@ -53,6 +65,7 @@ cmp.setup({
                 nvim_lua = '[Lua]',
                 latex_symbols = '[LaTeX]',
                 cmp_tabnine = '[TN]',
+                spell = '[Spell]',
             })[entry.source.name]
             return vim_item
         end,

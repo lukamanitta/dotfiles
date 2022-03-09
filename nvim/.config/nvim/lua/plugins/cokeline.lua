@@ -2,6 +2,8 @@ local get_hex = require('cokeline.utils').get_hex
 
 vim.cmd('hi! link TabLineFill Normal')
 
+local background = get_hex('Normal')
+
 require('cokeline').setup({
     show_if_buffers_are_at_least = 1,
     buffers = {
@@ -29,57 +31,47 @@ require('cokeline').setup({
         cycle_prev_next = true, --  true | false,
     },
 
+    -- sidebar = {
+    --     filetype = 'NvimTree',
+    --     components = {
+    --         {
+    --             text = ' ',
+    --             fg = get_hex('Normal', 'fg'),
+    --             bg = get_hex('StatusLine', 'bg'),
+    --             style = 'bold',
+    --         },
+    --     },
+    -- },
+
     rendering = {
         max_buffer_width = 20,
-
-        -- left_sidebar = {
-        --     filetype = 'NvimTree',
-        --     components = {
-        --         text = 'NvimTree',
-        --         hl = {
-        --             fg = get_hex('Normal', 'fg'),
-        --             bg = get_hex('NvimTreeNormal', 'bg'),
-        --             style = 'bold',
-        --         },
-        --     },
-        -- },
     },
 
     default_hl = {
-        focused = {
-            fg = get_hex('Normal', 'fg'),
-            bg = get_hex('ColorColumn', 'bg'),
-        },
-        unfocused = {
-            fg = get_hex('Comment', 'fg'),
-            bg = get_hex('ColorColumn', 'bg'),
-        },
+        fg = function(buffer)
+            return buffer.is_focused and get_hex('Normal', 'fg') or get_hex('Comment', 'fg')
+        end,
+        bg = get_hex('ColorColumn', 'bg'),
     },
 
     -- A list of components to be rendered for each buffer
     components = {
         {
             text = ' ',
-            hl = {
-                bg = get_hex('Normal', 'bg'),
-            },
+            bg = get_hex('Normal', 'bg'),
         },
         {
             text = '',
-            hl = {
-                fg = get_hex('ColorColumn', 'bg'),
-                bg = get_hex('Normal', 'bg'),
-            },
+            fg = get_hex('ColorColumn', 'bg'),
+            bg = get_hex('Normal', 'bg'),
         },
         {
             text = function(buffer)
                 return buffer.devicon.icon
             end,
-            hl = {
-                fg = function(buffer)
-                    return buffer.devicon.color
-                end,
-            },
+            fg = function(buffer)
+                return buffer.devicon.color
+            end,
         },
         {
             text = ' ',
@@ -88,18 +80,14 @@ require('cokeline').setup({
             text = function(buffer)
                 return buffer.filename .. '  '
             end,
-            hl = {
-                style = function(buffer)
-                    return buffer.is_focused and 'bold' or nil
-                end,
-            },
+            style = function(buffer)
+                return buffer.is_focused and 'bold' or nil
+            end,
         },
         {
             text = '',
-            hl = {
-                fg = get_hex('ColorColumn', 'bg'),
-                bg = get_hex('Normal', 'bg'),
-            },
+            fg = get_hex('ColorColumn', 'bg'),
+            bg = get_hex('Normal', 'bg'),
         },
     },
 })

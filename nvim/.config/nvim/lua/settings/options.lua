@@ -28,6 +28,7 @@ apply_options({
     foldlevel = 1,
     scrolloff = 8,
     sidescrolloff = 5,
+    spelllang = 'en_au',
 })
 
 vim.fn.matchadd('ColorColumn', '\\%80v', 100) -- DANGER XONE FUCK NOT 80 CHARAC

@@ -1,7 +1,8 @@
 local apply_globals = require('utils.config').apply_globals
+local cmd = vim.cmd
 
 apply_globals({
-    tokyonight_style = 'storm',
+    tokyonight_style = 'night', -- storm | night | day
     tokyonight_terminal_colors = true,
     tokyonight_italic_comments = true,
     tokyonight_italic_keywords = true,
@@ -17,4 +18,5 @@ apply_globals({
     tokyonight_lualine_bold = false,
 })
 
-vim.cmd('colorscheme tokyonight')
+cmd('set background=dark')
+cmd('colorscheme tokyonight')

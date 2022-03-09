@@ -48,7 +48,7 @@ I.general = {
     Square = '■',
     Exclamation = '',
     Bug = '',
-    Trace = '',
+    Pencil = '',
     Heart = '',
 }
 
@@ -94,6 +94,7 @@ I.comp_types = {
     Operator = '',
     TypeParameter = '',
     Tag = '',
+    Spell = I.general.Pencil,
     Tabnine = I.companies.Tabnine,
     Copilot = I.companies.Github,
 }
