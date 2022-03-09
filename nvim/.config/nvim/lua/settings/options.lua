@@ -31,4 +31,5 @@ apply_options({
     spelllang = 'en_au',
 })
 
+vim.cmd('set iskeyword-=_') -- Recognise _ as word separator
 vim.fn.matchadd('ColorColumn', '\\%80v', 100) -- DANGER XONE FUCK NOT 80 CHARAC

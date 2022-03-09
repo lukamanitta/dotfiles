@@ -65,7 +65,7 @@ return require('packer').startup({
             },
             { 'chun-yang/auto-pairs' },
             { 'tpope/vim-surround' },
-            { 'bkad/CamelCaseMotion' },
+            { 'chaoren/vim-wordmotion' },
             { 'andymass/vim-matchup' },
             {
                 'phaazon/hop.nvim',
@@ -128,7 +128,7 @@ return require('packer').startup({
             -- Language specific styling
             { 'styled-components/vim-styled-components' },
             { 'Vimjas/vim-python-pep8-indent' },
-            { 'mlr-msft/vim-loves-dafny' },
+            { 'benknoble/vim-dafny' },
 
             -- UI
             -- ryanoasis/vim-devicons'
@@ -248,9 +248,9 @@ return require('packer').startup({
             },
             -- {
             --     'Furkanzmc/zettelkasten.nvim',
-            --     config = function()
-            --         require('plugins.zettelkasten')
-            --     end,
+            --         config = function()
+            --             require('plugins.zettelkasten')
+            --         end,
             -- },
             -- {
             --     'jakewvincent/mkdnflow.nvim',

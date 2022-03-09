@@ -150,7 +150,12 @@ ins_left({
 ins_left({
     'diagnostics',
     sources = { 'nvim_diagnostic' },
-    symbols = { error = lsp_icons.Error, warn = lsp_icons.Warn, info = lsp_icons.Info },
+    symbols = {
+        error = lsp_icons.Error .. ' ',
+        warn = lsp_icons.Warn .. ' ',
+        info = lsp_icons.Info .. ' ',
+        hint = lsp_icons.Hint .. ' ',
+    },
     color_error = colors.red,
     color_warn = colors.yellow,
     color_info = colors.cyan,

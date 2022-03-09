@@ -1,6 +1,6 @@
 require('zettelkasten').setup({
     opts = {
-        notes_path = '$NOTES_DIR',
+        notes_path = vim.fn.expand('$NOTES_DIR'),
         preview_command = '',
         browseformat = '%f - %h [%r Refs] %t',
     },

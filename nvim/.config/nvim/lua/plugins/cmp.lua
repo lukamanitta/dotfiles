@@ -9,6 +9,7 @@ cmp.setup.filetype({ 'markdown' }, {
         { name = 'spell', max_item_count = 3 },
         { name = 'buffer' },
         { name = 'path' },
+        { name = 'ultisnips' },
     },
 })
 

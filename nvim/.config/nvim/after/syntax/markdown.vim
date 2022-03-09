@@ -11,4 +11,9 @@ syn region markdownLinkText matchgroup=markdownLinkTextDelimiter
     \ contains=@markdownInline,markdownLineStart
     \ concealends
 
+" hi! link markdownLineBreak Comment
+hi! link mkdLineBreak Comment
+
+syn match mkdLineBreak '  $' conceal cchar=
+
 set conceallevel=2
