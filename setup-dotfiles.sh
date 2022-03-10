@@ -17,8 +17,9 @@ set -e
 echo "Removing old config files..."
 for i in .zshrc .bashrc .vimrc .gitignore_global .config/starship.toml
 do
-    if [[ ! test -L "$HOME/$i" ]]; then
-        [ -f "$HOME/$i" ] && rm "$HOME/$i" && echo "  REMOVED: $HOME/$i"
+    if [[ ! -L "$HOME/$i" ]]; then
+        echo "  Would remove: $HOME/$i"
+        # [ -f "$HOME/$i" ] && rm "$HOME/$i" && echo "  REMOVED: $HOME/$i"
     fi
 done
 
@@ -29,8 +30,9 @@ do
         echo "A dirname expanded to '/', which would destroy everything, so maybe don't do that"
         exit
     fi
-    if [[ ! test -L "$HOME/$i" ]]; then
-        [ -d "$HOME/$i" ] && rm -rf "$HOME/$i" && echo "  REMOVED: $HOME/.config/$i"
+    if [[ ! -L "$HOME/$i" ]]; then
+        echo "  Would remove: $HOME/$i"
+        # [ -d "$HOME/$i" ] && rm -rf "$HOME/$i" && echo "  REMOVED: $HOME/$i"
     fi
 done
 
@@ -46,6 +48,7 @@ stow wezterm && echo "  STOWED: wezterm"
 stow git && echo "  STOWED: git"
 stow vim && echo "  STOWED: vim"
 stow lazygit && echo "  STOWED: lazygit"
+stow linters && echo "  STOWED: linter configurations"
 # stow tmux && echo "  STOWED: tmux"
 
 echo "Checking local_env_vars..."
