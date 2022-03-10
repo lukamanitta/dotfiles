@@ -99,6 +99,7 @@ return require('packer').startup({
                     'windwp/nvim-ts-autotag',
                     'RRethy/nvim-treesitter-endwise',
                     'JoosepAlviste/nvim-ts-context-commentstring',
+                    'yioneko/nvim-yati',
                 },
             },
             {
@@ -246,12 +247,12 @@ return require('packer').startup({
                     require('plugins.tex-conceal')
                 end,
             },
-            -- {
-            --     'Furkanzmc/zettelkasten.nvim',
-            --         config = function()
-            --             require('plugins.zettelkasten')
-            --         end,
-            -- },
+            {
+                'Furkanzmc/zettelkasten.nvim',
+                config = function()
+                    require('plugins.zettelkasten')
+                end,
+            },
             -- {
             --     'jakewvincent/mkdnflow.nvim',
             --     ft = { 'markdown' },

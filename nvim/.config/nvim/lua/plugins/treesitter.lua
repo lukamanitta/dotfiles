@@ -7,8 +7,11 @@ require('nvim-treesitter.configs').setup({
         disable = { 'markdown' },
     },
     indent = {
-        enable = true,
+        enable = false,
         disable = { 'python' },
+    },
+    yati = {
+        enable = true,
     },
     autotag = {
         enable = true,
