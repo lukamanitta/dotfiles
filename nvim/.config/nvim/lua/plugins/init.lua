@@ -47,7 +47,7 @@ return require('packer').startup({
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
                 run = 'make',
-                require = { 'nvim-telescope /telescope.nvim' },
+                require = { 'nvim-telescope/telescope.nvim' },
             },
 
             -- Objects and Movements
@@ -231,6 +231,7 @@ return require('packer').startup({
                 },
             },
             { 'famiu/nvim-reload', cmd = { 'Reload', 'Restart' } },
+            { 'lewis6991/impatient.nvim' },
 
             -- Notes
             {
