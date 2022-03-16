@@ -37,6 +37,7 @@ cmp.setup({
     },
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
+        { name = 'nvim_lua' },
         { name = 'path' },
         { name = 'cmp_tabnine' },
         { name = 'ultisnips' },
