@@ -8,8 +8,9 @@ cmp.setup.filetype({ 'markdown' }, {
     sources = {
         { name = 'spell', max_item_count = 3 },
         { name = 'buffer' },
-        { name = 'path' },
+        { name = 'path', max_item_count = 5 },
         { name = 'ultisnips' },
+        { name = 'omni' },
     },
 })
 
@@ -68,6 +69,7 @@ cmp.setup({
                 latex_symbols = '[LaTeX]',
                 cmp_tabnine = '[TN]',
                 spell = '[Spell]',
+                omni = '[Omni]',
             })[entry.source.name]
             return vim_item
         end,

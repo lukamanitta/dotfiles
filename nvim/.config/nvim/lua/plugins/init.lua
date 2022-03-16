@@ -161,7 +161,7 @@ return require('packer').startup({
                 end,
             },
             {
-                'xiyaowong/nvim-cursorword',
+                'lukamanitta/nvim-cursorword',
                 config = function()
                     require('plugins.cursorword')
                 end,

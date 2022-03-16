@@ -97,6 +97,7 @@ I.comp_types = {
     Spell = I.general.Pencil,
     Tabnine = I.companies.Tabnine,
     Copilot = I.companies.Github,
+    Omni = '',
 }
 
 I.lsp = {
