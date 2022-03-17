@@ -6,11 +6,10 @@ local comp_icons = require('assets.icons').comp_types
 
 cmp.setup.filetype({ 'markdown' }, {
     sources = {
+        { name = 'ultisnips' },
+        { name = 'path', max_item_count = 5 },
         { name = 'spell', max_item_count = 3 },
         { name = 'buffer' },
-        { name = 'path', max_item_count = 5 },
-        { name = 'ultisnips' },
-        { name = 'omni' },
     },
 })
 
@@ -21,6 +20,7 @@ cmp.setup({
     snippet = {
         expand = function(args)
             vim.fn['UltiSnips#Anon'](args.body)
+            -- require('luasnip').lsp_expand(args.body)
         end,
     },
     mapping = {
@@ -37,15 +37,14 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.confirm({ select = true }), -- Control-Space to confirm
     },
     sources = cmp.config.sources({
+        { name = 'ultisnips' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'path' },
         { name = 'cmp_tabnine' },
-        { name = 'ultisnips' },
+        { name = 'buffer', keyword_length = 5, max_item_count = 5 },
         { name = 'omni' },
-    }, {
-        { name = 'buffer' },
-    }),
+    }, {}),
     formatting = {
         format = function(entry, vim_item)
             if entry.source.name == 'cmp_tabnine' then
@@ -64,6 +63,7 @@ cmp.setup({
                 buffer = '[Buffer]',
                 path = '[Path]',
                 nvim_lsp = '[LSP]',
+                ultisnips = '[UltiSnips]',
                 luasnip = '[LuaSnip]',
                 nvim_lua = '[Lua]',
                 latex_symbols = '[LaTeX]',

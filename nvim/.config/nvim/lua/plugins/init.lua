@@ -52,9 +52,9 @@ return require('packer').startup({
 
             -- Objects and Movements
             {
-                'terrortylor/nvim-comment',
+                'numToStr/Comment.nvim',
                 config = function()
-                    require('plugins.nvim_comment')
+                    require('plugins.comment')
                 end,
             },
             {
