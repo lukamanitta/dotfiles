@@ -6,6 +6,7 @@ local comp_icons = require('assets.icons').comp_types
 
 cmp.setup.filetype({ 'markdown' }, {
     sources = {
+        { name = 'nvim_lsp' },
         { name = 'ultisnips' },
         { name = 'path', max_item_count = 5 },
         { name = 'spell', max_item_count = 3 },

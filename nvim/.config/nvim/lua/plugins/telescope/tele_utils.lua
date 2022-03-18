@@ -4,7 +4,6 @@ local fn = vim.fn
 
 local T = {}
 
--- hello_world
 function T.responsive_layout(opts)
     opts = opts or {}
     if fn.winwidth(0) < 120 then

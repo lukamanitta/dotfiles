@@ -12,10 +12,9 @@ g.mapleader = ' '
 
 -- Map jk to leave ins mode
 map('i', 'jk', '<Esc>', silentnoremap)
--- Leave ins mode in terminal because unmapping doesn't fucking work for fucking lazygit
--- map('t', '<Esc>', '<C-\\><C-n>')
 
-map('', ';', ':', silentnoremap)
+-- map('', ';', ':', silentnoremap)
+cmd('nnoremap ; :') -- cmdline is hidden until another key is pressed unless this is done in viml
 
 -- Reload config
 map('n', '<leader>config', ':Reload<CR>')
@@ -49,6 +48,14 @@ cmd('let g:copilot_no_tab_map = v:true')
 -- Lazygit
 map('n', '<leader>git', ':LazyGit<CR>')
 
+-- zk
+map('n', '<leader>zkcd', ':ZkCd<CR>')
+-- map('n', '<leader>zkn', ':ZkNew { title = "" }<LEFT><LEFT><LEFT>')
+cmd('nnoremap <leader>zkn :ZkNew { title = "" }<LEFT><LEFT><LEFT>') -- cmd line is hidden until another key is pressed unless this is done in viml
+map('v', '<leader>zkn', "'<,'>ZkNewFromContentSelection<CR>")
+map('n', '<leader>zkf', ':ZkNotes<CR>')
+map('n', '<leader>zkt', ':ZkTags<CR>')
+
 -- Hop.nvim
 map(
     'n',
@@ -81,10 +88,6 @@ map(
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
 )
 map('n', '<leader>w', ':HopWord<CR>', { silent = true })
-
--- Bufferline
---
-map('n', '<leader>bj', ':BufferLinePick<CR>')
 
 -- TODO: Make this prettier
 -- Telescope
