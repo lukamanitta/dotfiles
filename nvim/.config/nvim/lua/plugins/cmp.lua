@@ -5,13 +5,14 @@ local tabnine = require('cmp_tabnine.config')
 local comp_icons = require('assets.icons').comp_types
 
 cmp.setup.filetype({ 'markdown' }, {
-    sources = {
+    sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'ultisnips' },
-        { name = 'path', max_item_count = 5 },
         { name = 'spell', max_item_count = 3 },
         { name = 'buffer' },
-    },
+    }, {
+        { name = 'path', max_item_count = 5 },
+    }),
 })
 
 cmp.setup({
@@ -41,11 +42,12 @@ cmp.setup({
         { name = 'ultisnips' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
-        { name = 'path' },
         { name = 'cmp_tabnine' },
         { name = 'buffer', keyword_length = 5, max_item_count = 5 },
         { name = 'omni' },
-    }, {}),
+    }, {
+        { name = 'path' },
+    }),
     formatting = {
         format = function(entry, vim_item)
             if entry.source.name == 'cmp_tabnine' then
