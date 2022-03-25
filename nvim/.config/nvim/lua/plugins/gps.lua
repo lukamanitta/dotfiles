@@ -9,24 +9,72 @@ require('nvim-gps').setup({
         ['container-name'] = comp_icons.Struct .. ' ', -- Containers (example: lua tables)
         ['tag-name'] = comp_icons.Tag .. ' ', -- Tags (example: html tags)
     },
-    -- Add custom configuration per language or
-    -- Disable the plugin for a language
-    -- Any language not disabled here is enabled by default
-    -- languages = {
-    -- ["bash"] = false, -- disables nvim-gps for bash
-    -- ["go"] = false,   -- disables nvim-gps for golang
-    -- ["ruby"] = {
-    --      separator = '|', -- Overrides default separator with '|'
-    --	icons = {
-    --	        -- Default icons not specified in the lang config
-    --		-- will fallback to the default value
-    --		-- "container-name" will fallback to default because it's not set
-    --		["function-name"] = '',    -- to ensure empty values, set an empty string
-    --		["tag-name"] = ''
-    --		["class-name] = '::'",
-    --		["method-name"] = '#',
-    --	}
-    --}
-    -- },
+
+    languages = {
+        -- Some languages have custom icons
+        ['json'] = {
+            icons = {
+                ['array-name'] = comp_icons.Array .. ' ',
+                ['object-name'] = comp_icons.Object .. ' ',
+                ['string-name'] = comp_icons.String .. ' ',
+                ['number-name'] = comp_icons.Value .. ' ',
+                ['boolean-name'] = comp_icons.Boolean .. ' ',
+                ['null-name'] = comp_icons.Null .. ' ',
+            },
+        },
+        ['toml'] = {
+            icons = {
+                ['table-name'] = comp_icons.Object .. ' ',
+                ['array-name'] = comp_icons.Array .. ' ',
+                ['string-name'] = comp_icons.String .. ' ',
+                ['number-name'] = comp_icons.Value .. ' ',
+                ['boolean-name'] = comp_icons.Boolean .. ' ',
+                ['null-name'] = comp_icons.Null .. ' ',
+                ['date-name'] = comp_icons.Date .. ' ',
+                ['date-time-name'] = comp_icons.DateTime .. ' ',
+                ['float-name'] = comp_icons.Float .. ' ',
+                ['inline-table-name'] = comp_icons.Object .. ' ',
+                ['integer-name'] = comp_icons.Value .. ' ',
+                ['time-name'] = comp_icons.Time .. ' ',
+            },
+        },
+        ['verilog'] = {
+            icons = {
+                ['module-name'] = comp_icons.Module .. ' ',
+            },
+        },
+        ['yaml'] = {
+            icons = {
+                ['mapping-name'] = comp_icons.Object .. ' ',
+                ['sequence-name'] = comp_icons.Array .. ' ',
+                ['null-name'] = comp_icons.Null .. ' ',
+                ['boolean-name'] = comp_icons.Boolean .. ' ',
+                ['string-name'] = comp_icons.String .. ' ',
+                ['number-name'] = comp_icons.Value .. ' ',
+                ['float-name'] = comp_icons.Float .. ' ',
+                ['integer-name'] = comp_icons.Value .. ' ',
+            },
+        },
+        ['yang'] = {
+            icons = {
+                ['module-name'] = comp_icons.Module .. ' ',
+                ['augment-path'] = ' ',
+                ['container-name'] = ' ',
+                ['grouping-name'] = ' ',
+                ['typedef-name'] = ' ',
+                ['identity-name'] = ' ',
+                ['list-name'] = '﬘ ',
+                ['leaf-list-name'] = ' ',
+                ['leaf-name'] = ' ',
+                ['action-name'] = ' ',
+            },
+        },
+        ['ruby'] = {
+            icons = {
+                ['class-name'] = '::',
+                ['method-name'] = '#',
+            },
+        },
+    },
     separator = ' ' .. general_icons.CaretRight .. ' ',
 })

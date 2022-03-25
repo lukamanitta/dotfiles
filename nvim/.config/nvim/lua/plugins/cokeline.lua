@@ -31,20 +31,20 @@ require('cokeline').setup({
         cycle_prev_next = true, --  true | false,
     },
 
-    -- sidebar = {
-    --     filetype = 'NvimTree',
-    --     components = {
-    --         {
-    --             text = ' ',
-    --             fg = get_hex('Normal', 'fg'),
-    --             bg = get_hex('StatusLine', 'bg'),
-    --             style = 'bold',
-    --         },
-    --     },
-    -- },
+    sidebar = {
+        filetype = 'NvimTree',
+        components = {
+            {
+                text = ' ',
+                fg = get_hex('Normal', 'fg'),
+                bg = get_hex('StatusLine', 'bg'),
+                style = 'bold',
+            },
+        },
+    },
 
     rendering = {
-        max_buffer_width = 20,
+        max_buffer_width = 30,
     },
 
     default_hl = {
@@ -64,6 +64,9 @@ require('cokeline').setup({
             text = '',
             fg = get_hex('ColorColumn', 'bg'),
             bg = get_hex('Normal', 'bg'),
+            truncation = {
+                priority = 1,
+            },
         },
         {
             text = function(buffer)
@@ -83,11 +86,18 @@ require('cokeline').setup({
             style = function(buffer)
                 return buffer.is_focused and 'bold' or nil
             end,
+            truncation = {
+                priority = 0,
+                direction = 'left',
+            },
         },
         {
             text = '',
             fg = get_hex('ColorColumn', 'bg'),
             bg = get_hex('Normal', 'bg'),
+            truncation = {
+                priority = 1,
+            },
         },
     },
 })
