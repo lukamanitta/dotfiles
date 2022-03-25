@@ -1,24 +1,3 @@
-# Add course (regex match AAAA1111 from path, take last match)
-
-snippet note
----
-course: ${1:`pwd | egrep -o '[A-Z]{4}[0-9]{4}' | tail -1`}
-date: ${2:`date +%Y/%m/%d`}
----
-
-# $0
-endsnippet
-
-snippet zk
----
-date: ${1:`date +%Y/%m/%d`}
-tags: #$2
----
-
-# $0
-endsnippet
-
-# Dafny snippets
 snippet method
 method ${1:MethodName}(${2:arg: type}) returns (${3:returnVal: type})
   requires ${4:precondition}
