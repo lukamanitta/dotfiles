@@ -14,7 +14,7 @@ g.mapleader = ' '
 map('i', 'jk', '<Esc>', silentnoremap)
 
 -- map('', ';', ':', silentnoremap)
-cmd('nnoremap ; :') -- cmdline is hidden until another key is pressed unless this is done in viml
+cmd('map ; :') -- cmdline is hidden until another key is pressed unless this is done in viml
 
 -- Reload config
 map('n', '<leader>config', ':Reload<CR>')
