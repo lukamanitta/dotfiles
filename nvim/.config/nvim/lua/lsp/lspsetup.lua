@@ -89,7 +89,17 @@ lsp_installer.on_server_ready(function(server)
         config.filetypes = { 'html', 'css', 'svelte', 'javascriptreact' }
     end
 
-    -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
-    server:setup(config)
+    if server.name == 'zk' then
+        -- local zk_opts = require('plugins.zk')
+        require('zk').setup({
+            lsp = {
+                config = vim.tbl_extend('force', server:get_default_options(), config),
+            },
+        })
+    else
+        -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+        server:setup(config)
+    end
+
     vim.cmd([[ do User LspAttachBuffers ]])
 end)
