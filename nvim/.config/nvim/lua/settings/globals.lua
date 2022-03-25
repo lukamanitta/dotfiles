@@ -3,7 +3,8 @@ local apply_globals = require('utils.config').apply_globals
 
 local vars = {}
 
-vars.colorscheme = 'tokyonight'
+-- Available colorschemes: 'tokyonight', 'ayu', 'kanagawa'
+vars.colorscheme = 'kanagawa'
 
 cmd('filetype plugin indent on')
 
