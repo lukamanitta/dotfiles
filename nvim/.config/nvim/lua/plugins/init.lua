@@ -22,256 +22,274 @@ return require('packer').startup({
             -- Packer can manage itself as an optional plugin
             'wbthomason/packer.nvim',
 
-             -- File explorer
-             {
-                 'kyazdani42/nvim-tree.lua',
-                 commit = 'd8bf1adcdcc6a8a66c3dce5c29a4ef06e21dc844',
-                 cmd = { 'NvimTreeToggle' },
-                 config = function()
-                     require('plugins.nvimtree')
-                 end,
-             },
+            -- File explorer
+            {
+                'kyazdani42/nvim-tree.lua',
+                commit = 'd8bf1adcdcc6a8a66c3dce5c29a4ef06e21dc844',
+                cmd = { 'NvimTreeToggle' },
+                config = function()
+                    require('plugins.nvimtree')
+                end,
+            },
 
-             -- Finder
-             {
-                 'nvim-telescope/telescope.nvim',
-                 -- cmd = { 'Telescope' },
-                 config = function()
-                     require('plugins.telescope')
-                 end,
-                 requires = {
-                     'nvim-lua/plenary.nvim',
-                     'nvim-lua/popup.nvim',
-                 },
-             },
-             {
-                 'nvim-telescope/telescope-fzf-native.nvim',
-                 run = 'make',
-                 require = { 'nvim-telescope/telescope.nvim' },
-             },
+            -- Finder
+            {
+                'nvim-telescope/telescope.nvim',
+                -- cmd = { 'Telescope' },
+                config = function()
+                    require('plugins.telescope')
+                end,
+                requires = {
+                    'nvim-lua/plenary.nvim',
+                    'nvim-lua/popup.nvim',
+                },
+            },
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                run = 'make',
+                require = { 'nvim-telescope/telescope.nvim' },
+            },
 
-             -- Objects and Movements
-             {
-                 'numToStr/Comment.nvim',
-                 config = function()
-                     require('plugins.comment')
-                 end,
-             },
-             {
-                 'lukas-reineke/indent-blankline.nvim',
-                 config = function()
-                     require('plugins.indent_blankline')
-                 end,
-             },
-             { 'chun-yang/auto-pairs' },
-             { 'tpope/vim-surround' },
-             { 'chaoren/vim-wordmotion' },
-             { 'andymass/vim-matchup' },
-             {
-                 'phaazon/hop.nvim',
-                 branch = 'v1',
-                 config = function()
-                     require('plugins.hop')
-                 end,
-             },
+            -- Objects and Movements
+            {
+                'numToStr/Comment.nvim',
+                config = function()
+                    require('plugins.comment')
+                end,
+            },
+            {
+                'lukas-reineke/indent-blankline.nvim',
+                config = function()
+                    require('plugins.indent_blankline')
+                end,
+            },
+            { 'chun-yang/auto-pairs' },
+            { 'tpope/vim-surround' },
+            { 'chaoren/vim-wordmotion' },
+            { 'andymass/vim-matchup' },
+            {
+                'phaazon/hop.nvim',
+                branch = 'v1',
+                config = function()
+                    require('plugins.hop')
+                end,
+            },
 
-             -- Lsp & Completions
-             { 'williamboman/nvim-lsp-installer' },
-             { 'neovim/nvim-lspconfig' },
-             {
-                 'folke/trouble.nvim',
-                 config = function()
-                     require('lsp.trouble')
-                 end,
-             },
-             { 'tami5/lspsaga.nvim' },
-             {
-                 'nvim-treesitter/playground',
-                 cmd = { 'TSPlaygroundToggle' },
-             },
-             {
-                 'nvim-treesitter/nvim-treesitter',
-                 run = { ':TSInstall maintained', ':TSUpdate' },
-                 config = function()
-                     require('plugins.treesitter')
-                 end,
-                 requires = {
-                     'windwp/nvim-ts-autotag',
-                     'RRethy/nvim-treesitter-endwise',
-                     'JoosepAlviste/nvim-ts-context-commentstring',
-                     'yioneko/nvim-yati',
-                 },
-             },
-             {
-                 'jose-elias-alvarez/null-ls.nvim',
-                 config = function()
-                     require('plugins.null-ls')
-                 end,
-             },
-             {
-                 'hrsh7th/nvim-cmp',
-                 config = function()
-                     require('plugins.cmp')
-                 end,
-                 requires = {
-                     'hrsh7th/cmp-nvim-lsp',
-                     'hrsh7th/cmp-nvim-lua',
-                     'hrsh7th/cmp-buffer',
-                     'hrsh7th/cmp-path',
-                     'hrsh7th/cmp-omni',
-                     'SirVer/ultisnips',
-                     'quangnguyen30192/cmp-nvim-ultisnips',
-                     'f3fora/cmp-spell',
-                     { 'tzachar/cmp-tabnine', run = './install.sh' },
-                 },
-             },
-             { 'github/copilot.vim' },
+            -- Lsp & Completions
+            { 'williamboman/nvim-lsp-installer' },
+            { 'neovim/nvim-lspconfig' },
+            {
+                'folke/trouble.nvim',
+                config = function()
+                    require('lsp.trouble')
+                end,
+            },
+            { 'tami5/lspsaga.nvim' },
+            {
+                'nvim-treesitter/playground',
+                cmd = { 'TSPlaygroundToggle' },
+            },
+            {
+                'nvim-treesitter/nvim-treesitter',
+                run = { ':TSInstall maintained', ':TSUpdate' },
+                config = function()
+                    require('plugins.treesitter')
+                end,
+                requires = {
+                    'windwp/nvim-ts-autotag',
+                    'RRethy/nvim-treesitter-endwise',
+                    'JoosepAlviste/nvim-ts-context-commentstring',
+                    'yioneko/nvim-yati',
+                },
+            },
+            {
+                'jose-elias-alvarez/null-ls.nvim',
+                config = function()
+                    require('plugins.null-ls')
+                end,
+            },
+            {
+                'hrsh7th/nvim-cmp',
+                config = function()
+                    require('plugins.cmp')
+                end,
+                requires = {
+                    'hrsh7th/cmp-nvim-lsp',
+                    'hrsh7th/cmp-nvim-lua',
+                    'hrsh7th/cmp-buffer',
+                    'hrsh7th/cmp-path',
+                    'hrsh7th/cmp-omni',
+                    'SirVer/ultisnips',
+                    'quangnguyen30192/cmp-nvim-ultisnips',
+                    'f3fora/cmp-spell',
+                    { 'tzachar/cmp-tabnine', run = './install.sh' },
+                },
+            },
+            { 'github/copilot.vim' },
 
-             -- Language specific styling
-             { 'styled-components/vim-styled-components' },
-             { 'Vimjas/vim-python-pep8-indent' },
-             { 'benknoble/vim-dafny' },
+            -- Language specific styling
+            { 'styled-components/vim-styled-components' },
+            { 'Vimjas/vim-python-pep8-indent' },
+            { 'benknoble/vim-dafny' },
 
-             -- UI
-             -- ryanoasis/vim-devicons'
-             { 'kyazdani42/nvim-web-devicons' },
-             { 'nvim-lualine/lualine.nvim' },
-             -- {
-             --     'akinsho/bufferline.nvim',
-             --     config = function()
-             --         require('plugins.bufferline')
-             --     end,
-             -- },
-             {
-                 'noib3/nvim-cokeline',
-                 -- config = function()
-                 --     require('plugins.cokeline')
-                 -- end,
-             },
-             {
-                 'rcarriga/nvim-notify',
-                 config = function()
-                     require('plugins.notify')
-                 end,
-             },
-             {
-                 'norcalli/nvim-colorizer.lua',
-                 config = function()
-                     require('plugins.colorizer')
-                 end,
-             },
-             {
-                 'lukamanitta/nvim-cursorword',
-                 config = function()
-                     require('plugins.cursorword')
-                 end,
-             },
-             {
-                 'SmiteshP/nvim-gps',
-                 config = function()
-                     require('plugins.gps')
-                 end,
-             },
-             {
-                 'folke/which-key.nvim',
-                 config = function()
-                     require('plugins.which-key')
-                 end,
-             },
+            -- UI
+            -- ryanoasis/vim-devicons'
+            { 'kyazdani42/nvim-web-devicons' },
+            { 'nvim-lualine/lualine.nvim' },
+            {
+                'noib3/nvim-cokeline',
+                -- Config is sourced after colourscheme is loaded, see plugins.colorschemes/
+            },
+            {
+                'rcarriga/nvim-notify',
+                config = function()
+                    require('plugins.notify')
+                end,
+            },
+            {
+                'norcalli/nvim-colorizer.lua',
+                config = function()
+                    require('plugins.colorizer')
+                end,
+            },
+            {
+                'lukamanitta/nvim-cursorword',
+                config = function()
+                    require('plugins.cursorword')
+                end,
+            },
+            {
+                'SmiteshP/nvim-gps',
+                config = function()
+                    require('plugins.gps')
+                end,
+            },
+            {
+                'folke/which-key.nvim',
+                config = function()
+                    require('plugins.which-key')
+                end,
+            },
+            {
+                'lewis6991/gitsigns.nvim',
+                config = function()
+                    require('plugins.gitsigns')
+                end,
+            },
+            {
+                'j-hui/fidget.nvim',
+                config = function()
+                    require('plugins.fidget')
+                end,
+            },
 
-             -- Themes
-             -- {
-             --     'catppuccin/nvim',
-             --     config = function()
-             --         require('plugins.colorschemes.catppuccin')
-             --     end,
-             -- },
-             { 'folke/tokyonight.nvim' },
-             { 'Shatur/neovim-ayu' },
+            -- Themes
+            -- {
+            --     'catppuccin/nvim',
+            --     config = function()
+            --         require('plugins.colorschemes.catppuccin')
+            --     end,
+            -- },
+            { 'folke/tokyonight.nvim' },
+            { 'Shatur/neovim-ayu' },
+            { 'rebelot/kanagawa.nvim' },
 
-             -- Other
-             {
-                 'kdheepak/lazygit.nvim',
-                 cmd = 'LazyGit',
-                 config = function()
-                     require('plugins.lazygit')
-                 end,
-             },
-             {
-                 'voldikss/vim-floaterm',
-                 cmd = { 'FloatermNew', 'FloatermToggle' },
-             },
-             {
-                 'AckslD/nvim-neoclip.lua',
-                 config = function()
-                     require('plugins.neoclip')
-                 end,
-             },
-             { 'famiu/bufdelete.nvim', cmd = { 'Bdelete', 'Bwipeout' } },
-             {
-                 'tpope/vim-fugitive',
-                 cmd = {
-                     'Git',
-                     'Gedit',
-                     'Gsplit',
-                     'Gdiffsplitt',
-                     'Gread',
-                     'Gwrite',
-                     'Ggrep',
-                     'GMove',
-                     'GRename',
-                     'GDelete',
-                     'GRemove',
-                     'GBrowse',
-                 },
-             },
-             { 'famiu/nvim-reload', cmd = { 'Reload', 'Restart' } },
-             { 'lewis6991/impatient.nvim' },
+            -- Other
+            {
+                'kdheepak/lazygit.nvim',
+                cmd = 'LazyGit',
+                config = function()
+                    require('plugins.lazygit')
+                end,
+            },
+            {
+                'voldikss/vim-floaterm',
+                cmd = { 'FloatermNew', 'FloatermToggle' },
+            },
+            {
+                'AckslD/nvim-neoclip.lua',
+                config = function()
+                    require('plugins.neoclip')
+                end,
+            },
+            { 'famiu/bufdelete.nvim', cmd = { 'Bdelete', 'Bwipeout' } },
+            {
+                'tpope/vim-fugitive',
+                cmd = {
+                    'Git',
+                    'Gedit',
+                    'Gsplit',
+                    'Gdiffsplitt',
+                    'Gread',
+                    'Gwrite',
+                    'Ggrep',
+                    'GMove',
+                    'GRename',
+                    'GDelete',
+                    'GRemove',
+                    'GBrowse',
+                },
+            },
+            { 'famiu/nvim-reload', cmd = { 'Reload', 'Restart' } },
+            { 'lewis6991/impatient.nvim' },
+            { 'tpope/vim-repeat' },
+            {
+                'mtth/scratch.vim',
+                config = function()
+                    require('plugins.scratch')
+                end,
+            },
 
-             -- Notes
-             {
-                 'preservim/vim-markdown',
-                 ft = { 'markdown' },
-                 config = function()
-                     require('plugins.markdown')
-                 end,
-             },
-             {
-                 'KeitaNakamura/tex-conceal.vim',
-                 ft = { 'markdown' },
-                 config = function()
-                     require('plugins.tex-conceal')
-                 end,
-             },
-             {
-                 'Furkanzmc/zettelkasten.nvim',
-                 config = function()
-                     require('plugins.zettelkasten')
-                 end,
-             },
-             {
-                 'mickael-menu/zk-nvim',
-                 config = function()
-                     require('plugins.zk')
-                 end,
-             },
-             -- {
-             --     'jakewvincent/mkdnflow.nvim',
-             --     ft = { 'markdown' },
-             --     config = function()
-             --         require('plugins.mkdnflow')
-             --     end,
-             -- },
-             {
-                 'Pocco81/TrueZen.nvim',
-                 ft = { 'markdown' },
-                 config = function()
-                     require('plugins.truezen')
-                 end,
-             },
+            -- Notes
+            {
+                'preservim/vim-markdown',
+                ft = { 'markdown' },
+                config = function()
+                    require('plugins.markdown')
+                end,
+            },
+            {
+                'KeitaNakamura/tex-conceal.vim',
+                ft = { 'markdown' },
+                config = function()
+                    require('plugins.tex-conceal')
+                end,
+            },
+            {
+                'Furkanzmc/zettelkasten.nvim',
+                config = function()
+                    require('plugins.zettelkasten')
+                end,
+            },
+            {
+                'mickael-menu/zk-nvim',
+                -- config = function()
+                --     require('plugins.zk')
+                -- end,
+            },
+            -- {
+            --     'jakewvincent/mkdnflow.nvim',
+            --     ft = { 'markdown' },
+            --     config = function()
+            --         require('plugins.mkdnflow')
+            --     end,
+            -- },
+            {
+                'Pocco81/TrueZen.nvim',
+                ft = { 'markdown' },
+                config = function()
+                    require('plugins.truezen')
+                end,
+            },
+            {
+                'dhruvasagar/vim-table-mode',
+                config = function()
+                    vim.g.table_mode_map_prefix = '<leader>tm'
+                end,
+            },
 
-             -- My Plugins
-             { 'lukamanitta/naturally.nvim' },
+            -- My Plugins
+            { 'lukamanitta/naturally.nvim' },
         })
     end,
     config = {
