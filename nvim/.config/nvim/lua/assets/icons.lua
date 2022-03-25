@@ -34,6 +34,7 @@ I.general = {
 
     Circle = '',
     CircleSmall = '●',
+    CircleOutline = '',
 
     Bar = '▎',
     BarThick = '▊',
@@ -67,37 +68,55 @@ I.companies = {
     GitHub = '',
 }
 
-I.comp_types = {
-    Color = '',
+I.comp_types = { -- Arranged approximately in order of abstraction (lo - hi)
     Constant = '',
-    EnumMember = '',
-    Field = '',
-    Folder = I.filesystem.FolderOpen .. '',
-    Function = '',
-    Keyword = '',
-    Method = '',
-    Module = '',
-    Property = '',
-    Struct = '',
     Text = '',
     Value = '',
+    Float = '',
+    String = '',
+    Boolean = '',
+    Null = I.general.CircleOutline,
+    Operator = '',
+    Color = '',
+
+    Object = '',
+    Array = '',
+    Struct = '',
+
+    Function = '',
+    Keyword = '',
     Variable = '',
-    Constructor = '',
-    Class = 'ﴯ',
-    Interface = '',
-    Unit = '',
+
     Enum = '',
-    Snippet = '',
+    EnumMember = '',
+
+    Class = 'ﴯ',
+    Constructor = '',
+    Property = '',
+    Field = '',
+    Method = '',
+    TypeParameter = '',
+
+    Interface = '',
+    Module = '',
+
+    Unit = '',
+    Date = '',
+    DateTime = '',
+    Time = '',
+
+    Folder = I.filesystem.FolderOpen .. '',
     File = I.filesystem.File,
     Reference = I.filesystem.FileSymlink,
+
     Event = '',
-    Operator = '',
-    TypeParameter = '',
     Tag = '',
+
     Spell = I.general.Pencil,
     Tabnine = I.companies.Tabnine,
     Copilot = I.companies.Github,
     Omni = '',
+    Snippet = '',
 }
 
 I.lsp = {
