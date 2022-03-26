@@ -34,11 +34,11 @@ null_ls.setup({
         null_ls.builtins.formatting.markdownlint,
 
         null_ls.builtins.formatting.stylua.with({
-            -- extra_args = {
-            --     '--config-path',
-            --     fn.expand('~/.config/nvim/.stylua.toml'),
-            --     -- '--search-parent-directories',
-            -- },
+            extra_args = {
+                '--config-path',
+                fn.expand('~/.config/nvim/.stylua.toml'),
+                --     -- '--search-parent-directories',
+            },
         }),
 
         null_ls.builtins.formatting.clang_format.with({
