@@ -46,6 +46,7 @@ I.general = {
     PlusThin = '+',
 
     CheckThick = '',
+    CheckCircle = '﫠',
     Square = '■',
     Exclamation = '',
     Bug = '',
@@ -96,6 +97,7 @@ I.comp_types = { -- Arranged approximately in order of abstraction (lo - hi)
     Field = '',
     Method = '',
     TypeParameter = '',
+    Tag = '',
 
     Interface = '',
     Module = '',
@@ -110,7 +112,6 @@ I.comp_types = { -- Arranged approximately in order of abstraction (lo - hi)
     Reference = I.filesystem.FileSymlink,
 
     Event = '',
-    Tag = '',
 
     Spell = I.general.Pencil,
     Tabnine = I.companies.Tabnine,

@@ -1,5 +1,6 @@
 local cmd = vim.cmd
 local get_hi_group_bg = require('utils.config').get_hi_group_bg
+local general_icons = require('assets.icons').general
 
 require('trouble').setup({
     position = 'bottom',
@@ -34,7 +35,7 @@ require('trouble').setup({
     auto_preview = false, -- automatically preview the location of the diagnostic
     auto_fold = false, -- automatically fold a file trouble list at creation
     signs = {
-        other = '﫠',
+        other = general_icons.CheckCircle,
     },
     use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
 })

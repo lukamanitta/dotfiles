@@ -10,7 +10,7 @@ local lsp_icons = require('assets.icons').lsp
 local general_icons = require('assets.icons').general
 
 local colorscheme = require('settings.globals').colourscheme
-local theme, _ = colorscheme:match('(.+)_(.+)')
+local theme, _ = colorscheme:match('(.+)_(.+)') -- Remove colourscheme modifier
 
 -- Color table for highlights
 local colors = {
