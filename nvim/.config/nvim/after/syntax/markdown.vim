@@ -16,4 +16,10 @@ hi! link mkdLineBreak Comment
 
 syn match mkdLineBreak '  $' conceal cchar=
 
+hi mkdStrikethrough gui=strikethrough cterm=strikethrough
+
+call matchadd('mkdStrikethrough', '\~\~\zs.\+\ze\~\~')
+call matchadd('Conceal',  '\~\~\ze.\+\~\~', 10, -1, {'conceal':'~'})
+call matchadd('Conceal',  '\~\~.\+\zs\~\~\ze', 10, -1, {'conceal':'~'})
+
 set conceallevel=2
