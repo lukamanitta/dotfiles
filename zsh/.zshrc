@@ -1,20 +1,19 @@
 #!/usr/bin/env zsh
 
 source $HOME/.local_env_vars
-export ZSH="$HOME/.oh-my-zsh"
+export ZSHCONFIG="$HOME/.config/zsh"
+export ZSH_PLUGINS="$HOME/.config/zsh/plugins"
+
 export PATH="$HOME/.asdf/installs/python/3.10.0/bin:$PATH"
+source $HOME/.asdf/asdf.sh
+
+setopt auto_cd
+
+# Start starship prompt
+eval "$(starship init zsh)"
 
 ZSH_DISABLE_COMPFIX=true
 
-plugins=(
-    git
-    zsh-z
-    zsh-syntax-highlighting
-    zsh-autosuggestions
-    asdf
-)
-
-source $ZSH/oh-my-zsh.sh
 # source ~/.asdf/plugins/java/set-java-home.zsh
 
 #Syntax highlighting settings
@@ -29,7 +28,6 @@ else
 fi
 
 alias zshconfig="source $HOME/.zshrc"
-alias ohmyzsh="source $HOME/.oh-my-zsh"
 alias ls="lsd"
 alias sourcevenv="source venv/bin/activate && echo 'Enter "deactivate" to leave venv'"
 alias createvenv="python3 -m venv venv"
@@ -43,14 +41,30 @@ else
     export EDITOR="nvim"
 fi
 
-source $HOME/.config/zsh/functions.zsh
+source $ZSHCONFIG/functions.zsh
 
-# export PATH="/Library/TeX/texbin:$PATH"
+# Completions
+fpath=(${ASDF_DIR}/completions $fpath)
+autoload -Uz compinit && compinit
 
-#PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig
+# Plugins
 
-# Start starship prompt
-eval "$(starship init zsh)"
+#       fasd
+export PATH="$ZSH_PLUGINS/fasd:$PATH"
+eval "$(fasd --init auto)"
+
+alias nv="f -e nvim"
+alias v="f -e vim"
+
+#       zsh-syntax-highlighting
+export PATH="$ZSH_PLUGINS/zsh-syntax-highlighting:$PATH"
+source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+#       zsh-autosuggestions
+export PATH="$ZSH_PLUGINS/zsh-autosuggestions:$PATH"
+source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+bindkey '^j' autosuggest-accept
 
 # MyStay International config
 test -f ~/.msirc && source ~/.msirc
