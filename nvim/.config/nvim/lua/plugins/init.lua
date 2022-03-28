@@ -123,6 +123,8 @@ return require('packer').startup({
                     'quangnguyen30192/cmp-nvim-ultisnips',
                     'f3fora/cmp-spell',
                     { 'tzachar/cmp-tabnine', run = './install.sh' },
+                    'kdheepak/cmp-latex-symbols',
+                    'davidsierradz/cmp-conventionalcommits',
                 },
             },
             { 'github/copilot.vim' },

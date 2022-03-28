@@ -118,6 +118,8 @@ I.comp_types = { -- Arranged approximately in order of abstraction (lo - hi)
     Copilot = I.companies.Github,
     Omni = '',
     Snippet = '',
+    Latex = '',
+    Commit = '',
 }
 
 I.lsp = {

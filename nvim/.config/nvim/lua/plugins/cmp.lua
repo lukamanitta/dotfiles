@@ -8,10 +8,18 @@ cmp.setup.filetype({ 'markdown' }, {
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'ultisnips' },
+        { name = 'latex_symbols', max_item_count = 10 },
         { name = 'spell', max_item_count = 3 },
         { name = 'buffer' },
     }, {
         { name = 'path', max_item_count = 5 },
+    }),
+})
+
+cmp.setup.filetype({ 'gitcommit' }, {
+    sources = cmp.config.sources({
+        { name = 'conventionalcommits' },
+        { name = 'spell', max_item_count = 3 },
     }),
 })
 
@@ -52,14 +60,17 @@ cmp.setup({
         format = function(entry, vim_item)
             if entry.source.name == 'cmp_tabnine' then
                 vim_item.kind = 'Tabnine'
-            else
-                if entry.source.name == 'spell' then
-                    vim_item.kind = 'Spell'
-                end
+            elseif entry.source.name == 'spell' then
+                vim_item.kind = 'Spell'
+            elseif entry.source.name == 'latex_symbols' then
+                vim_item.kind = 'Latex'
+            elseif entry.source.name == 'conventionalcommits' then
+                vim_item.kind = 'Commit'
             end
 
             -- Display appropriate icons
-            vim_item.kind = string.format('%s %s', comp_icons[vim_item.kind], vim_item.kind)
+            -- vim_item.kind = string.format('%s %s', comp_icons[vim_item.kind], vim_item.kind)
+            vim_item.kind = string.format('%s', comp_icons[vim_item.kind])
 
             -- Display source of completion
             vim_item.menu = ({
@@ -73,6 +84,7 @@ cmp.setup({
                 cmp_tabnine = '[TN]',
                 spell = '[Spell]',
                 omni = '[Omni]',
+                conventionalcommits = '[Commit]',
             })[entry.source.name]
             return vim_item
         end,
