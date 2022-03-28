@@ -124,7 +124,7 @@ for tabNum = 1, 9 do
 end
 
 local colours = {
-    kawagana = {
+    kanagawa = {
         foreground = '#dcd7ba',
         background = '#1f1f28',
 
@@ -365,7 +365,8 @@ local colours = {
 
 -- TODO: Port all neovim colorschemes to wezterm
 -- local colourscheme = os.getenv('COLOURSCHEME')
-local colourscheme = 'ayu_mirage'
+-- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa
+local colourscheme = 'kanagawa'
 
 cfg.colors = colours[colourscheme]
 
