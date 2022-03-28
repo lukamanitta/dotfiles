@@ -249,6 +249,13 @@ return require('packer').startup({
                 end,
             },
             {
+                'iamcco/markdown-preview.nvim',
+                run = 'cd app && yarn install',
+                config = function()
+                    require('plugins.markdown-preview')
+                end,
+            },
+            {
                 'KeitaNakamura/tex-conceal.vim',
                 ft = { 'markdown' },
                 config = function()
