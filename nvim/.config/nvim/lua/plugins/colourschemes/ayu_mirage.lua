@@ -4,7 +4,7 @@ local cmd = vim.cmd
 
 cmd('set background=dark')
 local colors = require('ayu.colors')
-colors.generate()
+colors.generate(true)
 local statusline_color = colors.panel_border
 
 require('ayu').setup({
