@@ -1,19 +1,19 @@
-local notify = require('notify')
+local notify = require("notify")
 
-local lsp_icons = require('assets.icons').lsp
-local general_icons = require('assets.icons').general
+local lsp_icons = require("assets.icons").lsp
+local general_icons = require("assets.icons").general
 
-vim.notify = require('notify')
+vim.notify = require("notify")
 
 notify.setup({
     -- Animation style (see below for details)
-    stages = 'slide',
+    stages = "slide",
 
     -- Default timeout for notifications
     timeout = 5000,
 
     -- For stages that change opacity this is treated as the highlight behind the window
-    background_colour = 'Normal',
+    background_colour = "Normal",
 
     -- Icons for the different levels
     icons = {

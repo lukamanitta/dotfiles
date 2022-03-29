@@ -1,22 +1,22 @@
-require('catppuccin').setup({
+require("catppuccin").setup({
     transparency = false,
     term_colors = true,
     styles = {
-        comments = 'italic',
-        functions = 'italic',
-        keywords = 'italic',
-        strings = 'NONE',
-        variables = 'NONE',
+        comments = "italic",
+        functions = "italic",
+        keywords = "italic",
+        strings = "NONE",
+        variables = "NONE",
     },
     integrations = {
         treesitter = true,
         native_lsp = {
             enabled = true,
             styles = {
-                errors = 'italic',
-                hints = 'italic',
-                warnings = 'italic',
-                information = 'italic',
+                errors = "italic",
+                hints = "italic",
+                warnings = "italic",
+                information = "italic",
             },
         },
         lsp_trouble = false,

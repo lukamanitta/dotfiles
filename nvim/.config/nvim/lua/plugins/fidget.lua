@@ -1,11 +1,11 @@
-local general_icons = require('assets.icons').general
+local general_icons = require("assets.icons").general
 
-require('fidget').setup({
+require("fidget").setup({
     text = {
-        spinner = 'dots_snake', -- animation shown when tasks are ongoing
+        spinner = "dots_snake", -- animation shown when tasks are ongoing
         done = general_icons.CheckThick, -- character shown when all tasks are complete
-        commenced = 'Started', -- message shown when task starts
-        completed = 'Completed', -- message shown when task completes
+        commenced = "Started", -- message shown when task starts
+        completed = "Completed", -- message shown when task completes
     },
     align = {
         bottom = true, -- align fidgets along bottom edge of buffer
@@ -17,7 +17,7 @@ require('fidget').setup({
         task_decay = 1000, -- how long to keep around completed task, in ms
     },
     window = {
-        relative = 'win', -- where to anchor, either "win" or "editor"
+        relative = "win", -- where to anchor, either "win" or "editor"
         blend = 100, -- &winblend for the window
         zindex = nil, -- the zindex value for the window
     },
@@ -26,13 +26,13 @@ require('fidget').setup({
         stack_upwards = true, -- list of tasks grows upwards
         max_width = 0, -- maximum width of the fidget box
         fidget = function(fidget_name, spinner) -- function to format fidget title
-            return string.format('%s %s', spinner, fidget_name)
+            return string.format("%s %s", spinner, fidget_name)
         end,
         task = function(task_name, message, percentage) -- function to format each task line
             return string.format(
-                '%s%s [%s]',
+                "%s%s [%s]",
                 message,
-                percentage and string.format(' (%s%%)', percentage) or '',
+                percentage and string.format(" (%s%%)", percentage) or "",
                 task_name
             )
         end,

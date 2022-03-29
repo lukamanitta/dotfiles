@@ -1,4 +1,4 @@
-local apply_globals = require('utils.config').apply_globals
+local apply_globals = require("utils.config").apply_globals
 
 apply_globals({
     vim_markdown_conceal = 2,
@@ -12,7 +12,7 @@ apply_globals({
     vim_markdown_autowrite = 1,
     vim_markdown_new_list_item_indent = 0,
     vim_markdown_auto_insert_bullets = 0,
-    vim_markdown_edit_url_in = 'current',
+    vim_markdown_edit_url_in = "current",
 })
 
-vim.cmd('silent map <CR> <Plug>Markdown_EditUrlUnderCursor')
+vim.cmd("silent map <CR> <Plug>Markdown_EditUrlUnderCursor")

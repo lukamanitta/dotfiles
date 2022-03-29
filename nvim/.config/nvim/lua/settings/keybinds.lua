@@ -1,4 +1,4 @@
-local map = require('utils.config').map
+local map = require("utils.config").map
 -- local api = vim.api
 local cmd = vim.cmd
 local g = vim.g
@@ -6,123 +6,123 @@ local g = vim.g
 local silentnoremap = { silent = true, noremap = true }
 
 -- Map <leader> to space
-map('n', '<Space>', '<Nop>')
+map("n", "<Space>", "<Nop>")
 -- Mapleader
-g.mapleader = ' '
+g.mapleader = " "
 
 -- Map jk to leave ins mode
-map('i', 'jk', '<Esc>', silentnoremap)
+map("i", "jk", "<Esc>", silentnoremap)
 
 -- map('', ';', ':', silentnoremap)
-cmd('map ; :') -- cmdline is hidden until another key is pressed unless this is done in viml
+cmd("map ; :") -- cmdline is hidden until another key is pressed unless this is done in viml
 
 -- Reload config
-map('n', '<leader>config', ':Reload<CR>')
+map("n", "<leader>config", ":Reload<CR>")
 
 -- Switch to alternate file
-map('n', '<leader>a', '<C-^>')
+map("n", "<leader>a", "<C-^>")
 
 -- <leader> + direction for window navigation
-map('', '<leader>h', ':wincmd h<CR>')
-map('', '<leader>j', ':wincmd j<CR>')
-map('', '<leader>k', ':wincmd k<CR>')
-map('', '<leader>l', ':wincmd l<CR>')
+map("", "<leader>h", ":wincmd h<CR>")
+map("", "<leader>j", ":wincmd j<CR>")
+map("", "<leader>k", ":wincmd k<CR>")
+map("", "<leader>l", ":wincmd l<CR>")
 
 -- Make capital Y yanking work consistently with other capital letters
-map('n', 'Y', 'y$')
+map("n", "Y", "y$")
 
 -- Keep cursor centered when cycling through search results
-map('n', 'n', 'nzzzv')
-map('n', 'N', 'Nzzzv')
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
 
 -- Clear search highlight
-map('', '//', ':nohlsearch<CR>')
+map("", "//", ":nohlsearch<CR>")
 
 -- Open NvimTree
 -- map('n', '<leader>e', ':NvimTreeToggle<CR>')
 
 -- Open Neotree
 -- :Neotree ACTION SOURCE POSITION TOGGLE DIR REVEAL REVEAL_FILE REVEAL_FORCE_CWD
-map('n', '<leader>e', ':Neotree focus filesystem float toggle reveal<CR>')
-map('n', '<leader>b', ':Neotree focus buffers float toggle reveal<CR>')
+map("n", "<leader>e", ":Neotree focus filesystem float toggle reveal<CR>")
+map("n", "<leader>b", ":Neotree focus buffers float toggle reveal<CR>")
 
 -- Github Copilot
 cmd('imap <silent><script><expr> <C-J> copilot#Accept("")')
-cmd('let g:copilot_no_tab_map = v:true')
+cmd("let g:copilot_no_tab_map = v:true")
 
 -- Lazygit
-map('n', '<leader>git', ':LazyGit<CR>')
+map("n", "<leader>git", ":LazyGit<CR>")
 
 -- zk
-map('n', '<leader>zkcd', ':ZkCd<CR>')
+map("n", "<leader>zkcd", ":ZkCd<CR>")
 -- map('n', '<leader>zkn', ':ZkNew { title = "" }<LEFT><LEFT><LEFT>')
 cmd('nnoremap <leader>zkn :ZkNew { title = "" }<LEFT><LEFT><LEFT>') -- cmd line is hidden until another key is pressed unless this is done in viml
-map('v', '<leader>zkn', "'<,'>ZkNewFromContentSelection<CR>")
-map('n', '<leader>zkf', ':ZkNotes<CR>')
-map('n', '<leader>zkt', ':ZkTags<CR>')
+map("v", "<leader>zkn", "'<,'>ZkNewFromContentSelection<CR>")
+map("n", "<leader>zkf", ":ZkNotes<CR>")
+map("n", "<leader>zkt", ":ZkTags<CR>")
 
 -- Hop.nvim
 map(
-    'n',
-    'f',
+    "n",
+    "f",
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
 )
 map(
-    'n',
-    'F',
+    "n",
+    "F",
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
 )
 map(
-    'o',
-    'f',
+    "o",
+    "f",
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>"
 )
 map(
-    'o',
-    'F',
+    "o",
+    "F",
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>"
 )
 map(
-    '',
-    't',
+    "",
+    "t",
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
 )
 map(
-    '',
-    'T',
+    "",
+    "T",
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
 )
-map('n', '<leader>w', ':HopWord<CR>', { silent = true })
+map("n", "<leader>w", ":HopWord<CR>", { silent = true })
 
 -- TODO: Make this prettier
 -- Telescope
 map(
-    'n',
-    '<leader>ff',
+    "n",
+    "<leader>ff",
     ':lua require("plugins.telescope.tele_utils").smart_file_finder(require("plugins.telescope.tele_utils").responsive_layout({}))<CR>',
     { silent = true }
 )
 map(
-    'n',
-    '<leader>fg',
+    "n",
+    "<leader>fg",
     ':lua require("telescope.builtin").live_grep(require("plugins.telescope.tele_utils").responsive_layout({}))<CR>',
     { silent = true }
 ) -- Search project
-map('n', '<leader>fs', ':Telescope lsp_document_symbols<CR>', { silent = true }) -- Search symbols
-map('n', '<leader>fas', ':Telescope lsp_dynamic_workspace_symbols<CR>', { silent = true }) -- Search all project symbols
-map('n', '<leader>fb', ':Telescope buffers<CR>', { silent = true }) -- Search buffers
+map("n", "<leader>fs", ":Telescope lsp_document_symbols<CR>", { silent = true }) -- Search symbols
+map("n", "<leader>fas", ":Telescope lsp_dynamic_workspace_symbols<CR>", { silent = true }) -- Search all project symbols
+map("n", "<leader>fb", ":Telescope buffers<CR>", { silent = true }) -- Search buffers
 
 -- Neoclip
-map('', '<leader>p', ':Telescope neoclip<CR>')
+map("", "<leader>p", ":Telescope neoclip<CR>")
 
 -- Floaterm
-map('n', '<leader>tn', ':FloatermNew<CR>')
-map('n', '<leader>tk', ':FloatermKill<CR>')
-map('n', '<leader>tt', ':FloatermToggle<CR>')
-map('n', '<leader>[t', ':FloatermPrev<CR>')
-map('n', '<leader>]t', ':FloatermNext<CR>')
+map("n", "<leader>tn", ":FloatermNew<CR>")
+map("n", "<leader>tk", ":FloatermKill<CR>")
+map("n", "<leader>tt", ":FloatermToggle<CR>")
+map("n", "<leader>[t", ":FloatermPrev<CR>")
+map("n", "<leader>]t", ":FloatermNext<CR>")
 
 -- Trouble
-map('n', '<leader>xx', ':Trouble<CR>', silentnoremap)
-map('n', '<leader>xl', ':Trouble loclist<CR>', silentnoremap)
-map('n', '<leader>xq', ':Trouble quickfix<CR>', silentnoremap)
+map("n", "<leader>xx", ":Trouble<CR>", silentnoremap)
+map("n", "<leader>xl", ":Trouble loclist<CR>", silentnoremap)
+map("n", "<leader>xq", ":Trouble quickfix<CR>", silentnoremap)

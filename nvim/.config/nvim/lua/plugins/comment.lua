@@ -1,4 +1,4 @@
-require('Comment').setup({
+require("Comment").setup({
     ---Add a space b/w comment and the line
     ---@type boolean
     padding = true,
@@ -12,35 +12,35 @@ require('Comment').setup({
     ---Could be a regex string or a function that returns a regex string.
     ---Example: Use '^$' to ignore empty lines
     ---@type string|fun():string
-    ignore = '^$',
+    ignore = "^$",
 
     ---LHS of toggle mappings in NORMAL + VISUAL mode
     ---@type table
     toggler = {
         ---Line-comment toggle keymap
-        line = 'gcc',
+        line = "gcc",
         ---Block-comment toggle keymap
-        block = 'gbc',
+        block = "gbc",
     },
 
     ---LHS of operator-pending mappings in NORMAL + VISUAL mode
     ---@type table
     opleader = {
         ---Line-comment keymap
-        line = 'gc',
+        line = "gc",
         ---Block-comment keymap
-        block = 'gb',
+        block = "gb",
     },
 
     ---LHS of extra mappings
     ---@type table
     extra = {
         ---Add comment on the line above
-        above = 'gcO',
+        above = "gcO",
         ---Add comment on the line below
-        below = 'gco',
+        below = "gco",
         ---Add comment at the end of line
-        eol = 'gcA',
+        eol = "gcA",
     },
 
     ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
@@ -62,21 +62,21 @@ require('Comment').setup({
     ---@type fun(ctx: Ctx):string
     pre_hook = function(ctx)
         -- Only calculate commentstring for tsx filetypes
-        if vim.bo.filetype == 'typescriptreact' then
-            local U = require('Comment.utils')
+        if vim.bo.filetype == "typescriptreact" then
+            local U = require("Comment.utils")
 
             -- Detemine whether to use linewise or blockwise commentstring
-            local type = ctx.ctype == U.ctype.line and '__default' or '__multiline'
+            local type = ctx.ctype == U.ctype.line and "__default" or "__multiline"
 
             -- Determine the location where to calculate commentstring from
             local location = nil
             if ctx.ctype == U.ctype.block then
-                location = require('ts_context_commentstring.utils').get_cursor_location()
+                location = require("ts_context_commentstring.utils").get_cursor_location()
             elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-                location = require('ts_context_commentstring.utils').get_visual_start_location()
+                location = require("ts_context_commentstring.utils").get_visual_start_location()
             end
 
-            return require('ts_context_commentstring.internal').calculate_commentstring({
+            return require("ts_context_commentstring.internal").calculate_commentstring({
                 key = type,
                 location = location,
             })

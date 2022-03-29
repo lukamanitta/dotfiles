@@ -1,6 +1,8 @@
-local colourscheme = require('settings.globals').colourscheme
+local colourscheme = require("settings.globals").colourscheme
 
-require('plugins.colourschemes.' .. colourscheme)
+local require_path = colourscheme:gsub("_", ".")
 
-require('plugins.lualine')
-require('plugins.cokeline')
+require("plugins.colourschemes." .. require_path)
+
+require("plugins.lualine")
+require("plugins.cokeline")

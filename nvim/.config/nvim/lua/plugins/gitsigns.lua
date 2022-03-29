@@ -1,34 +1,34 @@
-require('gitsigns').setup({
+require("gitsigns").setup({
     signs = {
         add = {
-            hl = 'GitSignsAdd',
-            text = '│',
-            numhl = 'GitSignsAddNr',
-            linehl = 'GitSignsAddLn',
+            hl = "GitSignsAdd",
+            text = "│",
+            numhl = "GitSignsAddNr",
+            linehl = "GitSignsAddLn",
         },
         change = {
-            hl = 'GitSignsChange',
-            text = '│',
-            numhl = 'GitSignsChangeNr',
-            linehl = 'GitSignsChangeLn',
+            hl = "GitSignsChange",
+            text = "│",
+            numhl = "GitSignsChangeNr",
+            linehl = "GitSignsChangeLn",
         },
         delete = {
-            hl = 'GitSignsDelete',
-            text = '_',
-            numhl = 'GitSignsDeleteNr',
-            linehl = 'GitSignsDeleteLn',
+            hl = "GitSignsDelete",
+            text = "_",
+            numhl = "GitSignsDeleteNr",
+            linehl = "GitSignsDeleteLn",
         },
         topdelete = {
-            hl = 'GitSignsDelete',
-            text = '‾',
-            numhl = 'GitSignsDeleteNr',
-            linehl = 'GitSignsDeleteLn',
+            hl = "GitSignsDelete",
+            text = "‾",
+            numhl = "GitSignsDeleteNr",
+            linehl = "GitSignsDeleteLn",
         },
         changedelete = {
-            hl = 'GitSignsChange',
-            text = '~',
-            numhl = 'GitSignsChangeNr',
-            linehl = 'GitSignsChangeLn',
+            hl = "GitSignsChange",
+            text = "~",
+            numhl = "GitSignsChangeNr",
+            linehl = "GitSignsChangeLn",
         },
     },
     signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
@@ -43,20 +43,20 @@ require('gitsigns').setup({
     current_line_blame = false, -- Toggle with `:Gitsigns toggle_currentline_bla_me`
     current_line_blame_opts = {
         virt_text = true,
-        virt_text_pos = 'right_align', -- 'eol' | 'overlay' | 'right_align'
+        virt_text_pos = "right_align", -- 'eol' | 'overlay' | 'right_align'
         delay = 1000,
         ignore_whitespace = false,
     },
-    current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+    current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
     sign_priority = 6,
     update_debounce = 100,
     status_formatter = nil, -- Use default
     max_file_length = 40000,
     preview_config = {
         -- Options passed to nvim_open_win
-        border = 'single',
-        style = 'minimal',
-        relative = 'cursor',
+        border = "single",
+        style = "minimal",
+        relative = "cursor",
         row = 0,
         col = 1,
     },

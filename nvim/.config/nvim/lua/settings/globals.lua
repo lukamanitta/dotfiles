@@ -1,18 +1,20 @@
 local cmd = vim.cmd
-local apply_globals = require('utils.config').apply_globals
+local apply_globals = require("utils.config").apply_globals
 
 local vars = {}
 
-vars.colourscheme = os.getenv('COLOURSCHEME')
+-- vars.colourscheme = os.getenv('COLOURSCHEME')
+-- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa, nightfox_{night, dawn, day, dusk}
+vars.colourscheme = "nightfox_dusk"
 
-cmd('filetype plugin indent on')
+cmd("filetype plugin indent on")
 
 apply_globals({
-    matchup_matchparen_offscreen = { method = 'popup' },
+    matchup_matchparen_offscreen = { method = "popup" },
     cursorline_timeout = 500,
     scrolloff = 10,
     sidescrolloff = 5,
-    markdown_fenced_languages = { 'html', 'python', 'bash=sh', 'dafny' },
+    markdown_fenced_languages = { "html", "python", "bash=sh", "dafny" },
 })
 
 return vars

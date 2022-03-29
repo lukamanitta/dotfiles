@@ -1,5 +1,5 @@
 local Set = { items = {} }
-local has_value = require('utils.helpers').has_value
+local has_value = require("utils.helpers").has_value
 
 function Set:new(items)
     items = items or {}
@@ -108,20 +108,20 @@ function Set:is_equal(other_set)
 end
 
 function Set:serialize()
-    local str = '{'
+    local str = "{"
     for _, item in ipairs(self.items) do
-        str = str .. item .. ', '
+        str = str .. item .. ", "
     end
-    str = str:sub(1, -3) .. '}'
+    str = str:sub(1, -3) .. "}"
     return str
 end
 
 function Set:to_string()
-    local str = ''
+    local str = ""
     for _, item in ipairs(self.items) do
-        str = str .. item .. ', '
+        str = str .. item .. ", "
     end
-    str = str:sub(1, -3) .. ''
+    str = str:sub(1, -3) .. ""
     return str
 end
 

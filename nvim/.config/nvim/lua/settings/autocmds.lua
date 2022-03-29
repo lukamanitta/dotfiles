@@ -22,7 +22,7 @@ augroup nvim
     au WinLeave * setlocal nocursorline
 augroup END
 ]],
-    ''
+    ""
 )
 -- " Startup layout
 -- au VimEnter * :lua require('utils.functions').startup_layout()

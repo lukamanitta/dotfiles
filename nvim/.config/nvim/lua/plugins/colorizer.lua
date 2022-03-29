@@ -1,11 +1,11 @@
-require('colorizer').setup(
+require("colorizer").setup(
     -- Filetypes
     {
-        '*',
+        "*",
     },
     -- Default options
     {
-        mode = 'background',
+        mode = "background",
         RGB = true, -- #RGB hex codes
         RRGGBB = true, -- #RRGGBB hex codes
         names = true, -- "Name" codes like Blue

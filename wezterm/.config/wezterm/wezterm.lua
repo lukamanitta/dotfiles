@@ -361,12 +361,134 @@ local colours = {
             '#abb0b6', -- White
         },
     },
+
+    nightfox_night = {
+        foreground = '#cdcecf',
+        background = '#192330',
+
+        cursor_bg = '#cdcecf',
+        cursor_border = '#cdcecf',
+        cursor_fg = '#192330',
+
+        selection_bg = '#223249',
+        selection_fg = '#cdcecf',
+
+        ansi = {
+            '#393b44',
+            '#c94f6d',
+            '#81b29a',
+            '#dbc074',
+            '#719cd6',
+            '#9d79d6',
+            '#63cdcf',
+            '#dfdfe0',
+        },
+        brights = {
+            '#575860',
+            '#d16983',
+            '#8ebaa4',
+            '#e0c989',
+            '#86abdc',
+            '#baa1e2',
+            '#7ad4d6',
+            '#e4e4e5',
+        },
+    },
+
+    nightfox_dawn = {
+        foreground = '#575279',
+        background = '#faf4ed',
+        cursor_bg = '#575279',
+        cursor_border = '#575279',
+        cursor_fg = '#faf4ed',
+        selection_bg = '#d0d8d8',
+        selection_fg = '#575279',
+        ansi = {
+            '#575279',
+            '#b4637a',
+            '#618774',
+            '#ea9d34',
+            '#286983',
+            '#907aa9',
+            '#56949f',
+            '#e5e9f0',
+        },
+        brights = {
+            '#5f5695',
+            '#c26d85',
+            '#629f81',
+            '#eea846',
+            '#2d81a3',
+            '#9a80b9',
+            '#5ca7b4',
+            '#e6ebf3',
+        },
+    },
+
+    nightfox_day = {
+        foreground = '#1d344f',
+        background = '#eaeaea',
+        cursor_bg = '#1d344f',
+        cursor_border = '#1d344f',
+        cursor_fg = '#eaeaea',
+        selection_bg = '#ced5de',
+        selection_fg = '#1d344f',
+        ansi = {
+            '#1d344f',
+            '#b95d76',
+            '#618774',
+            '#ba793e',
+            '#4d688e',
+            '#8e6f98',
+            '#6ca7bd',
+            '#cdd1d5',
+        },
+        brights = {
+            '#24476f',
+            '#c76882',
+            '#629f81',
+            '#ca884a',
+            '#4e75aa',
+            '#9f75ac',
+            '#74b2c9',
+            '#cfd6dd',
+        },
+    },
+
+    nightfox_dusk = {
+        foreground = '#e0def4',
+        background = '#232136',
+        cursor_bg = '#e0def4',
+        cursor_border = '#e0def4',
+        cursor_fg = '#232136',
+        selection_bg = '#433c59',
+        selection_fg = '#e0def4',
+        ansi = {
+            '#393552',
+            '#eb6f92',
+            '#a3be8c',
+            '#f6c177',
+            '#569fba',
+            '#c4a7e7',
+            '#9ccfd8',
+            '#e0def4',
+        },
+        brights = {
+            '#47407d',
+            '#f083a2',
+            '#b1d196',
+            '#f9cb8c',
+            '#65b1cd',
+            '#ccb1ed',
+            '#a6dae3',
+            '#e2e0f7',
+        },
+    },
 }
 
--- TODO: Port all neovim colorschemes to wezterm
 -- local colourscheme = os.getenv('COLOURSCHEME')
--- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa
-local colourscheme = 'kanagawa'
+-- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa, nightfox_{night, dawn, day, dusk}
+local colourscheme = 'nightfox_dusk'
 
 cfg.colors = colours[colourscheme]
 

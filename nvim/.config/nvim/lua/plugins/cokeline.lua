@@ -1,38 +1,38 @@
-local get_hex = require('cokeline.utils').get_hex
+local get_hex = require("cokeline.utils").get_hex
 
-vim.cmd('hi! link TabLineFill Normal')
+vim.cmd("hi! link TabLineFill Normal")
 
-local general_icons = require('assets.icons').general
+local general_icons = require("assets.icons").general
 
-local background = get_hex('Normal')
-local errors_fg = get_hex('DiagnosticError', 'fg')
-local warnings_fg = get_hex('DiagnosticWarn', 'fg')
+local background = get_hex("Normal")
+local errors_fg = get_hex("DiagnosticError", "fg")
+local warnings_fg = get_hex("DiagnosticWarn", "fg")
 
 local components = {
     separator = {
-        text = ' ',
-        bg = get_hex('Normal', 'bg'),
+        text = " ",
+        bg = get_hex("Normal", "bg"),
         truncation = { priority = 1 },
     },
 
     space = {
-        text = ' ',
+        text = " ",
         truncation = { priority = 1 },
     },
 
     left_half_circle = {
-        text = '',
-        fg = get_hex('ColorColumn', 'bg'),
-        bg = get_hex('Normal', 'bg'),
+        text = "",
+        fg = get_hex("ColorColumn", "bg"),
+        bg = get_hex("Normal", "bg"),
         truncation = {
             priority = 1,
         },
     },
 
     right_half_circle = {
-        text = '',
-        fg = get_hex('ColorColumn', 'bg'),
-        bg = get_hex('Normal', 'bg'),
+        text = "",
+        fg = get_hex("ColorColumn", "bg"),
+        bg = get_hex("Normal", "bg"),
         truncation = {
             priority = 1,
         },
@@ -50,7 +50,7 @@ local components = {
 
     filename_root = {
         text = function(buffer)
-            return vim.fn.fnamemodify(buffer.filename, ':r')
+            return vim.fn.fnamemodify(buffer.filename, ":r")
         end,
         fg = function(buffer)
             return (buffer.diagnostics.errors ~= 0 and errors_fg)
@@ -58,21 +58,21 @@ local components = {
                 or nil
         end,
         style = function(buffer)
-            return ((buffer.is_focused and buffer.diagnostics.errors ~= 0) and 'bold,underline')
-                or (buffer.is_focused and 'bold')
-                or (buffer.diagnostics.errors ~= 0 and 'underline')
+            return ((buffer.is_focused and buffer.diagnostics.errors ~= 0) and "bold,underline")
+                or (buffer.is_focused and "bold")
+                or (buffer.diagnostics.errors ~= 0 and "underline")
                 or nil
         end,
         truncation = {
             priority = 3,
-            direction = 'middle',
+            direction = "middle",
         },
     },
 
     filename_extension = {
         text = function(buffer)
-            local ext = vim.fn.fnamemodify(buffer.filename, ':e')
-            return ext ~= '' and '.' .. ext or ''
+            local ext = vim.fn.fnamemodify(buffer.filename, ":e")
+            return ext ~= "" and "." .. ext or ""
         end,
         fg = function(buffer)
             return (buffer.diagnostics.errors ~= 0 and errors_fg)
@@ -80,22 +80,22 @@ local components = {
                 or nil
         end,
         style = function(buffer)
-            return ((buffer.is_focused and buffer.diagnostics.errors ~= 0) and 'bold,underline')
-                or (buffer.is_focused and 'bold')
-                or (buffer.diagnostics.errors ~= 0 and 'underline')
+            return ((buffer.is_focused and buffer.diagnostics.errors ~= 0) and "bold,underline")
+                or (buffer.is_focused and "bold")
+                or (buffer.diagnostics.errors ~= 0 and "underline")
                 or nil
         end,
         truncation = {
             priority = 2,
-            direction = 'left',
+            direction = "left",
         },
     },
 
     unsaved = {
         text = function(buffer)
-            return buffer.is_modified and general_icons.CircleSmall or ''
+            return buffer.is_modified and general_icons.CircleSmall or ""
         end,
-        fg = '#98bb6c',
+        fg = "#98bb6c",
         truncation = { priority = 1 },
     },
 }
@@ -106,8 +106,8 @@ local get_remaining_space = function(buffer)
     for _, component in pairs(components) do
         used_space = used_space
             + vim.fn.strwidth(
-                (type(component.text) == 'string' and component.text)
-                    or (type(component.text) == 'function' and component.text(buffer))
+                (type(component.text) == "string" and component.text)
+                    or (type(component.text) == "function" and component.text(buffer))
             )
     end
     return math.max(0, min_buffer_width - used_space)
@@ -116,22 +116,22 @@ end
 local left_padding = {
     text = function(buffer)
         local remaining_space = get_remaining_space(buffer)
-        return string.rep(' ', remaining_space / 2 + remaining_space % 2)
+        return string.rep(" ", remaining_space / 2 + remaining_space % 2)
     end,
 }
 
 local right_padding = {
     text = function(buffer)
         local remaining_space = get_remaining_space(buffer)
-        return string.rep(' ', remaining_space / 2)
+        return string.rep(" ", remaining_space / 2)
     end,
 }
 
-require('cokeline').setup({
+require("cokeline").setup({
     show_if_buffers_are_at_least = 1,
     buffers = {
-        focus_on_delete = 'prev', -- 'prev' | 'next',
-        new_buffers_position = 'last', -- 'last' | 'next',
+        focus_on_delete = "prev", -- 'prev' | 'next',
+        new_buffers_position = "last", -- 'last' | 'next',
     },
 
     mappings = {
@@ -139,13 +139,13 @@ require('cokeline').setup({
     },
 
     sidebar = {
-        filetype = 'neo-tree',
+        filetype = "neo-tree",
         components = {
             {
-                text = '',
-                fg = get_hex('Normal', 'fg'),
-                bg = get_hex('StatusLine', 'bg'),
-                style = 'bold',
+                text = "",
+                fg = get_hex("Normal", "fg"),
+                bg = get_hex("StatusLine", "bg"),
+                style = "bold",
             },
         },
     },
@@ -156,9 +156,9 @@ require('cokeline').setup({
 
     default_hl = {
         fg = function(buffer)
-            return buffer.is_focused and get_hex('Normal', 'fg') or get_hex('Comment', 'fg')
+            return buffer.is_focused and get_hex("Normal", "fg") or get_hex("Comment", "fg")
         end,
-        bg = get_hex('ColorColumn', 'bg'),
+        bg = get_hex("ColorColumn", "bg"),
     },
 
     -- A list of components to be rendered for each buffer

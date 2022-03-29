@@ -1,12 +1,12 @@
-local apply_options = require('utils.config').apply_options
+local apply_options = require("utils.config").apply_options
 
 apply_options({
-    syntax = 'off',
+    syntax = "off",
     hidden = true,
     number = true,
     relativenumber = true,
-    mouse = 'a',
-    signcolumn = 'yes',
+    mouse = "a",
+    signcolumn = "yes",
     updatetime = 50,
     noequalalways = true,
     splitbelow = true,
@@ -16,23 +16,23 @@ apply_options({
     cursorline = true,
     laststatus = 2,
     incsearch = true,
-    inccommand = 'nosplit',
-    encoding = 'utf-8',
+    inccommand = "nosplit",
+    encoding = "utf-8",
     expandtab = true, -- Expand tabs to spaces
     shiftwidth = 4, -- Tab = 4 spaces
-    backspace = 'indent,eol,start',
-    belloff = 'all', -- Shut that fucking bell sound off
-    foldmethod = 'indent',
+    backspace = "indent,eol,start",
+    belloff = "all", -- Shut that fucking bell sound off
+    foldmethod = "indent",
     foldnestmax = 10,
     nofoldenable = true,
     foldlevel = 1,
     scrolloff = 8,
     sidescrolloff = 5,
-    spelllang = 'en_au',
+    spelllang = "en_au",
 })
 
-vim.cmd('set iskeyword-=_') -- Recognise _ as word separator
-vim.fn.matchadd('ColorColumn', '\\%80v', 100) -- DANGER XONE FUCK NOT 80 CHARAC
+vim.cmd("set iskeyword-=_") -- Recognise _ as word separator
+vim.fn.matchadd("ColorColumn", "\\%80v", 100) -- DANGER XONE FUCK NOT 80 CHARAC
 
 -- For global statusline
 -- vim.opt.fillchars:append({

@@ -1,4 +1,4 @@
-require('settings')
-require('plugins')
-require('plugins.colourschemes')
-require('lsp')
+require("settings")
+require("plugins")
+require("plugins.colourschemes")
+require("lsp")

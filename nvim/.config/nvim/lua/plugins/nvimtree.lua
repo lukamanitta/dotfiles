@@ -1,32 +1,32 @@
-local apply_globals = require('utils.config').apply_globals
+local apply_globals = require("utils.config").apply_globals
 local cmd = vim.cmd
-local get_hi_group_bg = require('utils.config').get_hi_group_bg
-local get_hi_group_fg = require('utils.config').get_hi_group_fg
+local get_hi_group_bg = require("utils.config").get_hi_group_bg
+local get_hi_group_fg = require("utils.config").get_hi_group_fg
 
-local filesystem_icons = require('assets.icons').filesystem
-local lsp_icons = require('assets.icons').lsp
-local git_icons = require('assets.icons').git
+local filesystem_icons = require("assets.icons").filesystem
+local lsp_icons = require("assets.icons").lsp
+local git_icons = require("assets.icons").git
 
 apply_globals({
     nvim_tree_indent_markers = 0,
     nvim_tree_git_hl = 1,
     nvim_tree_highlight_opened_files = 1,
-    nvim_tree_root_folder_modifier = ':~',
+    nvim_tree_root_folder_modifier = ":~",
     nvim_tree_add_trailing = 1, -- Adds trailing slash to folder names
     nvim_tree_group_empty = 1,
     nvim_tree_disable_window_picker = 0,
-    nvim_tree_icon_padding = ' ',
-    nvim_tree_symlink_arrow = ' >> ',
+    nvim_tree_icon_padding = " ",
+    nvim_tree_symlink_arrow = " >> ",
     nvim_tree_respect_buf_cwd = 0,
     nvim_tree_create_in_closed_folder = 1,
     nvim_tree_window_picker_exclude = {
         buftype = {
-            'terminal',
+            "terminal",
         },
         filetype = {
-            'notify',
-            'packer',
-            'Trouble',
+            "notify",
+            "packer",
+            "Trouble",
         },
     },
     nvim_tree_show_icons = {
@@ -58,8 +58,8 @@ apply_globals({
     },
 })
 
-require('nvim-tree').setup({
-    nvim_tree_ignore = { '.git', 'node_modules', '.cache' },
+require("nvim-tree").setup({
+    nvim_tree_ignore = { ".git", "node_modules", ".cache" },
     disable_netrw = true,
     hijack_netrw = true,
     open_on_setup = false,
@@ -103,7 +103,7 @@ require('nvim-tree').setup({
         width = 30,
         height = 30,
         hide_root_folder = false,
-        side = 'left',
+        side = "left",
         auto_resize = false,
         mappings = {
             custom_only = false,
@@ -111,10 +111,10 @@ require('nvim-tree').setup({
         },
         number = true,
         relativenumber = true,
-        signcolumn = 'yes',
+        signcolumn = "yes",
     },
     trash = {
-        cmd = 'trash',
+        cmd = "trash",
         require_confirm = true,
     },
     actions = {
@@ -129,19 +129,19 @@ require('nvim-tree').setup({
 
 -- cmd('hi NvimTreeVertSplit guifg=' .. get_hi_group_bg('NvimTreeVertSplit'))
 cmd(
-    'hi NvimTreeVertSplit guifg='
-        .. get_hi_group_bg('Normal')
-        .. ' guibg='
-        .. get_hi_group_bg('Normal')
+    "hi NvimTreeVertSplit guifg="
+        .. get_hi_group_bg("Normal")
+        .. " guibg="
+        .. get_hi_group_bg("Normal")
 )
 
-cmd('hi NvimTreeNormal guibg=' .. get_hi_group_bg('StatusLine'))
+cmd("hi NvimTreeNormal guibg=" .. get_hi_group_bg("StatusLine"))
 
 cmd(
-    'hi NvimTreeStatusLine guifg ='
-        .. get_hi_group_fg('StatusLine')
-        .. ' guibg='
-        .. get_hi_group_bg('StatusLine')
+    "hi NvimTreeStatusLine guifg ="
+        .. get_hi_group_fg("StatusLine")
+        .. " guibg="
+        .. get_hi_group_bg("StatusLine")
 )
 
-cmd('hi NvimTreeStatusLineNC guibg=' .. get_hi_group_bg('StatusLine'))
+cmd("hi NvimTreeStatusLineNC guibg=" .. get_hi_group_bg("StatusLine"))

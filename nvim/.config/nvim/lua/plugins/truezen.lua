@@ -1,4 +1,4 @@
-require('true-zen').setup({
+require("true-zen").setup({
     ui = {
         bottom = {
             laststatus = 0,
@@ -13,7 +13,7 @@ require('true-zen').setup({
         left = {
             number = false,
             relativenumber = false,
-            signcolumn = 'no',
+            signcolumn = "no",
         },
     },
     modes = {
@@ -25,9 +25,9 @@ require('true-zen').setup({
             ideal_writing_area_width = { 0 },
             auto_padding = true,
             keep_default_fold_fillchars = true,
-            custom_bg = { 'none', '' },
+            custom_bg = { "none", "" },
             bg_configuration = true,
-            quit = 'untoggle',
+            quit = "untoggle",
             ignore_floating_windows = true,
             affected_higroups = {
                 NonText = true,
@@ -41,7 +41,7 @@ require('true-zen').setup({
         },
         focus = {
             margin_of_error = 5,
-            focus_method = 'experimental',
+            focus_method = "experimental",
         },
     },
     integrations = {
