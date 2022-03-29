@@ -119,7 +119,7 @@ I.comp_types = { -- Arranged approximately in order of abstraction (lo - hi)
     Omni = '',
     Snippet = '',
     Latex = '',
-    Commit = '',
+    CommitMsg = '',
 }
 
 I.lsp = {

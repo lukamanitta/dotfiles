@@ -48,6 +48,7 @@ cmp.setup({
     },
     sources = cmp.config.sources({
         { name = 'ultisnips' },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'cmp_tabnine' },
@@ -57,6 +58,7 @@ cmp.setup({
         { name = 'path' },
     }),
     formatting = {
+        fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
             if entry.source.name == 'cmp_tabnine' then
                 vim_item.kind = 'Tabnine'
@@ -65,12 +67,12 @@ cmp.setup({
             elseif entry.source.name == 'latex_symbols' then
                 vim_item.kind = 'Latex'
             elseif entry.source.name == 'conventionalcommits' then
-                vim_item.kind = 'Commit'
+                vim_item.kind = 'CommitMsg'
             end
 
             -- Display appropriate icons
             -- vim_item.kind = string.format('%s %s', comp_icons[vim_item.kind], vim_item.kind)
-            vim_item.kind = string.format('%s', comp_icons[vim_item.kind])
+            vim_item.kind = string.format('%s ', comp_icons[vim_item.kind])
 
             -- Display source of completion
             vim_item.menu = ({
@@ -84,7 +86,7 @@ cmp.setup({
                 cmp_tabnine = '[TN]',
                 spell = '[Spell]',
                 omni = '[Omni]',
-                conventionalcommits = '[Commit]',
+                conventionalcommits = '[CommitMsg]',
             })[entry.source.name]
             return vim_item
         end,
