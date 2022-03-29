@@ -31,6 +31,18 @@ return require('packer').startup({
                     require('plugins.nvimtree')
                 end,
             },
+            {
+                'nvim-neo-tree/neo-tree.nvim',
+                cmd = 'Neotree',
+                config = function()
+                    require('plugins.neotree')
+                end,
+                requires = {
+                    'nvim-lua/plenary.nvim',
+                    'kyazdani42/nvim-web-devicons',
+                    'MunifTanjim/nui.nvim',
+                },
+            },
 
             -- Finder
             {
@@ -115,12 +127,19 @@ return require('packer').startup({
                 end,
                 requires = {
                     'hrsh7th/cmp-nvim-lsp',
+                    'hrsh7th/cmp-nvim-lsp-signature-help',
                     'hrsh7th/cmp-nvim-lua',
                     'hrsh7th/cmp-buffer',
                     'hrsh7th/cmp-path',
                     'hrsh7th/cmp-omni',
-                    'SirVer/ultisnips',
-                    'quangnguyen30192/cmp-nvim-ultisnips',
+                    {
+                        'quangnguyen30192/cmp-nvim-ultisnips',
+                        requires = 'SirVer/ultisnips',
+                    },
+                    -- {
+                    --     'saadparwaiz1/cmp_luasnip',
+                    --     requires = 'L3MON4D3/luasnip',
+                    -- },
                     'f3fora/cmp-spell',
                     { 'tzachar/cmp-tabnine', run = './install.sh' },
                     'kdheepak/cmp-latex-symbols',
@@ -199,6 +218,7 @@ return require('packer').startup({
             -- Other
             {
                 'kdheepak/lazygit.nvim',
+                branch = 'main',
                 cmd = 'LazyGit',
                 config = function()
                     require('plugins.lazygit')
@@ -214,7 +234,6 @@ return require('packer').startup({
                     require('plugins.neoclip')
                 end,
             },
-            { 'famiu/bufdelete.nvim', cmd = { 'Bdelete', 'Bwipeout' } },
             {
                 'tpope/vim-fugitive',
                 cmd = {

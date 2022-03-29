@@ -39,7 +39,12 @@ map('n', 'N', 'Nzzzv')
 map('', '//', ':nohlsearch<CR>')
 
 -- Open NvimTree
-map('n', '<leader>e', ':NvimTreeToggle<CR>')
+-- map('n', '<leader>e', ':NvimTreeToggle<CR>')
+
+-- Open Neotree
+-- :Neotree ACTION SOURCE POSITION TOGGLE DIR REVEAL REVEAL_FILE REVEAL_FORCE_CWD
+map('n', '<leader>e', ':Neotree focus filesystem float toggle reveal<CR>')
+map('n', '<leader>b', ':Neotree focus buffers float toggle reveal<CR>')
 
 -- Github Copilot
 cmd('imap <silent><script><expr> <C-J> copilot#Accept("")')
@@ -106,10 +111,6 @@ map(
 map('n', '<leader>fs', ':Telescope lsp_document_symbols<CR>', { silent = true }) -- Search symbols
 map('n', '<leader>fas', ':Telescope lsp_dynamic_workspace_symbols<CR>', { silent = true }) -- Search all project symbols
 map('n', '<leader>fb', ':Telescope buffers<CR>', { silent = true }) -- Search buffers
-
--- Bufdelete
-map('n', '<leader>bd', ':Bdelete ')
-map('n', '<leader>bw', ':Bwipeout ')
 
 -- Neoclip
 map('', '<leader>p', ':Telescope neoclip<CR>')

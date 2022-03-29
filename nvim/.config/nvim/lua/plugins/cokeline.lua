@@ -2,27 +2,134 @@ local get_hex = require('cokeline.utils').get_hex
 
 vim.cmd('hi! link TabLineFill Normal')
 
+local general_icons = require('assets.icons').general
+
 local background = get_hex('Normal')
+local errors_fg = get_hex('DiagnosticError', 'fg')
+local warnings_fg = get_hex('DiagnosticWarn', 'fg')
+
+local components = {
+    separator = {
+        text = ' ',
+        bg = get_hex('Normal', 'bg'),
+        truncation = { priority = 1 },
+    },
+
+    space = {
+        text = ' ',
+        truncation = { priority = 1 },
+    },
+
+    left_half_circle = {
+        text = '',
+        fg = get_hex('ColorColumn', 'bg'),
+        bg = get_hex('Normal', 'bg'),
+        truncation = {
+            priority = 1,
+        },
+    },
+
+    right_half_circle = {
+        text = '',
+        fg = get_hex('ColorColumn', 'bg'),
+        bg = get_hex('Normal', 'bg'),
+        truncation = {
+            priority = 1,
+        },
+    },
+
+    devicon = {
+        text = function(buffer)
+            return buffer.devicon.icon
+        end,
+        fg = function(buffer)
+            return buffer.devicon.color
+        end,
+        truncation = { priority = 1 },
+    },
+
+    filename_root = {
+        text = function(buffer)
+            return vim.fn.fnamemodify(buffer.filename, ':r')
+        end,
+        fg = function(buffer)
+            return (buffer.diagnostics.errors ~= 0 and errors_fg)
+                or (buffer.diagnostics.warnings ~= 0 and warnings_fg)
+                or nil
+        end,
+        style = function(buffer)
+            return ((buffer.is_focused and buffer.diagnostics.errors ~= 0) and 'bold,underline')
+                or (buffer.is_focused and 'bold')
+                or (buffer.diagnostics.errors ~= 0 and 'underline')
+                or nil
+        end,
+        truncation = {
+            priority = 3,
+            direction = 'middle',
+        },
+    },
+
+    filename_extension = {
+        text = function(buffer)
+            local ext = vim.fn.fnamemodify(buffer.filename, ':e')
+            return ext ~= '' and '.' .. ext or ''
+        end,
+        fg = function(buffer)
+            return (buffer.diagnostics.errors ~= 0 and errors_fg)
+                or (buffer.diagnostics.warnings ~= 0 and warnings_fg)
+                or nil
+        end,
+        style = function(buffer)
+            return ((buffer.is_focused and buffer.diagnostics.errors ~= 0) and 'bold,underline')
+                or (buffer.is_focused and 'bold')
+                or (buffer.diagnostics.errors ~= 0 and 'underline')
+                or nil
+        end,
+        truncation = {
+            priority = 2,
+            direction = 'left',
+        },
+    },
+
+    unsaved = {
+        text = function(buffer)
+            return buffer.is_modified and general_icons.CircleSmall or ''
+        end,
+        fg = '#98bb6c',
+        truncation = { priority = 1 },
+    },
+}
+
+local min_buffer_width = 20
+local get_remaining_space = function(buffer)
+    local used_space = 0
+    for _, component in pairs(components) do
+        used_space = used_space
+            + vim.fn.strwidth(
+                (type(component.text) == 'string' and component.text)
+                    or (type(component.text) == 'function' and component.text(buffer))
+            )
+    end
+    return math.max(0, min_buffer_width - used_space)
+end
+
+local left_padding = {
+    text = function(buffer)
+        local remaining_space = get_remaining_space(buffer)
+        return string.rep(' ', remaining_space / 2 + remaining_space % 2)
+    end,
+}
+
+local right_padding = {
+    text = function(buffer)
+        local remaining_space = get_remaining_space(buffer)
+        return string.rep(' ', remaining_space / 2)
+    end,
+}
 
 require('cokeline').setup({
     show_if_buffers_are_at_least = 1,
     buffers = {
-        -- A function to filter out unwanted buffers. Takes a buffer table as a
-        -- parameter (see the following section for more infos) and has to return
-        -- either `true` or `false`.
-        -- default: `false`.
-        filter_valid = function(buffer)
-            return true
-        end,
-
-        -- A looser version of `filter_valid`, use this function if you still
-        -- want the `cokeline-{switch,focus}-{prev,next}` mappings to work for
-        -- these buffers without displaying them in your bufferline.
-        -- default: `false`.
-        filter_visible = function(buffer)
-            return true
-        end,
-
         focus_on_delete = 'prev', -- 'prev' | 'next',
         new_buffers_position = 'last', -- 'last' | 'next',
     },
@@ -32,10 +139,10 @@ require('cokeline').setup({
     },
 
     sidebar = {
-        filetype = 'NvimTree',
+        filetype = 'neo-tree',
         components = {
             {
-                text = ' ',
+                text = '',
                 fg = get_hex('Normal', 'fg'),
                 bg = get_hex('StatusLine', 'bg'),
                 style = 'bold',
@@ -56,48 +163,15 @@ require('cokeline').setup({
 
     -- A list of components to be rendered for each buffer
     components = {
-        {
-            text = ' ',
-            bg = get_hex('Normal', 'bg'),
-        },
-        {
-            text = '',
-            fg = get_hex('ColorColumn', 'bg'),
-            bg = get_hex('Normal', 'bg'),
-            truncation = {
-                priority = 1,
-            },
-        },
-        {
-            text = function(buffer)
-                return buffer.devicon.icon
-            end,
-            fg = function(buffer)
-                return buffer.devicon.color
-            end,
-        },
-        {
-            text = ' ',
-        },
-        {
-            text = function(buffer)
-                return buffer.filename .. '  '
-            end,
-            style = function(buffer)
-                return buffer.is_focused and 'bold' or nil
-            end,
-            truncation = {
-                priority = 0,
-                direction = 'left',
-            },
-        },
-        {
-            text = '',
-            fg = get_hex('ColorColumn', 'bg'),
-            bg = get_hex('Normal', 'bg'),
-            truncation = {
-                priority = 1,
-            },
-        },
+        components.separator,
+        components.left_half_circle,
+        left_padding,
+        components.devicon,
+        components.filename_root,
+        components.filename_extension,
+        components.space,
+        right_padding,
+        components.unsaved,
+        components.right_half_circle,
     },
 })
