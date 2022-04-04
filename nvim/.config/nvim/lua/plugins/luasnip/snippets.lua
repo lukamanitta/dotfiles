@@ -1,24 +1,22 @@
 local ls = require("luasnip")
 
--- Snippet creator
--- s(<trigger>, <nodes>)
-local s = ls.s
+local s = ls.snippet
 
--- Format node
--- Takes a format string and list of nodes
-local fmt = require("luasnip.extras.fmt").fmt
-
--- Insert node
--- Takes position (e.g. $1), and optionally default text
--- i(<position>, [default_text])
+local sn = ls.snippet_node
+local isn = ls.indent_snippet_node
+local t = ls.text_node
 local i = ls.insert_node
+local f = ls.function_node
+local c = ls.choice_node
+local d = ls.dynamic_node
+local r = ls.restore_node
 
--- Repeats a node
--- rep(<position>)
+local events = require("luasnip.util.events")
+local ai = require("luasnip.nodes.absolute_indexer")
+local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
-ls.snippets = {
-    lua = {
-        s("req", fmt('local {} = require("{}")', { i(1, "default"), rep(1) })),
-    },
-}
+ls.add_snippets("lua", {
+    s("mysnippet", fmt('local {} = require("{}")', { i(1, "default"), rep(1) })),
+})
+require("luasnip.loaders.from_vscode").lazy_load()
