@@ -227,6 +227,9 @@ return require("packer").startup({
             {
                 "voldikss/vim-floaterm",
                 cmd = { "FloatermNew", "FloatermToggle" },
+                config = function()
+                    vim.cmd("hi link FloatermBorder Normal")
+                end,
             },
             {
                 "AckslD/nvim-neoclip.lua",
