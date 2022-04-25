@@ -1,5 +1,5 @@
 local cmd, fn = vim.cmd, vim.fn
-local lspIcons = require("assets.icons").lsp
+local lsp_icons = require("assets.icons").lsp
 
 vim.diagnostic.config({
     signs = true,
@@ -11,8 +11,11 @@ vim.diagnostic.config({
     -- }
 })
 
-fn.sign_define("DiagnosticSignError", { text = lspIcons.Error .. " ", texthl = "DiagnosticError" })
-fn.sign_define("DiagnosticSignWarn", { text = lspIcons.Warn .. " ", texthl = "DiagnosticWarn" })
-fn.sign_define("DiagnosticSignHint", { text = lspIcons.Hint .. " ", texthl = "DiagnosticHint" })
-fn.sign_define("DiagnosticSignInfo", { text = lspIcons.Info .. " ", texthl = "DiagnosticInfo" })
-fn.sign_define("LightBulbSign", { text = lspIcons.CodeAction .. " ", texthl = "DiagnosticWarn" })
+fn.sign_define("DiagnosticSignError", {
+    text = lsp_icons.Error .. " ",
+    texthl = "DiagnosticError",
+})
+fn.sign_define("DiagnosticSignWarn", { text = lsp_icons.Warn .. " ", texthl = "DiagnosticWarn" })
+fn.sign_define("DiagnosticSignHint", { text = lsp_icons.Hint .. " ", texthl = "DiagnosticHint" })
+fn.sign_define("DiagnosticSignInfo", { text = lsp_icons.Info .. " ", texthl = "DiagnosticInfo" })
+fn.sign_define("LightBulbSign", { text = lsp_icons.CodeAction .. " ", texthl = "DiagnosticWarn" })

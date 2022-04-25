@@ -15,8 +15,8 @@ I.general = {
     AngleDownDouble = "",
     AngleLeftDouble = "",
     AngleRightDouble = "",
-
     AngleRightDoubleThin = "»",
+
     CaretUp = "",
     CaretDown = "",
     CaretLeft = "",
@@ -46,7 +46,8 @@ I.general = {
     PlusThin = "+",
 
     CheckThick = "",
-    CheckCircle = "﫠",
+    CheckCircle = "﫟",
+    CheckCircleOutline = "﫠",
     Square = "■",
     Exclamation = "",
     Bug = "",
@@ -129,11 +130,11 @@ I.lsp = {
     Info = "",
     CodeAction = "",
 
-    ErrorEmpty = "",
-    WarnEmpty = "",
-    HintEmpty = "",
-    InfoEmpty = "",
-    CodeActionEmpty = "",
+    ErrorOutline = "",
+    WarnOutline = "",
+    HintOutline = "",
+    InfoOutline = "",
+    CodeActionOutline = "",
 }
 
 I.git = {

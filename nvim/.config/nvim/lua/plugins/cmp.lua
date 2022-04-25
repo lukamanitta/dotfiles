@@ -6,8 +6,8 @@ local comp_icons = require("assets.icons").comp_types
 
 cmp.setup.filetype({ "markdown" }, {
     sources = cmp.config.sources({
+        { name = "luasnip" },
         { name = "nvim_lsp" },
-        { name = "ultisnips" },
         { name = "latex_symbols", max_item_count = 10 },
         { name = "spell", max_item_count = 3 },
         { name = "buffer" },
@@ -115,6 +115,7 @@ cmp.setup({
                 spell = "[Spell]",
                 omni = "[Omni]",
                 conventionalcommits = "[CommitMsg]",
+                copilot = "[Copilot]",
             })[entry.source.name]
             return vim_item
         end,

@@ -37,7 +37,7 @@ null_ls.setup({
             extra_args = {
                 "--config-path",
                 fn.expand("~/.config/nvim/.stylua.toml"),
-                --     -- '--search-parent-directories',
+                -- '--search-parent-directories',
             },
         }),
 

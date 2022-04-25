@@ -1,4 +1,5 @@
 local H = {}
+local fn = vim.fn
 
 function H.has_value(table, value)
     table = table or {}
@@ -19,6 +20,10 @@ function H.table_length(table)
         count = count + 1
     end
     return count
+end
+
+function H.shell(command)
+    return fn.trim(fn.system(command))
 end
 
 return H
