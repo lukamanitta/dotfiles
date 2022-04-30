@@ -14,7 +14,7 @@ apply_options({
     ttyfast = true,
     termguicolors = true,
     cursorline = true,
-    laststatus = 2,
+    laststatus = 3,
     incsearch = true,
     inccommand = "nosplit",
     encoding = "utf-8",
@@ -35,12 +35,12 @@ vim.cmd("set iskeyword-=_") -- Recognise _ as word separator
 vim.fn.matchadd("ColorColumn", "\\%80v", 100) -- DANGER XONE FUCK NOT 80 CHARAC
 
 -- For global statusline
--- vim.opt.fillchars:append({
---     horiz = '━',
---     horizup = '┻',
---     horizdown = '┳',
---     vert = '┃',
---     vertleft = '┨',
---     vertright = '┣',
---     verthoriz = '╋',
--- })
+vim.opt.fillchars:append({
+    horiz = "━",
+    horizup = "┻",
+    horizdown = "┳",
+    vert = "┃",
+    vertleft = "┨",
+    vertright = "┣",
+    verthoriz = "╋",
+})

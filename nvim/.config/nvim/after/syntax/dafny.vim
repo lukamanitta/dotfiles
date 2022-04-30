@@ -1,3 +1,3 @@
 hi! link dfyHoarePredicate Comment
 
-syn match dfyHoarePredicate '{ .* }.*$'
+syn match dfyHoarePredicate '^.[ ]{ .* }.*$'

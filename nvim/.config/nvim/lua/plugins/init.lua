@@ -96,7 +96,7 @@ return require("packer").startup({
             },
             {
                 "nvim-treesitter/nvim-treesitter",
-                run = { ":TSInstall maintained", ":TSUpdate" },
+                run = { ":TSInstall all", ":TSUpdate" },
                 config = function()
                     require("plugins.treesitter")
                 end,
@@ -168,9 +168,10 @@ return require("packer").startup({
                 end,
             },
             {
-                "norcalli/nvim-colorizer.lua",
+                "RRethy/vim-hexokinase",
+                run = "make hexokinase",
                 config = function()
-                    require("plugins.colorizer")
+                    require("plugins.hexokinase")
                 end,
             },
             {
