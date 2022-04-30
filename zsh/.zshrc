@@ -69,3 +69,9 @@ bindkey '^j' autosuggest-accept
 # MyStay International config
 test -f ~/.msirc && source ~/.msirc
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/lukamanitta/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/lukamanitta/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/lukamanitta/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/lukamanitta/google-cloud-sdk/completion.zsh.inc'; fi
