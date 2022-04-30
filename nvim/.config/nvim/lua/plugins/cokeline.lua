@@ -1,4 +1,5 @@
 local get_hex = require("cokeline.utils").get_hex
+local change_hex_brightness = require("utils.color").change_hex_brightness
 
 vim.cmd("hi! link TabLineFill Normal")
 
@@ -7,6 +8,8 @@ local general_icons = require("assets.icons").general
 local background = get_hex("Normal")
 local errors_fg = get_hex("DiagnosticError", "fg")
 local warnings_fg = get_hex("DiagnosticWarn", "fg")
+
+local focused_tab_brightness_diff = 1
 
 local components = {
     separator = {
@@ -22,7 +25,16 @@ local components = {
 
     left_half_circle = {
         text = "",
-        fg = get_hex("ColorColumn", "bg"),
+        fg = function(buffer)
+            if buffer.is_focused then
+                return change_hex_brightness(
+                    get_hex("ColorColumn", "bg"),
+                    focused_tab_brightness_diff
+                )
+            else
+                return get_hex("ColorColumn", "bg")
+            end
+        end,
         bg = get_hex("Normal", "bg"),
         truncation = {
             priority = 1,
@@ -31,7 +43,16 @@ local components = {
 
     right_half_circle = {
         text = "",
-        fg = get_hex("ColorColumn", "bg"),
+        fg = function(buffer)
+            if buffer.is_focused then
+                return change_hex_brightness(
+                    get_hex("ColorColumn", "bg"),
+                    focused_tab_brightness_diff
+                )
+            else
+                return get_hex("ColorColumn", "bg")
+            end
+        end,
         bg = get_hex("Normal", "bg"),
         truncation = {
             priority = 1,
@@ -158,7 +179,16 @@ require("cokeline").setup({
         fg = function(buffer)
             return buffer.is_focused and get_hex("Normal", "fg") or get_hex("Comment", "fg")
         end,
-        bg = get_hex("ColorColumn", "bg"),
+        bg = function(buffer)
+            if buffer.is_focused then
+                return change_hex_brightness(
+                    get_hex("ColorColumn", "bg"),
+                    focused_tab_brightness_diff
+                )
+            else
+                return get_hex("ColorColumn", "bg")
+            end
+        end,
     },
 
     -- A list of components to be rendered for each buffer
