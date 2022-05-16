@@ -16,6 +16,8 @@ map("i", "jk", "<Esc>", silentnoremap)
 -- map('', ';', ':', silentnoremap)
 cmd("map ; :") -- cmdline is hidden until another key is pressed unless this is done in viml
 
+map("n", "-", "^", silentnoremap)
+
 -- Reload config
 map("n", "<leader>config", ":Reload<CR>")
 
