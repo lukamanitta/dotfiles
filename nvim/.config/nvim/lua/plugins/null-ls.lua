@@ -29,7 +29,15 @@ null_ls.setup({
         null_ls.builtins.formatting.trim_newlines,
 
         null_ls.builtins.formatting.prettier.with({
-            filetypes = { "typescript", "json", "yaml", "svelte", "scss", "graphql", "css" },
+            filetypes = {
+                "typescript",
+                "json",
+                -- "yaml",
+                "svelte",
+                "scss",
+                "graphql",
+                "css",
+            },
         }),
         null_ls.builtins.formatting.markdownlint,
 
