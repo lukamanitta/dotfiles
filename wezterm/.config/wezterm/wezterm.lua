@@ -31,10 +31,11 @@ local cfg = {
         "~/dotfiles/fonts/RobotoMono",
         "~/dotfiles/fonts/Cousine",
         "~/dotfiles/fonts/SourceCodePro",
+        "~/dotfiles/fonts/Hasklug",
     },
 
-    font = wezterm.font("SourceCodePro Nerd Font"),
-    font_size = 13.5,
+    font = wezterm.font("APL386 Nerd Font"),
+    font_size = 15,
 
     --Keybindings--
 
