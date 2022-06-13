@@ -21,6 +21,9 @@ map("n", "-", "^", silentnoremap)
 -- Reload config
 map("n", "<leader>config", ":Reload<CR>")
 
+-- Run single file
+map("n", "<leader>run", ":lua require('functions.run')(vim.fn.expand('%'))<CR>")
+
 -- Switch to alternate file
 map("n", "<leader>a", "<C-^>")
 

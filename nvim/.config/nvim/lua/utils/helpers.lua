@@ -26,4 +26,9 @@ function H.shell(command)
     return fn.trim(fn.system(command))
 end
 
+function H.split_file_path(filepath)
+    -- Returns the Path, Filename, and Extension as 3 values
+    return string.match(filepath, "(.-)([^\\]-([^\\%.]+))$")
+end
+
 return H

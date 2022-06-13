@@ -54,6 +54,6 @@ function help {
     echo "  standup     Add & edit a standup meeting entry"
     echo "  code [dir]  z into dir and open editor"
     echo "  mkcd        Make a new dir and immediately cd into it"
-    echo " createvenv   Create a new virtualenv"
-    echo " sourcevenv   Source a virtualenv"
+    echo "  createvenv   Create a new virtualenv"
+    echo "  sourcevenv   Source a virtualenv"
 }

@@ -29,7 +29,7 @@ fi
 
 alias zshconfig="source $HOME/.zshrc"
 alias ls="lsd"
-alias sourcevenv="source venv/bin/activate && echo 'Enter "deactivate" to leave venv'"
+alias sourcevenv="source venv/bin/activate && echo Enter 'deactivate' to leave venv"
 alias createvenv="python3 -m venv venv"
 alias e="exit"
 
