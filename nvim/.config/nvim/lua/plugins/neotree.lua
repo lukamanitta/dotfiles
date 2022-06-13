@@ -80,7 +80,7 @@ neotree.setup({
             ["p"] = "paste_from_clipboard",
             ["c"] = "copy", -- takes text input for destination
             ["m"] = "move", -- takes text input for destination
-            ["q"] = "close_window",
+            ["<Esc>"] = "close_window",
         },
     },
     event_handlers = {
