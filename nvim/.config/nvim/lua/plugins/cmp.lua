@@ -79,7 +79,7 @@ cmp.setup({
         { name = "nvim_lsp_signature_help" },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
-        { name = "cmp_tabnine" },
+        -- { name = "cmp_tabnine" },
         { name = "buffer", keyword_length = 5, max_item_count = 5 },
         { name = "omni" },
     }, {
@@ -142,11 +142,11 @@ cmp.setup({
     },
 })
 
-tabnine:setup({
-    max_lines = 1000,
-    max_num_results = 20,
-    sort = true,
-    run_on_every_keystroke = true,
-    snippet_placeholder = "..",
-    ignored_file_types = {},
-})
+-- tabnine:setup({
+--     max_lines = 1000,
+--     max_num_results = 20,
+--     sort = true,
+--     run_on_every_keystroke = true,
+--     snippet_placeholder = "..",
+--     ignored_file_types = {},
+-- })
