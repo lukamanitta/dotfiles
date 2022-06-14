@@ -26,7 +26,8 @@ local colors = {
     blue = "#51afef",
     red = "#ec5f67",
     filename = get_hi_group_fg("Keyword"),
-    endblock = get_hi_group_fg("Title"),
+    endblock_fg = get_hi_group_bg("StatusLine"),
+    endblock_bg = get_hi_group_bg("Normal"),
 }
 
 local conditions = {
@@ -95,10 +96,11 @@ end
 
 -- ins_left({
 --     function()
---         return '▊'
+--         return ""
 --     end,
---     color = { fg = colors.endblock }, -- Sets highlighting of component
+--     color = { fg = colors.endblock_fg, bg = colors.endblock_bg }, -- Sets highlighting of component
 --     left_padding = 0, -- We don't need space before this
+--     right_padding = 0,
 -- })
 
 local get_buf_icon = require("utils.config").get_buf_icon
@@ -242,10 +244,10 @@ ins_right({ "progress", color = { fg = colors.fg, gui = "bold" } })
 
 -- ins_right({
 --     function()
---         return '▊'
+--         return ""
 --     end,
---     color = { fg = colors.endblock },
---     right_padding = 0,
+--     color = { fg = colors.endblock_fg, bg = colors.endblock_bg }, -- Sets highlighting of component
+--     left_padding = 0, -- We don't need space before this
 -- })
 
 lualine.setup(config)

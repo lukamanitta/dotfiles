@@ -44,6 +44,9 @@ pip3 install pylint
 # LazyGit
 brew install jesseduffield/lazygit/lazygit
 
+# fd (for telescope)
+cargo install fd-find
+
 # grip: .md -> HTML
 pip3 install grip
 
