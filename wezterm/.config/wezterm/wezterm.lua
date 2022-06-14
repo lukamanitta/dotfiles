@@ -34,8 +34,9 @@ local cfg = {
         "~/dotfiles/fonts/Hasklug",
     },
 
-    font = wezterm.font("APL386 Nerd Font"),
-    font_size = 15,
+    font = wezterm.font("SourceCodePro Nerd Font"),
+    font_size = 13,
+    line_height = 1.25,
 
     --Keybindings--
 
