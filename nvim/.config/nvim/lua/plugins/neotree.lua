@@ -58,7 +58,7 @@ neotree.setup({
         position = "left",
         width = 30,
         mappings = {
-            ["<space>"] = "toggle_node",
+            -- ["<space>"] = "toggle_node",
             ["<2-LeftMouse>"] = "open",
             ["<cr>"] = "open",
             ["<c-s>"] = "open_split",
