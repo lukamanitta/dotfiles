@@ -44,6 +44,7 @@ set cursorline
 set laststatus=2        " Status line always visible
 set encoding=utf-8
 
+set tabstop=4
 set expandtab           " Treat tabs as multiple spaces
 set shiftwidth=4        " Tab length = 4 spaces
 set backspace=indent,eol,start
