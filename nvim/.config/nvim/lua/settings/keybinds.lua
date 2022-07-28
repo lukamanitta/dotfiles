@@ -130,6 +130,7 @@ map(
 map("n", "<leader>fs", ":Telescope lsp_document_symbols<CR>", { silent = true }) -- Search symbols
 map("n", "<leader>fas", ":Telescope lsp_dynamic_workspace_symbols<CR>", { silent = true }) -- Search all project symbols
 map("n", "<leader>fb", ":Telescope buffers<CR>", { silent = true }) -- Search buffers
+map("n", "<leader>fr", ":lua require('telescope.builtin').resume()<CR>")
 
 -- Neoclip
 map("", "<leader>p", ":Telescope neoclip<CR>")
