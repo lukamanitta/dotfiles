@@ -9,7 +9,7 @@ local background = get_hex("Normal")
 local errors_fg = get_hex("DiagnosticError", "fg")
 local warnings_fg = get_hex("DiagnosticWarn", "fg")
 
-local focused_tab_brightness_diff = 1
+local focused_tab_brightness_diff = 0
 
 local components = {
     separator = {
