@@ -132,10 +132,6 @@ return require("packer").startup({
                     "hrsh7th/cmp-buffer",
                     "hrsh7th/cmp-path",
                     "hrsh7th/cmp-omni",
-                    -- {
-                    --     'quangnguyen30192/cmp-nvim-ultisnips',
-                    --     requires = 'SirVer/ultisnips',
-                    -- },
                     {
                         "saadparwaiz1/cmp_luasnip",
                         requires = "L3MON4D3/luasnip",
@@ -265,10 +261,18 @@ return require("packer").startup({
                     require("plugins.scratch")
                 end,
             },
+            {
+                "folke/todo-comments.nvim",
+                requires = "nvim-lua/plenary.nvim",
+                config = function()
+                    require("plugins.todo")
+                end,
+            },
 
             -- Notes
             {
                 "preservim/vim-markdown",
+                requires = "godlygeek/tabular",
                 ft = { "markdown" },
                 config = function()
                     require("plugins.markdown")
@@ -289,24 +293,19 @@ return require("packer").startup({
                 end,
             },
             {
-                "Furkanzmc/zettelkasten.nvim",
+                "mickael-menu/zk-nvim",
                 config = function()
-                    require("plugins.zettelkasten")
+                    require("plugins.zk")
                 end,
             },
             {
-                "mickael-menu/zk-nvim",
-                -- config = function()
-                --     require('plugins.zk')
-                -- end,
+                "jakewvincent/mkdnflow.nvim",
+                ft = { "markdown" },
+                rocks = "luautf8",
+                config = function()
+                    require("plugins.mkdnflow")
+                end,
             },
-            -- {
-            --     'jakewvincent/mkdnflow.nvim',
-            --     ft = { 'markdown' },
-            --     config = function()
-            --         require('plugins.mkdnflow')
-            --     end,
-            -- },
             {
                 "Pocco81/TrueZen.nvim",
                 ft = { "markdown" },
