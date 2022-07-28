@@ -56,16 +56,29 @@ cmd('imap <silent><script><expr> <C-j> copilot#Accept("")')
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 
+-- todo-comments
+map("n", "<leader>todo", ":TodoTrouble<CR>")
+map("n", "<leader>ftd", ":TodoTelescope<CR>")
+
 -- Lazygit
 map("n", "<leader>git", ":LazyGit<CR>")
 
+local shell = require("utils.helpers").shell
+local course_name = shell("pwd | egrep -o '[a-zA-Z]{4}[0-9]{4}' | tail -1")
+local note_dir = course_name ~= "" and "/University/" .. course_name .. "/" or ""
 -- zk
 map("n", "<leader>zkcd", ":ZkCd<CR>")
 -- map('n', '<leader>zkn', ':ZkNew { title = "" }<LEFT><LEFT><LEFT>')
-cmd('nnoremap <leader>zkn :ZkNew { title = "" }<LEFT><LEFT><LEFT>') -- cmd line is hidden until another key is pressed unless this is done in viml
-map("v", "<leader>zkn", "'<,'>ZkNewFromContentSelection<CR>")
-map("n", "<leader>zkf", ":ZkNotes<CR>")
-map("n", "<leader>zkt", ":ZkTags<CR>")
+cmd('nnoremap <leader>zkn :ZkNew { title = "" }' .. string.rep("<LEFT>", 3)) -- cmd line is hidden until another key is pressed unless this is done in viml
+cmd(
+    "vnoremap <leader>zkn :'<,'>ZkNewFromContentSelection { title = '' }" .. string.rep("<LEFT>", 3)
+)
+map("n", "<leader>fzk", ":ZkNotes<CR>")
+map("n", "<leader>fzkt", ":ZkTags<CR>")
+
+if require("zk.util").notebook_root(vim.fn.expand("%:p")) ~= nil then
+    map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")
+end
 
 -- Hop.nvim
 map(
