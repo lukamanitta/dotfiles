@@ -31,13 +31,14 @@ set relativenumber              " Enables relative line numbers
 set number                      " Enable hybrid line mode
 set hidden                      " Leave buffer without saving
 
+set splitbelow                  " Open all splits at bottom of window
+
 set scrolloff=8
 set sidescrolloff=5
 
 set ttyfast                     " Faster redraw
 set lazyredraw                  " Smarter redraw
-set report = 0                  " Always report changed lines
-
+set report=0                    " Always report changed lines
 
 set laststatus=2                " Status line always visible
 set encoding=utf-8
@@ -81,7 +82,7 @@ let g:netrw_banner = 0
 let g:netrw_winsize = 15
 let g:netrw_liststyle = 3 " Tree view
 " let g:netrw_list_hide = netrw_gitignore#Hide()
-let g:netrw_list_hide .= ',\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
 
 " Tags
 " Generate tags file for project (run from root dir)
