@@ -7,6 +7,8 @@ export ZSH_PLUGINS="$HOME/.config/zsh/plugins"
 export PATH="$HOME/.asdf/installs/python/3.10.0/bin:$PATH"
 source $HOME/.asdf/asdf.sh
 
+export PATH="$HOME/dotfiles/modules/zk:$PATH"
+
 setopt auto_cd
 
 # Start starship prompt
