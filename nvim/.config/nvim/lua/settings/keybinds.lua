@@ -58,7 +58,7 @@ vim.g.copilot_assume_mapped = true
 
 -- todo-comments
 map("n", "<leader>todo", ":TodoTrouble<CR>")
-map("n", "<leader>ftd", ":TodoTelescope<CR>")
+map("n", "<leader>ftodo", ":TodoTelescope<CR>")
 
 -- Lazygit
 map("n", "<leader>git", ":LazyGit<CR>")
@@ -76,9 +76,9 @@ cmd(
 map("n", "<leader>fzk", ":ZkNotes<CR>")
 map("n", "<leader>fzkt", ":ZkTags<CR>")
 
-if require("zk.util").notebook_root(vim.fn.expand("%:p")) ~= nil then
-    map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")
-end
+-- if require("zk.util").notebook_root(vim.fn.expand("%:p")) ~= nil then
+map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
+-- end
 
 -- Hop.nvim
 map(
