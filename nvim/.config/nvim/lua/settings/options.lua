@@ -14,7 +14,7 @@ apply_options({
     ttyfast = true,
     termguicolors = true,
     cursorline = true,
-    laststatus = 2,
+    laststatus = 3,
     incsearch = true,
     inccommand = "nosplit",
     encoding = "utf-8",
