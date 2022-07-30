@@ -35,6 +35,7 @@ local cfg = {
     },
 
     font = wezterm.font("SourceCodePro Nerd Font"),
+    font_size = 12.5,
     line_height = 1.25,
 
     --Keybindings--
