@@ -131,6 +131,7 @@ map("n", "<leader>fs", ":Telescope lsp_document_symbols<CR>", { silent = true })
 map("n", "<leader>fas", ":Telescope lsp_dynamic_workspace_symbols<CR>", { silent = true }) -- Search all project symbols
 map("n", "<leader>fb", ":Telescope buffers<CR>", { silent = true }) -- Search buffers
 map("n", "<leader>fr", ":lua require('telescope.builtin').resume()<CR>")
+map("n", "<leader>fm", ':lua require("plugins.telescope.tele_utils").git_modified_finder()<CR>')
 
 -- Neoclip
 map("", "<leader>p", ":Telescope neoclip<CR>")

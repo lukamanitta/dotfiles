@@ -1,3 +1,4 @@
+local table_merge = require("utils.config").table_merge
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
 local fn = vim.fn
@@ -14,13 +15,38 @@ function T.responsive_layout(opts)
 end
 
 function T.smart_file_finder(opts)
+    opts = opts or {}
     local git_dir = pcall(require("telescope.builtin").git_files, opts)
     if not git_dir then
         require("telescope.builtin").find_files(opts)
     end
 end
 
+function T.git_modified_finder(opts)
+    opts = opts or {}
+    local git_modified_opts = table_merge(opts, {
+        git_command = {
+            "git",
+            "ls-files",
+            "--modified",
+            "--full-name",
+            "--exclude-standard",
+        },
+    })
+    -- local git_modified_opts = {
+    --     git_command = {
+    --         "git",
+    --         "ls-files",
+    --         "--modified",
+    --         "--full-name",
+    --         "--exclude-standard",
+    --     },
+    -- }
+    require("telescope.builtin").git_files(git_modified_opts)
+end
+
 function T.smart_buf_preview_maker(filepath, bufnr, opts)
+    opts = opts or {}
     filepath = vim.fn.expand(filepath)
     Job
         :new({
