@@ -12,7 +12,7 @@ augroup nvim
     au BufWritePost */plugins/init.lua source <afile> | PackerCompile
 
     " Remind me about note snippet
-    au FileType markdown lua vim.notify("Type 'note' for note snippet!")
+    "au FileType markdown lua vim.notify("Type 'note' for note snippet!")
 
     " Enable spell for markdown
     au FileType markdown setlocal spell
