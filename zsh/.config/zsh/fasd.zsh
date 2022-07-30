@@ -11,4 +11,4 @@ alias sf='fasd -sif'     # interactive file selection
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
 alias v='f -e vim'       # edit file with vim
-alias nv='f -e nvim'   # edit file with nvim
+alias nv='f -e nvim'     # edit file with nvim
