@@ -1,6 +1,8 @@
 local ls = require("luasnip")
 local fn = vim.fn
+local utils = require("plugins.luasnip.utils")
 local shell = require("utils.helpers").shell
+local course_regex = require("utils.helpers").course_regex
 
 local s = ls.snippet
 
@@ -17,6 +19,7 @@ local events = require("luasnip.util.events")
 local ai = require("luasnip.nodes.absolute_indexer")
 local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
+local lambda = require("luasnip.extras").l
 
 -- TODO: Move these into separate files
 
@@ -37,12 +40,48 @@ ls.add_snippets("markdown", {
     # {}
     ]],
             {
+                -- course_regex(),
                 shell("pwd | egrep -o '[A-Z]{4}[0-9]{4}' | tail -1"),
                 shell("date +%Y/%m/%d"),
                 i(0, "Title"),
             }
         )
     ),
+})
+
+ls.add_snippets("c", {
+    s("fn", {
+        d(6, utils.cdocsnip, { 2, 4, 5 }),
+        t({ "", "" }),
+        c(1, {
+            t("public "),
+            t("private "),
+        }),
+        c(2, {
+            t("void"),
+            t("String"),
+            t("char"),
+            t("int"),
+            t("double"),
+            t("boolean"),
+            i(nil, ""),
+        }),
+        t(" "),
+        i(3, "myFunc"),
+        t("("),
+        i(4),
+        t(")"),
+        c(5, {
+            t(""),
+            sn(nil, {
+                t({ "", " throws " }),
+                i(1),
+            }),
+        }),
+        t({ " {", "\t" }),
+        i(0),
+        t({ "", "}" }),
+    }),
 })
 
 require("luasnip.loaders.from_vscode").lazy_load()

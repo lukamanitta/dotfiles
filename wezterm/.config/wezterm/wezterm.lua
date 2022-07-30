@@ -30,8 +30,8 @@ local cfg = {
         "~/dotfiles/fonts",
         "~/dotfiles/fonts/RobotoMono",
         "~/dotfiles/fonts/Cousine",
-        "~/dotfiles/fonts/SourceCodePro",
-        "~/dotfiles/fonts/Hasklug",
+        "~/dotfiles/fonts/SourceCodePro", -- SourceCodePro Nerd Font
+        "~/dotfiles/fonts/Hasklug", -- Hasklug Nerd Font Mono
     },
 
     font = wezterm.font("SourceCodePro Nerd Font"),

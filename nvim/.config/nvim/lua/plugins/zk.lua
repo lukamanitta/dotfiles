@@ -1,4 +1,4 @@
-local Z = {
+require("zk").setup({
     -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
     -- it's recommended to use "telescope" or "fzf"
     picker = "telescope",
@@ -18,6 +18,4 @@ local Z = {
             filetypes = { "markdown" },
         },
     },
-}
-
-return Z
+})

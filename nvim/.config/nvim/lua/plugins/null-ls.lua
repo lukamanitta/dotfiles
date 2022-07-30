@@ -55,8 +55,14 @@ null_ls.setup({
                 -style='{
                     BasedOnStyle: LLVM,
                     IndentWidth: 4,
+                    ColumnLimit: 79,
                     AlignAfterOpenBracket: DontAlign,
                     ContinuationIndentWidth: 8,
+                    PointerAlignment: Left,
+                    AllowAllArgumentsOnNextLine: true,
+                    AlignTrailingComments: true,
+                    SpaceBeforeAssignmentOperators: true,
+                    SpaceBeforeParens: ControlStatements,
                 }'
             "]],
             },
