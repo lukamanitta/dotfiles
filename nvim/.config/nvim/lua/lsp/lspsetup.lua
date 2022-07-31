@@ -33,11 +33,11 @@ local on_attach = function(_, bufnr)
     buf_set_keymap("n", "<leader>xd", ":Trouble document_diagnostics<CR>", opts)
 end
 
-cmd([[
-augroup lspAutocmds
-    au!
-    autocmd CursorHoldI * silent! Lspsaga signature_help
-]])
+-- cmd([[
+-- augroup lspAutocmds
+--     au!
+--     autocmd CursorHoldI * silent! Lspsaga signature_help
+-- ]])
 
 -- Configure lua language server for neovim development
 local lua_settings = {
