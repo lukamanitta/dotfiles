@@ -73,7 +73,7 @@ cmd('nnoremap <leader>zkn :ZkNew { title = "" }' .. string.rep("<LEFT>", 3)) -- 
 cmd(
     "vnoremap <leader>zkn :'<,'>ZkNewFromContentSelection { title = '' }" .. string.rep("<LEFT>", 3)
 )
-map("n", "<leader>fzk", ":ZkNotes<CR>")
+map("n", "<leader>fzkn", ":ZkNotes<CR>")
 map("n", "<leader>fzkt", ":ZkTags<CR>")
 
 -- if require("zk.util").notebook_root(vim.fn.expand("%:p")) ~= nil then
@@ -130,8 +130,16 @@ map(
 map("n", "<leader>fs", ":Telescope lsp_document_symbols<CR>", { silent = true }) -- Search symbols
 map("n", "<leader>fas", ":Telescope lsp_dynamic_workspace_symbols<CR>", { silent = true }) -- Search all project symbols
 map("n", "<leader>fb", ":Telescope buffers<CR>", { silent = true }) -- Search buffers
-map("n", "<leader>fr", ":lua require('telescope.builtin').resume()<CR>")
-map("n", "<leader>fm", ':lua require("plugins.telescope.tele_utils").git_modified_finder()<CR>')
+map(
+    "n",
+    "<leader>fr",
+    ':lua require("telescope.builtin").resume(require("plugins.telescope.tele_utils").responsive_layout({}))<CR>'
+)
+map(
+    "n",
+    "<leader>fm",
+    ':lua require("plugins.telescope.tele_utils").git_modified_finder(require("plugins.telescope.tele_utils").responsive_layout({}))<CR>'
+)
 
 -- Neoclip
 map("", "<leader>p", ":Telescope neoclip<CR>")
