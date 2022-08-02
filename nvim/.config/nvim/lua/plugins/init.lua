@@ -287,7 +287,7 @@ return require("packer").startup({
             },
             {
                 "KeitaNakamura/tex-conceal.vim",
-                ft = { "markdown" },
+                ft = { "markdown", "pseudo" },
                 config = function()
                     require("plugins.tex-conceal")
                 end,
