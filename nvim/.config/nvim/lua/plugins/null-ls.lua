@@ -2,6 +2,7 @@ local null_ls = require("null-ls")
 local fn = vim.fn
 
 null_ls.setup({
+    debug = true,
     sources = {
         -- Diagnostics
         null_ls.builtins.diagnostics.eslint_d,
@@ -50,22 +51,26 @@ null_ls.setup({
         }),
 
         null_ls.builtins.formatting.clang_format.with({
+            filetypes = { "c" },
             extra_args = {
-                [["
-                -style='{
-                    BasedOnStyle: LLVM,
-                    IndentWidth: 4,
-                    ColumnLimit: 79,
-                    AlignAfterOpenBracket: DontAlign,
-                    ContinuationIndentWidth: 8,
-                    PointerAlignment: Left,
-                    AllowAllArgumentsOnNextLine: true,
-                    AlignTrailingComments: true,
-                    SpaceBeforeAssignmentOperators: true,
-                    SpaceBeforeParens: ControlStatements,
-                }'
-            "]],
+                "-style=file",
             },
+            -- extra_args = {
+            --     [["
+            --     -style='{
+            --         BasedOnStyle: LLVM,
+            --         IndentWidth: 4,
+            --         ColumnLimit: 79,
+            --         AlignAfterOpenBracket: DontAlign,
+            --         ContinuationIndentWidth: 8,
+            --         PointerAlignment: Left,
+            --         AllowAllArgumentsOnNextLine: true,
+            --         AlignTrailingComments: true,
+            --         SpaceBeforeAssignmentOperators: true,
+            --         SpaceBeforeParens: ControlStatements,
+            --     }'
+            -- "]],
+            -- },
         }),
 
         null_ls.builtins.formatting.uncrustify.with({
