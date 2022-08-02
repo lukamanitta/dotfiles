@@ -2,6 +2,7 @@ local apply_globals = require("utils.config").apply_globals
 local general_icons = require("assets.icons").general
 
 apply_globals({
+    Hexokinase_ftDisabled = { "markdown" },
     Hexokinase_highlighters = { "virtual" },
     Hexokinase_virtualText = general_icons.Circle,
     Hexokinase_optInPatterns = {
