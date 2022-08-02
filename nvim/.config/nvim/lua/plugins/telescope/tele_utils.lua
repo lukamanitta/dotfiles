@@ -33,15 +33,6 @@ function T.git_modified_finder(opts)
             "--exclude-standard",
         },
     })
-    -- local git_modified_opts = {
-    --     git_command = {
-    --         "git",
-    --         "ls-files",
-    --         "--modified",
-    --         "--full-name",
-    --         "--exclude-standard",
-    --     },
-    -- }
     require("telescope.builtin").git_files(git_modified_opts)
 end
 
