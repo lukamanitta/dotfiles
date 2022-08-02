@@ -1,9 +1,16 @@
---
-# Based on LLVM style, but 4 space indent
+---
 BasedOnStyle: LLVM
 IndentWidth: 4
---
-Language: Cpp
-DerivePointerAlignment: false
+ColumnLimit: 79
+IndentCaseLabels: true
+AlignAfterOpenBracket: DontAlign
+ContinuationIndentWidth: 8
 PointerAlignment: Left
---
+AllowAllArgumentsOnNextLine: true
+AlignTrailingComments: true
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+---
+Language: Java
+ColumnLimit: 100
+---
