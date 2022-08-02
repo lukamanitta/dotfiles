@@ -1,4 +1,5 @@
 local cmd = vim.cmd
+local table_merge = require("utils.config").table_merge
 
 local on_attach = function(_, bufnr)
     local function buf_set_keymap(...)
@@ -82,7 +83,9 @@ lsp_installer.on_server_ready(function(server)
     local config = make_config()
 
     if server.name == "sumneko_lua" then
+        local luadev = require("lua-dev").setup({})
         config.settings = lua_settings
+        config = table_merge(config, luadev)
     end
     -- TODO: Get emmet_ls working for jsx files
     if server.name == "emmet_ls" then
