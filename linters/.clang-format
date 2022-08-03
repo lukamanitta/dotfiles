@@ -1,16 +1,31 @@
 ---
 BasedOnStyle: LLVM
 IndentWidth: 4
+ContinuationIndentWidth: 8
 ColumnLimit: 79
 IndentCaseLabels: true
 AlignAfterOpenBracket: DontAlign
-ContinuationIndentWidth: 8
 PointerAlignment: Left
 AllowAllArgumentsOnNextLine: true
 AlignTrailingComments: true
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements
+IncludeBlocks: Regroup
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 1
+AlignConsecutiveAssignments:
+    Enabled: true
+    AcrossEmptyLines: false
+    AcrossComment: true
+    AlignCompound: true
+    PadOperators: true
+AlignConsecutiveBitFields:
+    Enabled: true
+    AcrossEmptyLines: false
+    AcrossComment: true
+AlignArrayOfStructures: Left
 ---
 Language: Java
-ColumnLimit: 100
+BasedOnStyle: Google
+ColumnLimit: 80
 ---
