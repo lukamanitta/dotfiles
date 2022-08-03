@@ -331,6 +331,8 @@ return require("packer").startup({
                 "dhruvasagar/vim-table-mode",
                 config = function()
                     vim.g.table_mode_map_prefix = "<leader>tm"
+                    vim.g.table_mode_corner = "|"
+                    vim.g.table_mode_corner_corner = "|"
                 end,
             },
 
