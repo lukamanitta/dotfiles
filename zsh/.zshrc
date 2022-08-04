@@ -68,6 +68,10 @@ source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 bindkey '^j' autosuggest-accept
 
+# University
+
+alias moss="ssh s4697584@moss.labs.eat.uq.edu.au"
+
 # MyStay International config
 test -f ~/.msirc && source ~/.msirc
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
