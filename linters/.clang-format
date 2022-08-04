@@ -1,9 +1,31 @@
---
-# Based on LLVM style, but 4 space indent
+---
 BasedOnStyle: LLVM
 IndentWidth: 4
---
-Language: Cpp
-DerivePointerAlignment: false
+ContinuationIndentWidth: 8
+ColumnLimit: 79
+IndentCaseLabels: true
+AlignAfterOpenBracket: DontAlign
 PointerAlignment: Left
---
+AllowAllArgumentsOnNextLine: true
+AlignTrailingComments: true
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+IncludeBlocks: Regroup
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 1
+AlignConsecutiveAssignments:
+    Enabled: true
+    AcrossEmptyLines: false
+    AcrossComment: true
+    AlignCompound: true
+    PadOperators: true
+AlignConsecutiveBitFields:
+    Enabled: true
+    AcrossEmptyLines: false
+    AcrossComment: true
+AlignArrayOfStructures: Left
+---
+Language: Java
+BasedOnStyle: Google
+ColumnLimit: 80
+---

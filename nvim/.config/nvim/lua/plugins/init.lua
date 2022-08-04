@@ -129,6 +129,7 @@ return require("packer").startup({
                     "hrsh7th/cmp-nvim-lsp",
                     "hrsh7th/cmp-nvim-lsp-signature-help",
                     "hrsh7th/cmp-nvim-lua",
+                    "folke/lua-dev.nvim",
                     "hrsh7th/cmp-buffer",
                     "hrsh7th/cmp-path",
                     "hrsh7th/cmp-omni",
@@ -157,6 +158,19 @@ return require("packer").startup({
                 "noib3/nvim-cokeline",
                 -- Config is sourced after colourscheme is loaded, see plugins.colorschemes/
             },
+            -- {
+            --     "rebelot/heirline.nvim",
+            --     config = function()
+            --         require("plugins.statusline.heirline")
+            --     end,
+            -- },
+            -- {
+            --     "SmiteshP/nvim-navic",
+            --     config = function()
+            --         require("plugins.statusline.navic")
+            --     end,
+            -- },
+
             {
                 "rcarriga/nvim-notify",
                 config = function()
@@ -171,7 +185,7 @@ return require("packer").startup({
                 end,
             },
             {
-                "lukamanitta/nvim-cursorword",
+                "xiyaowong/nvim-cursorword",
                 config = function()
                     require("plugins.cursorword")
                 end,
@@ -179,7 +193,7 @@ return require("packer").startup({
             {
                 "SmiteshP/nvim-gps",
                 config = function()
-                    require("plugins.gps")
+                    require("plugins.statusline.gps")
                 end,
             },
             {
@@ -317,6 +331,8 @@ return require("packer").startup({
                 "dhruvasagar/vim-table-mode",
                 config = function()
                     vim.g.table_mode_map_prefix = "<leader>tm"
+                    vim.g.table_mode_corner = "|"
+                    vim.g.table_mode_corner_corner = "|"
                 end,
             },
 

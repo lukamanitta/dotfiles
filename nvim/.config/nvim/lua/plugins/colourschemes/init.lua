@@ -10,5 +10,5 @@ require("plugins.colourschemes." .. require_path)
 if vim.o.laststatus == 3 then
     cmd("hi WinSeparator guibg=None guifg=" .. get_hi_group_bg("StatusLine"))
 end
-require("plugins.lualine")
+require("plugins.statusline.lualine")
 require("plugins.cokeline")
