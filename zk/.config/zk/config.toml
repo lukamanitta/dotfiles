@@ -53,7 +53,7 @@ colon-tags = true
 # ok so i wanted it to just link the YYYYMMDDHHMM at the start of the filename
 # so i tried a grep shell command, didn't work.
 # but for some god forsaken reason this works. god help me.
-link-format = "{{sh 'echo hi'}}"
+# link-format = "{{sh 'echo hi'}}"
 
 
 # EXTERNAL TOOLS
