@@ -89,6 +89,19 @@ let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
 " TODO: Add git hooks, place in .git/ if present
 command! MakeTags !ctags -R .
 
+" Auto-pairs
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
+inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+
 " Goto definition
 nnoremap gd ^]
 
