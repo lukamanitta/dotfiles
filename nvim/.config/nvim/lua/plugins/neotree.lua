@@ -5,15 +5,24 @@ local get_hi_group_fg = require("utils.config").get_hi_group_fg
 
 local filesystem_icons = require("assets.icons").filesystem
 local git_icons = require("assets.icons").git
+local general_icons = require("assets.icons").general
 
 local neotree = require("neo-tree")
+
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
 neotree.setup({
     close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
     popup_border_style = "rounded",
     enable_git_status = true,
     enable_diagnostics = true,
+    sort_case_insensitive = false,
+    sort_function = nil,
+
     default_component_configs = {
+        container = {
+            enable_character_fade = true,
+        },
         indent = {
             indent_size = 2,
             padding = 1, -- extra padding on left hand side
@@ -33,10 +42,16 @@ neotree.setup({
             folder_open = filesystem_icons.FolderOpen,
             folder_empty = filesystem_icons.FolderEmpty,
             default = filesystem_icons.File,
+            highlight = "NeoTreeFileIcon",
         },
         name = {
             trailing_slash = false,
             use_git_status_colors = true,
+            highlight = "NeoTreeFileName",
+        },
+        modified = {
+            symbol = general_icons.CircleSmall,
+            highlight = "NeoTreeModified",
         },
         git_status = {
             symbols = {
@@ -57,20 +72,19 @@ neotree.setup({
     window = {
         position = "left",
         width = 30,
+        mapping_options = {
+            noremap = true,
+            nowait = true,
+        },
         mappings = {
-            -- ["<space>"] = "toggle_node",
             ["<2-LeftMouse>"] = "open",
             ["<cr>"] = "open",
             ["<c-s>"] = "open_split",
             ["<c-v>"] = "open_vsplit",
+            ["t"] = "open_tabnew",
+            ["w"] = "open_with_window_picker",
             ["C"] = "close_node",
-            ["<bs>"] = "navigate_up",
-            ["."] = "set_root",
-            ["H"] = "toggle_hidden",
-            ["R"] = "refresh",
-            ["/"] = "fuzzy_finder",
-            ["f"] = "filter_on_submit",
-            ["<c-x>"] = "clear_filter",
+            ["z"] = "close_all_nodes",
             ["a"] = "add",
             ["A"] = "add_directory",
             ["d"] = "delete",
@@ -80,7 +94,11 @@ neotree.setup({
             ["p"] = "paste_from_clipboard",
             ["c"] = "copy", -- takes text input for destination
             ["m"] = "move", -- takes text input for destination
-            ["<Esc>"] = "close_window",
+            ["q"] = "close_window",
+            ["R"] = "refresh",
+            ["?"] = "show_help",
+            ["<"] = "prev_source",
+            [">"] = "next_source",
         },
     },
     event_handlers = {
@@ -109,19 +127,36 @@ neotree.setup({
         },
         follow_current_file = true, -- This will find and focus the file in the active buffer every
         -- time the current file is changed while the tree is open.
-        hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-        -- in whatever position is specified in window.position
+        group_empty_dirs = false,
+        hijack_netrw_behavior = "open_default",
         -- "open_current",  -- netrw disabled, opening a directory opens within the
         -- window like netrw would, regardless of window.position
         -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
         use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
         -- instead of relying on nvim autocmd events.
+        window = {
+            mappings = {
+                ["<bs>"] = "navigate_up",
+                ["."] = "set_root",
+                ["H"] = "toggle_hidden",
+                ["/"] = "fuzzy_finder",
+                ["D"] = "fuzzy_finder_directory",
+                ["f"] = "filter_on_submit",
+                ["<c-x>"] = "clear_filter",
+                ["[g"] = "prev_git_modified",
+                ["]g"] = "next_git_modified",
+            },
+        },
     },
     buffers = {
+        follow_current_file = true,
         show_unloaded = true,
+        group_empty_dirs = true,
         window = {
             mappings = {
                 ["bd"] = "buffer_delete",
+                ["<bs>"] = "navigate_up",
+                ["."] = "set_root",
             },
         },
     },
