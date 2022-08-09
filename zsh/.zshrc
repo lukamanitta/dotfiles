@@ -70,7 +70,7 @@ bindkey '^j' autosuggest-accept
 
 # University
 
-alias moss="ssh s4697584@moss.labs.eat.uq.edu.au"
+alias moss="ssh s4697584@moss.labs.eait.uq.edu.au"
 
 # MyStay International config
 test -f ~/.msirc && source ~/.msirc
