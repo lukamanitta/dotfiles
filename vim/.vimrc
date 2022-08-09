@@ -43,6 +43,9 @@ set report=0                    " Always report changed lines
 set laststatus=2                " Status line always visible
 set encoding=utf-8
 
+set exrc                        " Enables directory-local .vimrc files
+set secure                      " Extra security if local .vimrc not owned by me
+
 " Indent
 set autoindent
 set expandtab                   " Treat tabs as multiple spaces
