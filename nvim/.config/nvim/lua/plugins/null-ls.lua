@@ -2,32 +2,17 @@ local null_ls = require("null-ls")
 local fn = vim.fn
 
 null_ls.setup({
-    debug = true,
+    debug = false,
     sources = {
-        -- Diagnostics
+        -- Web
         null_ls.builtins.diagnostics.eslint_d,
         -- null_ls.builtins.diagnostics.eslint,
 
-        null_ls.builtins.diagnostics.markdownlint,
-
-        null_ls.builtins.diagnostics.pylint.with({
-            -- Remove docstring checks
-            extra_args = { "--disable=C0114,C0115,C0116" },
-        }),
-
-        null_ls.builtins.diagnostics.shellcheck,
-
-        -- Code Actions
         null_ls.builtins.code_actions.eslint_d,
+        -- null_ls.builtins.code_actions.eslint,
 
-        null_ls.builtins.code_actions.shellcheck,
-
-        -- Fixers
-        null_ls.builtins.formatting.trim_whitespace.with({
-            disabled_filetypes = { "markdown" },
-        }),
-
-        null_ls.builtins.formatting.trim_newlines,
+        null_ls.builtins.formatting.eslint_d,
+        -- null_ls.builtins.formatting.eslint,
 
         null_ls.builtins.formatting.prettier.with({
             filetypes = {
@@ -40,8 +25,12 @@ null_ls.setup({
                 "css",
             },
         }),
+
+        -- Markdown
+        null_ls.builtins.diagnostics.markdownlint,
         null_ls.builtins.formatting.markdownlint,
 
+        -- Lua
         null_ls.builtins.formatting.stylua.with({
             extra_args = {
                 "--config-path",
@@ -50,38 +39,39 @@ null_ls.setup({
             },
         }),
 
+        -- C-Like
+        null_ls.builtins.formatting.uncrustify.with({
+            extra_args = { "-c", fn.expand("~/.uncrustify.cfg"), "--no-backup" },
+        }),
+
         null_ls.builtins.formatting.clang_format.with({
             filetypes = { "c" },
             extra_args = {
                 "-style=file",
             },
-            -- extra_args = {
-            --     [["
-            --     -style='{
-            --         BasedOnStyle: LLVM,
-            --         IndentWidth: 4,
-            --         ColumnLimit: 79,
-            --         AlignAfterOpenBracket: DontAlign,
-            --         ContinuationIndentWidth: 8,
-            --         PointerAlignment: Left,
-            --         AllowAllArgumentsOnNextLine: true,
-            --         AlignTrailingComments: true,
-            --         SpaceBeforeAssignmentOperators: true,
-            --         SpaceBeforeParens: ControlStatements,
-            --     }'
-            -- "]],
-            -- },
         }),
 
-        null_ls.builtins.formatting.uncrustify.with({
-            extra_args = { "-c", fn.expand("~/.uncrustify.cfg"), "--no-backup" },
+        -- Python
+        null_ls.builtins.diagnostics.pylint.with({
+            -- Remove docstring checks
+            extra_args = { "--disable=C0114,C0115,C0116" },
         }),
-
-        null_ls.builtins.formatting.rustfmt,
 
         null_ls.builtins.formatting.black,
 
-        null_ls.builtins.formatting.eslint_d,
+        -- Rust
+        null_ls.builtins.formatting.rustfmt,
+
+        -- Shell
+        null_ls.builtins.diagnostics.shellcheck,
+        null_ls.builtins.code_actions.shellcheck,
+
+        -- Misc
+        null_ls.builtins.formatting.trim_whitespace.with({
+            disabled_filetypes = { "markdown" },
+        }),
+
+        null_ls.builtins.formatting.trim_newlines,
     },
     on_attach = function(client)
         if client.resolved_capabilities.document_formatting then
