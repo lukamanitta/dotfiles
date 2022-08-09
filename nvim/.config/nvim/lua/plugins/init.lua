@@ -143,7 +143,8 @@ return require("packer").startup({
                     "davidsierradz/cmp-conventionalcommits",
                 },
             },
-            { "github/copilot.vim" },
+            -- Causing very significant slowdown in insert mode
+            -- { "github/copilot.vim" },
 
             -- Language specific styling
             { "styled-components/vim-styled-components" },
@@ -331,6 +332,7 @@ return require("packer").startup({
                 "dhruvasagar/vim-table-mode",
                 config = function()
                     vim.g.table_mode_map_prefix = "<leader>tm"
+                    vim.g.table_mode_add_formula_map = "<leader>tmf"
                     vim.g.table_mode_corner = "|"
                     vim.g.table_mode_corner_corner = "|"
                 end,
