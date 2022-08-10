@@ -47,13 +47,16 @@ function mkcd {
     mkdir -p "$1" && cd "$1"
 }
 
+source $ZSHCONFIG/git_utils.sh
+
 # Help list for custom commands
 function help {
     echo "Custom Commands:"
-    echo "  notes       Open notes directory"
-    echo "  standup     Add & edit a standup meeting entry"
-    echo "  code [dir]  z into dir and open editor"
-    echo "  mkcd        Make a new dir and immediately cd into it"
-    echo "  createvenv   Create a new virtualenv"
-    echo "  sourcevenv   Source a virtualenv"
+    echo "  notes <course>                 Open notes directory (cd into <course> if provided)"
+    echo "  standup                        Add & edit a standup meeting entry"
+    echo "  code [dir]                     z into dir and open editor"
+    echo "  mkcd                           Make a new dir and immediately cd into it"
+    echo "  createvenv                     Create a new virtualenv"
+    echo "  sourcevenv                     Source a virtualenv"
+    echo "  prune-if-merged-into [branch]  Prune local branches if merged into [branch]"
 }

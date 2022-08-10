@@ -43,11 +43,11 @@ else
     export EDITOR="nvim"
 fi
 
-source $ZSHCONFIG/functions.zsh
-
 # Completions
 fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
+
+source $ZSHCONFIG/functions.zsh
 
 # Plugins
 
