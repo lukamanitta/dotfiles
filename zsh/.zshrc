@@ -70,7 +70,8 @@ bindkey '^j' autosuggest-accept
 
 # University
 
-alias moss="ssh s4697584@moss.labs.eait.uq.edu.au"
+export MOSS_SERVER="s4697584@moss.labs.eait.uq.edu.au"
+alias moss="ssh $MOSS_SERVER"
 
 # MyStay International config
 test -f ~/.msirc && source ~/.msirc
