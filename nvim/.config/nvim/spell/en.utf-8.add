@@ -192,3 +192,6 @@ sscanf
 Preprocessor
 preprocessor
 enum
+r
+perror
+callbacks
