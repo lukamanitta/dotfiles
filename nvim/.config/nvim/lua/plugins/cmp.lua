@@ -96,10 +96,14 @@ cmp.setup({
                 vim_item.kind = "Latex"
             elseif entry.source.name == "conventionalcommits" then
                 vim_item.kind = "CommitMsg"
+            elseif entry.source.source.client ~= nil then
+                if entry.source.source.client.name == "zk" and vim_item.kind == "Text" then
+                    vim_item.kind = "Tag"
+                end
             end
 
             -- Display appropriate icons
-            -- vim_item.kind = string.format('%s %s', comp_icons[vim_item.kind], vim_item.kind)
+            -- vim_item.kind = string.format("%s %s", comp_icons[vim_item.kind], vim_item.kind)
             vim_item.kind = string.format("%s ", comp_icons[vim_item.kind])
 
             -- Display source of completion
