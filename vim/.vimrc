@@ -43,6 +43,9 @@ set report=0                    " Always report changed lines
 set laststatus=2                " Status line always visible
 set encoding=utf-8
 
+set exrc                        " Enables directory-local .vimrc files
+set secure                      " Extra security if local .vimrc not owned by me
+
 " Indent
 set autoindent
 set expandtab                   " Treat tabs as multiple spaces
@@ -88,6 +91,19 @@ let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
 " Generate tags file for project (run from root dir)
 " TODO: Add git hooks, place in .git/ if present
 command! MakeTags !ctags -R .
+
+" Auto-pairs
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
+inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
 
 " Goto definition
 nnoremap gd ^]

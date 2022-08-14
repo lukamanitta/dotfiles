@@ -13,16 +13,16 @@ SpaceBeforeParens: ControlStatements
 IncludeBlocks: Regroup
 KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 1
-AlignConsecutiveAssignments:
-    Enabled: true
-    AcrossEmptyLines: false
-    AcrossComment: true
-    AlignCompound: true
-    PadOperators: true
-AlignConsecutiveBitFields:
-    Enabled: true
-    AcrossEmptyLines: false
-    AcrossComment: true
+#AlignConsecutiveAssignments:
+#    Enabled: true
+#    AcrossEmptyLines: false
+#    AcrossComment: true
+#    AlignCompound: true
+#    PadOperators: true
+#AlignConsecutiveBitFields:
+#    Enabled: true
+#    AcrossEmptyLines: false
+#    AcrossComment: true
 AlignArrayOfStructures: Left
 ---
 Language: Java

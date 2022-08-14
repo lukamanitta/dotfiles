@@ -43,11 +43,11 @@ else
     export EDITOR="nvim"
 fi
 
-source $ZSHCONFIG/functions.zsh
-
 # Completions
 fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
+
+source $ZSHCONFIG/functions.zsh
 
 # Plugins
 
@@ -67,6 +67,10 @@ export PATH="$ZSH_PLUGINS/zsh-autosuggestions:$PATH"
 source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 bindkey '^j' autosuggest-accept
+
+# University
+
+alias moss="ssh s4697584@moss.labs.eait.uq.edu.au"
 
 # MyStay International config
 test -f ~/.msirc && source ~/.msirc
