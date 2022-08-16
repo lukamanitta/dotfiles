@@ -340,6 +340,7 @@ return require("packer").startup({
 
             -- My Plugins
             { "lukamanitta/naturally.nvim" },
+            { "lukamanitta/runvim" },
         })
     end,
     config = {
