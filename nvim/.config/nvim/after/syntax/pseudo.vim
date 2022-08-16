@@ -6,15 +6,17 @@
 syntax keyword pseudoMethod function Algorithm
 highlight link pseudoMethod Statement
 
-syntax keyword pseudoFunction first isEmpty remove add insert
+syntax keyword pseudoFunction first isEmpty remove add insert enqueue dequeue visit
 highlight link pseudoFunction Function
 
 syntax keyword pseudoConditional if then else match case
 highlight link pseudoConditional Conditional
 
-syntax keyword pseudoRepeat while do for repeat until
+syntax keyword pseudoRepeat while do for repeat until foreach
 syntax match pseudoRepeat "for.*\zsto\ze.*"
 syntax match pseudoRepeat "for.*\zsdownto\ze"
+syntax match pseudoRepeat "foreach\.*\zsof\ze"
+syntax match pseudoRepeat "foreach.*\zsin\ze"
 highlight link pseudoRepeat Repeat
 
 syntax keyword pseudoStatement return
