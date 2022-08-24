@@ -15,6 +15,10 @@ if fn.empty(fn.glob(install_path)) > 0 then
     cmd("packadd packer.nvim")
 end
 
+-- Local plugin dev
+vim.opt.runtimepath:append("~/projects/nvim-plugins/runvim")
+require("runvim").setup()
+
 return require("packer").startup({
     function()
         use({
@@ -340,7 +344,12 @@ return require("packer").startup({
 
             -- My Plugins
             { "lukamanitta/naturally.nvim" },
-            { "lukamanitta/runvim" },
+            -- {
+            --     "lukamanitta/runvim",
+            --     config = function()
+            --         require("runvim").setup()
+            --     end,
+            -- },
         })
     end,
     config = {
