@@ -1,7 +1,7 @@
 ---
 BasedOnStyle: LLVM
 IndentWidth: 4
-ContinuationIndentWidth: 8
+ContinuationIndentWidth: 4
 ColumnLimit: 79
 IndentCaseLabels: true
 AlignAfterOpenBracket: DontAlign
