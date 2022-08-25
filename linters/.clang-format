@@ -4,10 +4,11 @@ IndentWidth: 4
 ContinuationIndentWidth: 8
 ColumnLimit: 79
 IndentCaseLabels: true
-AlignAfterOpenBracket: Align
+AlignAfterOpenBracket: DontAlign
 PointerAlignment: Left
 AllowAllArgumentsOnNextLine: true
 AlignTrailingComments: true
+AlignOperands: DontAlign
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements
 IncludeBlocks: Regroup
@@ -24,6 +25,9 @@ MaxEmptyLinesToKeep: 1
 #    AcrossEmptyLines: false
 #    AcrossComment: true
 AlignArrayOfStructures: None
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: false
 ---
 Language: Java
 BasedOnStyle: Google
