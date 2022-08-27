@@ -16,6 +16,7 @@ function F.install_lsp_servers()
         "pyright",
         "zk",
         "emmet_ls",
+        "ccls",
     }
     local servers_string = ""
     for _, server in ipairs(servers) do
