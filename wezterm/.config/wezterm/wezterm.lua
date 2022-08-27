@@ -32,11 +32,14 @@ local cfg = {
         "~/dotfiles/fonts/Cousine",
         "~/dotfiles/fonts/SourceCodePro", -- SourceCodePro Nerd Font
         "~/dotfiles/fonts/Hasklug", -- Hasklug Nerd Font Mono
+        "~/dotfiles/fonts/JetBrainsMono", -- JetBrainsMono Nerd Font
+        "~/dotfiles/fonts/OperatorMono", -- OperatorMono Nerd Font
     },
 
-    font = wezterm.font("SourceCodePro Nerd Font"),
-    font_size = 12.5,
-    line_height = 1.25,
+    -- font = wezterm.font("OperatorMono Nerd Font", { weight = "Book" }),
+    font = wezterm.font("JetBrainsMono Nerd Font"),
+    font_size = 13.5,
+    line_height = 1.3,
     harfbuzz_features = { "clig=1" },
 
     --Keybindings--

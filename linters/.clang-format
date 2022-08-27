@@ -8,6 +8,7 @@ AlignAfterOpenBracket: DontAlign
 PointerAlignment: Left
 AllowAllArgumentsOnNextLine: true
 AlignTrailingComments: true
+AlignOperands: DontAlign
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements
 IncludeBlocks: Regroup
@@ -23,7 +24,10 @@ MaxEmptyLinesToKeep: 1
 #    Enabled: true
 #    AcrossEmptyLines: false
 #    AcrossComment: true
-AlignArrayOfStructures: Left
+AlignArrayOfStructures: None
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: false
 ---
 Language: Java
 BasedOnStyle: Google

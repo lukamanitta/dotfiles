@@ -6,7 +6,7 @@
 syntax keyword pseudoMethod function Algorithm
 highlight link pseudoMethod Statement
 
-syntax keyword pseudoFunction first isEmpty remove add insert enqueue dequeue visit
+syntax keyword pseudoFunction first isEmpty remove add insert enqueue dequeue visit element getKey getValue positions hasNext next set addLast
 highlight link pseudoFunction Function
 
 syntax keyword pseudoConditional if then else match case
