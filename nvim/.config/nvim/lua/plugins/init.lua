@@ -93,7 +93,6 @@ return require("packer").startup({
                     require("lsp.trouble")
                 end,
             },
-            { "tami5/lspsaga.nvim" },
             {
                 "nvim-treesitter/playground",
                 cmd = { "TSPlaygroundToggle" },
