@@ -98,7 +98,7 @@ return {
             i(nil, ""),
         }),
         t(" "),
-        i(3, "myFunc"),
+        i(3, "my_func"),
         t("("),
         i(4),
         t(")"),
