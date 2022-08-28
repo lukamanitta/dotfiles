@@ -1,6 +1,5 @@
-local U = {}
-
-U.cdocsnip = function(args, _, old_state)
+---@diagnostic disable:undefined-global
+local cdocsnip = function(args, _, old_state)
     -- !!! old_state is used to preserve user-input here. DON'T DO IT THAT WAY!
     -- Using a restoreNode instead is much easier.
     -- View this only as an example on how old_state functions.
@@ -25,18 +24,19 @@ U.cdocsnip = function(args, _, old_state)
     end
 
     local insert = 2
-    for indx, arg in ipairs(vim.split(args[2][1], ", ", true)) do
+    for _, arg in ipairs(vim.split(args[2][1], ", ", true)) do
         -- Get actual name parameter.
         arg = vim.split(arg, " ", true)[2]
         if arg then
             local inode
-            -- if there was some text in this parameter, use it as static_text for this new snippet.
+            -- if there was some text in this parameter, use it as static_text
+            -- for this new snippet.
             if old_state and old_state[arg] then
                 inode = i(insert, old_state["arg" .. arg]:get_text())
             else
                 inode = i(insert)
             end
-            vim.list_extend(nodes, { t({ arg .. ": " }), inode, t({ "", "" }) })
+            vim.list_extend(nodes, { t({ " * " .. arg .. ": " }), inode, t({ "", "" }) })
             param_nodes["arg" .. arg] = inode
 
             insert = insert + 1
@@ -77,4 +77,40 @@ U.cdocsnip = function(args, _, old_state)
     return snip
 end
 
-return U
+return {
+    s("fn", {
+        d(6, cdocsnip, { 2, 4, 5 }),
+        t({ "", "" }),
+        c(1, {
+            t("public "),
+            t("private "),
+            t(""),
+        }),
+        c(2, {
+            t("void"),
+            t("int"),
+            t("char"),
+            t("char*"),
+            t("bool"),
+            t("long"),
+            t("float"),
+            t("double"),
+            i(nil, ""),
+        }),
+        t(" "),
+        i(3, "myFunc"),
+        t("("),
+        i(4),
+        t(")"),
+        c(5, {
+            t(""),
+            sn(nil, {
+                t({ "", " throws " }),
+                i(1),
+            }),
+        }),
+        t({ " {", "\t" }),
+        i(0),
+        t({ "", "}" }),
+    }),
+}
