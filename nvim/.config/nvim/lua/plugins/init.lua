@@ -219,6 +219,12 @@ return require("packer").startup({
                     require("plugins.fidget")
                 end,
             },
+            {
+                "stevearc/dressing.nvim",
+                config = function()
+                    require("plugins.ui.dressing")
+                end,
+            },
 
             -- Colourschemes
             -- {
