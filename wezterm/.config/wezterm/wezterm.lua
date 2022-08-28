@@ -39,7 +39,7 @@ local cfg = {
     -- font = wezterm.font("OperatorMono Nerd Font", { weight = "Book" }),
     font = wezterm.font("JetBrainsMono Nerd Font"),
     font_size = 13.5,
-    line_height = 1.3,
+    line_height = 1.25,
     harfbuzz_features = { "clig=1" },
 
     --Keybindings--
