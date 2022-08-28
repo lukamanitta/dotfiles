@@ -1,3 +1,6 @@
+local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
+local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
+
 require("dressing").setup({
     input = {
         enabled = true,
@@ -15,7 +18,7 @@ require("dressing").setup({
         min_width = { 20, 0.2 },
 
         -- Window transparency (0-100)
-        winblend = 10,
+        winblend = 0,
         -- Change default highlight groups (see :help winhl)
         winhighlight = "",
 
@@ -40,9 +43,30 @@ require("dressing").setup({
     },
     select = {
         enabled = true,
-        backend = { "telescope", "builtin" }, -- Priority list of implementations
+        backend = { "telescope", "nui", "builtin" }, -- Priority list of implementations
         trim_prompt = true, -- Trim trailing ":"
         telescope = nil, -- Options table for telescope picker
+
+        -- Options for nui Menu
+        nui = {
+            position = "50%",
+            size = nil,
+            relative = "editor",
+            border = {
+                style = "rounded",
+            },
+            buf_options = {
+                swapfile = false,
+                filetype = "DressingSelect",
+            },
+            win_options = {
+                winblend = 0,
+            },
+            max_width = 80,
+            max_height = 40,
+            min_width = 40,
+            min_height = 10,
+        },
 
         -- Options for built-in selector
         builtin = {
@@ -50,7 +74,7 @@ require("dressing").setup({
             border = "rounded",
             relative = "cursor",
 
-            winblend = 10,
+            winblend = 0,
             winhighlight = "",
 
             width = nil,
@@ -72,3 +96,12 @@ require("dressing").setup({
         },
     },
 })
+
+vim.cmd(
+    "hi FloatBorder guibg="
+        .. get_hi_group_bg("Normal")
+        .. " guifg="
+        .. get_hi_group_fg("Conditional")
+)
+vim.cmd("hi NormalFloat guibg=" .. get_hi_group_bg("Normal"))
+-- vim.cmd("hi FloatTitle guibg=" .. get_hi_group_bg("Normal"))

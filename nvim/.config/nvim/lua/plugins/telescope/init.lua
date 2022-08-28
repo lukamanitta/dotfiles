@@ -1,5 +1,6 @@
 local actions = require("telescope.actions")
-local smart_buf_preview_maker = require("plugins.telescope.tele_utils").smart_buf_preview_maker
+local smart_buf_preview_maker =
+    require("plugins.telescope.tele_utils").smart_buf_preview_maker
 local general_icons = require("assets.icons").general
 
 require("telescope").setup({
@@ -29,4 +30,3 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("fzf")
-require("telescope").load_extension("neoclip")

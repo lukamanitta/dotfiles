@@ -80,19 +80,15 @@ function U.apply_globals(opts)
     end
 end
 
-function U.get_hi_group_bg(hi_group)
-    return fn.synIDattr(fn.synIDtrans(fn.hlID(hi_group)), "bg#")
-end
-
-function U.get_hi_group_fg(hi_group)
-    return fn.synIDattr(fn.synIDtrans(fn.hlID(hi_group)), "fg#")
-end
-
 function U.get_buf_icon(buffer)
     local filename = api.nvim_buf_get_name(buffer)
     local file_ext = string.match(filename, "(%w+)$")
     local default_icon = ""
-    return require("nvim-web-devicons").get_icon(filename, file_ext, { default = default_icon })
+    return require("nvim-web-devicons").get_icon(
+        filename,
+        file_ext,
+        { default = default_icon }
+    )
 end
 
 function _G.check_backspace()

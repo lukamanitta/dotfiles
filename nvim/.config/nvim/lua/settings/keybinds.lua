@@ -1,3 +1,4 @@
+-- TODO: move keybinds to respective plugin files
 local map = require("utils.config").map
 -- local api = vim.api
 local cmd = vim.cmd
@@ -43,9 +44,6 @@ map("n", "N", "Nzzzv")
 -- Clear search highlight
 map("", "//", ":nohlsearch<CR>")
 
--- Open NvimTree
--- map('n', '<leader>e', ':NvimTreeToggle<CR>')
-
 -- Open Neotree
 -- :Neotree ACTION SOURCE POSITION TOGGLE DIR REVEAL REVEAL_FILE REVEAL_FORCE_CWD
 map("n", "<leader>e", ":Neotree focus filesystem float toggle reveal<CR>")
@@ -65,13 +63,15 @@ map("n", "<leader>git", ":LazyGit<CR>")
 
 local shell = require("utils.helpers").shell
 local course_name = shell("pwd | egrep -o '[a-zA-Z]{4}[0-9]{4}' | tail -1")
-local note_dir = course_name ~= "" and "/University/" .. course_name .. "/" or ""
+local note_dir = course_name ~= "" and "/University/" .. course_name .. "/"
+    or ""
 -- zk
 map("n", "<leader>zkcd", ":ZkCd<CR>")
 -- map('n', '<leader>zkn', ':ZkNew { title = "" }<LEFT><LEFT><LEFT>')
 cmd('nnoremap <leader>zkn :ZkNew { title = "" }' .. string.rep("<LEFT>", 3)) -- cmd line is hidden until another key is pressed unless this is done in viml
 cmd(
-    "vnoremap <leader>zkn :'<,'>ZkNewFromContentSelection { title = '' }" .. string.rep("<LEFT>", 3)
+    "vnoremap <leader>zkn :'<,'>ZkNewFromContentSelection { title = '' }"
+        .. string.rep("<LEFT>", 3)
 )
 map("n", "<leader>fzkn", ":ZkNotes<CR>")
 map("n", "<leader>fzkt", ":ZkTags<CR>")
@@ -127,8 +127,15 @@ map(
     ':lua require("telescope.builtin").live_grep(require("plugins.telescope.tele_utils").responsive_layout({}))<CR>',
     { silent = true }
 ) -- Search project
-map("n", "<leader>fs", ":Telescope lsp_document_symbols<CR>", { silent = true }) -- Search symbols
-map("n", "<leader>fas", ":Telescope lsp_dynamic_workspace_symbols<CR>", { silent = true }) -- Search all project symbols
+map("n", "<leader>fs", ":Telescope lsp_document_symbols<CR>", {
+    silent = true,
+}) -- Search symbols
+map(
+    "n",
+    "<leader>fas",
+    ":Telescope lsp_dynamic_workspace_symbols<CR>",
+    { silent = true }
+) -- Search all project symbols
 map("n", "<leader>fb", ":Telescope buffers<CR>", { silent = true }) -- Search buffers
 map(
     "n",
@@ -140,6 +147,7 @@ map(
     "<leader>fm",
     ':lua require("plugins.telescope.tele_utils").git_modified_finder(require("plugins.telescope.tele_utils").responsive_layout({}))<CR>'
 )
+map("n", "z=", ":Telescope spell_suggest<CR>")
 
 -- Neoclip
 map("", "<leader>p", ":Telescope neoclip<CR>")

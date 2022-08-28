@@ -19,12 +19,24 @@ end
 vim.opt.runtimepath:append("~/projects/nvim-plugins/runvim")
 require("runvim").setup()
 
+local local_plug_dir = function(plug_name)
+    return "~/projects/nvim-plugins/" .. plug_name
+end
+
 return require("packer").startup({
     function()
         use({
 
             -- Packer can manage itself as an optional plugin
             "wbthomason/packer.nvim",
+
+            -- Local Plugins
+            {
+                local_plug_dir("runvim"),
+                config = function()
+                    require("runvim").setup()
+                end,
+            },
 
             -- File explorer
             {
@@ -66,13 +78,7 @@ return require("packer").startup({
                     require("plugins.comment")
                 end,
             },
-            {
-                "lukas-reineke/indent-blankline.nvim",
-                config = function()
-                    require("plugins.indent_blankline")
-                end,
-            },
-            { "chun-yang/auto-pairs" },
+            { "jiangmiao/auto-pairs" },
             { "tpope/vim-surround" },
             { "chaoren/vim-wordmotion" },
             { "andymass/vim-matchup" },
@@ -84,15 +90,7 @@ return require("packer").startup({
                 end,
             },
 
-            -- Lsp & Completions
-            { "williamboman/nvim-lsp-installer" },
-            { "neovim/nvim-lspconfig" },
-            {
-                "folke/trouble.nvim",
-                config = function()
-                    require("lsp.trouble")
-                end,
-            },
+            -- Treesitter
             {
                 "nvim-treesitter/playground",
                 cmd = { "TSPlaygroundToggle" },
@@ -110,6 +108,16 @@ return require("packer").startup({
                     "yioneko/nvim-yati",
                 },
             },
+
+            -- Lsp & Completions
+            { "neovim/nvim-lspconfig" },
+            { "williamboman/nvim-lsp-installer" },
+            {
+                "folke/trouble.nvim",
+                config = function()
+                    require("lsp.trouble")
+                end,
+            },
             {
                 "jose-elias-alvarez/null-ls.nvim",
                 config = function()
@@ -121,8 +129,10 @@ return require("packer").startup({
                 config = function()
                     require("plugins.luasnip")
                 end,
+                requires = {
+                    "rafamadriz/friendly-snippets",
+                },
             },
-            { "rafamadriz/friendly-snippets" },
             {
                 "hrsh7th/nvim-cmp",
                 config = function()
@@ -146,8 +156,7 @@ return require("packer").startup({
                     "davidsierradz/cmp-conventionalcommits",
                 },
             },
-            -- Causing very significant slowdown in insert mode
-            -- { "github/copilot.vim" },
+            { "github/copilot.vim" },
 
             -- Language specific styling
             { "styled-components/vim-styled-components" },
@@ -155,13 +164,9 @@ return require("packer").startup({
             { "benknoble/vim-dafny" },
 
             -- UI
-            -- ryanoasis/vim-devicons'
             { "kyazdani42/nvim-web-devicons" },
             { "nvim-lualine/lualine.nvim" },
-            {
-                "noib3/nvim-cokeline",
-                -- Config is sourced after colourscheme is loaded, see plugins.colorschemes/
-            },
+            { "noib3/nvim-cokeline" },
             -- {
             --     "rebelot/heirline.nvim",
             --     config = function()
@@ -174,27 +179,32 @@ return require("packer").startup({
             --         require("plugins.statusline.navic")
             --     end,
             -- },
-
+            {
+                "lukas-reineke/indent-blankline.nvim",
+                config = function()
+                    require("plugins.ui.indent_blankline")
+                end,
+            },
             {
                 "rcarriga/nvim-notify",
                 config = function()
-                    require("plugins.notify")
+                    require("plugins.ui.notify")
                 end,
             },
             {
                 "RRethy/vim-hexokinase",
                 run = "make hexokinase",
                 config = function()
-                    require("plugins.hexokinase")
+                    require("plugins.ui.hexokinase")
                 end,
             },
             {
                 "xiyaowong/nvim-cursorword",
                 config = function()
-                    require("plugins.cursorword")
+                    require("plugins.ui.cursorword")
                 end,
             },
-            {
+            { -- TODO: replace with navic
                 "SmiteshP/nvim-gps",
                 config = function()
                     require("plugins.statusline.gps")
@@ -203,19 +213,19 @@ return require("packer").startup({
             {
                 "folke/which-key.nvim",
                 config = function()
-                    require("plugins.which-key")
+                    require("plugins.ui.which-key")
                 end,
             },
             {
                 "lewis6991/gitsigns.nvim",
                 config = function()
-                    require("plugins.gitsigns")
+                    require("plugins.ui.gitsigns")
                 end,
             },
             {
                 "j-hui/fidget.nvim",
                 config = function()
-                    require("plugins.fidget")
+                    require("plugins.ui.fidget")
                 end,
             },
             {
@@ -237,6 +247,10 @@ return require("packer").startup({
             { "rebelot/kanagawa.nvim" },
             { "EdenEast/nightfox.nvim" },
 
+            -- Meta
+            { "famiu/nvim-reload", cmd = { "Reload", "Restart" } },
+            { "lewis6991/impatient.nvim" },
+
             -- Other
             {
                 "kdheepak/lazygit.nvim",
@@ -253,38 +267,7 @@ return require("packer").startup({
                     vim.cmd("hi link FloatermBorder Normal")
                 end,
             },
-            {
-                "AckslD/nvim-neoclip.lua",
-                config = function()
-                    require("plugins.neoclip")
-                end,
-            },
-            {
-                "tpope/vim-fugitive",
-                cmd = {
-                    "Git",
-                    "Gedit",
-                    "Gsplit",
-                    "Gdiffsplitt",
-                    "Gread",
-                    "Gwrite",
-                    "Ggrep",
-                    "GMove",
-                    "GRename",
-                    "GDelete",
-                    "GRemove",
-                    "GBrowse",
-                },
-            },
-            { "famiu/nvim-reload", cmd = { "Reload", "Restart" } },
-            { "lewis6991/impatient.nvim" },
             { "tpope/vim-repeat" },
-            {
-                "mtth/scratch.vim",
-                config = function()
-                    require("plugins.scratch")
-                end,
-            },
             {
                 "folke/todo-comments.nvim",
                 requires = "nvim-lua/plenary.nvim",
@@ -299,27 +282,27 @@ return require("packer").startup({
                 requires = "godlygeek/tabular",
                 ft = { "markdown" },
                 config = function()
-                    require("plugins.markdown")
+                    require("plugins.markdown.vim-markdown")
                 end,
             },
             {
                 "iamcco/markdown-preview.nvim",
                 run = "cd app && yarn install",
                 config = function()
-                    require("plugins.markdown-preview")
+                    require("plugins.markdown.markdown-preview")
                 end,
             },
             {
                 "KeitaNakamura/tex-conceal.vim",
                 ft = { "markdown", "pseudo" },
                 config = function()
-                    require("plugins.tex-conceal")
+                    require("plugins.markdown.tex-conceal")
                 end,
             },
             {
                 "mickael-menu/zk-nvim",
                 config = function()
-                    require("plugins.zk")
+                    require("plugins.markdown.zk")
                 end,
             },
             {
@@ -327,7 +310,7 @@ return require("packer").startup({
                 ft = { "markdown" },
                 rocks = "luautf8",
                 config = function()
-                    require("plugins.mkdnflow")
+                    require("plugins.markdown.mkdnflow")
                 end,
             },
             {
