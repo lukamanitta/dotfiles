@@ -317,7 +317,7 @@ return require("packer").startup({
                 "Pocco81/TrueZen.nvim",
                 ft = { "markdown" },
                 config = function()
-                    require("plugins.truezen")
+                    require("plugins.ui.truezen")
                 end,
             },
             {
