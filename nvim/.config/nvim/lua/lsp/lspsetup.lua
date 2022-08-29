@@ -19,14 +19,14 @@ local on_attach = function(_, bufnr)
     buf_set_keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
     buf_set_keymap("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opts)
 
-    -- Lspsaga
-    buf_set_keymap("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
-    buf_set_keymap("n", "<leader>rn", ":Lspsaga rename<CR>", opts)
-    buf_set_keymap("n", "K", ":Lspsaga hover_doc<CR>", opts)
-    buf_set_keymap("n", "<leader>sh", ":Lspsaga signature_help<CR>", opts)
-    buf_set_keymap("n", "]e", ":Lspsaga diagnostic_jump_next<CR>", opts)
-    buf_set_keymap("n", "[e", ":Lspsaga diagnostic_jump_prev<CR>", opts)
-    buf_set_keymap("n", "<leader>d", ":Lspsaga show_cursor_diagnostics<CR>", opts)
+    -- Actions
+    buf_set_keymap("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", opts)
+    buf_set_keymap("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
+    buf_set_keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", opts)
+    buf_set_keymap("n", "<leader>sh", ":lua vim.lsp.buf.signature_help()<CR>", opts)
+    buf_set_keymap("n", "]e", ":lua vim.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "[e", ":lua vim.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "<leader>d", ":lua vim.diagnostic.open_float({ scope = 'c' })<CR>", opts)
 
     -- Trouble
     buf_set_keymap("n", "gr", ":Trouble lsp_references<CR>", opts)
@@ -37,7 +37,7 @@ end
 -- cmd([[
 -- augroup lspAutocmds
 --     au!
---     autocmd CursorHoldI * silent! Lspsaga signature_help
+--     autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
 -- ]])
 
 -- Configure lua language server for neovim development

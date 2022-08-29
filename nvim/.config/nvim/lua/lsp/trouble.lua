@@ -1,5 +1,5 @@
 local cmd = vim.cmd
-local get_hi_group_bg = require("utils.config").get_hi_group_bg
+local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
 local general_icons = require("assets.icons").general
 
 require("trouble").setup({

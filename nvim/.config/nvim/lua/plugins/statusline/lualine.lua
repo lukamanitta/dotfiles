@@ -2,8 +2,8 @@
 -- Credit: shadmansaleh
 local lualine = require("lualine")
 
-local get_hi_group_bg = require("utils.config").get_hi_group_bg
-local get_hi_group_fg = require("utils.config").get_hi_group_fg
+local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
+local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
 
 local git_icons = require("assets.icons").git
 local lsp_icons = require("assets.icons").lsp

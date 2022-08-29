@@ -1,4 +1,4 @@
-local get_hi_group_bg = require("utils.config").get_hi_group_bg
+local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
 local get_hex = require("cokeline.utils").get_hex
 local cmd = vim.cmd
 
