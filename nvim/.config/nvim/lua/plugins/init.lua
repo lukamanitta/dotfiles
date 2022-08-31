@@ -348,5 +348,6 @@ return require("packer").startup({
             enable = true,
             threshold = 1,
         },
+        max_jobs = 50,
     },
 })
