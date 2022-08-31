@@ -1,21 +1,17 @@
 local map = require("utils.config").map
 local types = require("luasnip.util.types")
+local general_icons = require("assets.icons").general
 
 require("luasnip").config.set_config({
     -- Allows jumping back into snippet after exiting selection
     history = true,
     -- Update dynamic values inside snippets while typing
     updateevents = "TextChanged,TextChangedI",
-    -- enable_autosnippets = true,
+    enable_autosnippets = false,
     ext_opts = {
         [types.choiceNode] = {
             active = {
-                virt_text = { { "●", "GruvboxOrange" } },
-            },
-        },
-        [types.insertNode] = {
-            active = {
-                virt_text = { { "●", "GruvboxBlue" } },
+                virt_text = { { general_icons.CircleOutline, "Conditional" } },
             },
         },
     },
@@ -49,5 +45,14 @@ require("luasnip.loaders.from_lua").load({
 })
 require("luasnip.loaders.from_vscode").lazy_load()
 
-map("n", "<leader><leader>ls", "<cmd>source ~/.config/nvim/lua/plugins/luasnip/snippets.lua<cr>")
-map("i", "<C-u>", "<cmd>lua require('luasnip.extras.select_choice')()<cr>", { noremap = true })
+map(
+    "n",
+    "<leader><leader>ls",
+    "<cmd>source ~/.config/nvim/lua/plugins/luasnip/snippets.lua<cr>"
+)
+map(
+    "i",
+    "<C-u>",
+    "<cmd>lua require('luasnip.extras.select_choice')()<cr>",
+    { noremap = true }
+)
