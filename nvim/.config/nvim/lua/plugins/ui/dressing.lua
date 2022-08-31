@@ -43,7 +43,7 @@ require("dressing").setup({
     },
     select = {
         enabled = true,
-        backend = { "telescope", "nui", "builtin" }, -- Priority list of implementations
+        backend = { "nui", "telescope", "builtin" }, -- Priority list of implementations
         trim_prompt = true, -- Trim trailing ":"
         telescope = nil, -- Options table for telescope picker
 
