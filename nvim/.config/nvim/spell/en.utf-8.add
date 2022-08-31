@@ -280,3 +280,6 @@ MMU
 hypervisor
 Hasklug
 JSX
+PID
+pid
+waitpid
