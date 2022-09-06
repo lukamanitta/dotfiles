@@ -84,7 +84,7 @@ return require("packer").startup({
             { "andymass/vim-matchup" },
             {
                 "phaazon/hop.nvim",
-                branch = "v1",
+                branch = "v2",
                 config = function()
                     require("plugins.hop")
                 end,
