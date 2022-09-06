@@ -6,7 +6,7 @@
 syntax keyword pseudoMethod function Algorithm
 highlight link pseudoMethod Statement
 
-syntax keyword pseudoFunction first isEmpty remove add insert enqueue dequeue visit element getKey getValue positions hasNext next set addLast
+syntax keyword pseudoFunction first isEmpty remove add insert enqueue dequeue visit element getKey getValue positions hasNext next set addLast isRoot
 highlight link pseudoFunction Function
 
 syntax keyword pseudoConditional if then else match case
@@ -48,7 +48,7 @@ syntax match pseudoIdentifier /\<\w\+\>/
 
 " Conceal assignment with 2 characters (so comments still line up)
 syntax match pseudoAssignmentFirst "<" contained conceal cchar=←
-syntax match pseudoOperator "<-" contains=pseudoAssignmentFirst conceal cchar=―
+syntax match pseudoOperator "<-" contains=pseudoAssignmentFirst conceal cchar=←
 highlight link pseudoOperator Operator
 
 highlight link pseudoModule StorageClass

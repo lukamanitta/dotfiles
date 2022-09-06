@@ -134,6 +134,15 @@ return require("packer").startup({
                 },
             },
             {
+                "danymat/neogen",
+                config = function()
+                    require("neogen").setup({ snippet_engine = "luasnip" })
+                end,
+                requires = {
+                    "L3MON4D3/luasnip",
+                },
+            },
+            {
                 "hrsh7th/nvim-cmp",
                 config = function()
                     require("plugins.cmp")

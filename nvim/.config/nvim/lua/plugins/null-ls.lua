@@ -16,7 +16,7 @@ null_ls.setup({
 
         null_ls.builtins.formatting.prettier.with({
             filetypes = {
-                "typescript",
+                -- "typescript",
                 "json",
                 -- "yaml",
                 "svelte",
@@ -41,7 +41,11 @@ null_ls.setup({
 
         -- C-Like
         null_ls.builtins.formatting.uncrustify.with({
-            extra_args = { "-c", fn.expand("~/.uncrustify.cfg"), "--no-backup" },
+            extra_args = {
+                "-c",
+                fn.expand("~/.uncrustify.cfg"),
+                "--no-backup",
+            },
         }),
 
         null_ls.builtins.formatting.clang_format.with({
