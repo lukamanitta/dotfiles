@@ -290,3 +290,5 @@ restructurings
 Tri
 AVL
 sigaction
+valgrind
+SIGCHLD
