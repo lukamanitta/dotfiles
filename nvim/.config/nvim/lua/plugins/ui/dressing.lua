@@ -43,24 +43,26 @@ require("dressing").setup({
     },
     select = {
         enabled = true,
-        backend = { "nui", "telescope", "builtin" }, -- Priority list of implementations
+        backend = { "telescope", "builtin", "nui" }, -- Priority list of implementations
         trim_prompt = true, -- Trim trailing ":"
         telescope = nil, -- Options table for telescope picker
 
         -- Options for nui Menu
+        -- TODO: this isn't working, pls fix
         nui = {
-            position = "50%",
-            size = nil,
-            relative = "editor",
+            -- position = "50%",
+            -- size = nil,
+            anchor = "SW",
             border = {
                 style = "rounded",
             },
+            win_options = {
+                winblend = 0,
+            },
+            relative = "cursor",
             buf_options = {
                 swapfile = false,
                 filetype = "DressingSelect",
-            },
-            win_options = {
-                winblend = 0,
             },
             max_width = 80,
             max_height = 40,
