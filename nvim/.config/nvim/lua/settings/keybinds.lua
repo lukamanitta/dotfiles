@@ -50,7 +50,7 @@ map("n", "<leader>e", ":Neotree focus filesystem float toggle reveal<CR>")
 map("n", "<leader>b", ":Neotree focus buffers float toggle reveal<CR>")
 
 -- Github Copilot
-cmd('imap <silent><script><expr> <C-j> copilot#Accept("")')
+cmd('imap <silent><script><expr> <C-j> copilot#Accept("<CR>")')
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 
@@ -104,12 +104,12 @@ map(
 map(
     "",
     "t",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
+    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
 )
 map(
     "",
     "T",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
+    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
 )
 map("n", "<leader>w", ":HopWord<CR>", { silent = true })
 
