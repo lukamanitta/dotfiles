@@ -292,3 +292,5 @@ AVL
 sigaction
 valgrind
 SIGCHLD
+rw
+EOF
