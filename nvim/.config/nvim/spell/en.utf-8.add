@@ -292,3 +292,7 @@ AVL
 sigaction
 valgrind
 SIGCHLD
+Translink
+txt
+geolocation
+UQ
