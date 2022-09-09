@@ -8,6 +8,7 @@ export PATH="$HOME/.asdf/installs/python/3.10.0/bin:$PATH"
 source $HOME/.asdf/asdf.sh
 
 export PATH="$HOME/dotfiles/modules/zk:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 setopt auto_cd
 
@@ -47,7 +48,16 @@ fi
 fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
 
-source $ZSHCONFIG/functions.zsh
+# Help list for custom commands
+function help {
+    echo "Custom Commands:"
+    echo "  notes <course>                 Open notes directory (cd into <course> if provided)"
+    echo "  standup                        Add & edit a standup meeting entry"
+    echo "  mkcd                           Make a new dir and immediately cd into it"
+    echo "  createvenv                     Create a new virtualenv"
+    echo "  sourcevenv                     Source a virtualenv"
+    echo "  prune-if-merged-into [branch]  Prune local branches if merged into [branch]"
+}
 
 # Plugins
 
