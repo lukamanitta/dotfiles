@@ -322,13 +322,13 @@ return require("packer").startup({
                     require("plugins.markdown.mkdnflow")
                 end,
             },
-            {
-                "Pocco81/TrueZen.nvim",
-                ft = { "markdown" },
-                config = function()
-                    require("plugins.ui.truezen")
-                end,
-            },
+            -- {
+            --     "Pocco81/TrueZen.nvim",
+            --     ft = { "markdown" },
+            --     config = function()
+            --         require("plugins.ui.truezen")
+            --     end,
+            -- },
             {
                 "dhruvasagar/vim-table-mode",
                 config = function()
@@ -338,28 +338,24 @@ return require("packer").startup({
                     vim.g.table_mode_corner_corner = "|"
                 end,
             },
-            --          Images
+            -- -- Images
             {
                 "ekickx/clipboard-image.nvim",
                 config = function()
                     require("plugins.markdown.images.clipboard-image")
                 end,
+                requires = { "edluffy/hologram.nvim" },
             },
             {
                 "edluffy/hologram.nvim",
                 config = function()
                     require("plugins.markdown.images.hologram")
                 end,
+                requires = { "ekickx/clipboard-image.nvim" },
             },
 
             -- My Plugins
             { "lukamanitta/naturally.nvim" },
-            -- {
-            --     "lukamanitta/runvim",
-            --     config = function()
-            --         require("runvim").setup()
-            --     end,
-            -- },
         })
     end,
     config = {
