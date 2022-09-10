@@ -20,17 +20,37 @@ local on_attach = function(_, bufnr)
     buf_set_keymap("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opts)
 
     -- Actions
-    buf_set_keymap("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", opts)
+    buf_set_keymap(
+        "n",
+        "<leader>ca",
+        ":lua vim.lsp.buf.code_action()<CR>",
+        opts
+    )
     buf_set_keymap("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
     buf_set_keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", opts)
-    buf_set_keymap("n", "<leader>sh", ":lua vim.lsp.buf.signature_help()<CR>", opts)
+    buf_set_keymap(
+        "n",
+        "<leader>sh",
+        ":lua vim.lsp.buf.signature_help()<CR>",
+        opts
+    )
     buf_set_keymap("n", "]e", ":lua vim.diagnostic.goto_next()<CR>", opts)
     buf_set_keymap("n", "[e", ":lua vim.diagnostic.goto_prev()<CR>", opts)
-    buf_set_keymap("n", "<leader>d", ":lua vim.diagnostic.open_float({ scope = 'c' })<CR>", opts)
+    buf_set_keymap(
+        "n",
+        "<leader>d",
+        ":lua vim.diagnostic.open_float({ scope = 'c' })<CR>",
+        opts
+    )
 
     -- Trouble
     buf_set_keymap("n", "gr", ":Trouble lsp_references<CR>", opts)
-    buf_set_keymap("n", "<leader>xw", ":Trouble workspace_diagnostics<CR>", opts)
+    buf_set_keymap(
+        "n",
+        "<leader>xw",
+        ":Trouble workspace_diagnostics<CR>",
+        opts
+    )
     buf_set_keymap("n", "<leader>xd", ":Trouble document_diagnostics<CR>", opts)
 end
 
@@ -59,6 +79,10 @@ local lua_settings = {
                 [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                 [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
             },
+        },
+        completion = {
+            keywordSnippet = "Replace",
+            callSnippet = "Replace",
         },
     },
 }
@@ -96,7 +120,11 @@ lsp_installer.on_server_ready(function(server)
         -- local zk_opts = require('plugins.zk')
         require("zk").setup({
             lsp = {
-                config = vim.tbl_extend("force", server:get_default_options(), config),
+                config = vim.tbl_extend(
+                    "force",
+                    server:get_default_options(),
+                    config
+                ),
             },
         })
     else
