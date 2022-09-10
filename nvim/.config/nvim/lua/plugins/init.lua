@@ -285,7 +285,7 @@ return require("packer").startup({
                 end,
             },
 
-            -- Notes
+            -- Markdown
             {
                 "preservim/vim-markdown",
                 requires = "godlygeek/tabular",
@@ -336,6 +336,19 @@ return require("packer").startup({
                     vim.g.table_mode_add_formula_map = "<leader>tmf"
                     vim.g.table_mode_corner = "|"
                     vim.g.table_mode_corner_corner = "|"
+                end,
+            },
+            --          Images
+            {
+                "ekickx/clipboard-image.nvim",
+                config = function()
+                    require("plugins.markdown.images.clipboard-image")
+                end,
+            },
+            {
+                "edluffy/hologram.nvim",
+                config = function()
+                    require("plugins.markdown.images.hologram")
                 end,
             },
 
