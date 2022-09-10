@@ -78,11 +78,11 @@ null_ls.setup({
         null_ls.builtins.formatting.trim_newlines,
     },
     on_attach = function(client)
-        if client.resolved_capabilities.document_formatting then
+        if client.server_capabilities.documentFormattingProvider then
             vim.cmd([[
             augroup LspFormatting
                 autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync(nil, 3000)
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.format(nil, 3000)
             augroup END
             ]])
         end
