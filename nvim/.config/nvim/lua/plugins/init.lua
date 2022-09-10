@@ -15,10 +15,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
     cmd("packadd packer.nvim")
 end
 
--- Local plugin dev
-vim.opt.runtimepath:append("~/projects/nvim-plugins/runvim")
-require("runvim").setup()
-
 local local_plug_dir = function(plug_name)
     return "~/projects/nvim-plugins/" .. plug_name
 end
@@ -37,6 +33,7 @@ return require("packer").startup({
                     require("runvim").setup()
                 end,
             },
+            { local_plug_dir("naturally.nvim") },
 
             -- File explorer
             {
@@ -339,23 +336,20 @@ return require("packer").startup({
                 end,
             },
             -- -- Images
-            {
-                "ekickx/clipboard-image.nvim",
-                config = function()
-                    require("plugins.markdown.images.clipboard-image")
-                end,
-                requires = { "edluffy/hologram.nvim" },
-            },
-            {
-                "edluffy/hologram.nvim",
-                config = function()
-                    require("plugins.markdown.images.hologram")
-                end,
-                requires = { "ekickx/clipboard-image.nvim" },
-            },
-
-            -- My Plugins
-            { "lukamanitta/naturally.nvim" },
+            -- {
+            --     "ekickx/clipboard-image.nvim",
+            --     config = function()
+            --         require("plugins.markdown.images.clipboard-image")
+            --     end,
+            --     requires = { "edluffy/hologram.nvim" },
+            -- },
+            -- {
+            --     "edluffy/hologram.nvim",
+            --     config = function()
+            --         require("plugins.markdown.images.hologram")
+            --     end,
+            --     requires = { "ekickx/clipboard-image.nvim" },
+            -- },
         })
     end,
     config = {
