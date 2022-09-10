@@ -31,7 +31,6 @@ cmp.setup({
     -- },
     snippet = {
         expand = function(args)
-            -- vim.fn['UltiSnips#Anon'](args.body)
             require("luasnip").lsp_expand(args.body)
         end,
     },
@@ -97,7 +96,11 @@ cmp.setup({
             elseif entry.source.name == "conventionalcommits" then
                 vim_item.kind = "CommitMsg"
             elseif entry.source.source.client ~= nil then
-                if entry.source.source.client.name == "zk" and vim_item.kind == "Text" then
+                if
+                    entry.source.source.client.name
+                        == "zk"
+                    and vim_item.kind == "Text"
+                then
                     vim_item.kind = "Tag"
                 end
             end
