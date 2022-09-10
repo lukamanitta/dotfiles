@@ -50,7 +50,7 @@ map("n", "<leader>e", ":Neotree focus filesystem float toggle reveal<CR>")
 map("n", "<leader>b", ":Neotree focus buffers float toggle reveal<CR>")
 
 -- Github Copilot
-cmd('imap <silent><script><expr> <C-j> copilot#Accept("<CR>")')
+cmd('imap <silent><script><expr> <C-\\> copilot#Accept("<CR>")')
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 
