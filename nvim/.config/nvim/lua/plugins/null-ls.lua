@@ -49,7 +49,7 @@ null_ls.setup({
         }),
 
         null_ls.builtins.formatting.clang_format.with({
-            filetypes = { "c" },
+            filetypes = { "c", "java" },
             extra_args = {
                 "-style=file",
             },

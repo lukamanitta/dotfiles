@@ -7,6 +7,7 @@ require("indent_blankline").setup({
         "lsp-installer",
         "neo-tree",
         "neo-tree-popup",
+        "mason",
     },
     show_current_context = true,
     show_current_context_start = false,

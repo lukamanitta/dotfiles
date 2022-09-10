@@ -102,7 +102,7 @@ local function make_config()
 end
 
 local lsp_installer = require("nvim-lsp-installer")
-
+-- TODO: change this to inbuilt (using mason for lsp now)
 lsp_installer.on_server_ready(function(server)
     local config = make_config()
 

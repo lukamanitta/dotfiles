@@ -107,7 +107,32 @@ return require("packer").startup({
             },
 
             -- Lsp & Completions
-            { "neovim/nvim-lspconfig" },
+            {
+                "williamboman/mason.nvim",
+                config = function()
+                    require("mason").setup({
+                        border = "rounded",
+                    })
+                end,
+            },
+            {
+                "williamboman/mason-lspconfig.nvim",
+                config = function()
+                    require("mason-lspconfig").setup({
+                        ensure_installed = {
+                            "sumneko_lua",
+                            "vimls",
+                            "tsserver",
+                        },
+                    })
+                end,
+                after = "mason.nvim",
+            },
+            {
+                "neovim/nvim-lspconfig",
+                after = "mason-lspconfig.nvim",
+            },
+            -- TODO: remove this
             { "williamboman/nvim-lsp-installer" },
             {
                 "folke/trouble.nvim",
