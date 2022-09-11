@@ -116,6 +116,41 @@ return require("packer").startup({
                 end,
             },
             {
+                "WhoIsSethDaniel/mason-tool-installer.nvim",
+                config = function()
+                    require("mason-tool-installer").setup({
+                        ensure_installed = {
+                            -- Lsps
+                            "lua-language-server",
+                            "rust-analyzer",
+                            "typescript-language-server",
+                            "vim-language-server",
+                            "bash-language-server",
+                            "emmet-ls",
+
+                            -- Linters
+                            "markdownlint",
+                            "pylint",
+                            "rubocop",
+                            "shellcheck",
+                            "stylua",
+                            "eslint_d",
+                            "prettierd",
+
+                            -- Formatters
+                            "black",
+                            "clang-format",
+                            "pyright",
+                            "shfmt",
+                        },
+                        auto_update = false,
+                        run_on_start = true,
+                        start_delay = 3000,
+                    })
+                end,
+                after = "mason.nvim",
+            },
+            {
                 "williamboman/mason-lspconfig.nvim",
                 config = function()
                     require("mason-lspconfig").setup({
