@@ -1,6 +1,6 @@
--- Auto-installer packer.nvim if not installed
 local cmd, fn = vim.cmd, vim.fn
 
+-- Auto-install packer.nvim if not installed
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -225,8 +225,7 @@ return require("packer").startup({
             { "github/copilot.vim" },
 
             -- Language specific styling
-            { "styled-components/vim-styled-components" },
-            { "Vimjas/vim-python-pep8-indent" },
+            -- { "styled-components/vim-styled-components" },
             { "benknoble/vim-dafny" },
 
             -- UI
@@ -302,12 +301,6 @@ return require("packer").startup({
             },
 
             -- Colourschemes
-            -- {
-            --     'catppuccin/nvim',
-            --     config = function()
-            --         require('plugins.colorschemes.catppuccin')
-            --     end,
-            -- },
             { "folke/tokyonight.nvim" },
             { "Shatur/neovim-ayu" },
             { "rebelot/kanagawa.nvim" },
