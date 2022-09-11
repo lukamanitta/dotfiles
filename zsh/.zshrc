@@ -30,11 +30,10 @@ else
     export EDITOR='nvim'
 fi
 
-alias zshconfig="source $HOME/.zshrc"
 alias ls="lsd"
 alias sourcevenv="source venv/bin/activate && echo Enter 'deactivate' to leave venv"
 alias createvenv="python3 -m venv venv"
-alias e="exit"
+alias q="exit"
 
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
@@ -79,13 +78,14 @@ source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^j' autosuggest-accept
 
 # University
-
 export MOSS_SERVER="s4697584@moss.labs.eait.uq.edu.au"
 alias moss="ssh $MOSS_SERVER"
 
 # MyStay International config
-test -f ~/.msirc && source ~/.msirc
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+if [ -f ~/.msirc ]; then
+    source ~/.msirc
+    export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/lukamanitta/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/lukamanitta/google-cloud-sdk/path.zsh.inc'; fi
