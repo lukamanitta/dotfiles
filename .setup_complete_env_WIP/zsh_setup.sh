@@ -19,13 +19,6 @@ brew install lsd
 # OR
 sudo dpkg -i setup_installation/lsd_0.20.1_amd64.deb
 
-# oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/agkozak/zsh-z "$ZSH_CUSTOM/plugins/zsh-z"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
-git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode"
-
 # asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 source ~/.zshrc
@@ -49,6 +42,12 @@ sudo apt-get install dirmngr gpg curl gawk
 brew install gpg gawk
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
+# asdf rust
+asdf plugin-add rust https://github.com/asdf-community/asdf-rust.git
+asdf install rust latest
+asdf global rust latest
+source ~/.zshrc
+
 # *MAYBE REQUIRED*
 echo standard-resolver >> "$HOME/.gnupg/dirmngr.conf"
 pkill dirmngr
@@ -61,7 +60,7 @@ sudo apt-get install jq unzip
 # OR
 brew install jq unzip
 asdf plugin-add java https://github.com/halcyon/asdf-java.git
-asdf install java openjdk-11.0.2 #for CSSE2002, change to latest if required
+asdf install java openjdk-11.0.2
 asdf global java openjdk-11.0.2
 
 source ~/.zshrc
