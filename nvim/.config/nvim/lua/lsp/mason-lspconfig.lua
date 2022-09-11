@@ -1,6 +1,6 @@
 local table_merge = require("utils.config").table_merge
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -52,6 +52,8 @@ local on_attach = function(_, bufnr)
         opts
     )
     buf_set_keymap("n", "<leader>xd", ":Trouble document_diagnostics<CR>", opts)
+
+    -- require("nvim-navic").attach(client, bufnr)
 end
 
 -- Config that activates keymaps and enables snippet support

@@ -132,9 +132,9 @@ ins_left({
         }
         vim.api.nvim_command(
             "hi! LualineMode guifg="
-                .. mode_color[vim.fn.mode()]
-                .. " guibg="
-                .. get_hi_group_bg("lualine_c_normal")
+            .. mode_color[vim.fn.mode()]
+            .. " guibg="
+            .. get_hi_group_bg("lualine_c_normal")
         )
         if vim.api.nvim_buf_get_option(0, "filetype") == "" then
             return general_icons.Heart

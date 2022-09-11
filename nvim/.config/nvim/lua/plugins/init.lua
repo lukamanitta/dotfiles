@@ -33,7 +33,7 @@ return require("packer").startup({
                     require("runvim").setup()
                 end,
             },
-            { local_plug_dir("naturally.nvim") },
+            -- { local_plug_dir("naturally.nvim") },
 
             -- File explorer
             {
@@ -241,8 +241,9 @@ return require("packer").startup({
             -- {
             --     "SmiteshP/nvim-navic",
             --     config = function()
-            --         require("plugins.statusline.navic")
+            --         require("plugins.statusline.nvim-navic")
             --     end,
+            --     after = "mason-lspconfig.nvim",
             -- },
             {
                 "lukas-reineke/indent-blankline.nvim",

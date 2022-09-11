@@ -45,6 +45,8 @@ I.general = {
     PlusThick = "",
     PlusThin = "+",
 
+    DotsHorizontal = "",
+
     CheckThick = "",
     CheckCircle = "﫟",
     CheckCircleOutline = "﫠",
@@ -70,7 +72,7 @@ I.companies = {
     GitHub = "",
 }
 
-I.comp_types = { -- Arranged approximately in order of abstraction (lo - hi)
+I.types = { -- Arranged approximately in order of abstraction (lo - hi)
     Constant = "",
     Text = "",
     Value = "",

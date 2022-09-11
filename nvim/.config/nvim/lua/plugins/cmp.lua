@@ -2,7 +2,7 @@ local cmd = vim.cmd
 local cmp = require("cmp")
 local compare = require("cmp.config.compare")
 local tabnine = require("cmp_tabnine.config")
-local comp_icons = require("assets.icons").comp_types
+local comp_icons = require("assets.icons").types
 
 cmp.setup.filetype({ "markdown" }, {
     sources = cmp.config.sources({
@@ -96,9 +96,7 @@ cmp.setup({
             elseif entry.source.name == "conventionalcommits" then
                 vim_item.kind = "CommitMsg"
             elseif entry.source.source.client ~= nil then
-                if
-                    entry.source.source.client.name
-                        == "zk"
+                if entry.source.source.client.name == "zk"
                     and vim_item.kind == "Text"
                 then
                     vim_item.kind = "Tag"

@@ -1,4 +1,4 @@
-local comp_icons = require("assets.icons").comp_types
+local comp_icons = require("assets.icons").types
 local general_icons = require("assets.icons").general
 
 require("nvim-gps").setup({
