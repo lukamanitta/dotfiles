@@ -1,3 +1,3 @@
 require("lsp.trouble")
-require("lsp.lspsetup")
+require("lsp.mason-lspconfig")
 require("lsp.cosmetics")

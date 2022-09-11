@@ -123,8 +123,10 @@ return require("packer").startup({
                             "sumneko_lua",
                             "vimls",
                             "tsserver",
+                            "bashls",
                         },
                     })
+                    require("lsp")
                 end,
                 after = "mason.nvim",
             },
@@ -132,8 +134,6 @@ return require("packer").startup({
                 "neovim/nvim-lspconfig",
                 after = "mason-lspconfig.nvim",
             },
-            -- TODO: remove this
-            { "williamboman/nvim-lsp-installer" },
             {
                 "folke/trouble.nvim",
                 config = function()

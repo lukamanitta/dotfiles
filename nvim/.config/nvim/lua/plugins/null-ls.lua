@@ -14,7 +14,7 @@ null_ls.setup({
         null_ls.builtins.formatting.eslint_d,
         -- null_ls.builtins.formatting.eslint,
 
-        null_ls.builtins.formatting.prettier.with({
+        null_ls.builtins.formatting.prettierd.with({
             filetypes = {
                 -- "typescript",
                 "json",
