@@ -1,0 +1,24 @@
+---
+- hosts: all
+  vars:
+    home: /Users/luka # If macOS
+    home: /home/luka # If linux
+    projects:
+      - name: example-project
+        git: somethingsomething.git
+        path: nameofdirinprojectdir
+
+  tasks:
+    - name: Install system packages # Package manager dependent on OS
+
+    - name: Install `asdf` version manager
+
+    - name: Install languages + neovim with `asdf`
+
+    - name: Clone dotfiles
+
+    - name: Stow dotfiles
+
+    - name: Clone projects
+
+    - name: Install project-specific language versions with `asdf`
