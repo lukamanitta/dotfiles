@@ -151,6 +151,10 @@ return require("packer").startup({
                 after = "mason.nvim",
             },
             {
+                "neovim/nvim-lspconfig",
+                after = "mason.nvim",
+            },
+            {
                 "williamboman/mason-lspconfig.nvim",
                 config = function()
                     require("mason-lspconfig").setup({
@@ -163,11 +167,7 @@ return require("packer").startup({
                     })
                     require("lsp")
                 end,
-                after = "mason.nvim",
-            },
-            {
-                "neovim/nvim-lspconfig",
-                after = "mason-lspconfig.nvim",
+                after = "nvim-lspconfig",
             },
             {
                 "folke/trouble.nvim",
@@ -389,6 +389,14 @@ return require("packer").startup({
                     vim.g.table_mode_corner_corner = "|"
                 end,
             },
+            {
+                "gaoDean/autolist.nvim",
+                ft = "markdown",
+                config = function()
+                    require("plugins.markdown.autolist")
+                end,
+            },
+
             -- -- Images
             -- {
             --     "ekickx/clipboard-image.nvim",
