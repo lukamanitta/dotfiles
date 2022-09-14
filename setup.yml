@@ -1,23 +1,81 @@
 ---
-- hosts: all
+- add_host:
+  name: localhost
+
+- hosts: localhost
+  become: true
   vars:
     home: /Users/luka # If macOS
-    home: /home/luka # If linux
+    # home: /home/luka # If linux
     projects:
       - name: example-project
         git: somethingsomething.git
         path: nameofdirinprojectdir
 
   tasks:
-    - name: Install system packages # Package manager dependent on OS
+    - name: Install system packages
+      package:
+        name:
+          - zsh
+          - git
+        state: latest
 
-    - name: Install `asdf` version manager
+    - name: Set zsh to default shell
+      shell: |
+        chsh -s "$(command -v zsh)"
+        zsh
 
-    - name: Install languages + neovim with `asdf`
+    - name: Installing / updating `Starship` prompt
+      shell: sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
     - name: Clone dotfiles
+      git:
+        repo: 'https://github.com/lukamanitta/dotfiles.git'
+        dest: '{{ home }}/dotfiles'
 
+    # Run update.yml for this + cleaning up old config files?
     - name: Stow dotfiles
+      shell: stow {{ item }}
+      loop:
+        - stow
+        - nvim
+        - bash
+        - zsh
+        - wezterm
+        - git
+        - vim
+        - lazygit
+        - starship
+        - linters
+        - zk
+        - bin
+
+    - name: Copy local_env_vars template
+
+    - name: Configure global gitignore
+
+    - name: Install `asdf` version manager
+      git:
+        repo: 'https://github.com/asdf-vm/asdf.git'
+        dest: '{{ home }}/.asdf'
+
+    - name: Install `asdf` plugins for languages
+      shell: asdf plugin add {{ item }}
+      loop:
+        - ruby https://github.com/asdf-vm/asdf-ruby.git
+        - nodejs https://github.com/asdf-vm/asdf-nodejs.git
+        - rust https://github.com/asdf-community/asdf-rust.git
+
+    - name: Install languages + neovim with `asdf`
+      shell: |
+        asdf install {{ item }} latest
+        asdf global {{ item }} latest
+        source {{ home }}/.zshrc
+      loop:
+        - ruby
+        - nodejs
+        - rust
+
 
     - name: Clone projects
 
