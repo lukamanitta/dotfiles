@@ -1,7 +1,7 @@
 #!/bin/bash
 # Open notes (NOTES_DIR is sourced from a local file)
 
-if (( ${+NOTES_DIR} )); then
+if [ -v NOTES_DIR ]; then
     cd "$NOTES_DIR" || exit
     if [ ! $# -eq 0 ]; then
         cd ./**/"$1" || exit
