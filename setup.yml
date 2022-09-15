@@ -1,8 +1,10 @@
 ---
+<<<<<<< HEAD
 - hosts: all
   vars:
     home: /Users/luka # If macOS
     home: /home/luka # If linux
+=======
 - add_host:
   name: localhost
 
@@ -11,12 +13,14 @@
   vars:
     home: /Users/luka # If macOS
     # home: /home/luka # If linux
+>>>>>>> 8b2c2fedd07d9b40c0f89335b6c8b6b528139c7b
     projects:
       - name: example-project
         git: somethingsomething.git
         path: nameofdirinprojectdir
 
   tasks:
+<<<<<<< HEAD
     - name: Install system packages # Package manager dependent on OS
 
     - name: Install `asdf` version manager
@@ -26,6 +30,7 @@
     - name: Clone dotfiles
 
     - name: Stow dotfiles
+=======
     - name: Install system packages
       package:
         name:
@@ -89,6 +94,7 @@
         - nodejs
         - rust
 
+>>>>>>> 8b2c2fedd07d9b40c0f89335b6c8b6b528139c7b
 
     - name: Clone projects
 
