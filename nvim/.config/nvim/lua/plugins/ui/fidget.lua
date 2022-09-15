@@ -47,3 +47,7 @@ require("fidget").setup({
         strict = false, -- whether to interpret LSP strictly
     },
 })
+
+-- Stops fidget when exiting vim (removes "line number out of range") after
+-- exiting.
+vim.api.nvim_create_autocmd("VimLeavePre", { command = "silent! FidgetClose" })
