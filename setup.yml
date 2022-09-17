@@ -1,36 +1,14 @@
 ---
-<<<<<<< HEAD
-- hosts: all
-  vars:
-    home: /Users/luka # If macOS
-    home: /home/luka # If linux
-=======
 - add_host:
   name: localhost
 
 - hosts: localhost
   become: true
   vars:
-    home: /Users/luka # If macOS
+    # home: /Users/luka # If macOS
     # home: /home/luka # If linux
->>>>>>> 8b2c2fedd07d9b40c0f89335b6c8b6b528139c7b
-    projects:
-      - name: example-project
-        git: somethingsomething.git
-        path: nameofdirinprojectdir
 
   tasks:
-<<<<<<< HEAD
-    - name: Install system packages # Package manager dependent on OS
-
-    - name: Install `asdf` version manager
-
-    - name: Install languages + neovim with `asdf`
-
-    - name: Clone dotfiles
-
-    - name: Stow dotfiles
-=======
     - name: Install system packages
       package:
         name:
@@ -49,33 +27,16 @@
     - name: Clone dotfiles
       git:
         repo: 'https://github.com/lukamanitta/dotfiles.git'
-        dest: '{{ home }}/dotfiles'
+        dest: '~/dotfiles'
+        recursive: true
 
-    # Run update.yml for this + cleaning up old config files?
-    - name: Stow dotfiles
-      shell: stow {{ item }}
-      loop:
-        - stow
-        - nvim
-        - bash
-        - zsh
-        - wezterm
-        - git
-        - vim
-        - lazygit
-        - starship
-        - linters
-        - zk
-        - bin
-
-    - name: Copy local_env_vars template
-
-    - name: Configure global gitignore
+    - name: Clean up and install dotfiles
+      include: update_dotfiles.yml
 
     - name: Install `asdf` version manager
       git:
         repo: 'https://github.com/asdf-vm/asdf.git'
-        dest: '{{ home }}/.asdf'
+        dest: '~/.asdf'
 
     - name: Install `asdf` plugins for languages
       shell: asdf plugin add {{ item }}
@@ -84,18 +45,53 @@
         - nodejs https://github.com/asdf-vm/asdf-nodejs.git
         - rust https://github.com/asdf-community/asdf-rust.git
 
+    - name: Install Debian packages for `ruby-build`
+      package:
+        - autoconf
+        - bison
+        - build-essential
+        - libssl-dev
+        - libyaml-dev
+        - libreadline6-dev
+        - zlibg1g-dev
+        - libncurses5-dev
+        - libffi-dev
+        - libgdbm6
+        - libgdbm-dev
+        - libdb-dev
+      when: ansible_facts["os_family"] == "Debian"
+
+    - name: Install Homebrew packages for `ruby-build`
+      package:
+        - openssl
+        - readline
+      when: ansible_facts["os_family"] == "Darwin"
+
+    - name: Clone `ruby-build`
+      git:
+        repo: https://github.com/rbenv/ruby-build.git
+        dest: "~/.ruby-build"
+
+    - name: Install Debian packages for `asdf nodejs`
+      package:
+        - dirmngr
+        - gpg
+        - curl
+        - gawk
+      when: ansible_facts["os_family"] == "Debian"
+
+    - name: Install Homebrew packages for `asdf nodejs`
+      package:
+        - gpg
+        - gawk
+      when: ansible_facts["os_family"] == "Darwin"
+
     - name: Install languages + neovim with `asdf`
       shell: |
         asdf install {{ item }} latest
         asdf global {{ item }} latest
-        source {{ home }}/.zshrc
+        source ~/.zshrc
       loop:
         - ruby
         - nodejs
         - rust
-
->>>>>>> 8b2c2fedd07d9b40c0f89335b6c8b6b528139c7b
-
-    - name: Clone projects
-
-    - name: Install project-specific language versions with `asdf`
