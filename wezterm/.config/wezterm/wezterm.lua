@@ -37,8 +37,8 @@ local cfg = {
     },
 
     -- font = wezterm.font("OperatorMono Nerd Font", { weight = "Book" }),
-    font = wezterm.font("JetBrainsMono Nerd Font"),
-    font_size = 13.5,
+    font = wezterm.font("Monocraft Nerd Font"),
+    font_size = 12,
     line_height = 1.25,
     harfbuzz_features = { "clig=1" },
 
@@ -54,12 +54,16 @@ local cfg = {
         {
             key = "/",
             mods = "LEADER",
-            action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
+            action = wezterm.action({
+                SplitHorizontal = { domain = "CurrentPaneDomain" },
+            }),
         },
         {
             key = "-",
             mods = "LEADER",
-            action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
+            action = wezterm.action({
+                SplitVertical = { domain = "CurrentPaneDomain" },
+            }),
         },
         {
             key = "h",
