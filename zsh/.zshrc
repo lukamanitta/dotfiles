@@ -33,6 +33,7 @@ fi
 alias ls="lsd"
 alias sourcevenv="source venv/bin/activate && echo Enter 'deactivate' to leave venv"
 alias createvenv="python3 -m venv venv"
+alias update-nvim-nightly="asdf uninstall neovim nightly && asdf install neovim nightly"
 alias q="exit"
 
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
