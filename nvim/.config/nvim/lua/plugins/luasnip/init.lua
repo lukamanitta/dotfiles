@@ -19,7 +19,7 @@ require("luasnip").config.set_config({
         s = require("luasnip.nodes.snippet").S,
         sn = require("luasnip.nodes.snippet").SN,
         t = require("luasnip.nodes.textNode").T,
-        f = require("luasnip.nodes.functionNode").F,
+        fn = require("luasnip.nodes.functionNode").F,
         i = require("luasnip.nodes.insertNode").I,
         c = require("luasnip.nodes.choiceNode").C,
         d = require("luasnip.nodes.dynamicNode").D,
