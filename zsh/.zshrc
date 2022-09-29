@@ -75,7 +75,7 @@ source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="$ZSH_PLUGINS/zsh-autosuggestions:$PATH"
 source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-bindkey '^j' autosuggest-accept
+bindkey '^\' autosuggest-accept
 
 # University
 export MOSS_SERVER="s4697584@moss.labs.eait.uq.edu.au"
