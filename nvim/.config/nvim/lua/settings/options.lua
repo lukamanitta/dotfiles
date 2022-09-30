@@ -5,6 +5,7 @@ apply_options({
     hidden = true,
     number = true,
     relativenumber = true,
+    cmdheight = 1,
     mouse = "a",
     signcolumn = "yes",
     updatetime = 50,
