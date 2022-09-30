@@ -270,7 +270,7 @@ return require("packer").startup({
                     require("plugins.ui.cursorword")
                 end,
             },
-            { -- TODO: replace with navic
+            {
                 "SmiteshP/nvim-gps",
                 config = function()
                     require("plugins.statusline.gps")
@@ -298,6 +298,12 @@ return require("packer").startup({
                 "stevearc/dressing.nvim",
                 config = function()
                     require("plugins.ui.dressing")
+                end,
+            },
+            {
+                "nvim-treesitter/nvim-treesitter-context",
+                config = function()
+                    require("plugins.ui.treesitter-context")
                 end,
             },
 
