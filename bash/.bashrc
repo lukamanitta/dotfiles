@@ -9,6 +9,9 @@ esac
 # Path to your oh-my-bash installation.
 export OSH=$HOME/.oh-my-bash
 
+export PATH="$HOME/.asdf/installs/python/3.10.0/bin:$PATH"
+source $HOME/.asdf/asdf.sh
+
 OSH_THEME="purity"
 
 # export UPDATE_OSH_DAYS=13
