@@ -9,7 +9,7 @@ local background = get_hex("Normal")
 local errors_fg = get_hex("DiagnosticError", "fg")
 local warnings_fg = get_hex("DiagnosticWarn", "fg")
 
-local focused_tab_brightness_diff = 0
+local focused_tab_brightness_diff = 1.2
 
 local components = {
     separator = {
@@ -79,7 +79,10 @@ local components = {
                 or nil
         end,
         style = function(buffer)
-            return ((buffer.is_focused and buffer.diagnostics.errors ~= 0) and "bold,underline")
+            return (
+                (buffer.is_focused and buffer.diagnostics.errors ~= 0)
+                    and "bold,underline"
+                )
                 or (buffer.is_focused and "bold")
                 or (buffer.diagnostics.errors ~= 0 and "underline")
                 or nil
@@ -101,7 +104,10 @@ local components = {
                 or nil
         end,
         style = function(buffer)
-            return ((buffer.is_focused and buffer.diagnostics.errors ~= 0) and "bold,underline")
+            return (
+                (buffer.is_focused and buffer.diagnostics.errors ~= 0)
+                    and "bold,underline"
+                )
                 or (buffer.is_focused and "bold")
                 or (buffer.diagnostics.errors ~= 0 and "underline")
                 or nil
@@ -128,7 +134,10 @@ local get_remaining_space = function(buffer)
         used_space = used_space
             + vim.fn.strwidth(
                 (type(component.text) == "string" and component.text)
-                    or (type(component.text) == "function" and component.text(buffer))
+                or (
+                type(component.text) == "function"
+                    and component.text(buffer)
+                )
             )
     end
     return math.max(0, min_buffer_width - used_space)
@@ -177,7 +186,8 @@ require("cokeline").setup({
 
     default_hl = {
         fg = function(buffer)
-            return buffer.is_focused and get_hex("Normal", "fg") or get_hex("Comment", "fg")
+            return buffer.is_focused and get_hex("Normal", "fg")
+                or get_hex("Comment", "fg")
         end,
         bg = function(buffer)
             if buffer.is_focused then
