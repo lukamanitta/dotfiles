@@ -52,8 +52,6 @@ local on_attach = function(client, bufnr)
         opts
     )
     buf_set_keymap("n", "<leader>xd", ":Trouble document_diagnostics<CR>", opts)
-
-    -- require("nvim-navic").attach(client, bufnr)
 end
 
 -- Config that activates keymaps and enables snippet support

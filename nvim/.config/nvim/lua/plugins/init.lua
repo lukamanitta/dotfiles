@@ -238,13 +238,6 @@ return require("packer").startup({
             --         require("plugins.statusline.heirline")
             --     end,
             -- },
-            -- {
-            --     "SmiteshP/nvim-navic",
-            --     config = function()
-            --         require("plugins.statusline.nvim-navic")
-            --     end,
-            --     after = "mason-lspconfig.nvim",
-            -- },
             {
                 "lukas-reineke/indent-blankline.nvim",
                 config = function()
