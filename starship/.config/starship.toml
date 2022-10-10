@@ -3,8 +3,7 @@ add_newline = true
 
 #Format
 format = """
-${custom.ssh}\
-$username\
+ $username\
 $hostname\
 $shlvl\
 $directory\
@@ -61,25 +60,23 @@ scan_timeout = 200
 # Module settings
 
 [character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
-vicmd_symbol = "[❮](bold green)"
+#  ,  , ❯ ❮,  
+success_symbol = " [ ](bold green)"
+error_symbol = " [ ](bold red)"
+vicmd_symbol = " [ ](bold green)"
 
 [time]
 disabled = false
 use_12hr = true
-
-[custom.ssh]
-format = "[$symbol](white) "
-when = "[[ -n $SSH_CLIENT ]]"
-symbol = "肋"
-
 
 [directory]
 read_only = " "
 
 [git_branch]
 symbol = " "
+
+[git_state]
+merge = " MERGE"
 
 [git_metrics]
 disabled = true
@@ -110,142 +107,142 @@ symbol = " "
 symbol = " "
 
 [aws]
-format = 'with [$symbol($profile)(\($region\))(with $duration)]($style)'
+format = 'with [$symbol($profile)(\($region\))(with $duration)]($style) '
 symbol = "  "
 
 [bun]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [c]
-format = 'with [$symbol($version(-$name))]($style)'
+format = 'with [$symbol($version(-$name))]($style) '
 symbol = " "
 
 [cmake]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [cmd_duration]
-format = '[祥$duration]($style)'
+format = '[祥$duration]($style) '
 
 [cobol]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [conda]
-format = 'with [$symbol$environment]($style)'
+format = 'with [$symbol$environment]($style) '
 symbol = " "
 
 [crystal]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [daml]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [dart]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 symbol = " "
 
 [deno]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [docker_context]
-format = 'with [$symbol$context]($style)'
+format = 'with [$symbol$context]($style) '
 symbol = " "
 
 [dotnet]
-format = 'with [$symbol($version)(🎯 $tfm)]($style)'
+format = 'with [$symbol($version)(🎯 $tfm)]($style) '
 
 [elixir]
-format = 'with [$symbol($version \(OTP $otp_version\))]($style)'
+format = 'with [$symbol($version \(OTP $otp_version\))]($style) '
 symbol = " "
 
 [elm]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 symbol = " "
 
 [erlang]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [gcloud]
-format = 'with [$symbol$account(@$domain)(\($region\))]($style)'
+format = 'with [$symbol$account(@$domain)(\($region\))]($style) '
 
 [golang]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 symbol = " "
 
 [haskell]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 symbol = " "
 
 [helm]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [java]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 symbol = " "
 
 [julia]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 symbol = " "
 
 [kotlin]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [kubernetes]
-format = 'with [$symbol$context( \($namespace\))]($style)'
+format = 'with [$symbol$context( \($namespace\))]($style) '
 
 [lua]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [nim]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 symbol = " "
 
 [nix_shell]
-format = 'with [$symbol$state( \($name\))]($style)'
+format = 'with [$symbol$state( \($name\))]($style) '
 symbol = " "
 
 [nodejs]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style)  '
 symbol = " "
 
 [ocaml]
-format = 'with [$symbol($version)(\($switch_indicator$switch_name\))]($style)'
+format = 'with [$symbol($version)(\($switch_indicator$switch_name\))]($style) '
 
 [openstack]
-format = 'with [$symbol$cloud(\($project\))]($style)'
+format = 'with [$symbol$cloud(\($project\))]($style) '
 
 [perl]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [php]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [python]
-format = 'with [${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
+format = 'with [${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style) '
 symbol = " "
 
 [raku]
-format = 'with [$symbol($version-$vm_version)]($style)'
+format = 'with [$symbol($version-$vm_version)]($style) '
 
 [red]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [ruby]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 symbol = " "
 
 [rust]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 symbol = " "
 
 [scala]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [spack]
-format = 'with [$symbol$environment]($style)'
+format = 'with [$symbol$environment]($style) '
 symbol = "🅢 "
 
 [swift]
-format = 'with [$symbol($version)]($style)'
+format = 'with [$symbol($version)]($style) '
 
 [sudo]
 format = 'with [as $symbol]'
