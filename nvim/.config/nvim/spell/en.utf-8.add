@@ -322,3 +322,10 @@ Winsocks
 internet
 IP
 UDP
+32-bit
+endian
+IPv4
+IPv6
+addr
+sizeof
+sockaddr
