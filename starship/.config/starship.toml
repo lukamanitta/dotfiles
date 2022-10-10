@@ -1,6 +1,6 @@
 #Insert blank line between shell prompts
 add_newline = true
-
+# $gcloud\
 #Format
 format = """
 ${custom.ssh}\
@@ -28,7 +28,6 @@ $dotnet\
 $elixir\
 $elm\
 $erlang\
-$gcloud\
 $golang\
 $haskell\
 $helm\
@@ -194,6 +193,7 @@ format = 'with [$symbol$context( \($namespace\))]($style) '
 
 [lua]
 format = 'with [$symbol($version)]($style) '
+symbol = " "
 
 [nim]
 format = 'with [$symbol($version)]($style) '
