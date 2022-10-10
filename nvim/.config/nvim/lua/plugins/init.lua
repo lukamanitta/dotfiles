@@ -238,13 +238,6 @@ return require("packer").startup({
             --         require("plugins.statusline.heirline")
             --     end,
             -- },
-            -- {
-            --     "SmiteshP/nvim-navic",
-            --     config = function()
-            --         require("plugins.statusline.nvim-navic")
-            --     end,
-            --     after = "mason-lspconfig.nvim",
-            -- },
             {
                 "lukas-reineke/indent-blankline.nvim",
                 config = function()
@@ -316,6 +309,7 @@ return require("packer").startup({
             -- Meta
             { "famiu/nvim-reload", cmd = { "Reload", "Restart" } },
             { "lewis6991/impatient.nvim" },
+            -- { 'miversen33/import.nvim' },
 
             -- Other
             {
@@ -341,6 +335,8 @@ return require("packer").startup({
                     require("plugins.todo")
                 end,
             },
+            { "ja-ford/delaytrain.nvim" },
+            { "Almo7aya/openingh.nvim" },
 
             -- Markdown
             {

@@ -1,6 +1,6 @@
 #Insert blank line between shell prompts
 add_newline = true
-
+# $gcloud\
 #Format
 format = """
  $username\
@@ -27,7 +27,6 @@ $dotnet\
 $elixir\
 $elm\
 $erlang\
-$gcloud\
 $golang\
 $haskell\
 $helm\
@@ -191,6 +190,7 @@ format = 'with [$symbol$context( \($namespace\))]($style) '
 
 [lua]
 format = 'with [$symbol($version)]($style) '
+symbol = " "
 
 [nim]
 format = 'with [$symbol($version)]($style) '
@@ -201,7 +201,7 @@ format = 'with [$symbol$state( \($name\))]($style) '
 symbol = " "
 
 [nodejs]
-format = 'with [$symbol($version)]($style)  '
+format = 'with [$symbol($version)]($style) '
 symbol = " "
 
 [ocaml]
