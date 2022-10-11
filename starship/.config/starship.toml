@@ -3,8 +3,7 @@ add_newline = true
 # $gcloud\
 #Format
 format = """
-${custom.ssh}\
-$username\
+ $username\
 $hostname\
 $shlvl\
 $directory\
@@ -60,25 +59,23 @@ scan_timeout = 200
 # Module settings
 
 [character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
-vicmd_symbol = "[❮](bold green)"
+#  ,  , ❯ ❮,  
+success_symbol = " [ ](bold green)"
+error_symbol = " [ ](bold red)"
+vicmd_symbol = " [ ](bold green)"
 
 [time]
 disabled = false
 use_12hr = true
-
-[custom.ssh]
-format = "[$symbol](white) "
-when = "[[ -n $SSH_CLIENT ]]"
-symbol = "肋"
-
 
 [directory]
 read_only = " "
 
 [git_branch]
 symbol = " "
+
+[git_state]
+merge = " MERGE"
 
 [git_metrics]
 disabled = true
