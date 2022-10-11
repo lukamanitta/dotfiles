@@ -9,9 +9,6 @@ local statusline_color = colors.panel_border
 
 require("ayu").setup({
     mirage = true,
-    overrides = {
-        panel_border = statusline_color,
-    },
 })
 
 require("ayu").colorscheme()
