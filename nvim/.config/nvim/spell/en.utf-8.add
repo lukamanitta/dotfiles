@@ -329,3 +329,15 @@ IPv6
 addr
 sizeof
 sockaddr
+hostname
+less
+hostnames
+CIDR
+Netmask
+netmask
+config
+routable
+loopback
+ARP
+datagrams
+Multiport
