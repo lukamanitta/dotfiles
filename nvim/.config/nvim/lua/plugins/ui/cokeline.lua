@@ -5,11 +5,23 @@ vim.cmd("hi! link TabLineFill Normal")
 
 local general_icons = require("assets.icons").general
 
-local background = get_hex("Normal")
+local background = get_hex("Normal", "bg")
 local errors_fg = get_hex("DiagnosticError", "fg")
 local warnings_fg = get_hex("DiagnosticWarn", "fg")
 
-local focused_tab_brightness_diff = 1.2
+local focused_tab_brightness_diff = 0.55
+if vim.o.background == "light" then
+    focused_tab_brightness_diff = -0.07
+end
+local unfocused_tab_brightness_diff = -0.35
+if vim.o.background == "light" then
+    unfocused_tab_brightness_diff = -0.2
+end
+
+local focused_tab_bg =
+change_hex_brightness(background, focused_tab_brightness_diff)
+local unfocused_tab_bg =
+change_hex_brightness(background, unfocused_tab_brightness_diff)
 
 local components = {
     separator = {
@@ -27,12 +39,9 @@ local components = {
         text = "",
         fg = function(buffer)
             if buffer.is_focused then
-                return change_hex_brightness(
-                    get_hex("ColorColumn", "bg"),
-                    focused_tab_brightness_diff
-                )
+                return focused_tab_bg
             else
-                return get_hex("ColorColumn", "bg")
+                return unfocused_tab_bg
             end
         end,
         bg = get_hex("Normal", "bg"),
@@ -45,12 +54,9 @@ local components = {
         text = "",
         fg = function(buffer)
             if buffer.is_focused then
-                return change_hex_brightness(
-                    get_hex("ColorColumn", "bg"),
-                    focused_tab_brightness_diff
-                )
+                return focused_tab_bg
             else
-                return get_hex("ColorColumn", "bg")
+                return unfocused_tab_bg
             end
         end,
         bg = get_hex("Normal", "bg"),
@@ -191,12 +197,9 @@ require("cokeline").setup({
         end,
         bg = function(buffer)
             if buffer.is_focused then
-                return change_hex_brightness(
-                    get_hex("ColorColumn", "bg"),
-                    focused_tab_brightness_diff
-                )
+                return focused_tab_bg
             else
-                return get_hex("ColorColumn", "bg")
+                return unfocused_tab_bg
             end
         end,
     },
