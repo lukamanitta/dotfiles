@@ -305,6 +305,10 @@ return require("packer").startup({
             { "Shatur/neovim-ayu" },
             { "rebelot/kanagawa.nvim" },
             { "EdenEast/nightfox.nvim" },
+            {
+                "kartikp10/noctis.nvim",
+                requires = "rktjmp/lush.nvim",
+            },
 
             -- Meta
             { "famiu/nvim-reload", cmd = { "Reload", "Restart" } },
