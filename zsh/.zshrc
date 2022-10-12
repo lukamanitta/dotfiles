@@ -93,3 +93,8 @@ if [ -f '/Users/lukamanitta/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/luk
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/lukamanitta/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/lukamanitta/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Android studio env variables
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
