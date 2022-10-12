@@ -1,12 +1,12 @@
 #!/bin/bash
 # Open notes (NOTES_DIR is sourced from a local file)
 
-if [ -v NOTES_DIR ]; then
+if [[ -z "${NOTES_DIR}" ]]; then
+    echo Please create a NOTES_DIR env variable specifying the notes directory
+else
     cd "$NOTES_DIR" || exit
     if [ ! $# -eq 0 ]; then
         cd ./**/"$1" || exit
     fi
     nvim
-else
-    echo Please create a NOTES_DIR env variable specifying the notes directory
 fi
