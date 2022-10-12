@@ -48,21 +48,29 @@ $scala\
 $swift\
 $scala\
 $sudo\
+$fill \
 $cmd_duration\
 $line_break\
 $character
 """
+
+# right_format = """$cmd_duration"""
 
 command_timeout = 1500
 scan_timeout = 200
 
 # Module settings
 
+continuation_prompt = ""
 [character]
 #  ,  , ❯ ❮,  
 success_symbol = " [ ](bold green)"
 error_symbol = " [ ](bold red)"
 vicmd_symbol = " [ ](bold green)"
+
+[fill]
+symbol = "· "
+style = "bright-black dimmed"
 
 [time]
 disabled = false
@@ -120,7 +128,7 @@ symbol = " "
 format = 'with [$symbol($version)]($style) '
 
 [cmd_duration]
-format = '[祥$duration]($style) '
+format = '[祥$duration]($style dimmed) '
 
 [cobol]
 format = 'with [$symbol($version)]($style) '
