@@ -30,6 +30,7 @@ apply_options({
     scrolloff = 8,
     sidescrolloff = 5,
     spelllang = "en_au",
+    splitkeep = "screen",
 })
 
 vim.cmd("set iskeyword-=_") -- Recognise _ as word separator
