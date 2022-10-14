@@ -102,7 +102,7 @@ return require("packer").startup({
                     "windwp/nvim-ts-autotag",
                     "RRethy/nvim-treesitter-endwise",
                     "JoosepAlviste/nvim-ts-context-commentstring",
-                    "yioneko/nvim-yati",
+                    -- "yioneko/nvim-yati", -- re-enable if I notice issues
                 },
             },
 
@@ -185,7 +185,7 @@ return require("packer").startup({
             {
                 "L3MON4D3/luasnip",
                 config = function()
-                    require("plugins.luasnip")
+                    -- require("plugins.luasnip")
                 end,
                 requires = {
                     "rafamadriz/friendly-snippets",

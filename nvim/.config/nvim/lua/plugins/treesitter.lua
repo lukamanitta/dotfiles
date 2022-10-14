@@ -10,9 +10,9 @@ require("nvim-treesitter.configs").setup({
         enable = false,
         disable = { "python" },
     },
-    yati = {
-        enable = true,
-    },
+    -- yati = {
+    --     enable = true,
+    -- },
     autotag = {
         enable = true,
         filetypes = {
@@ -29,7 +29,6 @@ require("nvim-treesitter.configs").setup({
     },
     matchup = {
         enable = true,
-        disable = {},
     },
     endwise = {
         enable = true,
