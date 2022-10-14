@@ -29,7 +29,9 @@ apply_options({
     foldlevel = 1,
     scrolloff = 8,
     sidescrolloff = 5,
-    spelllang = "en_au",
+    spell = false,
+    spelllang = "en_au,en_us",
+    spelloptions = "camel,noplainbuffer",
     splitkeep = "screen",
 })
 
