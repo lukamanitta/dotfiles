@@ -94,6 +94,8 @@ local lua_settings = {
     },
 }
 
+require("neodev").setup({})
+
 require("mason-lspconfig").setup_handlers({
     function(server_name)
         require("lspconfig")[server_name].setup(make_config())
@@ -103,8 +105,6 @@ require("mason-lspconfig").setup_handlers({
     ["sumneko_lua"] = function()
         local config = make_config()
         config.settings = lua_settings
-        local luadev = require("lua-dev").setup()
-        config = table_merge(config, luadev)
         require("lspconfig")["sumneko_lua"].setup(config)
         vim.cmd([[ do User LspAttachBuffers ]])
     end,

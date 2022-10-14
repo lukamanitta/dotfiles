@@ -154,6 +154,7 @@ return require("packer").startup({
                 "neovim/nvim-lspconfig",
                 after = "mason.nvim",
             },
+            { "folke/neodev.nvim" },
             {
                 "williamboman/mason-lspconfig.nvim",
                 config = function()
@@ -208,7 +209,6 @@ return require("packer").startup({
                     "hrsh7th/cmp-nvim-lsp",
                     "hrsh7th/cmp-nvim-lsp-signature-help",
                     "hrsh7th/cmp-nvim-lua",
-                    "folke/lua-dev.nvim",
                     "hrsh7th/cmp-buffer",
                     "hrsh7th/cmp-path",
                     "hrsh7th/cmp-omni",
