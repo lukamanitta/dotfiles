@@ -13,4 +13,4 @@ local normal_background = get_hi_group_bg("Normal")
 vim.cmd(
     "hi! CursorWord guibg=" .. change_hex_brightness(normal_background, -0.3)
 )
-vim.cmd("hi! CursorWord gui=NONE")
+vim.cmd("hi! CursorWord gui=bold")
