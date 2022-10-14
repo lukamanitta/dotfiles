@@ -229,6 +229,12 @@ return require("packer").startup({
             { "benknoble/vim-dafny" },
 
             -- UI
+            {
+                "folke/noice.nvim",
+                config = function()
+                    require("plugins.ui.noice")
+                end,
+            },
             { "kyazdani42/nvim-web-devicons" },
             { "nvim-lualine/lualine.nvim" },
             { "noib3/nvim-cokeline" },
