@@ -11,7 +11,7 @@ apply_options({
     updatetime = 50,
     noequalalways = true,
     splitbelow = true,
-    lazyredraw = true,
+    lazyredraw = false,
     ttyfast = true,
     termguicolors = true,
     cursorline = true,
