@@ -342,3 +342,9 @@ ARP
 datagrams
 Multiport
 Y
+DNS
+subdomains
+nameservers
+TLDs
+kubernetes
+TTL
