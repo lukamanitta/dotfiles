@@ -47,9 +47,9 @@ require("luasnip.loaders.from_vscode").lazy_load()
 vim.keymap.set(
     "n",
     "<leader><leader>ls",
-    "<cmd>source ~/.config/nvim/lua/plugins/luasnip/snippets.lua<cr>"
+    "<CMD>source ~/.config/nvim/lua/plugins/luasnip/snippets.lua<CR>"
 )
 
-vim.keymap.set("i", function()
+vim.keymap.set("i", "<CTRL-u>", function()
     return require("luasnip.extras.select_choice")()
 end)
