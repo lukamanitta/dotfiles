@@ -55,6 +55,8 @@ I.general = {
     Bug = "",
     Pencil = "",
     Heart = "",
+    Search = "",
+    Shell = "",
 }
 
 I.filesystem = {
