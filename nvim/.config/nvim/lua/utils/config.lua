@@ -2,16 +2,6 @@ local g = vim.g
 local api, cmd, fn = vim.api, vim.cmd, vim.fn
 local U = {}
 
--- Key mapping
-function U.map(mode, key, result, opts)
-    opts = vim.tbl_extend("keep", opts or {}, {
-        noremap = true,
-        silent = true,
-        expr = false,
-    })
-    api.nvim_set_keymap(mode, key, result, opts)
-end
-
 function U.table_contains(table, val)
     for _, value in ipairs(table) do
         if value == val then

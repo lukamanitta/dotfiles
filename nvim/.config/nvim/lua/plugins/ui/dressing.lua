@@ -40,6 +40,19 @@ require("dressing").setup({
             -- This is the config that will be passed to nvim_open_win.
             return conf
         end,
+
+        get_config = function(opts)
+            if opts.kind == "center" then
+                return {
+                    relative = "editor",
+                    width = 0.3,
+                    height = 0.3,
+                    border = "rounded",
+                    prompt_align = "center",
+                    prefer_width = 0.3,
+                }
+            end
+        end,
     },
     select = {
         enabled = true,
@@ -101,9 +114,9 @@ require("dressing").setup({
 
 vim.cmd(
     "hi FloatBorder guibg="
-        .. get_hi_group_bg("Normal")
-        .. " guifg="
-        .. get_hi_group_fg("Conditional")
+    .. get_hi_group_bg("Normal")
+    .. " guifg="
+    .. get_hi_group_fg("Conditional")
 )
 vim.cmd("hi NormalFloat guibg=" .. get_hi_group_bg("Normal"))
 -- vim.cmd("hi FloatTitle guibg=" .. get_hi_group_bg("Normal"))

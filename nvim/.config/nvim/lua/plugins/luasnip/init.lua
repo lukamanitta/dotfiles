@@ -1,4 +1,3 @@
-local map = require("utils.config").map
 local types = require("luasnip.util.types")
 local general_icons = require("assets.icons").general
 
@@ -45,14 +44,12 @@ require("luasnip.loaders.from_lua").load({
 })
 require("luasnip.loaders.from_vscode").lazy_load()
 
-map(
+vim.keymap.set(
     "n",
     "<leader><leader>ls",
     "<cmd>source ~/.config/nvim/lua/plugins/luasnip/snippets.lua<cr>"
 )
-map(
-    "i",
-    "<C-u>",
-    "<cmd>lua require('luasnip.extras.select_choice')()<cr>",
-    { noremap = true }
-)
+
+vim.keymap.set("i", function()
+    return require("luasnip.extras.select_choice")()
+end)

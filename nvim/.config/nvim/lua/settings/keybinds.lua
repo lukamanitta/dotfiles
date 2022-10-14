@@ -4,50 +4,56 @@ local map = require("utils.config").map
 local cmd = vim.cmd
 local g = vim.g
 
-local silentnoremap = { silent = true, noremap = true }
+-- Port to vim.keymap.set
 
 -- Map <leader> to space
-map("n", "<Space>", "<Nop>")
+vim.keymap.set("n", "<Space>", "<Nop>")
 -- Mapleader
 g.mapleader = " "
 
 -- Map jk to leave ins mode
-map("i", "jk", "<Esc>", silentnoremap)
+vim.keymap.set("i", "jk", "<Esc>")
 
 -- map('', ';', ':', silentnoremap)
-cmd("map ; :") -- cmdline is hidden until another key is pressed unless this is done in viml
+-- cmd("map ; :") -- cmdline is hidden until another key is pressed unless this is done in viml
+vim.keymap.set("n", ";", ":")
 
-map("n", "-", "^", silentnoremap)
+vim.keymap.set("n", "-", "^")
 
 -- Reload config
-map("n", "<leader>config", ":Reload<CR>")
-
--- Run single file
-map("n", "<leader>run", ":lua require('functions.run')(vim.fn.expand('%'))<CR>")
+vim.keymap.set("n", "<leader>config", ":Reload<CR>")
 
 -- Switch to alternate file
-map("n", "<leader>a", "<C-^>")
+vim.keymap.set("n", "<leader>a", "<C-^>")
 
 -- <leader> + direction for window navigation
-map("", "<leader>h", ":wincmd h<CR>")
-map("", "<leader>j", ":wincmd j<CR>")
-map("", "<leader>k", ":wincmd k<CR>")
-map("", "<leader>l", ":wincmd l<CR>")
+vim.keymap.set({ "n", "v" }, "<leader>h", "<CMD>wincmd h<CR>")
+vim.keymap.set({ "n", "v" }, "<leader>j", "<CMD>wincmd j<CR>")
+vim.keymap.set({ "n", "v" }, "<leader>k", "<CMD>wincmd k<CR>")
+vim.keymap.set({ "n", "v" }, "<leader>l", "<CMD>wincmd l<CR>")
 
 -- Make capital Y yanking work consistently with other capital letters
-map("n", "Y", "y$")
+vim.keymap.set("n", "Y", "y$")
 
 -- Keep cursor centered when cycling through search results
-map("n", "n", "nzzzv")
-map("n", "N", "Nzzzv")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
 
 -- Clear search highlight
-map("", "//", ":nohlsearch<CR>")
+vim.keymap.set("n", "//", "<CMD>nohlsearch<CR>")
 
 -- Open Neotree
 -- :Neotree ACTION SOURCE POSITION TOGGLE DIR REVEAL REVEAL_FILE REVEAL_FORCE_CWD
-map("n", "<leader>e", ":Neotree focus filesystem float toggle reveal<CR>")
-map("n", "<leader>b", ":Neotree focus buffers float toggle reveal<CR>")
+vim.keymap.set(
+    "n",
+    "<leader>e",
+    "<CMD>Neotree focus filesystem float toggle reveal<CR>"
+)
+vim.keymap.set(
+    "n",
+    "<leader>b",
+    "<CMD>Neotree focus buffers float toggle reveal<CR>"
+)
 
 -- Github Copilot
 cmd('imap <silent><script><expr> <C-\\> copilot#Accept("<CR>")')
@@ -55,111 +61,131 @@ vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 
 -- todo-comments
-map("n", "<leader>todo", ":TodoTrouble<CR>")
-map("n", "<leader>ftodo", ":TodoTelescope<CR>")
+vim.keymap.set("n", "<leader>todo", "<CMD>TodoTrouble<CR>")
+vim.keymap.set("n", "<leader>ftodo", "<CMD>TodoTelescope<CR>")
 
 -- Lazygit
-map("n", "<leader>git", ":LazyGit<CR>")
+vim.keymap.set("n", "<leader>git", "<CMD>LazyGit<CR>")
 
-local shell = require("utils.helpers").shell
-local course_name = shell("pwd | egrep -o '[a-zA-Z]{4}[0-9]{4}' | tail -1")
-local note_dir = course_name ~= "" and "/University/" .. course_name .. "/"
-    or ""
 -- zk
-map("n", "<leader>zkcd", ":ZkCd<CR>")
--- map('n', '<leader>zkn', ':ZkNew { title = "" }<LEFT><LEFT><LEFT>')
-cmd('nnoremap <leader>zkn :ZkNew { title = "" }' .. string.rep("<LEFT>", 3)) -- cmd line is hidden until another key is pressed unless this is done in viml
-cmd(
-    "vnoremap <leader>zkn :'<,'>ZkNewFromContentSelection { title = '' }"
-        .. string.rep("<LEFT>", 3)
-)
-map("n", "<leader>fzkn", ":ZkNotes<CR>")
-map("n", "<leader>fzkt", ":ZkTags<CR>")
-
--- if require("zk.util").notebook_root(vim.fn.expand("%:p")) ~= nil then
-map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
--- end
+local zkcmds = require("zk.commands")
+vim.keymap.set("n", "<leader>zkcd", "<CMD>ZkCd<CR>")
+vim.keymap.set("n", "<leader>zkn", function()
+    return vim.ui.input(
+        { prompt = "New Note Title: ", kind = "center" },
+        function(input)
+            if input then
+                zkcmds.get("ZkNew")({ title = input })
+            end
+        end
+    )
+end)
+vim.keymap.set("v", "<leader>zkn", function()
+    return vim.ui.input(
+        { prompt = "New Note Title: ", kind = "center" },
+        function(input)
+            if input then
+                zkcmds.get("ZkNewFromContentSelection")({ title = input })
+            end
+        end
+    )
+end)
+vim.keymap.set("n", "<leader>fzkn", "<CMD>ZkNotes<CR>")
+vim.keymap.set("n", "<leader>fzkt", "<CMD>ZkTags<CR>")
 
 -- Hop.nvim
-map(
-    "n",
-    "f",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
-)
-map(
-    "n",
-    "F",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
-)
-map(
-    "o",
-    "f",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>"
-)
-map(
-    "o",
-    "F",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>"
-)
-map(
-    "",
-    "t",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
-)
-map(
-    "",
-    "T",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
-)
-map("n", "<leader>w", ":HopWord<CR>", { silent = true })
+vim.keymap.set("n", "f", function()
+    return require("hop").hint_char1({
+        direction = require("hop.hint").HintDirection.AFTER_CURSOR,
+        current_line_only = true,
+    })
+end)
+vim.keymap.set("n", "F", function()
+    return require("hop").hint_char1({
+        direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
+        current_line_only = true,
+    })
+end)
+vim.keymap.set("o", "f", function()
+    return require("hop").hint_char1({
+        direction = require("hop.hint").HintDirection.AFTER_CURSOR,
+        current_line_only = true,
+        inclusive_jump = true,
+    })
+end)
+vim.keymap.set("o", "F", function()
+    return require("hop").hint_char1({
+        direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
+        current_line_only = true,
+        inclusive_jump = true,
+    })
+end)
+vim.keymap.set("", "t", function()
+    return require("hop").hint_char1({
+        direction = require("hop.hint").HintDirection.AFTER_CURSOR,
+        current_line_only = true,
+        hint_offset = -1,
+    })
+end)
+vim.keymap.set("", "T", function()
+    return require("hop").hint_char1({
+        direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
+        current_line_only = true,
+        hint_offset = -1,
+    })
+end)
+vim.keymap.set("n", "<leader>w", "<CMD>HopWord<CR>", { silent = true })
 
 -- TODO: Make this prettier
 -- Telescope
-map(
-    "n",
-    "<leader>ff",
-    ':lua require("plugins.telescope.tele_utils").smart_file_finder(require("plugins.telescope.tele_utils").responsive_layout({}))<CR>',
-    { silent = true }
-)
-map(
-    "n",
-    "<leader>fg",
-    ':lua require("telescope.builtin").live_grep(require("plugins.telescope.tele_utils").responsive_layout({}))<CR>',
-    { silent = true }
-) -- Search project
-map("n", "<leader>fs", ":Telescope lsp_document_symbols<CR>", {
+vim.keymap.set("n", "<leader>ff", function()
+    return require("plugins.telescope.tele_utils").smart_file_finder(
+        require("plugins.telescope.tele_utils").responsive_layout({})
+    )
+end, { silent = true })
+vim.keymap.set("n", "<leader>fg", function()
+    return require("telescope.builtin").live_grep(
+        require("plugins.telescope.tele_utils").responsive_layout({})
+    )
+end, { silent = true }) -- Search project
+vim.keymap.set("n", "<leader>fs", ":Telescope lsp_document_symbols<CR>", {
     silent = true,
 }) -- Search symbols
-map(
+vim.keymap.set(
     "n",
     "<leader>fas",
-    ":Telescope lsp_dynamic_workspace_symbols<CR>",
+    "<CMD>Telescope lsp_dynamic_workspace_symbols<CR>",
     { silent = true }
 ) -- Search all project symbols
-map("n", "<leader>fb", ":Telescope buffers<CR>", { silent = true }) -- Search buffers
-map(
+vim.keymap.set(
     "n",
-    "<leader>fr",
-    ':lua require("telescope.builtin").resume(require("plugins.telescope.tele_utils").responsive_layout({}))<CR>'
-)
-map(
-    "n",
-    "<leader>fm",
-    ':lua require("plugins.telescope.tele_utils").git_modified_finder(require("plugins.telescope.tele_utils").responsive_layout({}))<CR>'
-)
-map("n", "z=", ":Telescope spell_suggest<CR>")
+    "<leader>fb",
+    "<CMD>Telescope buffers<CR>",
+    { silent = true }
+) -- Search buffers
+vim.keymap.set("n", "<leader>fr", function()
+    return require("telescope.builtin").resume(
+        require("plugins.telescope.tele_utils").responsive_layout({})
+    )
+end)
+vim.keymap.set("n", "<leader>fm", function()
+    return require("plugins.telescope.tele_utils").git_modified_finder(
+        require("plugins.telescope.tele_utils").responsive_layout({})
+    )
+end)
+vim.keymap.set("n", "z=", ":Telescope spell_suggest<CR>")
 
 -- Neoclip
-map("", "<leader>p", ":Telescope neoclip<CR>")
+vim.keymap.set("", "<leader>p", ":Telescope neoclip<CR>")
 
 -- Floaterm
-map("n", "<leader>tn", ":FloatermNew<CR>")
-map("n", "<leader>tk", ":FloatermKill<CR>")
-map("n", "<leader>tt", ":FloatermToggle<CR>")
-map("n", "<leader>[t", ":FloatermPrev<CR>")
-map("n", "<leader>]t", ":FloatermNext<CR>")
+vim.keymap.set("n", "<leader>tn", "<CMD>FloatermNew<CR>")
+vim.keymap.set("n", "<leader>tk", "<CMD>FloatermKill<CR>")
+vim.keymap.set("n", "<leader>tt", "<CMD>FloatermToggle<CR>")
+vim.keymap.set("n", "<leader>[t", "<CMD>FloatermPrev<CR>")
+vim.keymap.set("n", "<leader>]t", "<CMD>FloatermNext<CR>")
 
 -- Trouble
-map("n", "<leader>xx", ":Trouble<CR>", silentnoremap)
-map("n", "<leader>xl", ":Trouble loclist<CR>", silentnoremap)
-map("n", "<leader>xq", ":Trouble quickfix<CR>", silentnoremap)
+vim.keymap.set("n", "<leader>xx", "<CMD>Trouble<CR>")
+vim.keymap.set("n", "<leader>xl", "<CMD>Trouble loclist<CR>")
+vim.keymap.set("n", "<leader>xq", "<CMD>Trouble quickfix<CR>")
