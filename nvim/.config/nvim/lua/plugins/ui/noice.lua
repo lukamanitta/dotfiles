@@ -26,7 +26,7 @@ require("noice").setup({
         -- NOTE: If you enable noice messages UI, noice cmdline UI is enabled
         -- automatically. You cannot enable noice messages UI only.
         -- It is current neovim implementation limitation.  It may be fixed later.
-        enabled = true, -- disable if you use native messages UI
+        enabled = false, -- disable if you use native messages UI
     },
     popupmenu = {
         enabled = true, -- disable if you use something like cmp-cmdline
