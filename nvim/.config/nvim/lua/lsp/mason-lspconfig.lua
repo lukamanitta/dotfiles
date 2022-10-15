@@ -94,7 +94,14 @@ local lua_settings = {
     },
 }
 
-require("neodev").setup({})
+require("neodev").setup({
+    library = {
+        enabled = true,
+        runtime = true,
+        types = true,
+        plugins = { "nvim-treesitter", "telescope.nvim" },
+    },
+})
 
 require("mason-lspconfig").setup_handlers({
     function(server_name)
