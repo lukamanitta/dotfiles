@@ -50,6 +50,29 @@ local cfg = {
                 { weight = "ExtraBold" }
             ),
         },
+        {
+            intensity = "Bold",
+            italic = true,
+            font = wezterm.font(
+                "JetBrainsMono Nerd Font",
+                { weight = "ExtraBold" }
+            ),
+        },
+        {
+            intensity = "Half",
+            font = wezterm.font(
+                "JetBrainsMono Nerd Font",
+                { weight = "Light" }
+            ),
+        },
+        -- {
+        --     intensity = "Half",
+        --     italic = true,
+        --     font = wezterm.font(
+        --         "JetBrainsMono Light Italic Nerd Font",
+        --         { weight = "Light Italic" }
+        --     ),
+        -- },
     },
 
     --Keybindings--
@@ -531,7 +554,7 @@ cfg.colors.tab_bar = {
 
         intensity = "Normal", -- Half | Normal | Bold
         underline = "None", -- None | Single | Double
-        italic = false,
+        italic = true,
         strikethrough = false,
     },
 
