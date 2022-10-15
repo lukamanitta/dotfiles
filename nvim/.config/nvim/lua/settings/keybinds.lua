@@ -20,9 +20,6 @@ vim.keymap.set("n", ";", ":")
 
 vim.keymap.set("n", "-", "^")
 
--- Reload config
-vim.keymap.set("n", "<leader>config", ":Reload<CR>")
-
 -- Switch to alternate file
 vim.keymap.set("n", "<leader>a", "<C-^>")
 
