@@ -15,7 +15,7 @@ local theme, _ = colorscheme:match("(.+)_(.+)") -- Remove colourscheme modifier
 -- Color table for highlights
 local colors = {
     bg = get_hi_group_bg("StatusLine"),
-    fg = get_hi_group_fg("lualine_c_normal"),
+    fg = get_hi_group_fg("StatusLine"),
     yellow = "#ECBE7B",
     cyan = "#008080",
     darkblue = "#081633",
@@ -54,9 +54,6 @@ local config = {
         disabled_filetypes = { "Trouble", "NvimTree" },
         -- theme = theme,
         theme = {
-            -- We are going to use lualine_c an lualine_x as left and
-            -- right section. Both are highlighted by c theme .  So we
-            -- are just setting default looks o statusline
             normal = { c = { fg = colors.fg, bg = colors.bg } },
             inactive = { c = { fg = colors.fg, bg = colors.bg } },
         },
@@ -94,14 +91,13 @@ local function ins_right(component)
     table.insert(config.sections.lualine_x, component)
 end
 
--- ins_left({
---     function()
---         return ""
---     end,
---     color = { fg = colors.endblock_fg, bg = colors.endblock_bg }, -- Sets highlighting of component
---     left_padding = 0, -- We don't need space before this
---     right_padding = 0,
--- })
+ins_left({
+    function()
+        return ""
+    end,
+    color = { fg = colors.endblock_fg, bg = colors.endblock_bg }, -- Sets highlighting of component
+    padding = { left = 1, right = 0 },
+})
 
 local get_buf_icon = require("utils.config").get_buf_icon
 ins_left({
@@ -214,7 +210,7 @@ ins_left({
         return client_names:to_string()
     end,
     icon = " LSP:",
-    color = { fg = get_hi_group_fg("Comment"), gui = "bold" },
+    color = { fg = get_hi_group_fg("Comment"), gui = "italic" },
 })
 
 -- Add components to right sections
@@ -242,12 +238,12 @@ ins_right({
 
 ins_right({ "progress", color = { fg = colors.fg, gui = "bold" } })
 
--- ins_right({
---     function()
---         return ""
---     end,
---     color = { fg = colors.endblock_fg, bg = colors.endblock_bg }, -- Sets highlighting of component
---     left_padding = 0, -- We don't need space before this
--- })
+ins_right({
+    function()
+        return ""
+    end,
+    color = { fg = colors.endblock_fg, bg = colors.endblock_bg }, -- Sets highlighting of component
+    padding = { left = 0, right = 1 },
+})
 
 lualine.setup(config)
