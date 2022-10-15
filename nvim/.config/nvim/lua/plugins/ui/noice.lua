@@ -48,7 +48,7 @@ require("noice").setup({
         enabled = false,
     },
     hacks = {
-        skip_duplicate_messages = false,
+        skip_duplicate_messages = true,
     },
     throttle = 1000 / 30,
 

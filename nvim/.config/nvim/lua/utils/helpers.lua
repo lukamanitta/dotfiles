@@ -1,41 +1,40 @@
 local H = {}
-local fn = vim.fn
-local cmd = vim.cmd
-
-function H.has_value(table, value)
-    table = table or {}
-    if table == {} then
-        return false
-    end
-    for _, existingVal in ipairs(table) do
-        if existingVal == value then
-            return true
-        end
-    end
-    return false
-end
-
-function H.table_length(table)
-    local count = 0
-    for _ in pairs(table) do
-        count = count + 1
-    end
-    return count
-end
 
 function H.shell(command)
-    return fn.trim(fn.system(command))
+    return vim.fn.trim(vim.fn.system(command))
 end
 
-function H.split_file_path(filepath)
-    -- Returns the Path, Filename, and Extension as 3 values
-    return string.match(filepath, "(.-)([^\\]-([^\\%.]+))$")
+function H.get_buf_filetype(bufId)
+    return vim.api.nvim_buf_get_option(bufId, "filetype")
 end
 
-function H.course_regex()
-    vim.notify(fn.expand("%"))
-    cmd('echo expand("%")')
-    return H.shell('echo "' .. fn.expand("%") .. "\" | egrep -o '[A-Z]{4}[0-9]{4}' | tail -1")
+function H.apply_options(opts)
+    for k, v in pairs(opts) do
+        if v == true then
+            vim.cmd("set " .. k)
+        elseif v == false then
+            vim.cmd(string.format("set no%s", k))
+        else
+            vim.cmd(string.format("set %s=%s", k, v))
+        end
+    end
+end
+
+function H.apply_globals(opts)
+    for k, v in pairs(opts) do
+        vim.g[k] = v
+    end
+end
+
+function H.get_buf_icon(buffer)
+    local filename = vim.api.nvim_buf_get_name(buffer)
+    local file_ext = string.match(filename, "(%w+)$")
+    local default_icon = ""
+    return require("nvim-web-devicons").get_icon(
+        filename,
+        file_ext,
+        { default = default_icon }
+    )
 end
 
 return H

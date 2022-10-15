@@ -1,4 +1,4 @@
-local apply_globals = require("utils.config").apply_globals
+local apply_globals = require("utils.helpers").apply_globals
 local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
 local change_hex_brightness = require("utils.color").change_hex_brightness
 

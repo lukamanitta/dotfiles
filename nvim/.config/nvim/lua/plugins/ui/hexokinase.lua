@@ -1,4 +1,4 @@
-local apply_globals = require("utils.config").apply_globals
+local apply_globals = require("utils.helpers").apply_globals
 local general_icons = require("assets.icons").general
 
 apply_globals({

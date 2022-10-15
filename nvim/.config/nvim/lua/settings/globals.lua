@@ -1,5 +1,5 @@
 local cmd = vim.cmd
-local apply_globals = require("utils.config").apply_globals
+local apply_globals = require("utils.helpers").apply_globals
 
 local vars = {}
 

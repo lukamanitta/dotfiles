@@ -1,5 +1,5 @@
 local Set = { items = {} }
-local has_value = require("utils.helpers").has_value
+local has_value = require("utils.tables").has_value
 
 function Set:new(items)
     items = items or {}

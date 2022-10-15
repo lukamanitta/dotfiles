@@ -1,4 +1,4 @@
-local apply_options = require("utils.config").apply_options
+local apply_options = require("utils.helpers").apply_options
 
 apply_options({
     syntax = "off",

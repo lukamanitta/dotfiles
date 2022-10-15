@@ -99,7 +99,7 @@ ins_left({
     padding = { left = 1, right = 0 },
 })
 
-local get_buf_icon = require("utils.config").get_buf_icon
+local get_buf_icon = require("utils.helpers").get_buf_icon
 ins_left({
     -- mode component
     function()
@@ -192,7 +192,7 @@ ins_left({
     -- Lsp server name .
     function()
         local Set = require("classes.Set")
-        local has_value = require("utils.helpers").has_value
+        local has_value = require("utils.tables").has_value
 
         local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
         local clients = vim.lsp.get_active_clients()

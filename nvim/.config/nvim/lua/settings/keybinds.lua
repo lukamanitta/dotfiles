@@ -1,15 +1,12 @@
 -- TODO: move keybinds to respective plugin files
-local map = require("utils.config").map
 -- local api = vim.api
-local cmd = vim.cmd
-local g = vim.g
 
 -- Port to vim.keymap.set
 
 -- Map <leader> to space
 vim.keymap.set("n", "<Space>", "<Nop>")
 -- Mapleader
-g.mapleader = " "
+vim.g.mapleader = " "
 
 -- Map jk to leave ins mode
 vim.keymap.set("i", "jk", "<Esc>")
@@ -53,7 +50,7 @@ vim.keymap.set(
 )
 
 -- Github Copilot
-cmd('imap <silent><script><expr> <C-\\> copilot#Accept("<CR>")')
+vim.cmd('imap <silent><script><expr> <C-\\> copilot#Accept("<CR>")')
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 

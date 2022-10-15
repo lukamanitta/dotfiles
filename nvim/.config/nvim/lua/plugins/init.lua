@@ -19,7 +19,7 @@ local local_plug_dir = function(plug_name)
     return "~/projects/nvim-plugins/" .. plug_name
 end
 
-return require("packer").startup({
+require("packer").startup({
     function()
         use({
 
@@ -462,3 +462,19 @@ return require("packer").startup({
         prompt_border = "rounded",
     },
 })
+
+-- Automatically create snapshots when updating plugins
+vim.api.nvim_del_user_command("PackerSync")
+vim.api.nvim_create_user_command("PackerSync", function(opts)
+    require("plenary.async").run(function()
+        vim.notify.async("Creating Packer Snapshot", "info", {
+            title = "Packer",
+        })
+    end)
+    local snapshot_time = os.date("!%Y-%m-%dT%TZ")
+    require("packer").snapshot(snapshot_time)
+
+    require("packer").sync({
+        preview_updates = opts.fargs[1] == "--preview",
+    })
+end, { nargs = 1 })

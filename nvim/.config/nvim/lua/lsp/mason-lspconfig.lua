@@ -1,4 +1,4 @@
-local table_merge = require("utils.config").table_merge
+local table_merge = require("utils.tables").table_merge
 
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...)

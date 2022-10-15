@@ -1,4 +1,4 @@
-local table_merge = require("utils.config").table_merge
+local table_merge = require("utils.tables").table_merge
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
 local fn = vim.fn

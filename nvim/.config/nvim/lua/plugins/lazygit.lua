@@ -1,4 +1,4 @@
-local apply_globals = require("utils.config").apply_globals
+local apply_globals = require("utils.helpers").apply_globals
 
 apply_globals({
     lazygit_floating_window_winblend = 0, -- Transparency of floating window
