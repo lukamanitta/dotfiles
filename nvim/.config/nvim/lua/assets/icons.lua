@@ -59,6 +59,17 @@ I.general = {
     Shell = "",
 }
 
+I.debug = {
+    Pause = "",
+    Play = "",
+    StepInto = "",
+    StepOver = "",
+    StepOut = "",
+    StepBack = "",
+    RunLast = "↻",
+    Terminate = "",
+}
+
 I.filesystem = {
     File = "",
     FileSymlink = "",

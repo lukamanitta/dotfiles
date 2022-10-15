@@ -316,6 +316,29 @@ return require("packer").startup({
                 requires = "rktjmp/lush.nvim",
             },
 
+            -- Debugging
+
+            -- {
+            --     "mfussenegger/nvim-dap",
+            --     config = function()
+            --         require("plugins.debugging.dap")
+            --     end,
+            -- },
+            -- {
+            --     "theHamsta/nvim-dap-virtual-text",
+            --     requires = "mfussenegger/nvim-dap",
+            --     config = function()
+            --         require("plugins.debugging.dap-virtual-text")
+            --     end,
+            -- },
+            -- {
+            --     "rcarriga/nvim-dap-ui",
+            --     requires = "mfussenegger/nvim-dap",
+            --     config = function()
+            --         require("plugins.debugging.dap-ui")
+            --     end,
+            -- },
+
             -- Meta
             { "famiu/nvim-reload", cmd = { "Reload", "Restart" } },
             { "lewis6991/impatient.nvim" },
@@ -428,12 +451,15 @@ return require("packer").startup({
     end,
     config = {
         display = {
-            open_fn = require("packer.util").float,
+            open_fn = function()
+                return require("packer.util").float({ border = "rounded" })
+            end,
         },
         profile = {
             enable = true,
             threshold = 1,
         },
         max_jobs = 50,
+        -- prompt_border = "rounded",
     },
 })
