@@ -8,11 +8,11 @@ require("noice").setup({
         opts = { buf_options = { filetype = "vim" } }, -- enable syntax highlighting in the cmdline
         icons = {
             ["/"] = {
-                icon = general_icons.Search .. " ",
+                icon = " " .. general_icons.Search .. " ",
                 hl_group = "DiagnosticWarn",
             },
             ["?"] = {
-                icon = general_icons.Search .. " ",
+                icon = " " .. general_icons.Search .. " ",
                 hl_group = "DiagnosticWarn",
             },
             [":"] = {
