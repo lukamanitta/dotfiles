@@ -81,6 +81,7 @@ read_only = " "
 
 [git_branch]
 symbol = " "
+style = "purple"
 
 [git_state]
 merge = " MERGE"
