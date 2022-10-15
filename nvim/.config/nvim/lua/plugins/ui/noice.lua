@@ -1,5 +1,6 @@
 ---@diagnostic disable: undefined-doc-name
 local general_icons = require("assets.icons").general
+local cmdline_hl_group = "Conditional"
 
 require("noice").setup({
     cmdline = {
@@ -16,8 +17,8 @@ require("noice").setup({
                 hl_group = "DiagnosticWarn",
             },
             [":"] = {
-                icon = general_icons.Shell .. " ",
-                hl_group = "DiagnosticInfo",
+                icon = " " .. general_icons.Shell .. " ",
+                hl_group = cmdline_hl_group,
                 firstc = false,
             },
         },
@@ -28,7 +29,7 @@ require("noice").setup({
         -- It is current neovim implementation limitation.  It may be fixed later.
         enabled = false, -- disable if you use native messages UI
     },
-    popupmenu = {
+    popupmenu = { -- cmdline completion
         enabled = true, -- disable if you use something like cmp-cmdline
         ---@type 'nui'|'cmp'
         backend = "nui", -- backend to use to show regular cmdline completions
@@ -44,24 +45,28 @@ require("noice").setup({
         },
     },
     notify = {
-        -- Noice can be used as `vim.notify` so you can route any notification like other messages
-        -- Notification messages have their level and other properties set.
-        -- event is always "notify" and kind can be any log level as a string
-        -- The default routes will forward notifications to nvim-notify
-        -- Benefit of using Noice for this is the routing and consistent history view
         enabled = false,
     },
     hacks = {
-        -- due to https://github.com/neovim/neovim/issues/20416
-        -- messages are resent during a redraw. Noice detects this in most cases, but
-        -- some plugins (mostly vim plugns), can still cause loops.
-        -- When a loop is detected, Noice exits.
-        -- Enable this option to simply skip duplicate messages instead.
         skip_duplicate_messages = false,
     },
-    throttle = 1000 / 30, -- how frequently does Noice need to check for ui updates? This has no effect when in blocking mode.
+    throttle = 1000 / 30,
+
     ---@type table<string, NoiceViewOptions>
-    views = {},
+    views = {
+        cmdline_popup = {
+            position = {
+                row = 12,
+                col = "50%",
+            },
+            win_options = {
+                winhighlight = {
+                    FloatBorder = cmdline_hl_group,
+                },
+            },
+        },
+    },
+
     ---@type NoiceRouteConfig[]
     routes = {
         {
@@ -71,9 +76,15 @@ require("noice").setup({
             },
             view = "cmdline",
         },
+        {
+            filter = { event = "msg_showmode" },
+            view = "notify",
+        },
     },
+
     ---@type table<string, NoiceFilter>
     status = {}, --@see the section on statusline components below
+
     ---@type NoiceFormatOptions
     format = {}, -- @see section on formatting
 })
