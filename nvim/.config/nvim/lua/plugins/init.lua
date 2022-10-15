@@ -340,7 +340,6 @@ return require("packer").startup({
             -- },
 
             -- Meta
-            { "famiu/nvim-reload", cmd = { "Reload", "Restart" } },
             { "lewis6991/impatient.nvim" },
             -- { 'miversen33/import.nvim' },
 
@@ -460,6 +459,6 @@ return require("packer").startup({
             threshold = 1,
         },
         max_jobs = 50,
-        -- prompt_border = "rounded",
+        prompt_border = "rounded",
     },
 })
