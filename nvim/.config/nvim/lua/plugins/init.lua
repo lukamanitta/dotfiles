@@ -477,4 +477,4 @@ vim.api.nvim_create_user_command("PackerSync", function(opts)
     require("packer").sync({
         preview_updates = opts.fargs[1] == "--preview",
     })
-end, { nargs = 1 })
+end, { nargs = "?", force = true })
