@@ -220,9 +220,19 @@ require("packer").startup({
                     { "tzachar/cmp-tabnine", run = "./install.sh" },
                     "kdheepak/cmp-latex-symbols",
                     "davidsierradz/cmp-conventionalcommits",
+                    "zbirenbaum/copilot-cmp",
                 },
             },
-            { "github/copilot.vim" },
+            -- { "github/copilot.vim" },
+            {
+                "zbirenbaum/copilot.lua",
+                event = "VimEnter",
+                config = function()
+                    vim.defer_fn(function()
+                        require("copilot").setup()
+                    end, 100)
+                end,
+            },
 
             -- Language specific styling
             -- { "styled-components/vim-styled-components" },
