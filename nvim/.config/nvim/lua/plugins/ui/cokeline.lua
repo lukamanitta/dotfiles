@@ -187,7 +187,7 @@ require("cokeline").setup({
     },
 
     rendering = {
-        max_buffer_width = 30,
+        max_buffer_width = min_buffer_width + 20,
     },
 
     default_hl = {

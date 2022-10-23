@@ -31,8 +31,8 @@ local colors = {
 }
 
 local conditions = {
-    buffer_not_empty = function()
-        return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
+    buffer_has_name = function()
+        return vim.fn.expand("%:t") ~= ""
     end,
     hide_in_width = function()
         return vim.fn.winwidth(0) > 80
@@ -141,9 +141,19 @@ ins_left({
     left_padding = 0,
 })
 
+local function hide_empty_filename()
+    return function(str)
+        if str == "[No Name]" then
+            return ""
+        else
+            return str
+        end
+    end
+end
+
 ins_left({
     "filename",
-    condition = conditions.buffer_not_empty,
+    fmt = hide_empty_filename(),
     color = { fg = colors.filename, gui = "bold" },
 })
 
@@ -167,16 +177,21 @@ ins_left({
     condition = gps.is_available,
 })
 
--- local treesitter = require('nvim-treesitter')
+-- local treesitter = require("nvim-treesitter")
 -- ins_left({
 --     function()
 --         return treesitter.statusline({
 --             indicator_size = 40,
---             type_patterns = { 'class', 'function', 'method', 'table_constructor' },
+--             type_patterns = {
+--                 "class",
+--                 "function",
+--                 "method",
+--                 "table_constructor",
+--             },
 --             transform_fn = function(line)
---                 return line:gsub('%s*[%[%(%{]*%s*$', '')
+--                 return line:gsub("%s*[%[%(%{]*%s*$", "")
 --             end,
---             separator = ' ' .. general_icons.PlayArrowRight .. ' ',
+--             separator = " " .. general_icons.PlayArrowRight .. " ",
 --         })
 --     end,
 -- })

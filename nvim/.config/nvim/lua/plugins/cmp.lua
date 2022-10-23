@@ -4,6 +4,18 @@ local compare = require("cmp.config.compare")
 local tabnine = require("cmp_tabnine.config")
 local comp_icons = require("assets.icons").types
 
+local has_words_before = function()
+    if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+        return false
+    end
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0
+        and vim.api
+        .nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]
+        :match("^%s*$")
+        == nil
+end
+
 cmp.setup.filetype({ "markdown" }, {
     sources = cmp.config.sources({
         { name = "luasnip" },
@@ -25,6 +37,13 @@ cmp.setup.filetype({ "gitcommit" }, {
 
 local luasnip = require("luasnip")
 
+require("copilot_cmp").setup({
+    method = "getCompletionsCycling", -- or "getPanelCompletions"
+    formatters = {
+        insert_text = require("copilot_cmp.format").remove_existing,
+    },
+})
+
 cmp.setup({
     -- completion = {
     --     autocomplete = true,
@@ -35,7 +54,13 @@ cmp.setup({
         end,
     },
     mapping = {
-        ["<Tab>"] = cmp.mapping.select_next_item(),
+        ["<Tab>"] = vim.schedule_wrap(function(fallback)
+            if cmp.visible() and has_words_before() then
+                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            else
+                fallback()
+            end
+        end),
         ["<S-Tab>"] = cmp.mapping.select_prev_item(),
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
@@ -75,9 +100,10 @@ cmp.setup({
     },
     sources = cmp.config.sources({
         { name = "luasnip" },
+        { name = "copilot" },
         { name = "nvim_lsp_signature_help" },
-        { name = "nvim_lsp" },
-        { name = "nvim_lua" },
+        { name = "nvim_lsp", max_item_count = 5 },
+        { name = "nvim_lua", max_item_count = 5 },
         -- { name = "cmp_tabnine" },
         { name = "buffer", keyword_length = 5, max_item_count = 5 },
         { name = "omni" },
@@ -95,6 +121,8 @@ cmp.setup({
                 vim_item.kind = "Latex"
             elseif entry.source.name == "conventionalcommits" then
                 vim_item.kind = "CommitMsg"
+            elseif entry.source.name == "copilot" then
+                vim_item.kind = "Copilot"
             elseif entry.source.source.client ~= nil then
                 if entry.source.source.client.name == "zk"
                     and vim_item.kind == "Text"
@@ -128,9 +156,10 @@ cmp.setup({
     sorting = {
         priority_weight = 1,
         comparators = {
-            -- require('cmp_tabnine.compare'),
-            compare.offset,
             compare.exact,
+            require("copilot_cmp.comparators").prioritize,
+            require("copilot_cmp.comparators").score,
+            compare.offset,
             compare.score,
             compare.recently_used,
             compare.kind,
