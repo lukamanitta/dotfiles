@@ -169,7 +169,8 @@ cmp.setup({
         },
     },
     view = {
-        entries = cmp.EntriesConfig,
+        -- entries = cmp.EntriesConfig,
+        entries = { name = "custom", selection_order = "bottom_up" },
     },
     experimental = {
         ghost_text = false,
