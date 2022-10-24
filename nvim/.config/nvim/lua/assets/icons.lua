@@ -131,7 +131,7 @@ I.types = { -- Arranged approximately in order of abstraction (lo - hi)
 
     Spell = I.general.Pencil,
     Tabnine = I.companies.Tabnine,
-    Copilot = I.companies.Github,
+    Copilot = I.companies.GitHub,
     Omni = "",
     Snippet = "",
     Latex = "",
