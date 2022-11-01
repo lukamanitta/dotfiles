@@ -15,6 +15,7 @@ apply_globals({
     scrolloff = 10,
     sidescrolloff = 5,
     markdown_fenced_languages = { "html", "python", "bash=sh", "dafny" },
+    omni_sql_default_compl_type = "syntax",
 })
 
 return vars
