@@ -567,7 +567,7 @@ local colours = {
 
 -- local colourscheme = os.getenv('COLOURSCHEME')
 -- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa, nightfox_{night, dawn, day, dusk}
-local colourscheme = "noctis"
+local colourscheme = "tokyonight_storm"
 
 cfg.colors = colours[colourscheme]
 

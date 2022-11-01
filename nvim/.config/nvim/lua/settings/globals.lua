@@ -5,7 +5,7 @@ local vars = {}
 
 -- vars.colourscheme = os.getenv('COLOURSCHEME')
 -- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa_{dark, light}, nightfox_{night, dawn, day, dusk}, noctis
-vars.colourscheme = "noctis"
+vars.colourscheme = "tokyonight_storm"
 
 cmd("filetype plugin indent on")
 
