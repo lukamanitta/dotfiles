@@ -12,16 +12,19 @@ require("noice").setup({
             cmdline = {
                 pattern = "^:",
                 icon = " " .. general_icons.Shell .. " ",
+                lang = "vim",
             },
             search_down = {
                 kind = "search",
                 pattern = "^/",
                 icon = " " .. general_icons.Search .. " ",
+                lang = "regex",
             },
             search_up = {
                 kind = "search",
                 pattern = "^%?",
                 icon = " " .. general_icons.Search .. " ",
+                lang = "regex",
             },
             filter = { pattern = "^:%s*!", icon = " $ ", lang = "sh" },
             lua = { pattern = "^:%s*lua%s+", icon = "  ", lang = "lua" },
@@ -57,16 +60,20 @@ require("noice").setup({
         enabled = false,
         view = "notify",
     },
-    lsp_progress = {
-        enabled = false,
-        -- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
-        -- See the section on formatting for more details on how to customize.
-        --- @type NoiceFormat|string
-        format = "lsp_progress",
-        --- @type NoiceFormat|string
-        format_done = "lsp_progress_done",
-        throttle = 1000 / 30, -- frequency to update lsp progress message
-        view = "mini",
+    lsp = {
+        progress = { enabled = false },
+        override = {},
+        hover = {},
+        signature = { enabled = false },
+    },
+    message = { enabled = false },
+    documentation = { enabled = false },
+    markdown = { hover = {}, highlights = {} },
+    presets = { bottom_search = true },
+    health = { checker = true },
+    smart_move = {
+        enabled = true,
+        excluded_filetypes = { "cmp_menu", "cmp_docs", "notify" },
     },
     throttle = 1000 / 30,
 
@@ -74,7 +81,7 @@ require("noice").setup({
     views = {
         cmdline_popup = {
             position = {
-                row = 12,
+                row = "50%",
                 col = "50%",
             },
             win_options = {
