@@ -142,7 +142,7 @@ vim.keymap.set("n", "<leader>fg", function()
         require("plugins.telescope.tele_utils").responsive_layout({})
     )
 end, { silent = true }) -- Search project
-vim.keymap.set("n", "<leader>fs", ":Telescope lsp_document_symbols<CR>", {
+vim.keymap.set("n", "<leader>fs", "<CMD>Telescope lsp_document_symbols<CR>", {
     silent = true,
 }) -- Search symbols
 vim.keymap.set(
@@ -167,10 +167,10 @@ vim.keymap.set("n", "<leader>fm", function()
         require("plugins.telescope.tele_utils").responsive_layout({})
     )
 end)
-vim.keymap.set("n", "z=", ":Telescope spell_suggest<CR>")
+vim.keymap.set("n", "z=", "<CMD>Telescope spell_suggest<CR>")
 
 -- Neoclip
-vim.keymap.set("", "<leader>p", ":Telescope neoclip<CR>")
+vim.keymap.set("", "<leader>p", "<CMD>Telescope neoclip<CR>")
 
 -- Floaterm
 vim.keymap.set("n", "<leader>tn", "<CMD>FloatermNew<CR>")
