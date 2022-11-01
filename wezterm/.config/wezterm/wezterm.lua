@@ -527,11 +527,47 @@ local colours = {
             "#e2e0f7",
         },
     },
+
+    noctis = {
+        foreground = "#66ffbf",
+        background = "#141414",
+
+        cursor_bg = "#f2f4f8",
+        cursor_fg = "#161616",
+        cursor_border = "#f2f4f8",
+
+        selection_fg = "#66ffbf",
+        selection_bg = "#2a2a2a",
+
+        scrollbar_thumb = "#2a2a2a",
+        split = "#2a2a2a",
+
+        ansi = {
+            "#0c0c0c",
+            "#ee5396",
+            "#25be6a",
+            "#cbcb41",
+            "#33b1ff",
+            "#ff91c1",
+            "#3ddbd9",
+            "#f2f4f8",
+        },
+        brights = {
+            "#727169",
+            "#ee5396",
+            "#25be6a",
+            "#cbcb41",
+            "#8cb6ff",
+            "#ee5396",
+            "#5ae0df",
+            "#7b7c7e",
+        },
+    },
 }
 
 -- local colourscheme = os.getenv('COLOURSCHEME')
 -- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa, nightfox_{night, dawn, day, dusk}
-local colourscheme = "kanagawa"
+local colourscheme = "noctis"
 
 cfg.colors = colours[colourscheme]
 
