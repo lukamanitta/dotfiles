@@ -33,6 +33,7 @@ apply_options({
     spelllang = "en_au,en_us",
     spelloptions = "camel,noplainbuffer",
     splitkeep = "screen",
+    completeopt = "menu,menuone,preview",
 })
 
 vim.cmd("set iskeyword-=_") -- Recognise _ as word separator
