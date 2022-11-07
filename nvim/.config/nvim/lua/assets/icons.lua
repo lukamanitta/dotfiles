@@ -56,6 +56,7 @@ I.general = {
     Pencil = "",
     Heart = "",
     Search = "",
+    Replace = "﯒",
     Shell = "",
 }
 
