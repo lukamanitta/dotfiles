@@ -355,3 +355,15 @@ TLB
 PTEs
 π
 σ
+boolean
+Equijoin
+equijoin
+Commutativity
+⨝
+Associativity
+Serialisability
+Serialisable
+serialisability
+serialisable
+WFG
+CSR
