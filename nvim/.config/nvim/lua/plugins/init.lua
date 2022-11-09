@@ -326,6 +326,7 @@ require("packer").startup({
                 "kartikp10/noctis.nvim",
                 requires = "rktjmp/lush.nvim",
             },
+            { "ellisonleao/gruvbox.nvim" },
 
             -- Debugging
 

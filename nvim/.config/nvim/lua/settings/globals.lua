@@ -4,8 +4,8 @@ local apply_globals = require("utils.helpers").apply_globals
 local vars = {}
 
 -- vars.colourscheme = os.getenv('COLOURSCHEME')
--- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa_{dark, light}, nightfox_{night, dawn, day, dusk}, noctis
-vars.colourscheme = "tokyonight_storm"
+-- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa_{dark, light}, nightfox_{night, dawn, day, dusk}, noctis, gruvbox_{light, dark}
+vars.colourscheme = "gruvbox_dark"
 
 cmd("filetype plugin indent on")
 
