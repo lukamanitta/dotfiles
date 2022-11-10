@@ -30,7 +30,7 @@ local colors = {
     magenta = "#c678dd",
     blue = "#51afef",
     red = "#ec5f67",
-    filename = get_hi_group_fg("Keyword"),
+    -- filename = get_hi_group_fg("rainbowcol" .. math.random(1, 7)),
     endblock_fg = get_hi_group_bg("StatusLine"),
     endblock_bg = get_hi_group_bg("Normal"),
 }
@@ -172,10 +172,14 @@ local function hide_empty_filename()
     end
 end
 
+local random_range = require("utils.math").random_range
 ins_left({
     "filename",
     fmt = hide_empty_filename(),
-    color = { fg = colors.filename, gui = "bold" },
+    color = {
+        fg = get_hi_group_fg("rainbowcol" .. random_range(1, 7)),
+        gui = "bold",
+    },
 })
 
 ins_left({
