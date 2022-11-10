@@ -19,6 +19,7 @@ require("noice").setup({
                 pattern = "^/",
                 icon = " " .. general_icons.Search .. " ",
                 lang = "regex",
+                view = "cmdline",
             },
             search_up = {
                 kind = "search",
@@ -69,7 +70,6 @@ require("noice").setup({
     message = { enabled = false },
     documentation = { enabled = false },
     markdown = { hover = {}, highlights = {} },
-    presets = { bottom_search = true },
     health = { checker = true },
     smart_move = {
         enabled = true,
