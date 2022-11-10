@@ -27,7 +27,7 @@ end
 vim.cmd("hi! SignColumn guibg=" .. get_hi_group_bg("Normal"))
 
 vim.api.nvim_set_hl(0, "rainbowcol1", {
-    fg = palette.neutral_red,
+    fg = palette.bright_red,
 })
 vim.api.nvim_set_hl(0, "rainbowcol2", {
     fg = palette.neutral_orange,
