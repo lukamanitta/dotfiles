@@ -12,6 +12,17 @@ function C.invert_hex_color(color)
     )
 end
 
+function C.invert_hex_brightness(color)
+    local r, g, b = color:match("#(%x%x)(%x%x)(%x%x)")
+    local h, s, v, a = conversions.rgb_to_hsv(
+        tonumber(r, 16),
+        tonumber(g, 16),
+        tonumber(b, 16)
+    )
+    local new_r, new_g, new_b = conversions.hsv_to_rgb(h, s, 1 - v, a)
+    return string.format("#%02X%02X%02X", new_r, new_g, new_b)
+end
+
 function C.change_hex_brightness(color, multiplier)
     local r, g, b = color:match("#(%x%x)(%x%x)(%x%x)")
 
