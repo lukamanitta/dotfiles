@@ -4,13 +4,18 @@ local lualine = require("lualine")
 
 local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
 local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
+local change_hex_brightness = require("utils.color").change_hex_brightness
 
 local git_icons = require("assets.icons").git
 local lsp_icons = require("assets.icons").lsp
 local general_icons = require("assets.icons").general
 
-local colorscheme = require("settings.globals").colourscheme
-local theme, _ = colorscheme:match("(.+)_(.+)") -- Remove colourscheme modifier
+-- local statusline_brightness_diff = -0.35
+-- if vim.o.background == "light" then
+--     statusline_brightness_diff = -0.2
+-- end
+-- local line_bg =
+-- change_hex_brightness(get_hi_group_bg("Normal"), statusline_brightness_diff)
 
 -- Color table for highlights
 local colors = {
@@ -43,6 +48,22 @@ local conditions = {
         return gitdir and #gitdir > 0 and #gitdir < #filepath
     end,
 }
+
+local function trunc_or_hide(trunc_width, trunc_len, hide_width, no_ellipsis)
+    return function(str)
+        local win_width = vim.fn.winwidth(0)
+        if hide_width and win_width < hide_width then
+            return ""
+        elseif trunc_width
+            and trunc_len
+            and win_width < trunc_width
+            and #str > trunc_len
+        then
+            return str:sub(1, trunc_len) .. (no_ellipsis and "" or "...")
+        end
+        return str
+    end
+end
 
 -- Config
 local config = {
@@ -225,6 +246,7 @@ ins_left({
         return client_names:to_string()
     end,
     icon = " LSP:",
+    fmt = trunc_or_hide(120, 7, 80, false),
     color = { fg = get_hi_group_fg("Comment"), gui = "italic" },
 })
 

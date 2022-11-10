@@ -1,7 +1,7 @@
 local cmd = vim.cmd
 local cmp = require("cmp")
 local compare = require("cmp.config.compare")
-local tabnine = require("cmp_tabnine.config")
+-- local tabnine = require("cmp_tabnine.config")
 local comp_icons = require("assets.icons").types
 
 cmp.setup.filetype({ "markdown" }, {
@@ -9,7 +9,8 @@ cmp.setup.filetype({ "markdown" }, {
         { name = "luasnip" },
         { name = "nvim_lsp" },
         { name = "latex_symbols", max_item_count = 10 },
-        { name = "spell", max_item_count = 3 },
+        -- { name = "emoji", trigger_characters = { "@" }, max_item_count = 5 },
+        -- { name = "spell", max_item_count = 3 },
         { name = "buffer" },
     }, {
         { name = "path", max_item_count = 5 },
@@ -81,7 +82,7 @@ cmp.setup({
         { name = "luasnip" },
         -- { name = "copilot" },
         { name = "nvim_lsp_signature_help" },
-        { name = "nvim_lsp", max_item_count = 5 },
+        { name = "nvim_lsp", max_item_count = 15 },
         { name = "nvim_lua", max_item_count = 5 },
         -- { name = "cmp_tabnine" },
         { name = "buffer", keyword_length = 5, max_item_count = 5 },
@@ -148,8 +149,8 @@ cmp.setup({
         },
     },
     view = {
-        -- entries = cmp.EntriesConfig,
-        entries = { name = "custom", selection_order = "bottom_up" },
+        entries = cmp.EntriesConfig,
+        -- entries = { name = "custom", selection_order = "bottom_up" },
     },
     experimental = {
         ghost_text = false,

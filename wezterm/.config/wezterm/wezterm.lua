@@ -563,11 +563,47 @@ local colours = {
             "#7b7c7e",
         },
     },
+
+    gruvbox_dark_hard = {
+        foreground = "#f9f5d7",
+        background = "#1d2021",
+
+        cursor_bg = "#f9f5d7",
+        cursor_fg = "#1d2021",
+        cursor_border = "#1d2021",
+
+        selection_fg = "#f9f5d7",
+        selection_bg = "#665c54",
+
+        scrollbar_thumb = "#665c54",
+        split = "#665c54",
+
+        ansi = {
+            "#1d2021",
+            "#cc241d",
+            "#98971a",
+            "#d79921",
+            "#458588",
+            "#b16286",
+            "#689d6a",
+            "#f9f5d7",
+        },
+        brights = {
+            "#7c6f64",
+            "#fb4934",
+            "#b8bb26",
+            "#fabd2f",
+            "#83a598",
+            "#d3869b",
+            "#8ec07c",
+            "#ebdbb2",
+        },
+    },
 }
 
 -- local colourscheme = os.getenv('COLOURSCHEME')
--- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa, nightfox_{night, dawn, day, dusk}
-local colourscheme = "tokyonight_storm"
+-- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa, nightfox_{night, dawn, day, dusk}, gruvbox_{light, dark}_{soft, hard}
+local colourscheme = "gruvbox_dark_hard"
 
 cfg.colors = colours[colourscheme]
 

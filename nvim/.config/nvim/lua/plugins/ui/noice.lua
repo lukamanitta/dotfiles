@@ -26,9 +26,22 @@ require("noice").setup({
                 pattern = "^%?",
                 icon = " " .. general_icons.Search .. " ",
                 lang = "regex",
+                view = "cmdline",
             },
             filter = { pattern = "^:%s*!", icon = " $ ", lang = "sh" },
             lua = { pattern = "^:%s*lua%s+", icon = "  ", lang = "lua" },
+            substitute = {
+                pattern = "^:s;",
+                icon = " " .. general_icons.Replace .. " ",
+                lang = "regex",
+                view = "cmdline",
+            },
+            global_substitute = {
+                pattern = "^:%%s;",
+                icon = " " .. general_icons.Replace .. " ",
+                lang = "regex",
+                view = "cmdline",
+            },
         },
     },
     messages = {

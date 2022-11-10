@@ -211,13 +211,14 @@ require("packer").startup({
                     "hrsh7th/cmp-nvim-lua",
                     "hrsh7th/cmp-buffer",
                     "hrsh7th/cmp-path",
+                    -- "hrsh7th/cmp-emoji",
                     "hrsh7th/cmp-omni",
                     {
                         "saadparwaiz1/cmp_luasnip",
                         requires = "L3MON4D3/luasnip",
                     },
                     "f3fora/cmp-spell",
-                    { "tzachar/cmp-tabnine", run = "./install.sh" },
+                    -- { "tzachar/cmp-tabnine", run = "./install.sh" },
                     "kdheepak/cmp-latex-symbols",
                     "davidsierradz/cmp-conventionalcommits",
                     -- "zbirenbaum/copilot-cmp",
@@ -325,6 +326,7 @@ require("packer").startup({
                 "kartikp10/noctis.nvim",
                 requires = "rktjmp/lush.nvim",
             },
+            { "ellisonleao/gruvbox.nvim" },
 
             -- Debugging
 
