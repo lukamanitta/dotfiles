@@ -5,7 +5,7 @@ local cfg = {
     --General--
 
     warn_about_missing_glyphs = true,
-    window_background_opacity = 1.0,
+    window_background_opacity = 1,
     native_macos_fullscreen_mode = true,
     initial_cols = 90,
     initial_rows = 28,
@@ -182,24 +182,24 @@ local colours = {
         split = "#16161d",
 
         ansi = {
-            "#090618",
-            "#c34043",
-            "#76946a",
-            "#c0a36e",
-            "#7e9cd8",
-            "#957fb8",
-            "#6a9589",
-            "#c8c093",
+            "#090618", -- Black
+            "#c34043", -- Red
+            "#76946a", -- Green
+            "#c0a36e", -- Yellow
+            "#7e9cd8", -- Blue
+            "#957fb8", -- Magenta
+            "#6a9589", -- Cyan
+            "#c8c093", -- White
         },
         brights = {
-            "#727169",
-            "#e82424",
-            "#98bb6c",
-            "#e6c384",
-            "#7fb4ca",
-            "#938aa9",
-            "#7aa89f",
-            "#dcd7ba",
+            "#727169", -- Black
+            "#e82424", -- Red
+            "#98bb6c", -- Green
+            "#e6c384", -- Yellow
+            "#7fb4ca", -- Blue
+            "#938aa9", -- Magenta
+            "#7aa89f", -- Cyan
+            "#dcd7ba", -- White
         },
     },
 
@@ -417,24 +417,24 @@ local colours = {
         selection_fg = "#cdcecf",
 
         ansi = {
-            "#393b44",
-            "#c94f6d",
-            "#81b29a",
-            "#dbc074",
-            "#719cd6",
-            "#9d79d6",
-            "#63cdcf",
-            "#dfdfe0",
+            "#393b44", -- Black
+            "#c94f6d", -- Red
+            "#81b29a", -- Green
+            "#dbc074", -- Yellow
+            "#719cd6", -- Blue
+            "#9d79d6", -- Magenta
+            "#63cdcf", -- Cyan
+            "#dfdfe0", -- White
         },
         brights = {
-            "#575860",
-            "#d16983",
-            "#8ebaa4",
-            "#e0c989",
-            "#86abdc",
-            "#baa1e2",
-            "#7ad4d6",
-            "#e4e4e5",
+            "#575860", -- Black
+            "#d16983", -- Red
+            "#8ebaa4", -- Green
+            "#e0c989", -- Yellow
+            "#86abdc", -- Blue
+            "#baa1e2", -- Magenta
+            "#7ad4d6", -- Cyan
+            "#e4e4e5", -- White
         },
     },
 
@@ -447,24 +447,24 @@ local colours = {
         selection_bg = "#d0d8d8",
         selection_fg = "#575279",
         ansi = {
-            "#575279",
-            "#b4637a",
-            "#618774",
-            "#ea9d34",
-            "#286983",
-            "#907aa9",
-            "#56949f",
-            "#e5e9f0",
+            "#575279", -- Black
+            "#b4637a", -- Red
+            "#618774", -- Green
+            "#ea9d34", -- Yellow
+            "#286983", -- Blue
+            "#907aa9", -- Magenta
+            "#56949f", -- Cyan
+            "#e5e9f0", -- White
         },
         brights = {
-            "#5f5695",
-            "#c26d85",
-            "#629f81",
-            "#eea846",
-            "#2d81a3",
-            "#9a80b9",
-            "#5ca7b4",
-            "#e6ebf3",
+            "#5f5695", -- Black
+            "#c26d85", -- Red
+            "#629f81", -- Green
+            "#eea846", -- Yellow
+            "#2d81a3", -- Blue
+            "#9a80b9", -- Magenta
+            "#5ca7b4", -- Cyan
+            "#e6ebf3", -- White
         },
     },
 
@@ -477,24 +477,24 @@ local colours = {
         selection_bg = "#ced5de",
         selection_fg = "#1d344f",
         ansi = {
-            "#1d344f",
-            "#b95d76",
-            "#618774",
-            "#ba793e",
-            "#4d688e",
-            "#8e6f98",
-            "#6ca7bd",
-            "#cdd1d5",
+            "#1d344f", -- Black
+            "#b95d76", -- Red
+            "#618774", -- Green
+            "#ba793e", -- Yellow
+            "#4d688e", -- Blue
+            "#8e6f98", -- Magenta
+            "#6ca7bd", -- Cyan
+            "#cdd1d5", -- White
         },
         brights = {
-            "#24476f",
-            "#c76882",
-            "#629f81",
-            "#ca884a",
-            "#4e75aa",
-            "#9f75ac",
-            "#74b2c9",
-            "#cfd6dd",
+            "#24476f", -- Black
+            "#c76882", -- Red
+            "#629f81", -- Green
+            "#ca884a", -- Yellow
+            "#4e75aa", -- Blue
+            "#9f75ac", -- Magenta
+            "#74b2c9", -- Cyan
+            "#cfd6dd", -- White
         },
     },
 
@@ -507,24 +507,24 @@ local colours = {
         selection_bg = "#433c59",
         selection_fg = "#e0def4",
         ansi = {
-            "#393552",
-            "#eb6f92",
-            "#a3be8c",
-            "#f6c177",
-            "#569fba",
-            "#c4a7e7",
-            "#9ccfd8",
-            "#e0def4",
+            "#393552", -- Black
+            "#eb6f92", -- Red
+            "#a3be8c", -- Green
+            "#f6c177", -- Yellow
+            "#569fba", -- Blue
+            "#c4a7e7", -- Magenta
+            "#9ccfd8", -- Cyan
+            "#e0def4", -- White
         },
         brights = {
-            "#47407d",
-            "#f083a2",
-            "#b1d196",
-            "#f9cb8c",
-            "#65b1cd",
-            "#ccb1ed",
-            "#a6dae3",
-            "#e2e0f7",
+            "#47407d", -- Black
+            "#f083a2", -- Red
+            "#b1d196", -- Green
+            "#f9cb8c", -- Yellow
+            "#65b1cd", -- Blue
+            "#ccb1ed", -- Magenta
+            "#a6dae3", -- Cyan
+            "#e2e0f7", -- White
         },
     },
 
@@ -543,24 +543,24 @@ local colours = {
         split = "#2a2a2a",
 
         ansi = {
-            "#0c0c0c",
-            "#ee5396",
-            "#25be6a",
-            "#cbcb41",
-            "#33b1ff",
-            "#ff91c1",
-            "#3ddbd9",
-            "#f2f4f8",
+            "#0c0c0c", -- Black
+            "#ee5396", -- Red
+            "#25be6a", -- Green
+            "#cbcb41", -- Yellow
+            "#33b1ff", -- Blue
+            "#ff91c1", -- Magenta
+            "#3ddbd9", -- Cyan
+            "#f2f4f8", -- White
         },
         brights = {
-            "#727169",
-            "#ee5396",
-            "#25be6a",
-            "#cbcb41",
-            "#8cb6ff",
-            "#ee5396",
-            "#5ae0df",
-            "#7b7c7e",
+            "#727169", -- Black
+            "#ee5396", -- Red
+            "#25be6a", -- Green
+            "#cbcb41", -- Yellow
+            "#8cb6ff", -- Blue
+            "#ee5396", -- Magenta
+            "#5ae0df", -- Cyan
+            "#7b7c7e", -- White
         },
     },
 
@@ -579,24 +579,24 @@ local colours = {
         split = "#665c54",
 
         ansi = {
-            "#1d2021",
-            "#cc241d",
-            "#98971a",
-            "#d79921",
-            "#458588",
-            "#b16286",
-            "#689d6a",
-            "#f9f5d7",
+            "#1d2021", -- Black
+            "#cc241d", -- Red
+            "#98971a", -- Green
+            "#d79921", -- Yellow
+            "#458588", -- Blue
+            "#b16286", -- Magenta
+            "#689d6a", -- Cyan
+            "#f9f5d7", -- White
         },
         brights = {
-            "#7c6f64",
-            "#fb4934",
-            "#b8bb26",
-            "#fabd2f",
-            "#83a598",
-            "#d3869b",
-            "#8ec07c",
-            "#ebdbb2",
+            "#7c6f64", -- Black
+            "#fb4934", -- Red
+            "#b8bb26", -- Green
+            "#fabd2f", -- Yellow
+            "#83a598", -- Blue
+            "#d3869b", -- Magenta
+            "#8ec07c", -- Cyan
+            "#ebdbb2", -- White
         },
     },
 }
