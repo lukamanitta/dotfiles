@@ -111,12 +111,3 @@ require("dressing").setup({
         },
     },
 })
-
-vim.cmd(
-    "hi FloatBorder guibg="
-    .. get_hi_group_bg("Normal")
-    .. " guifg="
-    .. get_hi_group_fg("Conditional")
-)
-vim.cmd("hi NormalFloat guibg=" .. get_hi_group_bg("Normal"))
--- vim.cmd("hi FloatTitle guibg=" .. get_hi_group_bg("Normal"))

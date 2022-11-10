@@ -10,8 +10,10 @@ function U.clamp(value, min, max)
     return value
 end
 
-function U.random_range(min, max)
-    math.randomseed(os.time())
+function U.random_range(min, max, seed)
+    if seed then
+        math.randomseed(seed)
+    end
     return math.random(min, max)
 end
 

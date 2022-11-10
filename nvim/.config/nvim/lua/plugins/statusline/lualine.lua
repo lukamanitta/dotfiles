@@ -177,7 +177,7 @@ ins_left({
     "filename",
     fmt = hide_empty_filename(),
     color = {
-        fg = get_hi_group_fg("rainbowcol" .. random_range(1, 7)),
+        fg = get_hi_group_fg("rainbowcol" .. random_range(1, 7, os.time())),
         gui = "bold",
     },
 })

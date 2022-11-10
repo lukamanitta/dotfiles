@@ -16,11 +16,11 @@ local sign_colours = {
 for _, colour in ipairs(sign_colours) do
     vim.cmd(
         "highlight! Gruvbox"
-        .. colour
-        .. "Sign  guibg="
-        .. get_hi_group_bg("Normal")
-        .. " guifg="
-        .. get_hi_group_fg("Gruvbox" .. colour .. "Sign")
+            .. colour
+            .. "Sign  guibg="
+            .. get_hi_group_bg("Normal")
+            .. " guifg="
+            .. get_hi_group_fg("Gruvbox" .. colour .. "Sign")
     )
 end
 
@@ -47,3 +47,14 @@ vim.api.nvim_set_hl(0, "rainbowcol6", {
 vim.api.nvim_set_hl(0, "rainbowcol7", {
     fg = palette.neutral_purple,
 })
+
+local random_range = require("utils.math").random_range
+
+vim.cmd(
+    "hi FloatBorder guibg="
+        .. get_hi_group_bg("Normal")
+        .. " guifg="
+        .. get_hi_group_fg("rainbowcol" .. random_range(1, 7, os.time()))
+)
+vim.cmd("hi NormalFloat guibg=" .. get_hi_group_bg("Normal"))
+-- vim.cmd("hi FloatTitle guibg=" .. get_hi_group_bg("Normal"))
