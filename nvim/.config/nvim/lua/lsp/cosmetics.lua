@@ -4,10 +4,13 @@ vim.diagnostic.config({
     signs = true,
     underline = true,
     update_in_insert = false,
-    -- virtual_text = false,
-    virtual_text = {
-        prefix = "●", -- Could be '●', '▎', 'x', '■'
+    virtual_lines = {
+        only_current_line = true,
     },
+    virtual_text = false,
+    -- virtual_text = {
+    --     prefix = "●", -- Could be '●', '▎', 'x', '■'
+    -- },
 })
 
 vim.fn.sign_define("DiagnosticSignError", {
