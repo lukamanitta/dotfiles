@@ -171,7 +171,7 @@ require("packer").startup({
                 after = "nvim-lspconfig",
             },
             {
-                "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+                local_plug_dir("lsp_lines.nvim"),
                 config = function()
                     require("lsp_lines").setup()
                 end,
