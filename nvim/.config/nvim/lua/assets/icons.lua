@@ -139,19 +139,29 @@ I.types = { -- Arranged approximately in order of abstraction (lo - hi)
     CommitMsg = "",
 }
 
-I.lsp = {
-    Error = "",
-    Warn = "",
-    Hint = "",
-    Info = "",
-    CodeAction = "",
-
-    ErrorOutline = "",
-    WarnOutline = "",
-    HintOutline = "",
-    InfoOutline = "",
-    CodeActionOutline = "",
-}
+I.lsp = ({
+    solid = {
+        Error = "",
+        Warn = "",
+        Hint = "",
+        Info = "",
+        CodeAction = "",
+    },
+    outline = {
+        Error = "",
+        Warn = "",
+        Hint = "",
+        Info = "",
+        CodeAction = "",
+    },
+    none = {
+        Error = "E",
+        Warn = "W",
+        Hint = "H",
+        Info = "I",
+        CodeAction = "A",
+    },
+})[require("settings.globals").lsp_icon_style]
 
 I.git = {
     Branch = "",
