@@ -12,7 +12,7 @@ local pane_types = {
     "TelescopePreview",
 }
 
-local available_colours = Set:new({ 1, 2, 3, 4, 5, 6, 7 })
+local available_colours = Set:new({ 1, 2, 3, 4, 5, 6 })
 
 for _, pane in ipairs(pane_types) do
     local random_num = random_range(1, available_colours:size())

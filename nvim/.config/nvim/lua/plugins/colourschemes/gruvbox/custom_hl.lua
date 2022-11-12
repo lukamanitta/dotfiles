@@ -4,6 +4,16 @@ local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
 local change_hex_brightness = require("utils.color").change_hex_brightness
 local blend_rgb = require("utils.color").blend_rgb
 
+vim.api.nvim_set_hl(0, "IncSearch", {
+    fg = get_hi_group_fg("IncSearch"),
+    bg = get_hi_group_bg("Visual"),
+})
+
+vim.api.nvim_set_hl(0, "Search", {
+    fg = get_hi_group_fg("Search"),
+    bg = get_hi_group_bg("Visual"),
+})
+
 -- red, aqua, blue, green, purple, orange, yellow
 -- Change Gruvbox[Color]Sign background to normal for each colour
 local sign_colours = {
