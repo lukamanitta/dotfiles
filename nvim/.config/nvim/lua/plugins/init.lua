@@ -247,6 +247,12 @@ require("packer").startup({
                 end,
             },
             { "kyazdani42/nvim-web-devicons" },
+            {
+                "DaikyXendo/nvim-material-icon",
+                config = function()
+                    require("plugins.ui.material_icon")
+                end,
+            },
             { "nvim-lualine/lualine.nvim" },
             { "noib3/nvim-cokeline" },
             -- {

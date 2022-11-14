@@ -30,7 +30,7 @@ function H.get_buf_icon(buffer)
     local filename = vim.api.nvim_buf_get_name(buffer)
     local file_ext = string.match(filename, "(%w+)$")
     local default_icon = ""
-    return require("nvim-web-devicons").get_icon(
+    return require("nvim-material-icon").get_icon(
         filename,
         file_ext,
         { default = default_icon }

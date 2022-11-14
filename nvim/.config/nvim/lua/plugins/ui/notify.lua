@@ -6,8 +6,13 @@ local general_icons = require("assets.icons").general
 vim.notify = require("notify")
 
 notify.setup({
+    fps = 60,
     -- Animation style (see below for details)
     stages = "slide",
+
+    level = 2,
+    minimum_width = 40,
+    render = "default",
 
     -- Default timeout for notifications
     timeout = 5000,
