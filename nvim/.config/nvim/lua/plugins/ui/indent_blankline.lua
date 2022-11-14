@@ -15,7 +15,7 @@ require("indent_blankline").setup({
         "mason",
     },
     show_current_context = true,
-    show_current_context_start = false,
+    show_current_context_start = true,
     use_treesitter = true,
     char_highlight_list = {
         "IndentBlanklineIndent1",
