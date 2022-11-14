@@ -33,6 +33,13 @@ require("packer").startup({
                     require("runvim").setup()
                 end,
             },
+            {
+                local_plug_dir("lsp_lines.nvim"),
+                config = function()
+                    require("lsp_lines").setup()
+                end,
+                after = "nvim-lspconfig",
+            },
             -- { local_plug_dir("naturally.nvim") },
 
             -- File explorer
@@ -167,13 +174,6 @@ require("packer").startup({
                         },
                     })
                     require("lsp")
-                end,
-                after = "nvim-lspconfig",
-            },
-            {
-                local_plug_dir("lsp_lines.nvim"),
-                config = function()
-                    require("lsp_lines").setup()
                 end,
                 after = "nvim-lspconfig",
             },
