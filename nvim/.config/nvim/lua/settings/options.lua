@@ -50,5 +50,5 @@ vim.opt.fillchars:append({
     vertleft = "┫",
     vertright = "┣",
     verthoriz = "╋",
-    eob = general_icons.CaretRight,
+    eob = general_icons.CrossThin,
 })
