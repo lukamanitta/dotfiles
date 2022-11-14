@@ -114,10 +114,6 @@ require("noice").setup({
             },
             view = "cmdline",
         },
-        {
-            filter = { event = "msg_showmode" },
-            view = "notify",
-        },
     },
 
     ---@type table<string, NoiceFilter>

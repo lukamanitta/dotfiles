@@ -15,7 +15,7 @@ notify.setup({
     render = "default",
 
     -- Default timeout for notifications
-    timeout = 5000,
+    timeout = 3000,
 
     -- For stages that change opacity this is treated as the highlight behind the window
     background_colour = "Normal",
