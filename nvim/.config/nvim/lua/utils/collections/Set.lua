@@ -26,6 +26,10 @@ function Set:get_items()
     return self.items
 end
 
+function Set:at(index)
+    return self.items[index]
+end
+
 function Set:contains(item)
     return has_value(self.items, item)
 end

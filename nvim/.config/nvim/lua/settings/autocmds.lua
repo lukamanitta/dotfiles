@@ -21,8 +21,14 @@ augroup nvim
     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
     au WinLeave * setlocal nocursorline
 augroup END
-]],
-    ""
+]]   ,
+    false
 )
--- " Startup layout
--- au VimEnter * :lua require('utils.functions').startup_layout()
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = vim.api.nvim_create_augroup("yank_highlight", {}),
+    pattern = "*",
+    callback = function()
+        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 300 })
+    end,
+})

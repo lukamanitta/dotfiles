@@ -39,13 +39,16 @@ apply_options({
 vim.cmd("set iskeyword-=_") -- Recognise _ as word separator
 vim.fn.matchadd("ColorColumn", "\\%80v", 100) -- DANGER XONE FUCK NOT 80 CHARAC
 
+local general_icons = require("assets.icons").general
+
 -- For global statusline
 vim.opt.fillchars:append({
     horiz = "━",
     horizup = "┻",
     horizdown = "┳",
     vert = "┃",
-    vertleft = "┨",
+    vertleft = "┫",
     vertright = "┣",
     verthoriz = "╋",
+    eob = general_icons.CaretRight,
 })

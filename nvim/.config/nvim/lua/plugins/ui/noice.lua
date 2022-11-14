@@ -127,4 +127,37 @@ require("noice").setup({
     format = {}, -- @see section on formatting
 })
 
+local random_range = require("utils.math").random_range
+local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
+local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
+local Set = require("utils.collections.Set")
+
+vim.cmd("hi! link NoiceCmdlinePopupBorder FloatBorder")
+vim.cmd("hi NoiceCmdlineIcon guifg=" .. get_hi_group_fg("FloatBorder"))
+
+local views = { "Help", "Lua" }
+local available_colours = Set:new({ 1, 2, 3, 4, 5, 6 })
+
+for _, view in ipairs(views) do
+    local random_num = random_range(1, available_colours:size())
+    local colour = available_colours:at(random_num)
+    local border_hl_name = "NoiceCmdlinePopupBorder" .. view
+    local icon_hl_name = "NoiceCmdlineIcon" .. view
+    vim.cmd(
+        "hi "
+        .. border_hl_name
+        .. " guibg="
+        .. get_hi_group_bg("NoiceCmdlinePopupBorder")
+        .. " guifg="
+        .. get_hi_group_fg("rainbowcol" .. colour)
+    )
+    vim.cmd(
+        "hi "
+        .. icon_hl_name
+        .. " guifg="
+        .. get_hi_group_fg("rainbowcol" .. colour)
+    )
+    available_colours:remove(colour)
+end
+
 vim.o.cmdheight = 0

@@ -171,6 +171,13 @@ require("packer").startup({
                 after = "nvim-lspconfig",
             },
             {
+                local_plug_dir("lsp_lines.nvim"),
+                config = function()
+                    require("lsp_lines").setup()
+                end,
+                after = "nvim-lspconfig",
+            },
+            {
                 "folke/trouble.nvim",
                 config = function()
                     require("lsp.trouble")

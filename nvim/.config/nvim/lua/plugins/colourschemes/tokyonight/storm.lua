@@ -9,3 +9,5 @@ apply_globals({
 
 cmd("set background=dark")
 cmd("colorscheme tokyonight")
+
+require("plugins.colourschemes.tokyonight.custom_hl")

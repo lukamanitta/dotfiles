@@ -177,7 +177,7 @@ ins_left({
     "filename",
     fmt = hide_empty_filename(),
     color = {
-        fg = get_hi_group_fg("rainbowcol" .. random_range(1, 7)),
+        fg = get_hi_group_fg("rainbowcol" .. random_range(1, 7, os.time())),
         gui = "bold",
     },
 })
@@ -231,7 +231,7 @@ ins_left({
 ins_left({
     -- Lsp server name .
     function()
-        local Set = require("classes.Set")
+        local Set = require("utils.collections.Set")
         local has_value = require("utils.tables").has_value
 
         local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")

@@ -33,4 +33,21 @@ function C.change_hex_brightness(color, multiplier)
     return string.format("#%02X%02X%02X", new_r, new_g, new_b)
 end
 
+function C.blend_rgb(base, overlay, overlayRatio)
+    local r1, g1, b1 = base:match("#(%x%x)(%x%x)(%x%x)")
+    local r2, g2, b2 = overlay:match("#(%x%x)(%x%x)(%x%x)")
+
+    local r = math.floor(
+        tonumber(r1, 16) * (1 - overlayRatio) + tonumber(r2, 16) * overlayRatio
+    )
+    local g = math.floor(
+        tonumber(g1, 16) * (1 - overlayRatio) + tonumber(g2, 16) * overlayRatio
+    )
+    local b = math.floor(
+        tonumber(b1, 16) * (1 - overlayRatio) + tonumber(b2, 16) * overlayRatio
+    )
+
+    return string.format("#%02X%02X%02X", r, g, b)
+end
+
 return C
