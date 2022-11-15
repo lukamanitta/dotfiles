@@ -4,7 +4,7 @@ local lualine = require("lualine")
 
 local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
 local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
-local change_hex_brightness = require("utils.color").change_hex_brightness
+local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
 
 local git_icons = require("assets.icons").git
 local lsp_icons = require("assets.icons").lsp
@@ -15,7 +15,7 @@ local general_icons = require("assets.icons").general
 --     statusline_brightness_diff = -0.2
 -- end
 -- local line_bg =
--- change_hex_brightness(get_hi_group_bg("Normal"), statusline_brightness_diff)
+-- multiply_hex_brightness(get_hi_group_bg("Normal"), statusline_brightness_diff)
 
 -- Color table for highlights
 local colors = {

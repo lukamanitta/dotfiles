@@ -1,5 +1,5 @@
 local get_hex = require("cokeline.utils").get_hex
-local change_hex_brightness = require("utils.color").change_hex_brightness
+local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
 
 vim.cmd("hi! link TabLineFill Normal")
 
@@ -19,9 +19,9 @@ if vim.o.background == "light" then
 end
 
 local focused_tab_bg =
-change_hex_brightness(background, focused_tab_brightness_diff)
+multiply_hex_brightness(background, focused_tab_brightness_diff)
 local unfocused_tab_bg =
-change_hex_brightness(background, unfocused_tab_brightness_diff)
+multiply_hex_brightness(background, unfocused_tab_brightness_diff)
 
 local components = {
     separator = {

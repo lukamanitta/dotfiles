@@ -1,6 +1,6 @@
 local apply_globals = require("utils.helpers").apply_globals
 local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
-local change_hex_brightness = require("utils.color").change_hex_brightness
+local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
 
 apply_globals({
     cursorword_disable_filetypes = { "Trouble", "DressingInput" },
@@ -11,6 +11,6 @@ apply_globals({
 local normal_background = get_hi_group_bg("Normal")
 
 vim.cmd(
-    "hi! CursorWord guibg=" .. change_hex_brightness(normal_background, -0.3)
+    "hi! CursorWord guibg=" .. multiply_hex_brightness(normal_background, -0.3)
 )
 vim.cmd("hi! CursorWord gui=bold")

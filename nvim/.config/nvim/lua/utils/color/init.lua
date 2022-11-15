@@ -23,7 +23,7 @@ function C.invert_hex_brightness(color)
     return string.format("#%02X%02X%02X", new_r, new_g, new_b)
 end
 
-function C.change_hex_brightness(color, multiplier)
+function C.multiply_hex_brightness(color, multiplier)
     local r, g, b = color:match("#(%x%x)(%x%x)(%x%x)")
 
     local h, s, v, a = conversions.rgb_to_hsv(r, g, b)

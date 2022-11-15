@@ -1,7 +1,7 @@
 local palette = require("gruvbox.palette")
 local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
 local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
-local change_hex_brightness = require("utils.color").change_hex_brightness
+local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
 local blend_rgb = require("utils.color").blend_rgb
 
 vim.api.nvim_set_hl(0, "IncSearch", {
