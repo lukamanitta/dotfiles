@@ -34,8 +34,8 @@ local on_attach = function(client, bufnr)
         ":lua vim.lsp.buf.signature_help()<CR>",
         opts
     )
-    buf_set_keymap("n", "]e", ":lua vim.diagnostic.goto_next()<CR>", opts)
-    buf_set_keymap("n", "[e", ":lua vim.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "]e", ":lua vim.diagnostic.goto_next({float=false})<CR>", opts)
+    buf_set_keymap("n", "[e", ":lua vim.diagnostic.goto_prev({float=false})<CR>", opts)
     buf_set_keymap(
         "n",
         "<leader>d",
