@@ -137,6 +137,11 @@ vim.keymap.set("n", "<leader>ff", function()
         require("plugins.telescope.tele_utils").responsive_layout({})
     )
 end, { silent = true })
+vim.keymap.set("n", "<leader>fc", function()
+    return require("telescope.builtin").git_status(
+        require("plugins.telescope.tele_utils").responsive_layout({})
+    )
+end, { silent = true }) -- Search project
 vim.keymap.set("n", "<leader>fg", function()
     return require("telescope.builtin").live_grep(
         require("plugins.telescope.tele_utils").responsive_layout({})
