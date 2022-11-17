@@ -246,10 +246,11 @@ symbol = " "
 
 [scala]
 format = 'with [$symbol($version)]($style) '
+symbol = " "
 
 [spack]
 format = 'with [$symbol$environment]($style) '
-symbol = "🅢 "
+symbol = "spack "
 
 [swift]
 format = 'with [$symbol($version)]($style) '
