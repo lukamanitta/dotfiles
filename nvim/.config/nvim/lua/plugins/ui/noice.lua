@@ -28,7 +28,7 @@ require("noice").setup({
                 lang = "regex",
                 view = "cmdline",
             },
-            filter = { pattern = "^:%s*!", icon = " $ ", lang = "sh" },
+            shell = { pattern = "^:%s*!", icon = " $ ", lang = "sh" },
             lua = { pattern = "^:%s*lua%s+", icon = "  ", lang = "lua" },
             substitute = {
                 pattern = "^:s;",
