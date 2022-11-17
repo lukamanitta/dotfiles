@@ -51,4 +51,3 @@ source $OSH/oh-my-bash.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
-. "$HOME/.cargo/env"
