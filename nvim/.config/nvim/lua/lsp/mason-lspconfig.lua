@@ -34,8 +34,18 @@ local on_attach = function(client, bufnr)
         ":lua vim.lsp.buf.signature_help()<CR>",
         opts
     )
-    buf_set_keymap("n", "]e", ":lua vim.diagnostic.goto_next({float=false})<CR>", opts)
-    buf_set_keymap("n", "[e", ":lua vim.diagnostic.goto_prev({float=false})<CR>", opts)
+    buf_set_keymap(
+        "n",
+        "]e",
+        ":lua vim.diagnostic.goto_next({float=false})<CR>",
+        opts
+    )
+    buf_set_keymap(
+        "n",
+        "[e",
+        ":lua vim.diagnostic.goto_prev({float=false})<CR>",
+        opts
+    )
     buf_set_keymap(
         "n",
         "<leader>d",
@@ -56,7 +66,8 @@ end
 
 -- Config that activates keymaps and enables snippet support
 local function make_config()
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     return {
         -- Enable snippet support
