@@ -154,7 +154,7 @@ I.lsp = ({
         Info = "",
         CodeAction = "",
     },
-    none = {
+    text = {
         Error = "E",
         Warn = "W",
         Hint = "H",
