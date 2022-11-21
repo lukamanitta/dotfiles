@@ -3,5 +3,6 @@
     "Lua.diagnostics.disable": [
         "trailing-space",
         "different-requires"
-    ]
+    ],
+    "Lua.workspace.checkThirdParty": false
 }
