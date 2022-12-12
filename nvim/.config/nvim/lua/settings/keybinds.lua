@@ -67,9 +67,15 @@ vim.keymap.set("n", "<leader>zkcd", "<CMD>ZkCd<CR>")
 vim.keymap.set("n", "<leader>zkn", function()
     return vim.ui.input(
         { prompt = "New Note Title: ", kind = "center" },
-        function(input)
-            if input then
-                zkcmds.get("ZkNew")({ title = input })
+        function(title)
+            if title then
+                vim.ui.input({
+                    prompt = "New Note Directory (blank for root): ",
+                    kind = "center",
+                    completion = "dir", -- This needs to be customlist relative to $NOTE_DIR
+                }, function(dir)
+                    zkcmds.get("ZkNew")({ title = title, dir = dir })
+                end)
             end
         end
     )
