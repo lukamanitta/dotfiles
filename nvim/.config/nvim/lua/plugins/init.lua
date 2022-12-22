@@ -230,7 +230,12 @@ require("packer").startup({
                     -- "zbirenbaum/copilot-cmp",
                 },
             },
-            { "github/copilot.vim" },
+            {
+                "github/copilot.vim",
+                config = function()
+                    vim.g.copilot_filetypes = { rust = false }
+                end,
+            },
             -- {
             --     "zbirenbaum/copilot.lua",
             --     event = "VimEnter",
