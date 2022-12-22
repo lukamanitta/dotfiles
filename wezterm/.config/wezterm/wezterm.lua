@@ -34,6 +34,7 @@ local cfg = {
         "~/dotfiles/fonts/Hasklug", -- Hasklug Nerd Font Mono
         "~/dotfiles/fonts/JetBrainsMono", -- JetBrainsMono Nerd Font
         "~/dotfiles/fonts/OperatorMono", -- OperatorMono Nerd Font
+        "~/dotfiles/fonts/Liga SFMono", -- SFMono Nerd Font
     },
 
     -- font = wezterm.font("OperatorMono Nerd Font", { weight = "Book" }),
