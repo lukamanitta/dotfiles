@@ -3,10 +3,8 @@ local lsp_icons = require("assets.icons").lsp
 vim.diagnostic.config({
     signs = true,
     underline = true,
-    update_in_insert = false,
-    virtual_lines = {
-        only_current_line = true,
-    },
+    update_in_insert = true,
+    virtual_lines = false,
     virtual_text = false,
     -- virtual_text = {
     --     prefix = "●", -- Could be '●', '▎', 'x', '■'
