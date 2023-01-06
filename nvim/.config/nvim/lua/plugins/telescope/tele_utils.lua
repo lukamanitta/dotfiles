@@ -16,10 +16,14 @@ end
 
 function T.smart_file_finder(opts)
     opts = opts or {}
-    local git_dir = os.execute(
-        "git rev-parse --is-inside-work-tree 2>/dev/null"
-    ) == 0
-    if git_dir then
+    -- This breaks things as of v0.9.0-dev-622+g08ebf8d3a
+    -- local git_dir = os.execute(
+    --     "git rev-parse --is-inside-work-tree 2>/dev/null"
+    -- ) == 0
+
+    -- Check git repo:
+    local _ = vim.fn.system("git rev-parse --is-inside-work-tree")
+    if vim.v.shell_error == 0 then
         require("telescope.builtin").git_files(opts)
     else
         require("telescope.builtin").find_files(opts)
