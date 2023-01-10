@@ -41,6 +41,8 @@ local cfg = {
     font = wezterm.font("JetBrainsMono Nerd Font"),
     font_size = 13,
     line_height = 1.25,
+    underline_thickness = 2,
+    underline_position = -6.0,
     harfbuzz_features = { "clig=1" },
     bold_brightens_ansi_colors = true,
     font_rules = {

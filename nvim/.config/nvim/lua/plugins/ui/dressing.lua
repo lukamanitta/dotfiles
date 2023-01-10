@@ -17,10 +17,12 @@ require("dressing").setup({
         max_width = { 140, 0.9 },
         min_width = { 20, 0.2 },
 
-        -- Window transparency (0-100)
-        winblend = 0,
-        -- Change default highlight groups (see :help winhl)
-        winhighlight = "",
+        win_options = {
+            -- Window transparency (0-100)
+            winblend = 0,
+            -- Change default highlight groups (see :help winhl)
+            winhighlight = "",
+        },
 
         -- Set to `false` to disable
         mappings = {
@@ -89,8 +91,10 @@ require("dressing").setup({
             border = "rounded",
             relative = "cursor",
 
-            winblend = 0,
-            winhighlight = "",
+            win_options = {
+                winblend = 0,
+                winhighlight = "",
+            },
 
             width = nil,
             max_width = { 140, 0.8 },
