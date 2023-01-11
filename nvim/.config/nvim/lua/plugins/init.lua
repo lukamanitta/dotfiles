@@ -112,6 +112,19 @@ require("packer").startup({
                     -- "yioneko/nvim-yati", -- re-enable if I notice issues
                 },
             },
+            {
+                "CKolkey/ts-node-action",
+                dependencies = { "nvim-treesitter" },
+                config = function()
+                    require("ts-node-action").setup()
+                    vim.keymap.set(
+                        { "n" },
+                        "<leader>n",
+                        require("ts-node-action").node_action,
+                        { desc = "Trigger Node Action" }
+                    )
+                end,
+            },
 
             -- Lsp & Completions
             {
@@ -332,6 +345,13 @@ require("packer").startup({
                 "nvim-treesitter/nvim-treesitter-context",
                 config = function()
                     require("plugins.ui.treesitter-context")
+                end,
+            },
+            {
+                "barrett-ruth/import-cost.nvim",
+                run = "sh install.sh npm",
+                config = function()
+                    require("import-cost").setup()
                 end,
             },
 
