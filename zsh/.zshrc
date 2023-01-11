@@ -68,15 +68,23 @@ eval "$(fasd --init auto)"
 alias nv="f -e nvim"
 alias v="f -e vim"
 
-#       zsh-syntax-highlighting
-export PATH="$ZSH_PLUGINS/zsh-syntax-highlighting:$PATH"
-source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 #       zsh-autosuggestions
 export PATH="$ZSH_PLUGINS/zsh-autosuggestions:$PATH"
 source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 bindkey '^\' autosuggest-accept
+
+#       zsh-syntax-highlighting
+export PATH="$ZSH_PLUGINS/zsh-syntax-highlighting:$PATH"
+source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source $ZSH_PLUGINS/zsh-syntax-highlighting.zsh
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=cyan,bold'
 
 # University
 export MOSS_SERVER="s4697584@moss.labs.eait.uq.edu.au"
