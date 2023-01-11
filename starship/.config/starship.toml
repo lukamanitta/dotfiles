@@ -52,7 +52,7 @@ $sudo\
 $fill \
 $cmd_duration \
 $line_break\
-$character
+$character\
 """
 
 # right_format = """$cmd_duration"""
@@ -65,9 +65,9 @@ scan_timeout = 200
 continuation_prompt = ""
 [character]
 #  ,  , ❯ ❮,  
-success_symbol = " [ ](bold green)"
-error_symbol = " [ ](bold red)"
-vicmd_symbol = " [ ](bold green)"
+success_symbol = " [ ](bold green)"
+error_symbol = " [ ](bold red)"
+vicmd_symbol = " [ ](bold green)"
 
 [fill]
 symbol = "· "
