@@ -417,7 +417,25 @@ require("packer").startup({
                     require("plugins.todo")
                 end,
             },
-            -- { "ja-ford/delaytrain.nvim" },
+            {
+                "ja-ford/delaytrain.nvim",
+                config = function()
+                    require("delaytrain").setup({
+                        grace_period = 3,
+                        delay_ms = 1000,
+                        ignore_filetypes = {
+                            "TelescopePrompt",
+                            "packer",
+                            "lspinfo",
+                            "Trouble",
+                            "lsp-installer",
+                            "neo-tree",
+                            "neo-tree-popup",
+                            "mason",
+                        },
+                    })
+                end,
+            },
             -- { "Almo7aya/openingh.nvim" },
 
             -- Markdown
