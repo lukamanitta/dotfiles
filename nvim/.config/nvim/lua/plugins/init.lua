@@ -432,6 +432,7 @@ require("packer").startup({
                             "neo-tree",
                             "neo-tree-popup",
                             "mason",
+                            "help",
                         },
                     })
                 end,
@@ -530,6 +531,8 @@ require("packer").startup({
         prompt_border = "rounded",
     },
 })
+
+require("utils.branchsession")
 
 -- Automatically create snapshots when updating plugins
 vim.api.nvim_del_user_command("PackerSync")
