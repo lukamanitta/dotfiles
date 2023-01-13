@@ -40,6 +40,14 @@ require("packer").startup({
                 end,
                 after = "nvim-lspconfig",
             },
+            {
+                local_plug_dir("branchsession.nvim"),
+                config = function()
+                    require("branchsession").setup({
+                        session_root_dir = "~/nvim-sessions",
+                    })
+                end,
+            },
             -- { local_plug_dir("naturally.nvim") },
 
             -- File explorer
@@ -296,7 +304,6 @@ require("packer").startup({
                 "rcarriga/nvim-notify",
                 config = function()
                     require("plugins.ui.notify")
-                    require("utils.branchsession") -- Move this to own plugin
                 end,
             },
             {
