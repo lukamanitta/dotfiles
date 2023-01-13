@@ -433,6 +433,7 @@ require("packer").startup({
                             "neo-tree-popup",
                             "mason",
                             "help",
+                            "yaml",
                         },
                     })
                 end,
