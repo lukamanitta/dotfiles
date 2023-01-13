@@ -296,6 +296,7 @@ require("packer").startup({
                 "rcarriga/nvim-notify",
                 config = function()
                     require("plugins.ui.notify")
+                    require("utils.branchsession") -- Move this to own plugin
                 end,
             },
             {
@@ -532,8 +533,6 @@ require("packer").startup({
         prompt_border = "rounded",
     },
 })
-
-require("utils.branchsession")
 
 -- Automatically create snapshots when updating plugins
 vim.api.nvim_del_user_command("PackerSync")

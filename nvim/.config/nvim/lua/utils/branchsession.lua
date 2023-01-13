@@ -7,8 +7,9 @@ end
 
 local function generate_session_filename()
     local vim_session_dir = vim.fn.expand("~/.nvim-sessions/")
-    local branch =
-    require("utils.helpers").shell("git rev-parse --abbrev-ref HEAD")
+    local branch = require("utils.helpers")
+        .shell("git rev-parse --abbrev-ref HEAD")
+        :gsub("/", "-")
     local this_session_dir = vim_session_dir .. get_project_name() .. "/"
 
     -- Create project session dir if doesn't exist
@@ -50,3 +51,14 @@ end, { nargs = 0 })
 vim.api.nvim_create_user_command("BranchSessionDelete", function()
     delete_branch_session()
 end, { nargs = 0 })
+
+-- notify user if a branch session is available on startup
+if require("utils.helpers").inside_git_dir() then
+    local session_file = generate_session_filename()
+    if vim.fn.filereadable(session_file) == 1 then
+        vim.notify(
+            "Branch session available for " .. get_project_name(),
+            vim.log.levels.INFO
+        )
+    end
+end
