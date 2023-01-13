@@ -4,6 +4,15 @@ function H.shell(command)
     return vim.fn.trim(vim.fn.system(command))
 end
 
+function H.inside_git_dir()
+    local _ = H.shell("git rev-parse --is-inside-git-dir")
+    if vim.v.shell_error == 0 then
+        return true
+    else
+        return false
+    end
+end
+
 function H.get_buf_filetype(bufId)
     return vim.api.nvim_buf_get_option(bufId, "filetype")
 end
