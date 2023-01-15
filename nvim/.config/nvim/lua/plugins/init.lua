@@ -22,7 +22,6 @@ end
 require("packer").startup({
     function()
         use({
-
             -- Packer can manage itself as an optional plugin
             "wbthomason/packer.nvim",
 
@@ -47,6 +46,7 @@ require("packer").startup({
                         session_root_dir = "~/nvim-sessions",
                     })
                 end,
+                after = "nvim-notify",
             },
             -- { local_plug_dir("naturally.nvim") },
 

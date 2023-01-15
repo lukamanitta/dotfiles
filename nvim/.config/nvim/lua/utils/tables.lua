@@ -5,8 +5,8 @@ function T.has_value(table, value)
     if table == {} then
         return false
     end
-    for _, existingVal in ipairs(table) do
-        if existingVal == value then
+    for _, existing_val in ipairs(table) do
+        if existing_val == value then
             return true
         end
     end
