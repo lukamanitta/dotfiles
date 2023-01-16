@@ -1,11 +1,11 @@
 local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
 
 for i = 1, 7 do
-    vim.cmd("hi! link IndentBlanklineIndent" .. i .. " rainbowcol" .. 7 - i)
+    vim.cmd("hi! link IndentBlanklineIndent" .. i .. " rainbowcol" .. 7 - i + 1)
 end
 
 require("indent_blankline").setup({
-    char = "┊", -- "┆", "┊", ""
+    char = "▏", --  "┆", "┊", "", "▏", "|"
     buftype_exclude = { "terminal" },
     filetype_exclude = {
         "packer",
@@ -27,6 +27,8 @@ require("indent_blankline").setup({
         "IndentBlanklineIndent5",
         "IndentBlanklineIndent6",
         "IndentBlanklineIndent7",
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
     },
 })
 
