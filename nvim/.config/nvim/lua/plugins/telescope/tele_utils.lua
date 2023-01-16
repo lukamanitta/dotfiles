@@ -1,13 +1,12 @@
 local table_merge = require("utils.tables").table_merge
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
-local fn = vim.fn
 
 local T = {}
 
 function T.responsive_layout(opts)
     opts = opts or {}
-    if fn.winwidth(0) < 120 then
+    if vim.fn.winwidth(0) < 120 then
         return require("telescope.themes").get_dropdown(opts)
     else
         return opts
