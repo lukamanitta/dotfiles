@@ -32,4 +32,8 @@ require("indent_blankline").setup({
     },
 })
 
-vim.cmd("hi IndentBlanklineContextChar guifg=" .. get_hi_group_fg("Normal"))
+vim.cmd("hi IndentBlanklineContextChar" -- .. "guibg="
+    -- .. get_hi_group_fg("Normal")
+    .. " guifg=" .. get_hi_group_fg(
+        "Normal"
+    ))
