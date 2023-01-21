@@ -1,0 +1,10 @@
+[user]
+	email = lukablueowl51@gmail.com
+	name = lukamanitta
+[credential]
+	helper = store
+	credentialStore = cache
+[core]
+    excludesfile = /home/luka/.gitignore_global
+[alias]
+    status-all = "!for d in `find . -name \".git\"`; do echo \"\n*** Repository: $d ***\" && git --git-dir=$d --work-tree=$d/.. status; done"
