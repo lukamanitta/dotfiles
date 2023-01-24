@@ -4,16 +4,6 @@ local Job = require("plenary.job")
 
 local T = {}
 
-function T.responsive_layout(opts)
-    opts = opts or {}
-    opts = table_merge(opts, require("plugins.telescope.theme"))
-    if vim.fn.winwidth(0) < 120 then
-        return require("telescope.themes").get_dropdown(opts)
-    else
-        return opts
-    end
-end
-
 function T.smart_file_finder(opts)
     opts = opts or {}
     opts = table_merge(opts, require("plugins.telescope.theme"))

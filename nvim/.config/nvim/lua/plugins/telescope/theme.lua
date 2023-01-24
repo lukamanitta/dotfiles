@@ -9,7 +9,7 @@ local theme = ({
         },
         sort_mru = true,
         sorting_strategy = "ascending",
-        results_title = "",
+        results_title = false,
         hl_result_eol = true,
         layout_config = {
             prompt_position = "top",
