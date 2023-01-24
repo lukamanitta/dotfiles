@@ -16,5 +16,7 @@ require("ayu").setup({
 
 require("ayu").colorscheme()
 
+require("plugins.colourschemes.ayu.custom_hl")
+
 cmd("hi! StatusLine guibg=" .. statusline_color)
 cmd("hi! StatusLineNC guibg=" .. statusline_color .. " guifg=NONE")
