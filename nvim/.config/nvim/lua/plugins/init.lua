@@ -270,7 +270,7 @@ require("packer").startup({
             -- Language specific
             -- { "styled-components/vim-styled-components" },
             { "benknoble/vim-dafny" },
-            { "terrastruct/d2-vim" },
+            -- { "terrastruct/d2-vim" },
 
             -- UI
             {
