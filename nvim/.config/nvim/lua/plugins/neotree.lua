@@ -108,6 +108,12 @@ neotree.setup({
                 neotree.close_all()
             end,
         },
+        {
+            event = "neo_tree_buffer_enter",
+            handler = function(_)
+                vim.cmd("setlocal relativenumber")
+            end,
+        },
     },
     nesting_rules = {},
     filesystem = {
@@ -180,16 +186,16 @@ cmd("hi NeoTreeNormal guibg=" .. get_hi_group_bg("Normal"))
 cmd("hi link NeoTreeNormalNC NeoTreeNormal")
 cmd(
     "hi NeoTreeFloatBorder guibg="
-        .. get_hi_group_bg("NeoTreeNormal")
-        .. " guifg="
-        .. get_hi_group_fg("NeoTreeFloatBorder")
+    .. get_hi_group_bg("NeoTreeNormal")
+    .. " guifg="
+    .. get_hi_group_fg("NeoTreeFloatBorder")
 )
 cmd("hi NeoTreeFloatTitle guibg=" .. get_hi_group_bg("NeoTreeNormal"))
 cmd(
     "hi VertSplit guibg="
-        .. get_hi_group_bg("Normal")
-        .. " guifg="
-        .. get_hi_group_bg("Normal")
+    .. get_hi_group_bg("Normal")
+    .. " guifg="
+    .. get_hi_group_bg("Normal")
 )
 
 -- For colourschemes that support NvimTree but not NeoTree

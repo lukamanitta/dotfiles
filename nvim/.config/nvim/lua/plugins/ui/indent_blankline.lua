@@ -15,6 +15,7 @@ require("indent_blankline").setup({
         "neo-tree",
         "neo-tree-popup",
         "mason",
+        "TelescopePrompt",
     },
     show_current_context = true,
     show_current_context_start = false,
@@ -32,8 +33,9 @@ require("indent_blankline").setup({
     },
 })
 
-vim.cmd("hi IndentBlanklineContextChar" -- .. "guibg="
+vim.cmd(
+    "hi IndentBlanklineContextChar" -- .. "guibg="
     -- .. get_hi_group_fg("Normal")
-    .. " guifg=" .. get_hi_group_fg(
-        "Normal"
-    ))
+    .. " guifg="
+    .. get_hi_group_fg("Normal")
+)

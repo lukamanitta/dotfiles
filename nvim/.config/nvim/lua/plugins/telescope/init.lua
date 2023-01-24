@@ -15,8 +15,9 @@ require("telescope").setup({
         },
         buffer_previewer_maker = smart_buf_preview_maker,
 
-        prompt_prefix = general_icons.CaretRight .. " ",
-        selection_caret = general_icons.CaretRight .. " ",
+        prompt_prefix = " " .. general_icons.Search .. "  ",
+        selection_caret = general_icons.ArrowRight .. " ",
+        unpack(require("plugins.telescope.theme")),
     },
 
     extensions = {

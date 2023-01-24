@@ -6,6 +6,7 @@ local T = {}
 
 function T.responsive_layout(opts)
     opts = opts or {}
+    opts = table_merge(opts, require("plugins.telescope.theme"))
     if vim.fn.winwidth(0) < 120 then
         return require("telescope.themes").get_dropdown(opts)
     else
@@ -15,6 +16,7 @@ end
 
 function T.smart_file_finder(opts)
     opts = opts or {}
+    opts = table_merge(opts, require("plugins.telescope.theme"))
     local inside_git_dir = require("utils.helpers").inside_git_dir()
     if inside_git_dir then
         require("telescope.builtin").git_files(opts)
@@ -25,6 +27,7 @@ end
 
 function T.git_modified_finder(opts)
     opts = opts or {}
+    opts = table_merge(opts, require("plugins.telescope.theme"))
     local git_modified_opts = table_merge(opts, {
         git_command = {
             "git",

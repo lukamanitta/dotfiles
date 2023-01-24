@@ -273,12 +273,12 @@ require("packer").startup({
             { "terrastruct/d2-vim" },
 
             -- UI
-            -- {
-            --    "folke/noice.nvim",
-            --    config = function()
-            --        -- require("plugins.ui.noice")
-            --    end,
-            --},
+            {
+                "folke/noice.nvim",
+                config = function()
+                    require("plugins.ui.noice")
+                end,
+            },
             { "kyazdani42/nvim-web-devicons" },
             {
                 "DaikyXendo/nvim-material-icon",
