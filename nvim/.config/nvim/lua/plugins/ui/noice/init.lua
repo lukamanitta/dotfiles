@@ -1,7 +1,37 @@
 ---@diagnostic disable: undefined-doc-name
 local general_icons = require("assets.icons").general
 local comp_icons = require("assets.icons").types
-local cmdline_hl_group = "Conditional"
+
+require("plugins.ui.noice.custom_hl")
+
+local cmdline_popup_options = ({
+    classic = {
+        position = {
+            row = "50%",
+            col = "50%",
+        },
+        win_options = {
+            winhighlight = {
+                FloatBorder = "NoiceCmdlinePopup",
+            },
+        },
+    },
+    flat = {
+        position = {
+            row = "50%",
+            col = "50%",
+        },
+        border = {
+            style = "none",
+            padding = { 1, 2 },
+        },
+        win_options = {
+            winhighlight = {
+                Normal = "NoiceCmdlinePopup",
+            },
+        },
+    },
+})[require("settings.globals").float_style]
 
 require("noice").setup({
     cmdline = {
@@ -30,6 +60,7 @@ require("noice").setup({
             },
             shell = { pattern = "^:%s*!", icon = " $ ", lang = "sh" },
             lua = { pattern = "^:%s*lua%s+", icon = "  ", lang = "lua" },
+            help = { pattern = "^:%s*he?l?p?%s+", icon = "  " },
             substitute = {
                 pattern = "^:s;",
                 icon = " " .. general_icons.Replace .. " ",
@@ -44,6 +75,7 @@ require("noice").setup({
             },
         },
     },
+
     messages = {
         -- NOTE: If you enable messages, then the cmdline is enabled automatically.
         -- This is a current Neovim limitation.
@@ -54,6 +86,7 @@ require("noice").setup({
         view_history = "split", -- view for :messages
         view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
     },
+
     popupmenu = { -- cmdline completion
         enabled = true, -- disable if you use something like cmp-cmdline
         ---@type 'nui'|'cmp'
@@ -61,6 +94,7 @@ require("noice").setup({
         -- You can specify options for nui under `config.views.popupmenu`
         kind_icons = comp_icons, -- set to `false` to disable icons
     },
+
     history = {
         -- options for the message history that you get with `:Noice`
         view = "split",
@@ -70,16 +104,19 @@ require("noice").setup({
             ["not"] = { kind = { "search_count", "echo" } },
         },
     },
+
     notify = {
         enabled = false,
         view = "notify",
     },
+
     lsp = {
         progress = { enabled = false },
         override = {},
         hover = {},
         signature = { enabled = false },
     },
+
     message = { enabled = false },
     documentation = { enabled = false },
     markdown = { hover = {}, highlights = {} },
@@ -92,17 +129,7 @@ require("noice").setup({
 
     ---@type table<string, NoiceViewOptions>
     views = {
-        cmdline_popup = {
-            position = {
-                row = "50%",
-                col = "50%",
-            },
-            win_options = {
-                winhighlight = {
-                    FloatBorder = cmdline_hl_group,
-                },
-            },
-        },
+        cmdline_popup = cmdline_popup_options,
     },
 
     ---@type NoiceRouteConfig[]
