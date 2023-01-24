@@ -14,12 +14,13 @@ require("telescope").setup({
             },
             n = {
                 ["<esc>"] = actions.close,
+                ["q"] = actions.close,
             },
         },
         buffer_previewer_maker = smart_buf_preview_maker,
 
         prompt_prefix = " " .. general_icons.Search .. "  ",
-        selection_caret = general_icons.ArrowRight .. " ",
+        selection_caret = " " .. general_icons.ArrowRight .. " ",
 
         layout_strategy = "flex",
         layout_config = { flex = { flip_columns = 120 } },
