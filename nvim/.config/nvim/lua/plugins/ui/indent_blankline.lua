@@ -16,6 +16,7 @@ require("indent_blankline").setup({
         "neo-tree-popup",
         "mason",
         "TelescopePrompt",
+        "notify",
     },
     show_current_context = true,
     show_current_context_start = false,
