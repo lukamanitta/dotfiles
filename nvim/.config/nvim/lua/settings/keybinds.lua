@@ -171,7 +171,12 @@ vim.keymap.set("n", "<leader>fm", function()
 end)
 
 vim.keymap.set("n", "z=", function()
-    return require("telescope.builtin").spell_suggest()
+    return require("telescope.builtin").spell_suggest({
+        prompt_title = false,
+        layout_config = {
+            height = 15,
+        },
+    })
 end)
 
 -- Neoclip
