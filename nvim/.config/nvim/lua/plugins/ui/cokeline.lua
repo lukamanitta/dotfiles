@@ -1,27 +1,27 @@
 local get_hex = require("cokeline.utils").get_hex
-local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
+-- local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
 
 vim.cmd("hi! link TabLineFill Normal")
 
 local general_icons = require("assets.icons").general
 
-local background = get_hex("Normal", "bg")
-local errors_fg = get_hex("DiagnosticError", "fg")
-local warnings_fg = get_hex("DiagnosticWarn", "fg")
+-- local background = get_hex("Normal", "bg")
+-- local errors_fg = get_hex("DiagnosticError", "fg")
+-- local warnings_fg = get_hex("DiagnosticWarn", "fg")
 
-local focused_tab_brightness_diff = 0.55
-if vim.o.background == "light" then
-    focused_tab_brightness_diff = -0.07
-end
-local unfocused_tab_brightness_diff = -0.35
-if vim.o.background == "light" then
-    unfocused_tab_brightness_diff = -0.2
-end
+-- local focused_tab_brightness_diff = 0.55
+-- if vim.o.background == "light" then
+--     focused_tab_brightness_diff = -0.07
+-- end
+-- local unfocused_tab_brightness_diff = -0.35
+-- if vim.o.background == "light" then
+--     unfocused_tab_brightness_diff = -0.2
+-- end
 
-local focused_tab_bg =
-multiply_hex_brightness(background, focused_tab_brightness_diff)
-local unfocused_tab_bg =
-multiply_hex_brightness(background, unfocused_tab_brightness_diff)
+-- local get_hex("BarHighlight", "bg") =
+-- multiply_hex_brightness(background, focused_tab_brightness_diff)
+-- local get_hex("BarBackground", "bg") =
+-- multiply_hex_brightness(background, unfocused_tab_brightness_diff)
 
 local components = {
     separator = {
@@ -39,9 +39,9 @@ local components = {
         text = "",
         fg = function(buffer)
             if buffer.is_focused then
-                return focused_tab_bg
+                return get_hex("BarHighlight", "bg")
             else
-                return unfocused_tab_bg
+                return get_hex("BarBackground", "bg")
             end
         end,
         bg = get_hex("Normal", "bg"),
@@ -54,9 +54,9 @@ local components = {
         text = "",
         fg = function(buffer)
             if buffer.is_focused then
-                return focused_tab_bg
+                return get_hex("BarHighlight", "bg")
             else
-                return unfocused_tab_bg
+                return get_hex("BarBackground", "bg")
             end
         end,
         bg = get_hex("Normal", "bg"),
@@ -197,9 +197,9 @@ require("cokeline").setup({
         end,
         bg = function(buffer)
             if buffer.is_focused then
-                return focused_tab_bg
+                return get_hex("BarHighlight", "bg")
             else
-                return unfocused_tab_bg
+                return get_hex("BarBackground", "bg")
             end
         end,
     },
