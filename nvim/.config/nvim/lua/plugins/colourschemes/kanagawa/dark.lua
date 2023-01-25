@@ -13,5 +13,3 @@ cmd("set background=dark")
 cmd("colorscheme kanagawa")
 
 require("plugins.colourschemes.kanagawa.custom_hl")
-
-cmd("hi link NvimTreeNormalNC NvimTreeNormal")
