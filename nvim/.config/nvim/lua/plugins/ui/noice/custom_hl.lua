@@ -18,3 +18,5 @@ elseif require("settings.globals").float_style == "classic" then
         .. " gui=bold"
     )
 end
+
+vim.cmd("hi! link NoiceVirtualText Comment")
