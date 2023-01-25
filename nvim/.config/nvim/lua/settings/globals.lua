@@ -4,8 +4,8 @@ local apply_globals = require("utils.helpers").apply_globals
 local vars = {}
 
 -- vars.colourscheme = os.getenv('COLOURSCHEME')
--- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa_{dark, light}, nightfox_{night, dawn, day, dusk}, noctis, gruvbox_{light, dark}
-vars.colourscheme = "kanagawa_dark"
+-- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa_{dark, light}, nightfox_{night, dawn, day, dusk}, noctis, gruvbox_{light, dark}, nordic
+vars.colourscheme = "nordic"
 vars.lsp_icon_style = "solid" -- "solid", "outline", "text"
 vars.float_style = "flat" -- "classic", "flat"
 

@@ -373,7 +373,7 @@ require("packer").startup({
                 requires = "rktjmp/lush.nvim",
             },
             { "ellisonleao/gruvbox.nvim" },
-
+            { "AlexvZyl/nordic.nvim" },
             -- Debugging
 
             -- {
