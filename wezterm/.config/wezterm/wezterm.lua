@@ -68,14 +68,14 @@ local cfg = {
                 { weight = "Light" }
             ),
         },
-        -- {
-        --     intensity = "Half",
-        --     italic = true,
-        --     font = wezterm.font(
-        --         "JetBrainsMono Light Italic Nerd Font",
-        --         { weight = "Light Italic" }
-        --     ),
-        -- },
+        {
+            intensity = "Half",
+            italic = true,
+            font = wezterm.font(
+                "JetBrainsMono Light Italic Nerd Font",
+                { weight = "LightItalic" }
+            ),
+        },
     },
 
     --Keybindings--
@@ -602,11 +602,48 @@ local colours = {
             "#ebdbb2", -- White
         },
     },
+
+    nordic = {
+        foreground = "#bbc3d4",
+        background = "#242933",
+
+        cursor_bg = "#bbc3d4",
+        cursor_fg = "#242933",
+        cursor_border = "#242933",
+
+        selection_fg = "#d8dee9",
+        selection_bg = "#2e3440",
+
+        scrollbar_thumb = "#191c24",
+        split = "#191c24",
+
+        ansi = {
+            "#191c24", -- Black
+            "#bf616a", -- Red
+            "#a3be8c", -- Green
+            "#ebcb8b", -- Yellow
+            "#5e81ac", -- Blue
+            "#b48ead", -- Magenta
+            "#8fbcbb", -- Cyan
+            "#bbc3d4", -- White
+        },
+
+        brights = {
+            "#60728a", -- Black
+            "#d06f79", -- Red
+            "#b1d196", -- Green
+            "#fabd2f", -- Yellow
+            "#8cafd2", -- Blue
+            "#c895bf", -- Magenta
+            "#93ccdc", -- Cyan
+            "#efe9f0", -- White
+        },
+    },
 }
 
 -- local colourscheme = os.getenv('COLOURSCHEME')
--- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa, nightfox_{night, dawn, day, dusk}, gruvbox_{light, dark}_{soft, hard}
-local colourscheme = "kanagawa"
+-- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa, nightfox_{night, dawn, day, dusk}, gruvbox_{light, dark}_{soft, hard}, nordic
+local colourscheme = "nordic"
 
 cfg.colors = colours[colourscheme]
 
