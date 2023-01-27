@@ -647,11 +647,20 @@ local colourscheme = "nordic"
 
 cfg.colors = colours[colourscheme]
 
+local tab_bar_bg
+if cfg.window_background_opacity ~= 1 then
+    tab_bar_bg = "rgba(0, 0, 0, 0)"
+else
+    tab_bar_bg = cfg.colors.background
+end
+
+wezterm.log_info(tab_bar_bg)
+
 cfg.colors.tab_bar = {
-    background = cfg.colors.background,
+    background = tab_bar_bg,
 
     active_tab = {
-        bg_color = cfg.colors.background,
+        bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,
 
         intensity = "Bold", -- Half | Normal | Bold
@@ -661,7 +670,7 @@ cfg.colors.tab_bar = {
     },
 
     inactive_tab = {
-        bg_color = cfg.colors.background,
+        bg_color = tab_bar_bg,
         fg_color = cfg.colors.brights[1],
 
         intensity = "Normal", -- Half | Normal | Bold
@@ -671,7 +680,7 @@ cfg.colors.tab_bar = {
     },
 
     inactive_tab_hover = {
-        bg_color = cfg.colors.background,
+        bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,
 
         intensity = "Normal", -- Half | Normal | Bold
@@ -682,12 +691,12 @@ cfg.colors.tab_bar = {
 
     -- New tab button
     new_tab = {
-        bg_color = cfg.colors.background,
+        bg_color = tab_bar_bg,
         fg_color = cfg.colors.brights[1],
     },
 
     new_tab_hover = {
-        bg_color = cfg.colors.background,
+        bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,
 
         intensity = "Bold", -- Half | Normal | Bold
