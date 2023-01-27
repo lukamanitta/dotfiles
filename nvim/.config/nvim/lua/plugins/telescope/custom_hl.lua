@@ -34,8 +34,7 @@ if require("settings.globals").float_style == "classic" then
             "hi "
             .. pane
             .. "Border"
-            .. " guibg="
-            .. get_hi_group_bg("TelescopeBorder")
+            .. " guibg=NONE"
             .. " guifg="
             .. get_hi_group_fg("rainbowcol" .. colour)
         )
@@ -43,12 +42,17 @@ if require("settings.globals").float_style == "classic" then
             "hi "
             .. pane
             .. "Title"
-            .. " guibg="
-            .. get_hi_group_bg("TelescopeBorder")
+            .. " guibg=NONE"
             .. " guifg="
             .. get_hi_group_fg("rainbowcol" .. colour)
         )
         available_colours:remove(colour)
+
+        for _, pane_normal in ipairs(pane_types) do
+            require("utils.color.hl_groups").remove_hl_bg(
+                pane_normal .. "Normal"
+            )
+        end
     end
 elseif require("settings.globals").float_style == "flat" then
     local normal_background =

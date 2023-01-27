@@ -56,3 +56,16 @@ get_hi_group_fg("rainbowcol" .. random_range(1, 7, os.time()))
 vim.cmd("hi! BarBackground guibg=" .. bar_background)
 vim.cmd("hi! BarHighlight guibg=" .. bar_highlight)
 vim.cmd("hi! BarAccent guibg=" .. bar_accent)
+
+-- Remove Backgrounds
+local remove_hl_bg = require("utils.color.hl_groups").remove_hl_bg
+local hl_to_remove_bg = {
+    "FloatBorder",
+    "FloatTitle",
+    "NormalFloat",
+    "TelescopeNormal",
+}
+
+for _, hl in ipairs(hl_to_remove_bg) do
+    remove_hl_bg(hl)
+end

@@ -226,6 +226,23 @@ cmd(
     .. float_blend
 )
 
+local remove_hl_bg = require("utils.color.hl_groups").remove_hl_bg
+local hl_to_remove_bg = {
+    "NeoTreePreview",
+    "NeoTreeGitAdded",
+    "NeoTreeGitModified",
+    "NeoTreeGitDeleted",
+    "NeoTreeGitRenamed",
+    "NeoTreeSignColumn",
+    "NeoTreeVertSplit",
+    "NeoTreeFloatBorder",
+    "NeoTreeFloatNormal",
+}
+
+for _, hl in ipairs(hl_to_remove_bg) do
+    remove_hl_bg(hl)
+end
+
 -- For colourschemes that support NvimTree but not NeoTree
 -- vim.cmd([[
 -- highlight! link NeoTreeDirectoryIcon NvimTreeFolderIcon
