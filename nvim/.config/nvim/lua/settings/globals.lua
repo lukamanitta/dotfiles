@@ -9,6 +9,7 @@ vars.colourscheme = "nordic"
 vars.lsp_icon_style = "solid" -- "solid", "outline", "text"
 vars.float_style = "flat" -- "classic", "flat"
 vars.transparent_bg = true
+vars.float_blend = 80
 
 cmd("filetype plugin indent on")
 

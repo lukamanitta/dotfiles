@@ -6,14 +6,28 @@ cmd("hi! @function.call gui=bold guifg=" .. get_hi_group_fg("Function"))
 
 local random_range = require("utils.math").random_range
 
+local float_blend = require("settings.globals").float_blend
+
 vim.cmd(
     "hi FloatBorder guibg="
     .. get_hi_group_bg("Normal")
     .. " guifg="
     .. get_hi_group_fg("rainbowcol" .. random_range(1, 7, os.time()))
+    .. " blend="
+    .. float_blend
 )
-vim.cmd("hi NormalFloat guibg=" .. get_hi_group_bg("Normal"))
--- vim.cmd("hi FloatTitle guibg=" .. get_hi_group_bg("Normal"))
+vim.cmd(
+    "hi NormalFloat guibg="
+    .. get_hi_group_bg("Normal")
+    .. " blend="
+    .. float_blend
+)
+vim.cmd(
+    "hi FloatTitle guibg="
+    .. get_hi_group_bg("Normal")
+    .. " blend="
+    .. float_blend
+)
 
 local background = get_hi_group_bg("Normal")
 local multiply_hex_brightness = require("utils.color").multiply_hex_brightness

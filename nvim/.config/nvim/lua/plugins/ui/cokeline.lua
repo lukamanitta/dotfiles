@@ -1,7 +1,7 @@
 local get_hex = require("cokeline.utils").get_hex
 -- local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
 
-vim.cmd("hi! link TabLineFill StableNormal")
+vim.cmd("hi! link TabLineFill Normal")
 
 local general_icons = require("assets.icons").general
 
