@@ -163,15 +163,29 @@ I.lsp = ({
     },
 })[require("settings.globals").lsp_icon_style]
 
-I.git = {
-    Branch = "",
-    Merge = "",
-    Unstaged = I.general.Exclamation,
-    Ignored = "",
-    Untracked = I.general.CrossThick,
-    Added = "",
-    Modified = "柳",
-    Removed = "",
-}
+I.git = ({
+    solid = {
+        Branch = "",
+        Merge = "",
+        Unstaged = I.general.Exclamation,
+        Ignored = "",
+        Untracked = I.general.CrossThick,
+        Added = "",
+        Modified = "柳",
+        Renamed = "柳",
+        Removed = "",
+    },
+    outline = {
+        Branch = "",
+        Merge = "",
+        Unstaged = I.general.Exclamation,
+        Ignored = "",
+        Untracked = I.general.CrossThick,
+        Added = "",
+        Modified = "",
+        Renamed = "",
+        Removed = "",
+    },
+})[require("settings.globals").git_icon_style]
 
 return I

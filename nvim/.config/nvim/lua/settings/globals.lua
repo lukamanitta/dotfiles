@@ -7,6 +7,7 @@ local vars = {}
 -- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa_{dark, light}, nightfox_{night, dawn, day, dusk}, noctis, gruvbox_{light, dark}, nordic
 vars.colourscheme = "nordic"
 vars.lsp_icon_style = "solid" -- "solid", "outline", "text"
+vars.git_icon_style = "solid" -- "solid", "outline", "text"
 vars.float_style = "flat" -- "classic", "flat"
 vars.transparent_bg = true
 vars.float_blend = 80
