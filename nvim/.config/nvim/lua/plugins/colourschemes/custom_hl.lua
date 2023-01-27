@@ -18,6 +18,11 @@ vim.cmd("hi NormalFloat guibg=" .. get_hi_group_bg("Normal"))
 local background = get_hi_group_bg("Normal")
 local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
 
+-- Cursorline
+
+vim.cmd("hi! CursorLine guibg=" .. multiply_hex_brightness(background, -0.1))
+
+-- Bars (statusline, bufferline)
 local focused_tab_brightness_diff = 0.55
 if vim.o.background == "light" then
     focused_tab_brightness_diff = -0.07

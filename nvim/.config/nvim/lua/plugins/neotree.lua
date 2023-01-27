@@ -182,7 +182,7 @@ neotree.setup({
     },
 })
 
-cmd("hi NeoTreeNormal guibg=" .. get_hi_group_bg("Normal"))
+cmd("hi NeoTreeNormal guibg=" .. get_hi_group_bg("StableNormal"))
 cmd("hi link NeoTreeNormalNC NeoTreeNormal")
 cmd(
     "hi NeoTreeFloatBorder guibg="
@@ -193,9 +193,9 @@ cmd(
 cmd("hi NeoTreeFloatTitle guibg=" .. get_hi_group_bg("NeoTreeNormal"))
 cmd(
     "hi VertSplit guibg="
-    .. get_hi_group_bg("Normal")
+    .. get_hi_group_bg("StableNormal")
     .. " guifg="
-    .. get_hi_group_bg("Normal")
+    .. get_hi_group_bg("StableNormal")
 )
 
 -- For colourschemes that support NvimTree but not NeoTree

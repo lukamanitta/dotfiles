@@ -5,7 +5,7 @@ local cfg = {
     --General--
 
     warn_about_missing_glyphs = true,
-    window_background_opacity = 1,
+    window_background_opacity = 0.8,
     native_macos_fullscreen_mode = true,
     initial_cols = 90,
     initial_rows = 28,
@@ -68,14 +68,14 @@ local cfg = {
                 { weight = "Light" }
             ),
         },
-        {
-            intensity = "Half",
-            italic = true,
-            font = wezterm.font(
-                "JetBrainsMono Light Italic Nerd Font",
-                { weight = "LightItalic" }
-            ),
-        },
+        -- {
+        --     intensity = "Half",
+        --     italic = true,
+        --     font = wezterm.font(
+        --         "JetBrainsMono Light Italic Nerd Font",
+        --         { weight = "LightItalic" }
+        --     ),
+        -- },
     },
 
     --Keybindings--

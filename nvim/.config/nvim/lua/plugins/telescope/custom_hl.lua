@@ -52,7 +52,7 @@ if require("settings.globals").float_style == "classic" then
     end
 elseif require("settings.globals").float_style == "flat" then
     local normal_background =
-    multiply_hex_brightness(get_hi_group_bg("Normal"), 0.3)
+    multiply_hex_brightness(get_hi_group_bg("StableNormal"), 0.3)
 
     -- Normal
     vim.cmd(
