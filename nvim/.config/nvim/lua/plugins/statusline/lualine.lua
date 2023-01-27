@@ -169,13 +169,27 @@ ins_left({
             .. mode_color[vim.fn.mode()]
         )
         if vim.api.nvim_buf_get_option(0, "filetype") == "" then
-            return general_icons.Heart .. " "
+            return general_icons.Heart
         end
         return get_buf_icon(0)
     end,
     color = "LualineMode",
     left_padding = 0,
     right_padding = 0,
+})
+
+ins_left({
+    function()
+        vim.api.nvim_command(
+            "hi! LualineModeEndBlockFilename guifg="
+            .. mode_color[vim.fn.mode()]
+            .. " guibg="
+            .. get_hi_group_bg("BarHighlight")
+        )
+        return ""
+    end,
+    color = "LualineModeEndBlockFilename",
+    padding = { left = 0, right = 0 },
 })
 
 local function hide_empty_filename(invert)
@@ -188,57 +202,43 @@ local function hide_empty_filename(invert)
         if should_return_string then
             return str
         else
-            return ""
+            return ""
         end
     end
 end
 
-ins_left({
-    function()
-        vim.api.nvim_command(
-            "hi! LualineModeEndBlock guifg="
-            .. mode_color[vim.fn.mode()]
-            .. " guibg="
-            .. colors.endblock_bg
-        )
-        return ""
-    end,
-    fmt = hide_empty_filename(true),
-    color = "LualineModeEndBlock",
-    padding = { left = 0, right = 0 },
-})
-
-ins_left({
-    fmt = hide_empty_filename(),
-    function()
-        vim.api.nvim_command(
-            "hi! LualineModeEndBlockFilename guifg="
-            .. get_hi_group_bg("BarHighlight")
-            .. " guibg="
-            .. mode_color[vim.fn.mode()]
-        )
-        return ""
-    end,
-    color = "LualineModeEndBlockFilename",
-    padding = { left = 1, right = 0 },
-})
+-- ins_left({
+--     fmt = hide_empty_filename(),
+--     function()
+--         vim.api.nvim_command(
+--             "hi! LualineModeEndBlockFilename guifg="
+--             .. get_hi_group_bg("BarHighlight")
+--             .. " guibg="
+--             .. mode_color[vim.fn.mode()]
+--         )
+--         return ""
+--     end,
+--     color = "LualineModeEndBlockFilename",
+--     padding = { left = 1, right = 0 },
+-- })
 
 local random_range = require("utils.math").random_range
 ins_left({
     "filename",
-    fmt = hide_empty_filename(),
+    -- fmt = hide_empty_filename(),
     color = {
         fg = get_hi_group_fg("rainbowcol" .. random_range(1, 7, os.time())),
         gui = "bold",
         bg = get_hi_group_bg("BarHighlight"),
     },
+    padding = { left = 2, right = 1 },
 })
 
 ins_left({
     function()
         return ""
     end,
-    fmt = hide_empty_filename(),
+    -- fmt = hide_empty_filename(),
     color = {
         fg = get_hi_group_bg("BarHighlight"),
         bg = get_hi_group_bg("StatusLine"),
