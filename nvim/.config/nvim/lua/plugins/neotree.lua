@@ -237,6 +237,7 @@ local hl_to_remove_bg = {
     "NeoTreeVertSplit",
     "NeoTreeFloatBorder",
     "NeoTreeFloatNormal",
+    "NeoTreeNormalNC",
 }
 
 for _, hl in ipairs(hl_to_remove_bg) do
