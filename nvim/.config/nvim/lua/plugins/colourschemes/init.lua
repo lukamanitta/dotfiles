@@ -13,7 +13,7 @@ if vim.o.laststatus == 3 then
 end
 
 require("plugins.colourschemes.custom_hl")
-require("plugins.statusline.lualine")
+require("plugins.statusline.heirline")
 require("plugins.ui.cokeline")
 
 -- Transparency
