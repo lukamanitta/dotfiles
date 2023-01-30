@@ -1,36 +1,40 @@
 ---@diagnostic disable: undefined-field, undefined-doc-name
 local helpers = require("plugins.statusline.helpers")
-local components = require("plugins.statusline.components")
+local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
+local Semicircle = require("plugins.statusline.components.Semicircle")
+local SingleSpace = require("plugins.statusline.components.SingleSpace")
+local BubbleThis = require("plugins.statusline.components.BubbleThis")
 
 --- Create a series of connected bubbles (one for each component given).
 ---@param opts table containing options for the bubble (e.g. direction).
 ---@vararg StatusLine components to wrap
 local function BubbleThese(opts, ...)
-    opts.bg = opts.bg or "NONE"
     opts.direction = opts.direction or "center"
+    opts.end_bgs = opts.end_bgs and opts.end_bgs
+        or { get_hi_group_bg("StatusLine"), get_hi_group_bg("StatusLine") }
+    if #opts.end_bgs == 1 then
+        opts.end_bgs[2] = opts.end_bgs[1]
+    end
 
     local bubble_components = { ... }
     local bubble = {}
 
+    -- WIP: Center doesn't work yet
     if opts.direction == "center" then
         -- Get middle component of vararg
-        local middle = select(
-            math.ceil(select("#", bubble_components) / 2),
-            bubble_components
-        )
+        local middle = bubble_components[math.ceil(#bubble_components / 2)]
+
         -- Get all components left of middle
         local left = {
-            select(
-                1,
-                math.ceil(select("#", bubble_components) / 2) - 1,
-                bubble_components
-            ),
+            unpack(bubble_components, 1, math.ceil(#bubble_components / 2) - 1),
         }
+
         -- Get all components right of middle
         local right = {
-            select(
-                math.ceil(select("#", bubble_components) / 2) + 1,
-                bubble_components
+            unpack(
+                bubble_components,
+                math.ceil(#bubble_components / 2) + 1,
+                #bubble_components
             ),
         }
 
@@ -39,54 +43,38 @@ local function BubbleThese(opts, ...)
         BubbleThese({ direction = "left" }, unpack(left), middle)
         bubble =
         BubbleThese({ direction = "right" }, left_bubble, unpack(right))
-
-        -- Remove first component from bubble
-        table.remove(bubble, 1)
     elseif opts.direction == "right" then
-        table.insert(
-            bubble,
-            components.semicircle(
-                "left",
-                { hl = { fg = bubble_components[1].hl.bg, bg = opts.bg } }
-            )
-        )
-
         for i, component in ipairs(bubble_components) do
-            table.insert(bubble, component)
-            table.insert(
-                bubble,
-                components.semicircle("right", {
-                    hl = {
-                        fg = component.hl.bg,
-                        bg = bubble_components[i + 1]
-                            and bubble_components[i + 1].hl.bg
-                            or opts.bg,
-                    },
-                })
-            )
+            local bubbled_component = BubbleThis(component, {
+                opts.end_bgs[1],
+                bubble_components[i + 1] and helpers.component_hl(
+                    bubble_components[i + 1]
+                ).bg or opts.end_bgs[2],
+            })
+
+            if i ~= 1 then
+                bubbled_component[1].provider = " "
+                bubbled_component[1].hl = bubbled_component[2].hl
+            end
+
+            table.insert(bubble, bubbled_component)
         end
     elseif opts.direction == "left" then
-        table.insert(
-            bubble,
-            components.semicircle(
-                "right",
-                { hl = { fg = bubble_components[1].hl.bg, bg = opts.bg } }
-            )
-        )
-
         for i, component in ipairs(bubble_components) do
-            table.insert(bubble, component)
-            table.insert(
-                bubble,
-                components.semicircle("left", {
-                    hl = {
-                        fg = component.hl.bg,
-                        bg = bubble_components[i + 1]
-                            and bubble_components[i + 1].hl.bg
-                            or opts.bg,
-                    },
-                })
-            )
+            local bubbled_component = BubbleThis(component, {
+                bubble_components[i - 1] and helpers.component_hl(
+                    bubble_components[i - 1]
+                ).bg or opts.end_bgs[1],
+                opts.end_bgs[2],
+            })
+
+            if i ~= #bubble_components then
+                bubbled_component[#bubbled_component].provider = " "
+                bubbled_component[#bubbled_component].hl =
+                bubbled_component[2].hl
+            end
+
+            table.insert(bubble, bubbled_component)
         end
     end
 
