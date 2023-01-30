@@ -4,6 +4,6 @@ return function(fg)
             local colour = require("plugins.statusline.helpers").mode_colour()
             return { bg = colour, fg = fg }
         end,
-        update = "ModeChanged",
+        -- update = "ModeChanged",
     }
 end
