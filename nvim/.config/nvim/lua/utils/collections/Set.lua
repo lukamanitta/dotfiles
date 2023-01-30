@@ -18,8 +18,23 @@ function Set:add(item)
     end
 end
 
+function Set:contains(item)
+    return has_value(self.items, item)
+end
+
+function Set:get_index_of(item)
+    for index, value in ipairs(self.items) do
+        if value == item then
+            return index
+        end
+    end
+    return nil
+end
+
 function Set:remove(item)
-    table.remove(self.items, item)
+    if self:contains(item) then
+        table.remove(self.items, self:get_index_of(item))
+    end
 end
 
 function Set:get_items()
@@ -28,10 +43,6 @@ end
 
 function Set:at(index)
     return self.items[index]
-end
-
-function Set:contains(item)
-    return has_value(self.items, item)
 end
 
 function Set:size()
