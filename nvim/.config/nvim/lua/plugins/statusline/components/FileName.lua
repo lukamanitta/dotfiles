@@ -1,4 +1,5 @@
-local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
+local ColouredBufferIcon =
+require("plugins.statusline.components.ColouredBufferIcon")
 
 local filename_translations = {
     [""] = "[No Name]",
@@ -10,16 +11,16 @@ local special_filetype_filenames = {
 }
 
 return {
-    hl = {
-        fg = get_hi_group_bg("BarAccent"),
-        bg = get_hi_group_bg("BarHighlight"),
-    },
+    ColouredBufferIcon(0),
 
-    provider = function()
-        local filename = vim.fn.expand("%:t")
-        local filetype = vim.bo.filetype
-        return special_filetype_filenames[filetype]
-            or filename_translations[filename]
-            or filename
-    end,
+    {
+        provider = function()
+            local filename = vim.fn.expand("%:t")
+            local filetype = vim.bo.filetype
+            local display_name = special_filetype_filenames[filetype]
+                or filename_translations[filename]
+                or filename
+            return " " .. display_name .. " "
+        end,
+    },
 }
