@@ -1,8 +1,6 @@
 ---@diagnostic disable: undefined-field, undefined-doc-name
 local helpers = require("plugins.statusline.helpers")
 local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
-local Semicircle = require("plugins.statusline.components.Semicircle")
-local SingleSpace = require("plugins.statusline.components.SingleSpace")
 local BubbleThis = require("plugins.statusline.components.BubbleThis")
 
 --- Create a series of connected bubbles (one for each component given).

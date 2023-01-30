@@ -16,4 +16,5 @@ return {
     CursorLocation = require("plugins.statusline.components.CursorLocation"),
     ProgressBar = require("plugins.statusline.components.ProgressBar"),
     ProgressText = require("plugins.statusline.components.ProgressText"),
+    GitBranch = require("plugins.statusline.components.GitBranch"),
 }

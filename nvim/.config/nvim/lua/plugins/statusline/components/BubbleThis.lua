@@ -28,6 +28,7 @@ return function(component, edge_bgs)
             update = semicircle_update,
         })
     )
+
     table.insert(bubble_components, component)
 
     table.insert(

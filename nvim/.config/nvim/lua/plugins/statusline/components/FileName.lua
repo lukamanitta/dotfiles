@@ -1,3 +1,6 @@
+local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
+local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
+
 local ColouredBufferIcon =
 require("plugins.statusline.components.ColouredBufferIcon")
 
@@ -20,7 +23,12 @@ return {
             local display_name = special_filetype_filenames[filetype]
                 or filename_translations[filename]
                 or filename
-            return " " .. display_name .. " "
+            return display_name .. " "
         end,
+    },
+
+    hl = {
+        fg = get_hi_group_fg("StatusLine"),
+        bg = get_hi_group_bg("StatusLine"),
     },
 }

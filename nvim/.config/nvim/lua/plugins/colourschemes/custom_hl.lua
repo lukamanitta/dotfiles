@@ -49,7 +49,7 @@ end
 local bar_highlight =
 multiply_hex_brightness(background, focused_tab_brightness_diff)
 local bar_highlight_2 =
-multiply_hex_brightness(bar_highlight, focused_tab_brightness_diff / 2)
+multiply_hex_brightness(background, focused_tab_brightness_diff / 2)
 local bar_background =
 multiply_hex_brightness(background, unfocused_tab_brightness_diff)
 local bar_accent =

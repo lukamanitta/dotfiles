@@ -4,6 +4,6 @@ local props = require("plugins.statusline.props")
 
 return tables.table_merge({
     provider = function()
-        return require("assets.icons").general.Heart .. " "
+        return " " .. require("assets.icons").general.CircleSmall .. " "
     end,
 }, props.mode_colour_bg(get_hi_group_bg("StatusLine")))

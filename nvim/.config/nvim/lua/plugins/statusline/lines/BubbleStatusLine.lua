@@ -7,6 +7,7 @@ local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
 
 return {
     components.SingleSpace("Normal"),
+
     components.BubbleThese(
         {
             direction = "right",
@@ -22,11 +23,22 @@ return {
                 bg = get_hi_group_bg("BarHighlight"),
                 bold = true,
             },
+        }),
+        vim.tbl_deep_extend("force", components.GitBranch, {
+            hl = {
+                fg = get_hi_group_fg("Normal"),
+                bg = get_hi_group_bg("BarHighlight2"),
+                bold = true,
+            },
         })
     ),
+
     --
     components.FillSpace,
+    components.FileName,
+    components.FillSpace,
     --
+
     vim.tbl_deep_extend("force", components.LSPDiagnosticCounts, {
         hl = {
             bg = get_hi_group_bg("StatusLine"),
@@ -56,4 +68,11 @@ return {
         )
     ),
     components.SingleSpace("Normal"),
+
+    {
+        hl = {
+            fg = get_hi_group_fg("StatusLine"),
+            bg = get_hi_group_bg("StatusLine"),
+        },
+    },
 }

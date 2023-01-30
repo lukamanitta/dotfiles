@@ -10,7 +10,7 @@ return {
         local clients = vim.lsp.get_active_clients()
 
         if next(clients) == nil then
-            return icon .. "No Active LSP"
+            return " " .. icon .. "No Active LSP" .. " "
         end
 
         local client_names = Set:new()
@@ -20,11 +20,15 @@ return {
             end
         end
 
+        if client_names:size() < 2 then
+            return " " .. icon .. "No Active LSP" .. " "
+        end
+
         if client_names:contains("null-ls") and client_names:size() > 1 then
             client_names:remove("null-ls")
         end
 
-        return icon .. client_names:to_string()
+        return " " .. icon .. client_names:to_string() .. " "
     end,
     update = {
         "LspAttach",
