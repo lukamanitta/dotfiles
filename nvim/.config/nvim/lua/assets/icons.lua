@@ -58,6 +58,10 @@ I.general = {
     Search = "",
     Replace = "﯒",
     Shell = "",
+    Crosshairs = "",
+    Percent = "",
+
+    ListThick = "",
 }
 
 I.debug = {
