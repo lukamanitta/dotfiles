@@ -1,6 +1,5 @@
 local Set = require("utils.collections.Set")
 local has_value = require("utils.tables").has_value
-local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
 
 return {
     provider = function()
