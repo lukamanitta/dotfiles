@@ -6,8 +6,17 @@ function U.mode_colour()
     return require("plugins.statusline.consts").mode_colour[mode]
 end
 
+function U.component_hl(component)
+    local hl = component.hl
+    if type(hl) == "table" then
+        return hl
+    elseif type(hl) == "function" then
+        return component:hl()
+    end
+    return hl
+end
+
 function U.build_semicircle_hl(component, bg)
-    vim.notify(bg)
     local semicircle_hl
     if type(component.hl) == "table" then
         semicircle_hl = {
@@ -48,13 +57,14 @@ end
 
 function U.modify_hl(component, fg, bg)
     local hl = component.hl
+    local new_hl
     if type(hl) == "table" then
-        return {
+        new_hl = {
             fg = fg or hl.fg,
             bg = bg or hl.bg,
         }
     elseif type(hl) == "function" then
-        return function()
+        new_hl = function()
             hl = component:hl()
             return {
                 fg = fg or hl.fg,
@@ -62,7 +72,7 @@ function U.modify_hl(component, fg, bg)
             }
         end
     end
-    return hl
+    component.hl = new_hl
 end
 
 return U
