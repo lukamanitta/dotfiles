@@ -27,4 +27,6 @@ vim.cmd(
 if require("settings.globals").transparent_bg then
     vim.cmd("hi Normal ctermbg=NONE guibg=NONE")
     vim.cmd("hi NormalNC ctermbg=NONE guibg=NONE")
+    vim.cmd("hi SignColumn ctermbg=NONE guibg=NONE")
+    vim.cmd("hi SignColumnSB ctermbg=NONE guibg=NONE")
 end
