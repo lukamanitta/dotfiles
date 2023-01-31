@@ -6,6 +6,11 @@ function U.mode_colour()
     return require("plugins.statusline.consts").mode_colour[mode]
 end
 
+function U.mode_shortname()
+    local mode = conditions.is_active() and vim.fn.mode() or "n"
+    return require("plugins.statusline.consts").mode_shortnames[mode]
+end
+
 function U.component_hl(component)
     local hl = component.hl
     if type(hl) == "table" then

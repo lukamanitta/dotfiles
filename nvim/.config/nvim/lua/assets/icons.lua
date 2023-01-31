@@ -88,6 +88,7 @@ I.filesystem = {
 I.companies = {
     Tabnine = "",
     GitHub = "",
+    Vim = "",
 }
 
 I.types = { -- Arranged approximately in order of abstraction (lo - hi)
