@@ -17,17 +17,17 @@ return {
             },
         },
         components.ModeIndicator,
-        vim.tbl_deep_extend("force", components.FileName, {
-            hl = {
-                fg = get_hi_group_fg("Normal"),
-                bg = get_hi_group_bg("BarHighlight"),
-                bold = true,
-            },
-        }),
+        -- vim.tbl_deep_extend("force", components.FileName, {
+        --     hl = {
+        --         fg = get_hi_group_fg("Normal"),
+        --         bg = get_hi_group_bg("BarHighlight"),
+        --         bold = true,
+        --     },
+        -- }),
         vim.tbl_deep_extend("force", components.GitBranch, {
             hl = {
                 fg = get_hi_group_bg("BarAccent"),
-                bg = get_hi_group_bg("BarHighlight2"),
+                bg = get_hi_group_bg("BarHighlight"),
                 bold = true,
             },
         })
@@ -36,11 +36,7 @@ return {
 
     --
     components.FillSpace,
-    vim.tbl_deep_extend("force", components.FileName, {
-        hl = {
-            fg = get_hi_group_fg("Comment"),
-        },
-    }),
+    components.FileName,
     components.FillSpace,
     --
 
@@ -49,10 +45,6 @@ return {
             bg = get_hi_group_bg("StatusLine"),
         },
     }),
-    -- components.BubbleThis(components.LSPServerName, {
-    --     get_hi_group_bg("StatusLine"),
-    --     get_hi_group_bg("Normal"),
-    -- }),
     components.BubbleThese(
         {
             direction = "left",
