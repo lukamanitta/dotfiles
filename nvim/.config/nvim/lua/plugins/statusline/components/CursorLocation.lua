@@ -8,8 +8,9 @@ return {
         --         line and line or "X",
         --         col and col or "X"
         --     )
-        return require("assets.icons").general.Crosshairs
-            .. "%7(%3l/%L%):%-2c"
+        return " "
+            .. require("assets.icons").general.Crosshairs
+            .. " %7(%3l/%L%):%-2c"
             .. " "
     end,
 }

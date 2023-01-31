@@ -8,7 +8,7 @@ return {
             return "Bot"
         else
             return math.floor(cur / total * 100)
-                .. require("assets.icons").general.Percent
+                .. require("assets.icons").general.Percent .. " "
         end
     end,
 }
