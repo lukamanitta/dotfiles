@@ -17,4 +17,5 @@ return {
     ProgressBar = require("plugins.statusline.components.ProgressBar"),
     ProgressText = require("plugins.statusline.components.ProgressText"),
     GitBranch = require("plugins.statusline.components.GitBranch"),
+    GitDiff = require("plugins.statusline.components.GitDiff"),
 }

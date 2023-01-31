@@ -26,16 +26,21 @@ return {
         }),
         vim.tbl_deep_extend("force", components.GitBranch, {
             hl = {
-                fg = get_hi_group_fg("Normal"),
+                fg = get_hi_group_bg("BarAccent"),
                 bg = get_hi_group_bg("BarHighlight2"),
                 bold = true,
             },
         })
     ),
+    components.GitDiff,
 
     --
     components.FillSpace,
-    components.FileName,
+    vim.tbl_deep_extend("force", components.FileName, {
+        hl = {
+            fg = get_hi_group_fg("Comment"),
+        },
+    }),
     components.FillSpace,
     --
 
@@ -68,11 +73,4 @@ return {
         )
     ),
     components.SingleSpace("Normal"),
-
-    {
-        hl = {
-            fg = get_hi_group_fg("StatusLine"),
-            bg = get_hi_group_bg("StatusLine"),
-        },
-    },
 }
