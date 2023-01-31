@@ -286,14 +286,14 @@ require("packer").startup({
                     require("plugins.ui.material_icon")
                 end,
             },
-            { "nvim-lualine/lualine.nvim" },
+            -- { "nvim-lualine/lualine.nvim" },
             { "noib3/nvim-cokeline" },
-            -- {
-            --     "rebelot/heirline.nvim",
-            --     config = function()
-            --         require("plugins.statusline.heirline")
-            --     end,
-            -- },
+            {
+                "rebelot/heirline.nvim",
+                config = function()
+                    require("plugins.statusline.heirline")
+                end,
+            },
             {
                 "lukas-reineke/indent-blankline.nvim",
                 config = function()
