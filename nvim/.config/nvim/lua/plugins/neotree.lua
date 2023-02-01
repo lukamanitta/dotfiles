@@ -23,6 +23,7 @@ neotree.setup({
         container = {
             enable_character_fade = true,
         },
+
         indent = {
             indent_size = 2,
             padding = 1, -- extra padding on left hand side
@@ -37,6 +38,7 @@ neotree.setup({
             expander_expanded = "",
             expander_highlight = "NeoTreeExpander",
         },
+
         icon = {
             folder_closed = filesystem_icons.Folder,
             folder_open = filesystem_icons.FolderOpen,
@@ -44,22 +46,25 @@ neotree.setup({
             default = filesystem_icons.File,
             highlight = "NeoTreeFileIcon",
         },
+
         name = {
             trailing_slash = false,
             use_git_status_colors = true,
             highlight = "NeoTreeFileName",
         },
+
         modified = {
             symbol = general_icons.CircleSmall,
             highlight = "NeoTreeModified",
         },
+
         git_status = {
             symbols = {
                 -- Change type
                 added = git_icons.Added,
                 deleted = git_icons.Removed,
                 modified = git_icons.Modified,
-                renamed = git_icons.Modified,
+                renamed = git_icons.Renamed,
                 -- Status type
                 untracked = git_icons.Untracked,
                 ignored = git_icons.Ignored,
@@ -69,6 +74,7 @@ neotree.setup({
             },
         },
     },
+
     window = {
         position = "left",
         width = 30,
@@ -101,6 +107,7 @@ neotree.setup({
             [">"] = "next_source",
         },
     },
+
     event_handlers = {
         {
             event = "file_opened",
@@ -115,7 +122,9 @@ neotree.setup({
             end,
         },
     },
+
     nesting_rules = {},
+
     filesystem = {
         filtered_items = {
             visible = true, -- when true, they will just be displayed differently than normal items
@@ -131,6 +140,7 @@ neotree.setup({
                 --"thumbs.db"
             },
         },
+
         follow_current_file = true, -- This will find and focus the file in the active buffer every
         -- time the current file is changed while the tree is open.
         group_empty_dirs = false,
@@ -140,6 +150,7 @@ neotree.setup({
         -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
         use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
         -- instead of relying on nvim autocmd events.
+
         window = {
             mappings = {
                 ["<bs>"] = "navigate_up",
@@ -154,6 +165,7 @@ neotree.setup({
             },
         },
     },
+
     buffers = {
         follow_current_file = true,
         show_unloaded = true,
@@ -166,6 +178,7 @@ neotree.setup({
             },
         },
     },
+
     git_status = {
         window = {
             position = "float",
@@ -182,21 +195,54 @@ neotree.setup({
     },
 })
 
-cmd("hi NeoTreeNormal guibg=" .. get_hi_group_bg("Normal"))
+local float_blend = require("settings.globals").float_blend
+cmd(
+    "hi NeoTreeNormal guibg="
+    .. get_hi_group_bg("StableNormal")
+    .. "blend="
+    .. float_blend
+)
 cmd("hi link NeoTreeNormalNC NeoTreeNormal")
 cmd(
     "hi NeoTreeFloatBorder guibg="
-    .. get_hi_group_bg("NeoTreeNormal")
+    .. get_hi_group_bg("StableNormal")
     .. " guifg="
     .. get_hi_group_fg("NeoTreeFloatBorder")
+    .. " blend="
+    .. float_blend
 )
-cmd("hi NeoTreeFloatTitle guibg=" .. get_hi_group_bg("NeoTreeNormal"))
+cmd(
+    "hi NeoTreeFloatTitle guibg="
+    .. get_hi_group_bg("StableNormal")
+    .. "blend="
+    .. float_blend
+)
 cmd(
     "hi VertSplit guibg="
-    .. get_hi_group_bg("Normal")
+    .. get_hi_group_bg("StableNormal")
     .. " guifg="
-    .. get_hi_group_bg("Normal")
+    .. get_hi_group_bg("StableNormal")
+    .. " blend="
+    .. float_blend
 )
+
+local remove_hl_bg = require("utils.color.hl_groups").remove_hl_bg
+local hl_to_remove_bg = {
+    "NeoTreePreview",
+    "NeoTreeGitAdded",
+    "NeoTreeGitModified",
+    "NeoTreeGitDeleted",
+    "NeoTreeGitRenamed",
+    "NeoTreeSignColumn",
+    "NeoTreeVertSplit",
+    "NeoTreeFloatBorder",
+    "NeoTreeFloatNormal",
+    "NeoTreeNormalNC",
+}
+
+for _, hl in ipairs(hl_to_remove_bg) do
+    remove_hl_bg(hl)
+end
 
 -- For colourschemes that support NvimTree but not NeoTree
 -- vim.cmd([[

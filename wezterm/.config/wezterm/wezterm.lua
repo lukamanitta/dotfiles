@@ -5,7 +5,7 @@ local cfg = {
     --General--
 
     warn_about_missing_glyphs = true,
-    window_background_opacity = 1,
+    window_background_opacity = 0.8,
     native_macos_fullscreen_mode = true,
     initial_cols = 90,
     initial_rows = 28,
@@ -73,7 +73,7 @@ local cfg = {
         --     italic = true,
         --     font = wezterm.font(
         --         "JetBrainsMono Light Italic Nerd Font",
-        --         { weight = "Light Italic" }
+        --         { weight = "LightItalic" }
         --     ),
         -- },
     },
@@ -602,19 +602,65 @@ local colours = {
             "#ebdbb2", -- White
         },
     },
+
+    nordic = {
+        foreground = "#bbc3d4",
+        background = "#242933",
+
+        cursor_bg = "#bbc3d4",
+        cursor_fg = "#242933",
+        cursor_border = "#242933",
+
+        selection_fg = "#d8dee9",
+        selection_bg = "#2e3440",
+
+        scrollbar_thumb = "#191c24",
+        split = "#191c24",
+
+        ansi = {
+            "#191c24", -- Black
+            "#bf616a", -- Red
+            "#a3be8c", -- Green
+            "#ebcb8b", -- Yellow
+            "#5e81ac", -- Blue
+            "#b48ead", -- Magenta
+            "#8fbcbb", -- Cyan
+            "#bbc3d4", -- White
+        },
+
+        brights = {
+            "#60728a", -- Black
+            "#d06f79", -- Red
+            "#b1d196", -- Green
+            "#fabd2f", -- Yellow
+            "#8cafd2", -- Blue
+            "#c895bf", -- Magenta
+            "#93ccdc", -- Cyan
+            "#efe9f0", -- White
+        },
+    },
 }
 
 -- local colourscheme = os.getenv('COLOURSCHEME')
--- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa, nightfox_{night, dawn, day, dusk}, gruvbox_{light, dark}_{soft, hard}
-local colourscheme = "kanagawa"
+-- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa, nightfox_{night, dawn, day, dusk}, gruvbox_{light, dark}_{soft, hard}, nordic
+local colourscheme = "nordic"
 
 cfg.colors = colours[colourscheme]
 
+local tab_bar_bg
+if cfg.window_background_opacity ~= 1 then
+    tab_bar_bg = "rgba(0, 0, 0, 0)"
+else
+    tab_bar_bg = cfg.colors.background
+end
+
+wezterm.log_info(tab_bar_bg)
+
 cfg.colors.tab_bar = {
-    background = cfg.colors.background,
+    background = tab_bar_bg,
 
     active_tab = {
-        bg_color = cfg.colors.background,
+        bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,
 
         intensity = "Bold", -- Half | Normal | Bold
@@ -624,7 +670,7 @@ cfg.colors.tab_bar = {
     },
 
     inactive_tab = {
-        bg_color = cfg.colors.background,
+        bg_color = tab_bar_bg,
         fg_color = cfg.colors.brights[1],
 
         intensity = "Normal", -- Half | Normal | Bold
@@ -634,7 +680,7 @@ cfg.colors.tab_bar = {
     },
 
     inactive_tab_hover = {
-        bg_color = cfg.colors.background,
+        bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,
 
         intensity = "Normal", -- Half | Normal | Bold
@@ -645,12 +691,12 @@ cfg.colors.tab_bar = {
 
     -- New tab button
     new_tab = {
-        bg_color = cfg.colors.background,
+        bg_color = tab_bar_bg,
         fg_color = cfg.colors.brights[1],
     },
 
     new_tab_hover = {
-        bg_color = cfg.colors.background,
+        bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,
 
         intensity = "Bold", -- Half | Normal | Bold

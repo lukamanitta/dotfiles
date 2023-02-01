@@ -34,8 +34,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    group = vim.api.nvim_create_augroup("telescope", {}),
-    pattern = "TelescopePrompt",
+    group = vim.api.nvim_create_augroup("nocursorline", {}),
+    pattern = { "TelescopePrompt", "neo-tree-popup" },
     callback = function()
         vim.cmd("setlocal nocursorline")
     end,

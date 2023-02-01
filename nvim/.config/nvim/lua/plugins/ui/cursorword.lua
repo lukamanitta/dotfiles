@@ -12,7 +12,7 @@ apply_globals({
     cursorword_max_width = 50,
 })
 
-local normal_background = get_hi_group_bg("Normal")
+local normal_background = get_hi_group_bg("StableNormal")
 
 vim.cmd(
     "hi! CursorWord guibg=" .. multiply_hex_brightness(normal_background, -0.3)

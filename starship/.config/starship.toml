@@ -82,7 +82,7 @@ read_only = " "
 
 [git_branch]
 symbol = " "
-style = "purple"
+style = "bold purple"
 
 [git_state]
 merge = " MERGE"
@@ -130,7 +130,8 @@ symbol = " "
 format = 'with [$symbol($version)]($style) '
 
 [cmd_duration]
-format = '[祥$duration]($style dimmed) '
+format = '[祥$duration]($style) '
+style = "bold yellow dimmed"
 
 [cobol]
 format = 'with [$symbol($version)]($style) '

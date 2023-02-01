@@ -26,7 +26,7 @@ local general_icons = require("assets.icons").general
 local components = {
     separator = {
         text = " ",
-        bg = get_hex("Normal", "bg"),
+        bg = get_hex("StableNormal", "bg"),
         truncation = { priority = 1 },
     },
 
@@ -44,7 +44,7 @@ local components = {
                 return get_hex("BarBackground", "bg")
             end
         end,
-        bg = get_hex("Normal", "bg"),
+        bg = get_hex("StableNormal", "bg"),
         truncation = {
             priority = 1,
         },
@@ -59,7 +59,7 @@ local components = {
                 return get_hex("BarBackground", "bg")
             end
         end,
-        bg = get_hex("Normal", "bg"),
+        bg = get_hex("StableNormal", "bg"),
         truncation = {
             priority = 1,
         },
@@ -179,7 +179,7 @@ require("cokeline").setup({
         components = {
             {
                 text = "",
-                fg = get_hex("Normal", "fg"),
+                fg = get_hex("StableNormal", "fg"),
                 bg = get_hex("StatusLine", "bg"),
                 style = "bold",
             },
@@ -192,7 +192,7 @@ require("cokeline").setup({
 
     default_hl = {
         fg = function(buffer)
-            return buffer.is_focused and get_hex("Normal", "fg")
+            return buffer.is_focused and get_hex("StableNormal", "fg")
                 or get_hex("Comment", "fg")
         end,
         bg = function(buffer)
