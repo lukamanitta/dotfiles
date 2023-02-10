@@ -10,7 +10,7 @@ return {
         --     )
         return " "
             .. require("assets.icons").general.Crosshairs
-            .. " %7(%3l/%L%):%-2c"
+            .. " %4(%3l%):%-2c"
             .. " "
     end,
 }
