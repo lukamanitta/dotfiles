@@ -1,9 +1,6 @@
-local helpers = require("plugins.statusline.helpers")
-local tables = require("utils.tables")
 local components = require("plugins.statusline.components")
 local props = require("plugins.statusline.props")
 local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
-local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
 
 return {
     components.SingleSpace("Normal"),
@@ -17,17 +14,16 @@ return {
             },
         },
         components.ModeIndicator,
-        -- vim.tbl_deep_extend("force", components.FileName, {
-        --     hl = {
-        --         fg = get_hi_group_fg("Normal"),
-        --         bg = get_hi_group_bg("BarHighlight"),
-        --         bold = true,
-        --     },
-        -- }),
+        vim.tbl_deep_extend("force", components.RootDir, {
+            hl = {
+                bg = get_hi_group_bg("BarHighlight"),
+                bold = true,
+            },
+        }),
         vim.tbl_deep_extend("force", components.GitBranch, {
             hl = {
                 fg = get_hi_group_bg("BarAccent"),
-                bg = get_hi_group_bg("BarHighlight"),
+                bg = get_hi_group_bg("BarHighlight2"),
                 bold = true,
             },
         })

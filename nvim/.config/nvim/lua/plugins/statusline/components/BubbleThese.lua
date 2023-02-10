@@ -43,19 +43,23 @@ local function BubbleThese(opts, ...)
         BubbleThese({ direction = "right" }, left_bubble, unpack(right))
     elseif opts.direction == "right" then
         for i, component in ipairs(bubble_components) do
-            local bubbled_component = BubbleThis(component, {
-                opts.end_bgs[1],
-                bubble_components[i + 1] and helpers.component_hl(
+            local should_bubble = component.condition and component.condition()
+                or true
+            if should_bubble then
+                local bubbled_component = BubbleThis(component, {
+                    opts.end_bgs[1],
                     bubble_components[i + 1]
-                ).bg or opts.end_bgs[2],
-            })
+                        and helpers.component_hl(bubble_components[i + 1]).bg
+                        or opts.end_bgs[2],
+                })
 
-            if i ~= 1 then
-                bubbled_component[1].provider = " "
-                bubbled_component[1].hl = bubbled_component[2].hl
+                if i ~= 1 then
+                    bubbled_component[1].provider = " "
+                    bubbled_component[1].hl = bubbled_component[2].hl
+                end
+
+                table.insert(bubble, bubbled_component)
             end
-
-            table.insert(bubble, bubbled_component)
         end
     elseif opts.direction == "left" then
         for i, component in ipairs(bubble_components) do

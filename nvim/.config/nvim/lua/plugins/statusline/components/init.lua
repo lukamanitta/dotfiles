@@ -18,4 +18,5 @@ return {
     ProgressText = require("plugins.statusline.components.ProgressText"),
     GitBranch = require("plugins.statusline.components.GitBranch"),
     GitDiff = require("plugins.statusline.components.GitDiff"),
+    RootDir = require("plugins.statusline.components.RootDir"),
 }
