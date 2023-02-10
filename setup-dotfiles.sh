@@ -51,6 +51,7 @@ stow lazygit && echo "  STOWED: lazygit"
 stow linters && echo "  STOWED: linter configurations"
 stow zk && echo "  STOWED: zk"
 stow bin && echo "  STOWED: bin"
+stow tool-versions && echo "  STOWED: tool-versions"
 # stow tmux && echo "  STOWED: tmux"
 
 echo "Checking local_env_vars..."
