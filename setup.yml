@@ -44,6 +44,7 @@
         - ruby https://github.com/asdf-vm/asdf-ruby.git
         - nodejs https://github.com/asdf-vm/asdf-nodejs.git
         - rust https://github.com/asdf-community/asdf-rust.git
+        - haskell https://github.com/vic/asdf-haskell.git
 
     - name: Install Debian packages for `ruby-build`
       package:
@@ -95,3 +96,4 @@
         - ruby
         - nodejs
         - rust
+        - haskell
