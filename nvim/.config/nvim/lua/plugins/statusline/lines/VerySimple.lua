@@ -12,11 +12,19 @@ return {
         },
     }),
 
+    components.GitDiff,
+
     components.FillSpace,
 
     components.FileName,
 
     components.FillSpace,
+
+    vim.tbl_deep_extend("force", components.LSPDiagnosticCounts, {
+        hl = {
+            bg = get_hi_group_bg("StatusLine"),
+        },
+    }),
 
     components.Semicircle("right", {
         hl = {
