@@ -117,14 +117,12 @@ require("mason-lspconfig").setup_handlers({
         require("lspconfig")[server_name].setup(make_config())
         vim.cmd([[ do User LspAttachBuffers ]])
     end,
-
-    ["sumneko_lua"] = function()
+    ["lua_ls"] = function()
         local config = make_config()
         config.settings = lua_settings
-        require("lspconfig")["sumneko_lua"].setup(config)
+        require("lspconfig")["lua_ls"].setup(config)
         vim.cmd([[ do User LspAttachBuffers ]])
     end,
-
     ["emmet_ls"] = function()
         local config = make_config()
         config.filetypes = { "html", "css", "javascript", "javascriptreact" }

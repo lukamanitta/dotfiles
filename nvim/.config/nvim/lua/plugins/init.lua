@@ -188,7 +188,7 @@ require("packer").startup({
                 config = function()
                     require("mason-lspconfig").setup({
                         ensure_installed = {
-                            "sumneko_lua",
+                            "lua_ls",
                             "vimls",
                             "tsserver",
                             "bashls",
@@ -270,6 +270,12 @@ require("packer").startup({
             -- Language specific
             -- { "styled-components/vim-styled-components" },
             { "benknoble/vim-dafny" },
+            {
+                "akinsho/flutter-tools.nvim",
+                config = function()
+                    require("flutter-tools").setup({})
+                end,
+            },
             -- { "terrastruct/d2-vim" },
 
             -- UI

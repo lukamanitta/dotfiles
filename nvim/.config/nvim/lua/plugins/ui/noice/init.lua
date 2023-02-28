@@ -5,33 +5,33 @@ local comp_icons = require("assets.icons").types
 require("plugins.ui.noice.custom_hl")
 
 local cmdline_popup_options = ({
-    classic = {
-        position = {
-            row = "50%",
-            col = "50%",
-        },
-        win_options = {
-            winhighlight = {
-                FloatBorder = "NoiceCmdlinePopup",
+        classic = {
+            position = {
+                row = "50%",
+                col = "50%",
+            },
+            win_options = {
+                winhighlight = {
+                    FloatBorder = "NoiceCmdlinePopup",
+                },
             },
         },
-    },
-    flat = {
-        position = {
-            row = "50%",
-            col = "50%",
-        },
-        border = {
-            style = "none",
-            padding = { 1, 2 },
-        },
-        win_options = {
-            winhighlight = {
-                Normal = "NoiceCmdlinePopup",
+        flat = {
+            position = {
+                row = "50%",
+                col = "50%",
+            },
+            border = {
+                style = "none",
+                padding = { 1, 2 },
+            },
+            win_options = {
+                winhighlight = {
+                    Normal = "NoiceCmdlinePopup",
+                },
             },
         },
-    },
-})[require("settings.globals").float_style]
+    })[require("settings.globals").float_style]
 
 require("noice").setup({
     cmdline = {
@@ -75,7 +75,6 @@ require("noice").setup({
             },
         },
     },
-
     messages = {
         -- NOTE: If you enable messages, then the cmdline is enabled automatically.
         -- This is a current Neovim limitation.
@@ -86,7 +85,6 @@ require("noice").setup({
         view_history = "split", -- view for :messages
         view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
     },
-
     popupmenu = { -- cmdline completion
         enabled = true, -- disable if you use something like cmp-cmdline
         ---@type 'nui'|'cmp'
@@ -94,7 +92,6 @@ require("noice").setup({
         -- You can specify options for nui under `config.views.popupmenu`
         kind_icons = comp_icons, -- set to `false` to disable icons
     },
-
     history = {
         -- options for the message history that you get with `:Noice`
         view = "split",
@@ -104,19 +101,16 @@ require("noice").setup({
             ["not"] = { kind = { "search_count", "echo" } },
         },
     },
-
     notify = {
         enabled = false,
         view = "notify",
     },
-
     lsp = {
         progress = { enabled = false },
         override = {},
         hover = {},
         signature = { enabled = false },
     },
-
     message = { enabled = false },
     documentation = { enabled = false },
     markdown = { hover = {}, highlights = {} },
@@ -126,12 +120,10 @@ require("noice").setup({
         excluded_filetypes = { "cmp_menu", "cmp_docs", "notify" },
     },
     throttle = 1000 / 30,
-
     ---@type table<string, NoiceViewOptions>
     views = {
         cmdline_popup = cmdline_popup_options,
     },
-
     ---@type NoiceRouteConfig[]
     routes = {
         {
@@ -142,10 +134,8 @@ require("noice").setup({
             view = "cmdline",
         },
     },
-
     ---@type table<string, NoiceFilter>
     status = {}, --@see the section on statusline components below
-
     ---@type NoiceFormatOptions
     format = {}, -- @see section on formatting
 })
@@ -156,7 +146,12 @@ local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
 local Set = require("utils.collections.Set")
 
 vim.cmd("hi! link NoiceCmdlinePopupBorder FloatBorder")
-vim.cmd("hi NoiceCmdlineIcon guifg=" .. get_hi_group_fg("FloatBorder"))
+vim.cmd(
+    "hi NoiceCmdlineIcon guifg="
+    .. get_hi_group_fg("FloatBorder")
+    .. " guibg="
+    .. get_hi_group_bg("NoiceCmdlinePopup")
+)
 
 local views = { "Help", "Lua" }
 local available_colours = Set:new({ 1, 2, 3, 4, 5, 6 })

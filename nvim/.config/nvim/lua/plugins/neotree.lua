@@ -18,7 +18,6 @@ neotree.setup({
     enable_diagnostics = true,
     sort_case_insensitive = false,
     sort_function = nil,
-
     default_component_configs = {
         container = {
             enable_character_fade = true,
@@ -74,7 +73,6 @@ neotree.setup({
             },
         },
     },
-
     window = {
         position = "left",
         width = 30,
@@ -107,7 +105,6 @@ neotree.setup({
             [">"] = "next_source",
         },
     },
-
     event_handlers = {
         {
             event = "file_opened",
@@ -122,9 +119,7 @@ neotree.setup({
             end,
         },
     },
-
     nesting_rules = {},
-
     filesystem = {
         filtered_items = {
             visible = true, -- when true, they will just be displayed differently than normal items
@@ -165,7 +160,6 @@ neotree.setup({
             },
         },
     },
-
     buffers = {
         follow_current_file = true,
         show_unloaded = true,
@@ -178,7 +172,6 @@ neotree.setup({
             },
         },
     },
-
     git_status = {
         window = {
             position = "float",
@@ -238,6 +231,7 @@ local hl_to_remove_bg = {
     "NeoTreeFloatBorder",
     "NeoTreeFloatNormal",
     "NeoTreeNormalNC",
+    "NeoTreeFileName",
 }
 
 for _, hl in ipairs(hl_to_remove_bg) do
