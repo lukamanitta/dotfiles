@@ -70,6 +70,9 @@ null_ls.setup({
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.code_actions.shellcheck,
 
+        -- Dart
+        null_ls.builtins.formatting.dart_format,
+
         -- Misc
         null_ls.builtins.formatting.trim_whitespace.with({
             disabled_filetypes = { "markdown" },

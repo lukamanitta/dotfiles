@@ -36,7 +36,7 @@ local cmdline_popup_options = ({
 require("noice").setup({
     cmdline = {
         enabled = true, -- disable if you use native command line UI
-        view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+        view = "cmdline_popup", -- "cmdline" | "cmdline_popup"
         opts = { lang = "vim" }, -- enable syntax highlighting in the cmdline
         format = {
             cmdline = {
@@ -80,8 +80,8 @@ require("noice").setup({
         -- This is a current Neovim limitation.
         enabled = true, -- enables the Noice messages UI
         view = "notify", -- default view for messages
-        view_error = "notify", -- view for errors
-        view_warn = "notify", -- view for warnings
+        view_error = "cmdline", -- view for errors
+        view_warn = "cmdline", -- view for warnings
         view_history = "split", -- view for :messages
         view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
     },
@@ -178,4 +178,4 @@ for _, view in ipairs(views) do
     available_colours:remove(colour)
 end
 
-vim.o.cmdheight = 0
+vim.o.cmdheight = 1

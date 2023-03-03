@@ -5,16 +5,14 @@ local cfg = {
     --General--
 
     warn_about_missing_glyphs = true,
-    window_background_opacity = 0.8,
+    window_background_opacity = 1,
     native_macos_fullscreen_mode = true,
     initial_cols = 90,
     initial_rows = 28,
-
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
     tab_max_width = 15,
     enable_kitty_graphics = true,
-
     default_cursor_style = "BlinkingBlock",
     window_padding = {
         left = 0,
@@ -23,7 +21,6 @@ local cfg = {
         bottom = 0,
     },
     force_reverse_video_cursor = true,
-
     --Fonts--
 
     font_dirs = {
@@ -36,7 +33,6 @@ local cfg = {
         "~/dotfiles/fonts/OperatorMono", -- OperatorMono Nerd Font
         "~/dotfiles/fonts/Liga SFMono", -- SFMono Nerd Font
     },
-
     -- font = wezterm.font("OperatorMono Nerd Font", { weight = "Book" }),
     font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }),
     font_size = 13,
@@ -77,14 +73,11 @@ local cfg = {
         --     ),
         -- },
     },
-
     --Keybindings--
 
     leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
-
     send_composed_key_when_left_alt_is_pressed = true,
     send_composed_key_when_right_alt_is_pressed = false,
-
     keys = {
         --- Keybindings for Multiplex
         {
@@ -205,7 +198,6 @@ local colours = {
             "#dcd7ba", -- White
         },
     },
-
     tokyonight_night = {
         foreground = "#c0caf5",
         background = "#1a1b26",
@@ -242,7 +234,6 @@ local colours = {
             "#c0caf5", -- White
         },
     },
-
     tokyonight_day = {
         foreground = "#3760bf",
         background = "#e1e2e7",
@@ -275,7 +266,6 @@ local colours = {
             "#3760bf", -- White
         },
     },
-
     tokyonight_storm = {
         foreground = "#c0caf5",
         background = "#24283b",
@@ -308,7 +298,6 @@ local colours = {
             "#c0caf5", -- White
         },
     },
-
     ayu_dark = {
         foreground = "#b3b1ad",
         background = "#0a0e14",
@@ -341,7 +330,6 @@ local colours = {
             "#626a73", -- White
         },
     },
-
     ayu_mirage = {
         foreground = "#cbccc6",
         background = "#1f2430",
@@ -374,7 +362,6 @@ local colours = {
             "#5c6773", -- White
         },
     },
-
     ayu_light = {
         foreground = "#575f66",
         background = "#fafafa",
@@ -407,7 +394,6 @@ local colours = {
             "#abb0b6", -- White
         },
     },
-
     nightfox_night = {
         foreground = "#cdcecf",
         background = "#192330",
@@ -440,7 +426,6 @@ local colours = {
             "#e4e4e5", -- White
         },
     },
-
     nightfox_dawn = {
         foreground = "#575279",
         background = "#faf4ed",
@@ -470,7 +455,6 @@ local colours = {
             "#e6ebf3", -- White
         },
     },
-
     nightfox_day = {
         foreground = "#1d344f",
         background = "#eaeaea",
@@ -500,7 +484,6 @@ local colours = {
             "#cfd6dd", -- White
         },
     },
-
     nightfox_dusk = {
         foreground = "#e0def4",
         background = "#232136",
@@ -530,7 +513,6 @@ local colours = {
             "#e2e0f7", -- White
         },
     },
-
     noctis = {
         foreground = "#66ffbf",
         background = "#141414",
@@ -566,7 +548,6 @@ local colours = {
             "#7b7c7e", -- White
         },
     },
-
     gruvbox_dark_hard = {
         foreground = "#f9f5d7",
         background = "#1d2021",
@@ -602,7 +583,6 @@ local colours = {
             "#ebdbb2", -- White
         },
     },
-
     nordic = {
         foreground = "#bbc3d4",
         background = "#242933",
@@ -643,7 +623,7 @@ local colours = {
 
 -- local colourscheme = os.getenv('COLOURSCHEME')
 -- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa, nightfox_{night, dawn, day, dusk}, gruvbox_{light, dark}_{soft, hard}, nordic
-local colourscheme = "nordic"
+local colourscheme = "kanagawa"
 
 cfg.colors = colours[colourscheme]
 
@@ -658,7 +638,6 @@ wezterm.log_info(tab_bar_bg)
 
 cfg.colors.tab_bar = {
     background = tab_bar_bg,
-
     active_tab = {
         bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,
@@ -668,7 +647,6 @@ cfg.colors.tab_bar = {
         italic = false,
         strikethrough = false,
     },
-
     inactive_tab = {
         bg_color = tab_bar_bg,
         fg_color = cfg.colors.brights[1],
@@ -678,7 +656,6 @@ cfg.colors.tab_bar = {
         italic = true,
         strikethrough = false,
     },
-
     inactive_tab_hover = {
         bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,
@@ -688,13 +665,11 @@ cfg.colors.tab_bar = {
         italic = true,
         strikethrough = false,
     },
-
     -- New tab button
     new_tab = {
         bg_color = tab_bar_bg,
         fg_color = cfg.colors.brights[1],
     },
-
     new_tab_hover = {
         bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,

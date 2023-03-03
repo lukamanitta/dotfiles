@@ -140,6 +140,7 @@ require("packer").startup({
                 config = function()
                     require("mason").setup({
                         border = "rounded",
+                        PATH = "prepend",
                     })
                 end,
             },
@@ -273,18 +274,18 @@ require("packer").startup({
             {
                 "akinsho/flutter-tools.nvim",
                 config = function()
-                    require("flutter-tools").setup({})
+                    require("plugins.flutter-tools")
                 end,
             },
             -- { "terrastruct/d2-vim" },
 
             -- UI
-            {
-                "folke/noice.nvim",
-                config = function()
-                    require("plugins.ui.noice")
-                end,
-            },
+            -- {
+            --     "folke/noice.nvim",
+            --     config = function()
+            --         require("plugins.ui.noice")
+            --     end,
+            -- },
             { "kyazdani42/nvim-web-devicons" },
             {
                 "DaikyXendo/nvim-material-icon",
