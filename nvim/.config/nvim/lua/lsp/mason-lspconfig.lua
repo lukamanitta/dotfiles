@@ -1,6 +1,7 @@
 local table_merge = require("utils.tables").table_merge
+local U = {}
 
-local on_attach = function(client, bufnr)
+U.on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -73,7 +74,7 @@ local function make_config()
         -- Enable snippet support
         capabilities = capabilities,
         -- Map buffer local keybindings when the language server attaches
-        on_attach = on_attach,
+        on_attach = U.on_attach,
     }
 end
 
@@ -130,3 +131,5 @@ require("mason-lspconfig").setup_handlers({
         vim.cmd([[ do User LspAttachBuffers ]])
     end,
 })
+
+return U
