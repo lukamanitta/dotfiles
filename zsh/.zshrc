@@ -89,7 +89,9 @@ ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=cyan,bold'
 
 # University
 export MOSS_SERVER="s4697584@moss.labs.eait.uq.edu.au"
+export LICHEN_SERVER="s4697584@lichen.labs.eait.uq.edu.au"
 alias moss="ssh $MOSS_SERVER"
+alias lichen="ssh $LICHEN_SERVER"
 
 # MyStay International config
 if [ -f ~/.msirc ]; then
