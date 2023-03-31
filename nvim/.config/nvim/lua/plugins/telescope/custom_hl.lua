@@ -4,8 +4,9 @@ local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
 local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
 local Set = require("utils.collections.Set")
 
-local prefix_caret_colour =
-get_hi_group_fg("rainbowcol" .. random_range(1, 7, os.time()))
+local prefix_caret_colour = get_hi_group_fg(
+    "rainbowcol" .. require("settings.globals").accent_colour_num
+)
 
 -- Selection Caret & Search Icon
 vim.cmd(
@@ -32,19 +33,19 @@ if require("settings.globals").float_style == "classic" then
         local colour = available_colours:at(random_num)
         vim.cmd(
             "hi "
-            .. pane
-            .. "Border"
-            .. " guibg=NONE"
-            .. " guifg="
-            .. get_hi_group_fg("rainbowcol" .. colour)
+                .. pane
+                .. "Border"
+                .. " guibg=NONE"
+                .. " guifg="
+                .. get_hi_group_fg("rainbowcol" .. colour)
         )
         vim.cmd(
             "hi "
-            .. pane
-            .. "Title"
-            .. " guibg=NONE"
-            .. " guifg="
-            .. get_hi_group_fg("rainbowcol" .. colour)
+                .. pane
+                .. "Title"
+                .. " guibg=NONE"
+                .. " guifg="
+                .. get_hi_group_fg("rainbowcol" .. colour)
         )
         available_colours:remove(colour)
 
@@ -56,14 +57,14 @@ if require("settings.globals").float_style == "classic" then
     end
 elseif require("settings.globals").float_style == "flat" then
     local normal_background =
-    multiply_hex_brightness(get_hi_group_bg("StableNormal"), 0.3)
+        multiply_hex_brightness(get_hi_group_bg("StableNormal"), 0.3)
 
     -- Normal
     vim.cmd(
         "hi! TelescopePromptNormal guibg="
-        .. normal_background
-        .. " guifg="
-        .. get_hi_group_fg("Normal")
+            .. normal_background
+            .. " guifg="
+            .. get_hi_group_fg("Normal")
     )
     vim.cmd("hi! link TelescopeResultsNormal StatusLine")
     vim.cmd("hi! link TelescopePreviewNormal StatusLine")
@@ -71,9 +72,9 @@ elseif require("settings.globals").float_style == "flat" then
     -- Borders
     vim.cmd(
         "hi! TelescopePromptBorder guibg="
-        .. normal_background
-        .. " guifg="
-        .. get_hi_group_fg("Normal")
+            .. normal_background
+            .. " guifg="
+            .. get_hi_group_fg("Normal")
     )
     vim.cmd("hi! link TelescopeResultsBorder StatusLine")
     vim.cmd("hi! link TelescopePreviewBorder StatusLine")
@@ -82,9 +83,9 @@ elseif require("settings.globals").float_style == "flat" then
     -- Titles
     vim.cmd(
         "hi! TelescopePromptTitle guibg="
-        .. normal_background
-        .. " guifg="
-        .. get_hi_group_fg("Normal")
+            .. normal_background
+            .. " guifg="
+            .. get_hi_group_fg("Normal")
     )
     vim.cmd("hi! link TelescopeResultsTitle Normal")
     vim.cmd("hi! link TelescopePreviewTitle Normal")

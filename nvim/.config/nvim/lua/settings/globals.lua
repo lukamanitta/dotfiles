@@ -1,5 +1,6 @@
 local cmd = vim.cmd
 local apply_globals = require("utils.helpers").apply_globals
+local random_range = require("utils.math").random_range
 
 local vars = {}
 
@@ -11,6 +12,7 @@ vars.git_icon_style = "solid" -- "solid", "outline", "text"
 vars.float_style = "flat" -- "classic", "flat"
 vars.transparent_bg = false
 vars.float_blend = 80
+vars.accent_colour_num = random_range(1, 7, os.time())
 
 cmd("filetype plugin indent on")
 

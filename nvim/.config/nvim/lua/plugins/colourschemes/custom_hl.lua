@@ -10,23 +10,25 @@ local float_blend = require("settings.globals").float_blend
 
 vim.cmd(
     "hi FloatBorder guibg="
-    .. get_hi_group_bg("Normal")
-    .. " guifg="
-    .. get_hi_group_fg("rainbowcol" .. random_range(1, 7, os.time()))
-    .. " blend="
-    .. float_blend
+        .. get_hi_group_bg("Normal")
+        .. " guifg="
+        .. get_hi_group_fg(
+            "rainbowcol" .. require("settings.globals").accent_colour_num
+        )
+        .. " blend="
+        .. float_blend
 )
 vim.cmd(
     "hi NormalFloat guibg="
-    .. get_hi_group_bg("Normal")
-    .. " blend="
-    .. float_blend
+        .. get_hi_group_bg("Normal")
+        .. " blend="
+        .. float_blend
 )
 vim.cmd(
     "hi FloatTitle guibg="
-    .. get_hi_group_bg("Normal")
-    .. " blend="
-    .. float_blend
+        .. get_hi_group_bg("Normal")
+        .. " blend="
+        .. float_blend
 )
 
 local background = get_hi_group_bg("Normal")
@@ -47,13 +49,14 @@ if vim.o.background == "light" then
 end
 
 local bar_highlight =
-multiply_hex_brightness(background, focused_tab_brightness_diff)
+    multiply_hex_brightness(background, focused_tab_brightness_diff)
 local bar_highlight_2 =
-multiply_hex_brightness(background, focused_tab_brightness_diff / 2)
+    multiply_hex_brightness(background, focused_tab_brightness_diff / 2)
 local bar_background =
-multiply_hex_brightness(background, unfocused_tab_brightness_diff)
-local bar_accent =
-get_hi_group_fg("rainbowcol" .. random_range(1, 7, os.time()))
+    multiply_hex_brightness(background, unfocused_tab_brightness_diff)
+local bar_accent = get_hi_group_fg(
+    "rainbowcol" .. require("settings.globals").accent_colour_num
+)
 
 vim.cmd("hi! BarBackground guibg=" .. bar_background)
 vim.cmd("hi! BarHighlight guibg=" .. bar_highlight)
