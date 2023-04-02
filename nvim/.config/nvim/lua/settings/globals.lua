@@ -12,7 +12,7 @@ vars.git_icon_style = "solid" -- "solid", "outline", "text"
 vars.float_style = "flat" -- "classic", "flat"
 vars.transparent_bg = false
 vars.float_blend = 80
-vars.accent_colour_num = random_range(1, 7, os.time())
+vars.accent_colour_num = 6 -- random_range(1, 7, os.time())
 
 cmd("filetype plugin indent on")
 
