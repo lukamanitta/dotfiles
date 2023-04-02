@@ -130,6 +130,67 @@ require("mason-lspconfig").setup_handlers({
         require("lspconfig")["emmet_ls"].setup(config)
         vim.cmd([[ do User LspAttachBuffers ]])
     end,
+    ["jdtls"] = function()
+        local config = make_config()
+        local home = os.getenv("HOME")
+        local root_markers = { "pom.xml", "build.gradle", ".git" }
+        local root_dir = require("lspconfig.util").root_pattern(root_markers)
+        local workspace_folder = home
+            .. "/.local/share/eclipse/"
+            .. vim.fn.fnamemodify(root_dir(vim.fn.getcwd()), ":p:h:t")
+
+        config.cmd = {
+            "java",
+            "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+            "-Dosgi.bundles.defaultStartLevel=4",
+            "-Declipse.product=org.eclipse.jdt.ls.core.product",
+            "-Dlog.protocol=true",
+            "-Dlog.level=ALL",
+            "-Xms4g",
+            "--add-modules=ALL-SYSTEM",
+            "--add-opens",
+            "java.base/java.util=ALL-UNNAMED",
+
+            "--add-opens",
+            "java.base/java.lang=ALL-UNNAMED",
+
+            "-jar",
+            vim.fn.stdpath("data")
+                .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
+
+            "-configuration",
+            vim.fn.stdpath("data") .. "/mason/packages/jdtls/config_mac",
+
+            "-data",
+            workspace_folder,
+        }
+
+        config.root_dir = root_dir
+
+        config.configuration = {
+            runtimes = {
+                {
+                    name = "JavaSE-17",
+                    path = home .. "/.asdf/installs/java/openjdk-17.0.2",
+                },
+            },
+        }
+
+        config.settings = {
+            -- java = {
+            --     signatureHelp = { enabled = true },
+            --     contentProvider = { preferred = "fernflower" },
+            --     sources = {
+            --         organizeImports = {
+            --             starThreshold = 9999,
+            --             staticStarThreshold = 9999,
+            --         },
+            --     },
+            -- },
+        }
+        require("lspconfig")["jdtls"].setup(config)
+        vim.cmd([[ do User LspAttachBuffers ]])
+    end,
 })
 
 return U
