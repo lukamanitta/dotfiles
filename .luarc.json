@@ -3,5 +3,11 @@
     "Lua.diagnostics.disable": [
         "trailing-space",
         "different-requires"
+    ],
+    "workspace.library": [
+        "/Users/lukamanitta/.local/share/nvim/site/pack/packer/start/neodev.nvim/types/nightly",
+        "/Users/lukamanitta/.asdf/installs/neovim/nightly/share/nvim/runtime/lua",
+        "/Users/lukamanitta/dotfiles/wezterm/.config/wezterm/lua",
+        "${3rd}/luv/library"
     ]
 }

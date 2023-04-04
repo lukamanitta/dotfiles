@@ -1,7 +1,8 @@
 local get_hex = require("cokeline.utils").get_hex
 -- local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
 
-vim.cmd("hi! link TabLineFill Normal")
+vim.cmd("hi! TablineFill guibg=" .. get_hex("Normal", "bg"))
+vim.cmd("hi! Tabline guibg=" .. get_hex("Normal", "bg"))
 
 local general_icons = require("assets.icons").general
 
@@ -29,12 +30,10 @@ local components = {
         bg = get_hex("StableNormal", "bg"),
         truncation = { priority = 1 },
     },
-
     space = {
         text = " ",
         truncation = { priority = 1 },
     },
-
     left_half_circle = {
         text = "",
         fg = function(buffer)
@@ -49,7 +48,6 @@ local components = {
             priority = 1,
         },
     },
-
     right_half_circle = {
         text = "",
         fg = function(buffer)
@@ -64,7 +62,6 @@ local components = {
             priority = 1,
         },
     },
-
     devicon = {
         text = function(buffer)
             return buffer.devicon.icon
@@ -74,7 +71,6 @@ local components = {
         end,
         truncation = { priority = 1 },
     },
-
     filename_root = {
         text = function(buffer)
             return vim.fn.fnamemodify(buffer.filename, ":r")
@@ -87,7 +83,7 @@ local components = {
         style = function(buffer)
             return (
                 (buffer.is_focused and buffer.diagnostics.errors ~= 0)
-                    and "bold,underline"
+                and "bold,underline"
                 )
                 or (buffer.is_focused and "bold")
                 or (buffer.diagnostics.errors ~= 0 and "underline")
@@ -98,7 +94,6 @@ local components = {
             direction = "middle",
         },
     },
-
     filename_extension = {
         text = function(buffer)
             local ext = vim.fn.fnamemodify(buffer.filename, ":e")
@@ -112,7 +107,7 @@ local components = {
         style = function(buffer)
             return (
                 (buffer.is_focused and buffer.diagnostics.errors ~= 0)
-                    and "bold,underline"
+                and "bold,underline"
                 )
                 or (buffer.is_focused and "bold")
                 or (buffer.diagnostics.errors ~= 0 and "underline")
@@ -123,7 +118,6 @@ local components = {
             direction = "left",
         },
     },
-
     unsaved = {
         text = function(buffer)
             return buffer.is_modified and general_icons.CircleSmall or ""
@@ -142,7 +136,7 @@ local get_remaining_space = function(buffer)
                 (type(component.text) == "string" and component.text)
                 or (
                 type(component.text) == "function"
-                    and component.text(buffer)
+                and component.text(buffer)
                 )
             )
     end
@@ -166,14 +160,12 @@ local right_padding = {
 require("cokeline").setup({
     show_if_buffers_are_at_least = 1,
     buffers = {
-        focus_on_delete = "prev", -- 'prev' | 'next',
+        focus_on_delete = "prev",      -- 'prev' | 'next',
         new_buffers_position = "last", -- 'last' | 'next',
     },
-
     mappings = {
         cycle_prev_next = true, --  true | false,
     },
-
     sidebar = {
         filetype = "neo-tree",
         components = {
@@ -185,11 +177,9 @@ require("cokeline").setup({
             },
         },
     },
-
     rendering = {
         max_buffer_width = min_buffer_width + 20,
     },
-
     default_hl = {
         fg = function(buffer)
             return buffer.is_focused and get_hex("StableNormal", "fg")
@@ -203,7 +193,6 @@ require("cokeline").setup({
             end
         end,
     },
-
     -- A list of components to be rendered for each buffer
     components = {
         components.separator,

@@ -1,12 +1,17 @@
 local cmd = vim.cmd
 local opts = require("plugins.colourschemes.kanagawa.opts")
+local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
 
 require("kanagawa").setup(vim.tbl_deep_extend("force", opts, {
-    -- colors = {
-    --     bg_light0 = "#16161d",
-    -- },
-    overrides = {},
-    theme = "default",
+    colors = {
+        theme = {
+            all = {
+                ui = {
+                    bg_gutter = "none",
+                },
+            },
+        },
+    },
 }))
 
 cmd("set background=dark")

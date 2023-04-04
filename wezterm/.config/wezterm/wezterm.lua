@@ -28,10 +28,10 @@ local cfg = {
         "~/dotfiles/fonts/RobotoMono",
         "~/dotfiles/fonts/Cousine",
         "~/dotfiles/fonts/SourceCodePro", -- SourceCodePro Nerd Font
-        "~/dotfiles/fonts/Hasklug", -- Hasklug Nerd Font Mono
+        "~/dotfiles/fonts/Hasklug",       -- Hasklug Nerd Font Mono
         "~/dotfiles/fonts/JetBrainsMono", -- JetBrainsMono Nerd Font
-        "~/dotfiles/fonts/OperatorMono", -- OperatorMono Nerd Font
-        "~/dotfiles/fonts/Liga SFMono", -- SFMono Nerd Font
+        "~/dotfiles/fonts/OperatorMono",  -- OperatorMono Nerd Font
+        "~/dotfiles/fonts/Liga SFMono",   -- SFMono Nerd Font
     },
     -- font = wezterm.font("OperatorMono Nerd Font", { weight = "Book" }),
     font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }),
@@ -166,17 +166,13 @@ local colours = {
     kanagawa = {
         foreground = "#dcd7ba",
         background = "#1f1f28",
-
         cursor_bg = "#c8c093",
         cursor_fg = "#c8c093",
         cursor_border = "#c8c093",
-
         selection_fg = "#c8c093",
         selection_bg = "#2d4f67",
-
         scrollbar_thumb = "#16161d",
         split = "#16161d",
-
         ansi = {
             "#090618", -- Black
             "#c34043", -- Red
@@ -201,18 +197,13 @@ local colours = {
     tokyonight_night = {
         foreground = "#c0caf5",
         background = "#1a1b26",
-
         cursor_bg = "#c0caf5",
         cursor_fg = "#1a1b26",
         cursor_border = "#c0caf5",
-
         selection_fg = "#c0caf5",
         selection_bg = "#33467c",
-
         scrollbar_thumb = "#c0caf5",
-
         split = "#2a2e36",
-
         ansi = {
             "#15161E", -- Black
             "#f7768e", -- Red
@@ -237,14 +228,11 @@ local colours = {
     tokyonight_day = {
         foreground = "#3760bf",
         background = "#e1e2e7",
-
         cursor_bg = "#3760bf",
         cursor_fg = "#e1e2e7",
         cursor_border = "#3760bf",
-
         selection_bg = "#99a7df",
         selection_fg = "#3760bf",
-
         ansi = {
             "#e9e9ed", -- Black
             "#f52a65", -- Red
@@ -269,14 +257,11 @@ local colours = {
     tokyonight_storm = {
         foreground = "#c0caf5",
         background = "#24283b",
-
         cursor_bg = "#c0caf5",
         cursor_fg = "#24283b",
         cursor_border = "#c0caf5",
-
         selection_bg = "#364A82",
         selection_fg = "#c0caf5",
-
         ansi = {
             "#1D202F", -- Black
             "#f7768e", -- Red
@@ -301,14 +286,11 @@ local colours = {
     ayu_dark = {
         foreground = "#b3b1ad",
         background = "#0a0e14",
-
         cursor_bg = "#b3b1ad",
         cursor_fg = "#0a0e14",
         cursor_border = "#b3b1ad",
-
         selection_bg = "#273747",
         selection_fg = "#b3b1ad",
-
         ansi = {
             "#0a0e14", -- Black
             "#f07178", -- Red
@@ -333,14 +315,11 @@ local colours = {
     ayu_mirage = {
         foreground = "#cbccc6",
         background = "#1f2430",
-
         cursor_bg = "#cbccc6",
         cursor_fg = "#1f2430",
         cursor_border = "#cbccc6",
-
         selection_bg = "#33415e",
         selection_fg = "#cbccc6",
-
         ansi = {
             "#1f2430", -- Black
             "#f28779", -- Red
@@ -365,14 +344,11 @@ local colours = {
     ayu_light = {
         foreground = "#575f66",
         background = "#fafafa",
-
         cursor_bg = "#575f66",
         cursor_fg = "#fafafa",
         cursor_border = "#575f66",
-
         selection_bg = "#d1e4f4",
         selection_fg = "#575f66",
-
         ansi = {
             "#fafafa", -- Black
             "#f07171", -- Red
@@ -397,14 +373,11 @@ local colours = {
     nightfox_night = {
         foreground = "#cdcecf",
         background = "#192330",
-
         cursor_bg = "#cdcecf",
         cursor_border = "#cdcecf",
         cursor_fg = "#192330",
-
         selection_bg = "#223249",
         selection_fg = "#cdcecf",
-
         ansi = {
             "#393b44", -- Black
             "#c94f6d", -- Red
@@ -516,17 +489,13 @@ local colours = {
     noctis = {
         foreground = "#66ffbf",
         background = "#141414",
-
         cursor_bg = "#f2f4f8",
         cursor_fg = "#161616",
         cursor_border = "#f2f4f8",
-
         selection_fg = "#66ffbf",
         selection_bg = "#2a2a2a",
-
         scrollbar_thumb = "#2a2a2a",
         split = "#2a2a2a",
-
         ansi = {
             "#0c0c0c", -- Black
             "#ee5396", -- Red
@@ -551,17 +520,13 @@ local colours = {
     gruvbox_dark_hard = {
         foreground = "#f9f5d7",
         background = "#1d2021",
-
         cursor_bg = "#f9f5d7",
         cursor_fg = "#1d2021",
         cursor_border = "#1d2021",
-
         selection_fg = "#f9f5d7",
         selection_bg = "#665c54",
-
         scrollbar_thumb = "#665c54",
         split = "#665c54",
-
         ansi = {
             "#1d2021", -- Black
             "#cc241d", -- Red
@@ -586,17 +551,13 @@ local colours = {
     nordic = {
         foreground = "#bbc3d4",
         background = "#242933",
-
         cursor_bg = "#bbc3d4",
         cursor_fg = "#242933",
         cursor_border = "#242933",
-
         selection_fg = "#d8dee9",
         selection_bg = "#2e3440",
-
         scrollbar_thumb = "#191c24",
         split = "#191c24",
-
         ansi = {
             "#191c24", -- Black
             "#bf616a", -- Red
@@ -607,7 +568,6 @@ local colours = {
             "#8fbcbb", -- Cyan
             "#bbc3d4", -- White
         },
-
         brights = {
             "#60728a", -- Black
             "#d06f79", -- Red
@@ -623,7 +583,7 @@ local colours = {
 
 -- local colourscheme = os.getenv('COLOURSCHEME')
 -- tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa, nightfox_{night, dawn, day, dusk}, gruvbox_{light, dark}_{soft, hard}, nordic
-local colourscheme = "nordic"
+local colourscheme = "kanagawa"
 
 cfg.colors = colours[colourscheme]
 
@@ -641,7 +601,6 @@ cfg.colors.tab_bar = {
     active_tab = {
         bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,
-
         intensity = "Bold", -- Half | Normal | Bold
         underline = "None", -- None | Single | Double
         italic = false,
@@ -650,18 +609,16 @@ cfg.colors.tab_bar = {
     inactive_tab = {
         bg_color = tab_bar_bg,
         fg_color = cfg.colors.brights[1],
-
         intensity = "Normal", -- Half | Normal | Bold
-        underline = "None", -- None | Single | Double
+        underline = "None",   -- None | Single | Double
         italic = true,
         strikethrough = false,
     },
     inactive_tab_hover = {
         bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,
-
         intensity = "Normal", -- Half | Normal | Bold
-        underline = "None", -- None | Single | Double
+        underline = "None",   -- None | Single | Double
         italic = true,
         strikethrough = false,
     },
@@ -673,7 +630,6 @@ cfg.colors.tab_bar = {
     new_tab_hover = {
         bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,
-
         intensity = "Bold", -- Half | Normal | Bold
         italic = false,
     },

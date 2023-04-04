@@ -10,25 +10,25 @@ local float_blend = require("settings.globals").float_blend
 
 vim.cmd(
     "hi FloatBorder guibg="
-        .. get_hi_group_bg("Normal")
-        .. " guifg="
-        .. get_hi_group_fg(
-            "rainbowcol" .. require("settings.globals").accent_colour_num
-        )
-        .. " blend="
-        .. float_blend
+    .. get_hi_group_bg("Normal")
+    .. " guifg="
+    .. get_hi_group_fg(
+        "rainbowcol" .. require("settings.globals").accent_colour_num
+    )
+    .. " blend="
+    .. float_blend
 )
 vim.cmd(
     "hi NormalFloat guibg="
-        .. get_hi_group_bg("Normal")
-        .. " blend="
-        .. float_blend
+    .. get_hi_group_bg("Normal")
+    .. " blend="
+    .. float_blend
 )
 vim.cmd(
     "hi FloatTitle guibg="
-        .. get_hi_group_bg("Normal")
-        .. " blend="
-        .. float_blend
+    .. get_hi_group_bg("Normal")
+    .. " blend="
+    .. float_blend
 )
 
 local background = get_hi_group_bg("Normal")

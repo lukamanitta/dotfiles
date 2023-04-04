@@ -30,14 +30,14 @@ local diagnostic_types = { "Error", "Warn", "Hint", "Info" }
 for _, diagnostic_type in ipairs(diagnostic_types) do
     vim.cmd(
         "hi DiagnosticVirtualText"
-        .. diagnostic_type
-        .. " guifg="
-        .. get_hi_group_fg("DiagnosticVirtualText" .. diagnostic_type)
-        .. " guibg="
-        .. blend_rgb(
-            get_hi_group_bg("Normal"),
-            get_hi_group_fg("DiagnosticVirtualText" .. diagnostic_type),
-            0.1
-        )
+            .. diagnostic_type
+            .. " guifg="
+            .. get_hi_group_fg("DiagnosticVirtualText" .. diagnostic_type)
+            .. " guibg="
+            .. blend_rgb(
+                get_hi_group_bg("Normal"),
+                get_hi_group_fg("DiagnosticVirtualText" .. diagnostic_type),
+                0.1
+            )
     )
 end

@@ -294,7 +294,7 @@ require("packer").startup({
                 end,
             },
             -- { "nvim-lualine/lualine.nvim" },
-            { "noib3/nvim-cokeline" },
+            { "willothy/nvim-cokeline" },
             {
                 "rebelot/heirline.nvim",
                 config = function()
