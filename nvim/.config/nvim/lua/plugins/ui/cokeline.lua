@@ -73,18 +73,31 @@ local components = {
     },
     filename_root = {
         text = function(buffer)
-            return vim.fn.fnamemodify(buffer.filename, ":r")
+            -- If file name is init.lua, return the file's parent directory name + file name
+            local filename = vim.fn.fnamemodify(buffer.filename, ":r")
+            if buffer.filename == "init.lua" then
+                -- Get name of directory immediately above init.lua
+                local parent_dir = vim.fn.fnamemodify(buffer.path, ":h:t")
+                filename = parent_dir .. "/" .. filename
+            end
+            return filename
         end,
         fg = function(buffer)
-            return (buffer.diagnostics.errors ~= 0 and errors_fg)
-                or (buffer.diagnostics.warnings ~= 0 and warnings_fg)
+            return (
+                buffer.diagnostics.errors ~= 0
+                and get_hex("DiagnosticError", "fg")
+            )
+                or (buffer.diagnostics.warnings ~= 0 and get_hex(
+                    "DiagnosticWarn",
+                    "fg"
+                ))
                 or nil
         end,
         style = function(buffer)
             return (
                 (buffer.is_focused and buffer.diagnostics.errors ~= 0)
                 and "bold,underline"
-                )
+            )
                 or (buffer.is_focused and "bold")
                 or (buffer.diagnostics.errors ~= 0 and "underline")
                 or nil
@@ -108,7 +121,7 @@ local components = {
             return (
                 (buffer.is_focused and buffer.diagnostics.errors ~= 0)
                 and "bold,underline"
-                )
+            )
                 or (buffer.is_focused and "bold")
                 or (buffer.diagnostics.errors ~= 0 and "underline")
                 or nil
@@ -134,10 +147,10 @@ local get_remaining_space = function(buffer)
         used_space = used_space
             + vim.fn.strwidth(
                 (type(component.text) == "string" and component.text)
-                or (
-                type(component.text) == "function"
-                and component.text(buffer)
-                )
+                    or (
+                        type(component.text) == "function"
+                        and component.text(buffer)
+                    )
             )
     end
     return math.max(0, min_buffer_width - used_space)
@@ -160,7 +173,7 @@ local right_padding = {
 require("cokeline").setup({
     show_if_buffers_are_at_least = 1,
     buffers = {
-        focus_on_delete = "prev",      -- 'prev' | 'next',
+        focus_on_delete = "prev", -- 'prev' | 'next',
         new_buffers_position = "last", -- 'last' | 'next',
     },
     mappings = {
