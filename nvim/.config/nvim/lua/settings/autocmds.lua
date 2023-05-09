@@ -20,8 +20,12 @@ augroup nvim
     " Show cursorline only in current window
     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
     au WinLeave * setlocal nocursorline
+
+    au BufRead,BufNewFile *.flex,*.jflex set filetype=jflex
+    au Syntax jflex so ~/.config/nvim/after/syntax/jflex.vim
+
 augroup END
-]]   ,
+]],
     false
 )
 
