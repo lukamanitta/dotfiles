@@ -21,8 +21,8 @@ augroup nvim
     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
     au WinLeave * setlocal nocursorline
 
-    au BufRead,BufNewFile *.flex,*.jflex set filetype=jflex
-    au Syntax jflex so ~/.config/nvim/after/syntax/jflex.vim
+    " au BufRead,BufNewFile *.flex,*.jflex set filetype=jflex
+    " au Syntax jflex so ~/.config/nvim/after/syntax/jflex.vim
 
 augroup END
 ]],
