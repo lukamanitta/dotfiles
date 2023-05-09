@@ -18,6 +18,7 @@ eval "$(starship init zsh)"
 ZSH_DISABLE_COMPFIX=true
 
 # source ~/.asdf/plugins/java/set-java-home.zsh
+source ~/.asdf/plugins/ant/set-ant-home.zsh
 
 #Syntax highlighting settings
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
