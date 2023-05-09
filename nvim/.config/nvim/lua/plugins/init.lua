@@ -277,7 +277,7 @@ require("packer").startup({
                     require("plugins.flutter-tools")
                 end,
             },
-            { "vim-scripts/cup.vim" },
+            -- { "vim-scripts/cup.vim" },
             -- { "terrastruct/d2-vim" },
 
             -- UI
