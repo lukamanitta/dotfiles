@@ -41,6 +41,7 @@ echo "Stowing dotfiles..."
 
 stow stow && echo "  STOWED: stow"
 stow nvim && echo "  STOWED: nvim"
+stow kakoune && echo " STOWED: kakoune"
 stow bash && echo "  STOWED: bash"
 stow starship && echo "  STOWED: starship"
 stow zsh && echo "  STOWED: zsh"

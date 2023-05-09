@@ -1,0 +1,20 @@
+
+# Relative line numbers
+hook global BufCreate .* %[
+    add-highlighter buffer/ number-lines -relative -hlcursor
+    add-highlighter buffer/ wrap
+]
+
+# indentation
+set-option global tabstop     4
+set-option global indentwidth 4
+
+# tabs to spaces
+hook global InsertChar \t %{
+    exec -draft h@
+}
+
+hook global InsertChar k %{ try %{
+    exec -draft hH <a-k>jk<ret> d
+    exec <esc>
+}}
