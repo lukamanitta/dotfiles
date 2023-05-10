@@ -1,6 +1,4 @@
 local wezterm = require("wezterm")
-local osPathSep = package.config:sub(1, 1)
-local onWindows = osPathSep == "\\"
 local cfg = {
     --General--
 
@@ -32,6 +30,7 @@ local cfg = {
         "~/dotfiles/fonts/JetBrainsMono", -- JetBrainsMono Nerd Font
         "~/dotfiles/fonts/OperatorMono",  -- OperatorMono Nerd Font
         "~/dotfiles/fonts/Liga SFMono",   -- SFMono Nerd Font
+        "~/dotfiles/fonts/Terminess",     -- Terminess (Terminus) Nerd Font
     },
     -- font = wezterm.font("OperatorMono Nerd Font", { weight = "Book" }),
     font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }),
@@ -148,10 +147,6 @@ local cfg = {
         },
     },
 }
-
-if onWindows then
-    cfg.default_prog = { "wsl", "~" } --Start linux subsystem and go to linux home dir
-end
 
 -- Tab switching keys (saves repeating essentially the same keybinding 10 times)
 for tabNum = 1, 9 do
@@ -610,7 +605,7 @@ cfg.colors.tab_bar = {
         bg_color = tab_bar_bg,
         fg_color = cfg.colors.brights[1],
         intensity = "Normal", -- Half | Normal | Bold
-        underline = "None",   -- None | Single | Double
+        underline = "None", -- None | Single | Double
         italic = true,
         strikethrough = false,
     },
@@ -618,7 +613,7 @@ cfg.colors.tab_bar = {
         bg_color = tab_bar_bg,
         fg_color = cfg.colors.foreground,
         intensity = "Normal", -- Half | Normal | Bold
-        underline = "None",   -- None | Single | Double
+        underline = "None", -- None | Single | Double
         italic = true,
         strikethrough = false,
     },
