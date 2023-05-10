@@ -1,3 +1,4 @@
+# !! try to keep this minimal please
 
 # Relative line numbers
 hook global BufCreate .* %[
@@ -9,11 +10,15 @@ hook global BufCreate .* %[
 set-option global tabstop     4
 set-option global indentwidth 4
 
+# scrolloff
+set-option global scrolloff   6,0
+
 # tabs to spaces
 hook global InsertChar \t %{
     exec -draft h@
 }
 
+# jk to exit insert mode
 hook global InsertChar k %{ try %{
     exec -draft hH <a-k>jk<ret> d
     exec <esc>
