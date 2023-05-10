@@ -1,5 +1,7 @@
 # !! try to keep this minimal please
 
+colorscheme kanagawa
+
 # Relative line numbers
 hook global BufCreate .* %[
     add-highlighter buffer/ number-lines -relative -hlcursor
@@ -11,7 +13,7 @@ set-option global tabstop     4
 set-option global indentwidth 4
 
 # scrolloff
-set-option global scrolloff   6,0
+set-option global scrolloff   6,4
 
 # tabs to spaces
 hook global InsertChar \t %{
