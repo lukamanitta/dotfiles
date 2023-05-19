@@ -2,7 +2,12 @@
 
 colorscheme kanagawa
 
-# Relative line numbers
+# windowing !not working
+hook global ModuleLoaded x11 %{
+    set-option global termcmd 'wezterm cli split-pane -- sh -c'
+}
+
+# relative line numbers
 hook global BufCreate .* %[
     add-highlighter buffer/ number-lines -relative -hlcursor
     add-highlighter buffer/ wrap
@@ -25,3 +30,9 @@ hook global InsertChar k %{ try %{
     exec -draft hH <a-k>jk<ret> d
     exec <esc>
 }}
+
+# kak-lsp
+eval %sh{kak-lsp --config ~/.config/kak/kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=(rust|python|javascript|typescript) %{
+    lsp-enable-window
+}
