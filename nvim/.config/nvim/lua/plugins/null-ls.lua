@@ -56,10 +56,10 @@ null_ls.setup({
         }),
 
         -- Python
-        null_ls.builtins.diagnostics.pylint.with({
-            -- Remove docstring checks
-            extra_args = { "--disable=C0114,C0115,C0116" },
-        }),
+        -- null_ls.builtins.diagnostics.pylint.with({
+        --     -- Remove docstring checks
+        --     extra_args = { "--disable=C0114,C0115,C0116" },
+        -- }),
 
         null_ls.builtins.formatting.black,
 
