@@ -32,7 +32,7 @@ hook global InsertChar k %{ try %{
 }}
 
 # kak-lsp
-eval %sh{kak-lsp --config ~/.config/kak/kak-lsp --kakoune -s $kak_session}
+eval %sh{kak-lsp --config "$HOME"/.config/kak/kak-lsp/kak-lsp.toml --kakoune -s $kak_session}
 hook global WinSetOption filetype=(rust|python|javascript|typescript) %{
     lsp-enable-window
 }
