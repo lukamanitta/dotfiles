@@ -211,15 +211,15 @@ require("packer").startup({
                     require("plugins.null-ls")
                 end,
             },
-            {
-                "L3MON4D3/luasnip",
-                config = function()
-                    require("plugins.luasnip")
-                end,
-                requires = {
-                    "rafamadriz/friendly-snippets",
-                },
-            },
+            -- {
+            --     "L3MON4D3/luasnip",
+            --     config = function()
+            --         require("plugins.luasnip")
+            --     end,
+            --     requires = {
+            --         "rafamadriz/friendly-snippets",
+            --     },
+            -- },
             {
                 "danymat/neogen",
                 config = function()
@@ -273,6 +273,7 @@ require("packer").startup({
             { "benknoble/vim-dafny" },
             {
                 "akinsho/flutter-tools.nvim",
+                filetypes = { "dart" },
                 config = function()
                     require("plugins.flutter-tools")
                 end,
@@ -433,27 +434,27 @@ require("packer").startup({
                     require("plugins.todo")
                 end,
             },
-            {
-                "ja-ford/delaytrain.nvim",
-                config = function()
-                    require("delaytrain").setup({
-                        grace_period = 3,
-                        delay_ms = 1000,
-                        ignore_filetypes = {
-                            "TelescopePrompt",
-                            "packer",
-                            "lspinfo",
-                            "Trouble",
-                            "lsp-installer",
-                            "neo-tree",
-                            "neo-tree-popup",
-                            "mason",
-                            "help",
-                            "yaml",
-                        },
-                    })
-                end,
-            },
+            -- {
+            --     "ja-ford/delaytrain.nvim",
+            --     config = function()
+            --         require("delaytrain").setup({
+            --             grace_period = 3,
+            --             delay_ms = 1000,
+            --             ignore_filetypes = {
+            --                 "TelescopePrompt",
+            --                 "packer",
+            --                 "lspinfo",
+            --                 "Trouble",
+            --                 "lsp-installer",
+            --                 "neo-tree",
+            --                 "neo-tree-popup",
+            --                 "mason",
+            --                 "help",
+            --                 "yaml",
+            --             },
+            --         })
+            --     end,
+            -- },
             -- { "Almo7aya/openingh.nvim" },
 
             -- Markdown
