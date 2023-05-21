@@ -35,7 +35,7 @@ local cfg = {
     -- font = wezterm.font("OperatorMono Nerd Font", { weight = "Book" }),
     font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }),
     font_size = 13,
-    line_height = 1.25,
+    line_height = 1.2,
     underline_thickness = 2,
     underline_position = -5.0,
     harfbuzz_features = { "clig=1" },
