@@ -36,3 +36,7 @@ eval %sh{kak-lsp --config "$HOME"/.config/kak/kak-lsp/kak-lsp.toml --kakoune -s 
 hook global WinSetOption filetype=(rust|python|javascript|typescript) %{
     lsp-enable-window
 }
+
+# wezterm.kak
+wezterm-integration-enable
+set-option global wezterm_terminal_default wezterm-terminal-horizontal
