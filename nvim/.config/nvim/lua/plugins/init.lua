@@ -282,12 +282,6 @@ require("packer").startup({
             -- { "terrastruct/d2-vim" },
 
             -- UI
-            -- {
-            --     "folke/noice.nvim",
-            --     config = function()
-            --         require("plugins.ui.noice")
-            --     end,
-            -- },
             { "kyazdani42/nvim-web-devicons" },
             {
                 "DaikyXendo/nvim-material-icon",
@@ -295,7 +289,6 @@ require("packer").startup({
                     require("plugins.ui.material_icon")
                 end,
             },
-            -- { "nvim-lualine/lualine.nvim" },
             { "willothy/nvim-cokeline" },
             {
                 "rebelot/heirline.nvim",
@@ -326,12 +319,6 @@ require("packer").startup({
                 "xiyaowong/nvim-cursorword",
                 config = function()
                     require("plugins.ui.cursorword")
-                end,
-            },
-            {
-                "SmiteshP/nvim-gps",
-                config = function()
-                    require("plugins.statusline.gps")
                 end,
             },
             {
