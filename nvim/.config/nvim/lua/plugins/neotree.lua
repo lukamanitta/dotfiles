@@ -22,7 +22,6 @@ neotree.setup({
         container = {
             enable_character_fade = true,
         },
-
         indent = {
             indent_size = 2,
             padding = 1, -- extra padding on left hand side
@@ -37,7 +36,6 @@ neotree.setup({
             expander_expanded = "",
             expander_highlight = "NeoTreeExpander",
         },
-
         icon = {
             folder_closed = filesystem_icons.Folder,
             folder_open = filesystem_icons.FolderOpen,
@@ -45,18 +43,15 @@ neotree.setup({
             default = filesystem_icons.File,
             highlight = "NeoTreeFileIcon",
         },
-
         name = {
             trailing_slash = false,
             use_git_status_colors = true,
             highlight = "NeoTreeFileName",
         },
-
         modified = {
             symbol = general_icons.CircleSmall,
             highlight = "NeoTreeModified",
         },
-
         git_status = {
             symbols = {
                 -- Change type
@@ -135,7 +130,6 @@ neotree.setup({
                 --"thumbs.db"
             },
         },
-
         follow_current_file = true, -- This will find and focus the file in the active buffer every
         -- time the current file is changed while the tree is open.
         group_empty_dirs = false,
@@ -219,23 +213,25 @@ cmd(
     .. float_blend
 )
 
-local remove_hl_bg = require("utils.color.hl_groups").remove_hl_bg
-local hl_to_remove_bg = {
-    "NeoTreePreview",
-    "NeoTreeGitAdded",
-    "NeoTreeGitModified",
-    "NeoTreeGitDeleted",
-    "NeoTreeGitRenamed",
-    "NeoTreeSignColumn",
-    "NeoTreeVertSplit",
-    "NeoTreeFloatBorder",
-    "NeoTreeFloatNormal",
-    "NeoTreeNormalNC",
-    "NeoTreeFileName",
-}
+if require("settings.globals").transparent_bg then
+    local remove_hl_bg = require("utils.color.hl_groups").remove_hl_bg
+    local hl_to_remove_bg = {
+        "NeoTreePreview",
+        "NeoTreeGitAdded",
+        "NeoTreeGitModified",
+        "NeoTreeGitDeleted",
+        "NeoTreeGitRenamed",
+        "NeoTreeSignColumn",
+        "NeoTreeVertSplit",
+        "NeoTreeFloatBorder",
+        "NeoTreeFloatNormal",
+        "NeoTreeNormalNC",
+        "NeoTreeFileName",
+    }
 
-for _, hl in ipairs(hl_to_remove_bg) do
-    remove_hl_bg(hl)
+    for _, hl in ipairs(hl_to_remove_bg) do
+        remove_hl_bg(hl)
+    end
 end
 
 -- For colourschemes that support NvimTree but not NeoTree
