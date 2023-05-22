@@ -32,13 +32,13 @@ require("packer").startup({
                     require("runvim").setup()
                 end,
             },
-            {
-                local_plug_dir("lsp_lines.nvim"),
-                config = function()
-                    require("lsp_lines").setup()
-                end,
-                after = "nvim-lspconfig",
-            },
+            -- {
+            --     local_plug_dir("lsp_lines.nvim"),
+            --     config = function()
+            --         require("lsp_lines").setup()
+            --     end,
+            --     after = "nvim-lspconfig",
+            -- },
             {
                 local_plug_dir("branchsession.nvim"),
                 config = function()
@@ -120,19 +120,6 @@ require("packer").startup({
                     -- "yioneko/nvim-yati", -- re-enable if I notice issues
                 },
             },
-            {
-                "CKolkey/ts-node-action",
-                dependencies = { "nvim-treesitter" },
-                config = function()
-                    require("ts-node-action").setup()
-                    vim.keymap.set(
-                        { "n" },
-                        "<leader>n",
-                        require("ts-node-action").node_action,
-                        { desc = "Trigger Node Action" }
-                    )
-                end,
-            },
 
             -- Lsp & Completions
             {
@@ -144,6 +131,7 @@ require("packer").startup({
                     })
                 end,
             },
+            -- TODO: Minimise this
             {
                 "WhoIsSethDaniel/mason-tool-installer.nvim",
                 config = function()
@@ -204,6 +192,7 @@ require("packer").startup({
                 config = function()
                     require("lsp.trouble")
                 end,
+                cmd = { "TroubleToggle", "Trouble" },
             },
             {
                 "jose-elias-alvarez/null-ls.nvim",
@@ -228,6 +217,7 @@ require("packer").startup({
                 requires = {
                     "L3MON4D3/luasnip",
                 },
+                cmd = { "Neogen" },
             },
             {
                 "hrsh7th/nvim-cmp",
@@ -258,19 +248,8 @@ require("packer").startup({
                     vim.g.copilot_filetypes = { rust = false }
                 end,
             },
-            -- {
-            --     "zbirenbaum/copilot.lua",
-            --     event = "VimEnter",
-            --     config = function()
-            --         vim.defer_fn(function()
-            --             require("copilot").setup()
-            --         end, 100)
-            --     end,
-            -- },
 
             -- Language specific
-            -- { "styled-components/vim-styled-components" },
-            { "benknoble/vim-dafny" },
             {
                 "akinsho/flutter-tools.nvim",
                 filetypes = { "dart" },
@@ -339,12 +318,13 @@ require("packer").startup({
                     require("plugins.ui.fidget")
                 end,
             },
-            {
-                "stevearc/dressing.nvim",
-                config = function()
-                    require("plugins.ui.dressing")
-                end,
-            },
+            -- TODO: see if i actually need this for anything
+            -- {
+            --     "stevearc/dressing.nvim",
+            --     config = function()
+            --         require("plugins.ui.dressing")
+            --     end,
+            -- },
             {
                 "nvim-treesitter/nvim-treesitter-context",
                 config = function()
@@ -421,30 +401,9 @@ require("packer").startup({
                     require("plugins.todo")
                 end,
             },
-            -- {
-            --     "ja-ford/delaytrain.nvim",
-            --     config = function()
-            --         require("delaytrain").setup({
-            --             grace_period = 3,
-            --             delay_ms = 1000,
-            --             ignore_filetypes = {
-            --                 "TelescopePrompt",
-            --                 "packer",
-            --                 "lspinfo",
-            --                 "Trouble",
-            --                 "lsp-installer",
-            --                 "neo-tree",
-            --                 "neo-tree-popup",
-            --                 "mason",
-            --                 "help",
-            --                 "yaml",
-            --             },
-            --         })
-            --     end,
-            -- },
-            -- { "Almo7aya/openingh.nvim" },
 
             -- Markdown
+            -- TODO: maybe don't need all of these
             {
                 "preservim/vim-markdown",
                 requires = "godlygeek/tabular",
@@ -481,13 +440,6 @@ require("packer").startup({
                     require("plugins.markdown.mkdnflow")
                 end,
             },
-            -- {
-            --     "Pocco81/TrueZen.nvim",
-            --     ft = { "markdown" },
-            --     config = function()
-            --         require("plugins.ui.truezen")
-            --     end,
-            -- },
             {
                 "dhruvasagar/vim-table-mode",
                 config = function()
