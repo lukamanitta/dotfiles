@@ -1,4 +1,5 @@
 local get_hex = require("cokeline.utils").get_hex
+local blend_rgb = require("utils.color").blend_rgb
 -- local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
 
 vim.cmd("hi! TablineFill guibg=" .. get_hex("Normal", "bg"))
@@ -6,23 +7,35 @@ vim.cmd("hi! Tabline guibg=" .. get_hex("Normal", "bg"))
 
 local general_icons = require("assets.icons").general
 
--- local background = get_hex("Normal", "bg")
--- local errors_fg = get_hex("DiagnosticError", "fg")
--- local warnings_fg = get_hex("DiagnosticWarn", "fg")
+local buffer_diagnostic_blend = 0.2
 
--- local focused_tab_brightness_diff = 0.55
--- if vim.o.background == "light" then
---     focused_tab_brightness_diff = -0.07
--- end
--- local unfocused_tab_brightness_diff = -0.35
--- if vim.o.background == "light" then
---     unfocused_tab_brightness_diff = -0.2
--- end
-
--- local get_hex("BarHighlight", "bg") =
--- multiply_hex_brightness(background, focused_tab_brightness_diff)
--- local get_hex("BarBackground", "bg") =
--- multiply_hex_brightness(background, unfocused_tab_brightness_diff)
+local buffer_bg_func = function(buffer)
+    local diag_status_colour = buffer.diagnostics.errors ~= 0
+        and get_hex("DiagnosticError", "fg")
+        or buffer.diagnostics.warnings ~= 0 and get_hex("DiagnosticWarn", "fg")
+        or nil
+    if buffer.is_focused then
+        if diag_status_colour then
+            return blend_rgb(
+                get_hex("BarHighlight", "bg"),
+                diag_status_colour,
+                buffer_diagnostic_blend
+            )
+        else
+            return get_hex("BarHighlight", "bg")
+        end
+    else
+        if diag_status_colour then
+            return blend_rgb(
+                get_hex("BarBackground", "bg"),
+                diag_status_colour,
+                buffer_diagnostic_blend
+            )
+        else
+            return get_hex("BarBackground", "bg")
+        end
+    end
+end
 
 local components = {
     separator = {
@@ -36,13 +49,7 @@ local components = {
     },
     left_half_circle = {
         text = "",
-        fg = function(buffer)
-            if buffer.is_focused then
-                return get_hex("BarHighlight", "bg")
-            else
-                return get_hex("BarBackground", "bg")
-            end
-        end,
+        fg = buffer_bg_func,
         bg = get_hex("StableNormal", "bg"),
         truncation = {
             priority = 1,
@@ -50,13 +57,7 @@ local components = {
     },
     right_half_circle = {
         text = "",
-        fg = function(buffer)
-            if buffer.is_focused then
-                return get_hex("BarHighlight", "bg")
-            else
-                return get_hex("BarBackground", "bg")
-            end
-        end,
+        fg = buffer_bg_func,
         bg = get_hex("StableNormal", "bg"),
         truncation = {
             priority = 1,
@@ -83,24 +84,10 @@ local components = {
             return filename
         end,
         fg = function(buffer)
-            return (
-                buffer.diagnostics.errors ~= 0
-                and get_hex("DiagnosticError", "fg")
-            )
-                or (buffer.diagnostics.warnings ~= 0 and get_hex(
-                    "DiagnosticWarn",
-                    "fg"
-                ))
-                or nil
+            return nil
         end,
         style = function(buffer)
-            return (
-                (buffer.is_focused and buffer.diagnostics.errors ~= 0)
-                and "bold,underline"
-            )
-                or (buffer.is_focused and "bold")
-                or (buffer.diagnostics.errors ~= 0 and "underline")
-                or nil
+            return buffer.is_focused and "bold"
         end,
         truncation = {
             priority = 3,
@@ -113,18 +100,10 @@ local components = {
             return ext ~= "" and "." .. ext or ""
         end,
         fg = function(buffer)
-            return (buffer.diagnostics.errors ~= 0 and errors_fg)
-                or (buffer.diagnostics.warnings ~= 0 and warnings_fg)
-                or nil
+            return nil
         end,
         style = function(buffer)
-            return (
-                (buffer.is_focused and buffer.diagnostics.errors ~= 0)
-                and "bold,underline"
-            )
-                or (buffer.is_focused and "bold")
-                or (buffer.diagnostics.errors ~= 0 and "underline")
-                or nil
+            return buffer.is_focused and "bold"
         end,
         truncation = {
             priority = 2,
@@ -147,10 +126,10 @@ local get_remaining_space = function(buffer)
         used_space = used_space
             + vim.fn.strwidth(
                 (type(component.text) == "string" and component.text)
-                    or (
-                        type(component.text) == "function"
-                        and component.text(buffer)
-                    )
+                or (
+                type(component.text) == "function"
+                and component.text(buffer)
+                )
             )
     end
     return math.max(0, min_buffer_width - used_space)
@@ -173,7 +152,7 @@ local right_padding = {
 require("cokeline").setup({
     show_if_buffers_are_at_least = 1,
     buffers = {
-        focus_on_delete = "prev", -- 'prev' | 'next',
+        focus_on_delete = "prev",      -- 'prev' | 'next',
         new_buffers_position = "last", -- 'last' | 'next',
     },
     mappings = {
@@ -198,13 +177,7 @@ require("cokeline").setup({
             return buffer.is_focused and get_hex("StableNormal", "fg")
                 or get_hex("Comment", "fg")
         end,
-        bg = function(buffer)
-            if buffer.is_focused then
-                return get_hex("BarHighlight", "bg")
-            else
-                return get_hex("BarBackground", "bg")
-            end
-        end,
+        bg = buffer_bg_func,
     },
     -- A list of components to be rendered for each buffer
     components = {
