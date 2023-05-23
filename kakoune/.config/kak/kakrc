@@ -7,11 +7,9 @@ hook global ModuleLoaded x11 %{
     set-option global termcmd 'wezterm cli split-pane -- sh -c'
 }
 
-# relative line numbers
-hook global BufCreate .* %[
-    add-highlighter buffer/ number-lines -relative -hlcursor
-    add-highlighter buffer/ wrap
-]
+add-highlighter global/ number-lines -relative -hlcursor -separator "  " -cursor-separator " |" -min-digits 3 
+add-highlighter global/ wrap
+add-highlighter global/ show-matching
 
 # indentation
 set-option global tabstop     4
@@ -19,6 +17,9 @@ set-option global indentwidth 4
 
 # scrolloff
 set-option global scrolloff   6,4
+
+# comment lines bind
+map global normal "#" ":comment-line<ret>"
 
 # tabs to spaces
 hook global InsertChar \t %{
@@ -33,7 +34,14 @@ hook global InsertChar k %{ try %{
 
 # kak-lsp
 eval %sh{kak-lsp --config "$HOME"/.config/kak/kak-lsp/kak-lsp.toml --kakoune -s $kak_session}
-hook global WinSetOption filetype=(rust|python|javascript|typescript) %{
+#   filetype-specific config
+hook global WinSetOption filetype=(javascript|typescript|javascriptreact|typescriptreact) %{
+    lsp-enable-window
+}
+hook global WinSetOption filetype=python %{
+    lsp-enable-window
+}
+hook global BufSetOption filetype=rust %{
     lsp-enable-window
 }
 
