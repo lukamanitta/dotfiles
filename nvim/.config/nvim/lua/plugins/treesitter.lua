@@ -1,10 +1,9 @@
 require("nvim-treesitter.configs").setup({
     -- ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     disable = { "pseudo", "dafny" },
-
     highlight = {
         enable = true,
-        disable = { "markdown" },
+        disable = { "markdown", "haskell" },
     },
     indent = {
         enable = false,
