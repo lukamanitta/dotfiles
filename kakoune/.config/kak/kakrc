@@ -2,14 +2,13 @@
 
 colorscheme kanagawa
 
-# windowing !not working
-hook global ModuleLoaded x11 %{
-    set-option global termcmd 'wezterm cli split-pane -- sh -c'
-}
-
-add-highlighter global/ number-lines -relative -hlcursor -separator "  " -cursor-separator " |" -min-digits 3 
+add-highlighter global/ number-lines -relative -hlcursor -separator "   " -cursor-separator "  " -min-digits 3 
 add-highlighter global/ wrap
 add-highlighter global/ show-matching
+
+# modeline
+# use set-option -add global modelinefmt
+# Maybe bubble style like neovim
 
 # indentation
 set-option global tabstop     4
