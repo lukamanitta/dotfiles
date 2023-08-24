@@ -350,6 +350,14 @@ require("packer").startup({
             },
             { "ellisonleao/gruvbox.nvim" },
             { "AlexvZyl/nordic.nvim" },
+            {
+                "jesseleite/nvim-noirbuddy",
+                requires = {
+                    "tjdevries/colorbuddy.nvim",
+                    branch = "dev",
+                },
+            },
+
             -- Debugging
 
             -- {
