@@ -1,23 +1,21 @@
-# Kanagawa theme for Kakoune
-
 # Color palette
-# declare-option str black 'rgb:0a0e14'
 declare-option str black default
-declare-option str dark 'rgb:090618'
-declare-option str gray 'rgb:727169'
-declare-option str aqua 'rgb:6A9589'
-declare-option str white 'rgb:DCD7BA'
-declare-option str blue 'rgb:7E9CD8'
+declare-option str dark 'rgb:{{hex:regular.black}}'
+declare-option str red 'rgb:{{hex:regular.red}}'
+declare-option str green 'rgb:{{hex:bright.green}}'
+
+declare-option str gray 'rgb:{{hex:bright.black}}'
+declare-option str aqua 'rgb:{{hex:regular.cyan}}'
+declare-option str white 'rgb:{{hex:bright.white}}'
+declare-option str blue 'rgb:{{hex:regular.blue}}'
 declare-option str cyan 'rgb:7FB4CA'
-declare-option str blue_green 'rgb:7AA89F'
-declare-option str green 'rgb:98BB6C'
+declare-option str blue_green 'rgb:{{hex:bright.cyan}}'
 declare-option str light_orange 'rgb:DCA561'
 declare-option str orange 'rgb:FFA066'
 declare-option str pink 'rgb:D27E99'
 declare-option str purple 'rgb:957fb8'
-declare-option str red 'rgb:C34043'
-declare-option str yellow 'rgb:E6C384'
-declare-option str lime 'rgb:C0A36E'
+declare-option str yellow 'rgb:{{hex:bright.yellow}}'
+declare-option str lime 'rgb:{{hex:regular.yellow}}'
 declare-option str psel 'rgba:2D4F6780'
 declare-option str ssel 'rgba:22324980'
 declare-option str dimgray 'rgb:54546D'
@@ -30,18 +28,18 @@ declare-option str foreground %opt{white}
 # https://github.com/mawww/kakoune/blob/master/colors/default.kak
 # For code
 set-face global value "%opt{yellow}"
-set-face global type "%opt{cyan}+i"
+set-face global type "%opt{cyan}"
 set-face global variable "%opt{yellow}"
 set-face global module "%opt{white}"
-set-face global function "%opt{blue}+b"
+set-face global function "%opt{blue}"
 set-face global string "%opt{green}"
-set-face global keyword "%opt{purple}+b"
+set-face global keyword "%opt{purple}"
 set-face global operator "%opt{lime}"
 set-face global attribute "%opt{blue_green}"
 set-face global bracket "%opt{white}+b"
-set-face global argument "%opt{light_orange}"
+set-face global arguement "%opt{light_orange}"
 set-face global comma "%opt{white}"
-set-face global constant "%opt{orange}+b"
+set-face global constant "%opt{blue_green}+b"
 set-face global class "%opt{pink}"
 set-face global comment "%opt{gray}+i"
 set-face global meta "%opt{aqua}"

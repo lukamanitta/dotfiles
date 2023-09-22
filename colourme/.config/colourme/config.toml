@@ -1,0 +1,3 @@
+[wezterm]
+template = "~/.config/colourme/templates/wezterm.colours"
+destination = "~/.config/wezterm/colors/Luka.toml"

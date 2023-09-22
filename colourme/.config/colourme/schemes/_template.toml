@@ -1,0 +1,29 @@
+[colours]
+background =   "#"
+foreground =   "#"
+
+cursor_bg =    "#"
+cursor_fg =    "#"
+
+selection_bg = "#"
+selection_fg = "#"
+
+[colours.regular]
+black =   "#"
+red =     "#"
+green =   "#"
+yellow =  "#"
+blue =    "#"
+magenta = "#"
+cyan =    "#"
+white =   "#"
+
+[colours.bright]
+black =   "#"
+red =     "#"
+green =   "#"
+yellow =  "#"
+blue =    "#"
+magenta = "#"
+cyan =    "#"
+white =   "#"

@@ -1,5 +1,0 @@
-# export NOTES_DIR="path/to/notes/folder"
-# export ZK_NOTEBOOK_DIR=$NOTES_DIR
-
-# tokyonight_{night, day, storm}, ayu_{light, dark, mirage}, kanagawa
-# export COLOURSCHEME="colourscheme"

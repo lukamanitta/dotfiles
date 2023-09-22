@@ -79,6 +79,9 @@ use_12hr = true
 
 [directory]
 read_only = " "
+truncation_length = 3
+truncate_to_repo = true
+fish_style_pwd_dir_length = 1
 
 [git_branch]
 symbol = " "

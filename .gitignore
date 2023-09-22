@@ -1,4 +1,2 @@
-nvim/.config/nvim/plugin/packer_compiled.lua
-utils/vim.log
 lazygit/.config/lazygit/**/*.patch
 lazygit/.config/lazygit/state.yml

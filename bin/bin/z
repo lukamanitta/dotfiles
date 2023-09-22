@@ -1,4 +1,0 @@
-#!/bin/bash
-# Automatically run ls after z-ing if less than 20 files
-
-z "$1" && if (( $(find . | wc -l) < 20 )); then ls; fi

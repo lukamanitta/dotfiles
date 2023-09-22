@@ -1,4 +1,0 @@
-[ZoneTransfer]
-ZoneId=3
-ReferrerUrl=https://github.com/Peltoche/lsd/releases
-HostUrl=https://github-releases.githubusercontent.com/158927812/f61b7480-7f14-11eb-8372-3818d2326f52?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20211119%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20211119T115729Z&X-Amz-Expires=300&X-Amz-Signature=76951e95062457b81fd807ad7ca6b67355bddd5e9254d1e286af45b04160ac4d&X-Amz-SignedHeaders=host&actor_id=43409006&key_id=0&repo_id=158927812&response-content-disposition=attachment%3B%20filename%3Dlsd_0.20.1_amd64.deb&response-content-type=application%2Foctet-stream

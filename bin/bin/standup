@@ -1,9 +1,0 @@
-#!/bin/bash
-# Open a file containing standup meeting entries
-
-if [ ! -f ~/.standup ]; then
-    touch ~/.standup
-    echo --- >> ~/.standup
-fi
-sed -i "" "1s/^/---\n$(date +'%Y %b %m')\n\n/" ~/.standup
-$EDITOR ~/.standup -c ":normal ggjj" +startinsert

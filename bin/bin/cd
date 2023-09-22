@@ -1,4 +1,0 @@
-#!/bin/bash
-# Automatically run ls after cding if less than 20 files
-
-builtin cd "$@" && if (( $(find . | wc -l) < 20 )); then ls; fi

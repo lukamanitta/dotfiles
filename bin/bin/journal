@@ -1,0 +1,13 @@
+#!/usr/bin/env fish
+# Prepend a journal entry to the given file (creating if doesn't exist)
+
+set JOURNAL_FILE $argv[1]
+
+if test ! -f $JOURNAL_FILE
+    echo "---" > $JOURNAL_FILE
+end
+
+sed -i.backup "1s/^/---\n$(date +'%Y-%m-%d')\n\n/" $JOURNAL_FILE
+rm "$JOURNAL_FILE.backup"
+
+$EDITOR $JOURNAL_FILE

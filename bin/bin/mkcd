@@ -1,5 +1,0 @@
-#!/bin/bash
-# Make a new directory and cd into it (works with subdirectories, but not symlinks)
-
-case "$1" in /*) :;; *) set -- "./$1";; esac
-mkdir -p "$1" && cd "$1" || exit

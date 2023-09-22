@@ -1,0 +1,88 @@
+[colors]
+ansi = [
+    "#{{hex:regular.black}}", # Black
+    "#{{hex:regular.red}", # Red
+    "#{{hex:regular.green}}", # Green
+    "#{{hex:regular.yellow}}", # Yellow
+    "#{{hex:regular.blue}}", # Blue
+    "#{{hex:regular.magenta}}", # Magenta
+    "#{{hex:regular.cyan}}", # Cyan
+    "#{{hex:regular.white}}", # White
+]
+
+brights = [
+    "#{{hex:bright.black}}", # Black
+    "#{{hex:bright.red}}", # Red
+    "#{{hex:bright.green}}", # Green
+    "#{{hex:bright.yellow}}", # Yellow
+    "#{{hex:bright.blue}}", # Blue
+    "#{{hex:bright.magenta}}", # Magenta
+    "#{{hex:bright.cyan}}", # Cyan
+    "#{{hex:bright.white}}", # White
+]
+
+background = "#{{hex:background}}"
+foreground = "#{{hex:foreground}}"
+
+cursor_bg = "#{{hex:cursor_bg || hex:foreground}}"
+cursor_fg = "#{{hex:cursor_fg || hex:background}}"
+cursor_border = "#{{hex:cursor_bg || hex:foreground}}"
+
+scrollbar_thumb = "#{{hex:regular.black}}"
+
+selection_bg = "#{{hex:selection_bg || hex:darken(cursor_fg, 0.2) || hex:foreground}}"
+selection_fg = "#{{hex:selection_fg || hex:cursor_bg || hex:background}}"
+
+split = "#{{hex:regular.black}}"
+visual_bell = "#{{hex:regular.black}}"
+
+[colors.indexed]
+
+[colors.tab_bar]
+background = "#{{hex:background}}"
+inactive_tab_edge = "#{{hex:background}}"
+
+[colors.tab_bar.active_tab]
+bg_color = "#{{hex:background}}"
+fg_color = "#{{hex:foreground}}"
+
+intensity = "Bold"      # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = false
+strikethrough = false
+
+[colors.tab_bar.inactive_tab]
+bg_color = "#{{hex:background}}"
+fg_color = "#{{hex:bright.black}}"
+
+intensity = "Normal"    # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = true
+strikethrough = false
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color = "#{{hex:background}}"
+fg_color = "#{{hex:foreground}}"
+
+intensity = "Normal"    # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = true
+strikethrough = false
+
+[colors.tab_bar.new_tab]
+bg_color = "#{{hex:background}}"
+fg_color = "#{{hex:bright.black}}"
+
+intensity = "Normal"    # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = false
+strikethrough = false
+
+[colors.tab_bar.new_tab_hover]
+bg_color = "#{{hex:background}}"
+fg_color = "#{{hex:foreground}}"
+
+intensity = "Normal"    # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = false
+strikethrough = false

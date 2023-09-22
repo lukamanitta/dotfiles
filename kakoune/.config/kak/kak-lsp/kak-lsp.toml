@@ -63,8 +63,8 @@ command = "dls"
 # start shell to find path to dart analysis server source
 filetypes = ["dart"]
 roots = ["pubspec.yaml", ".git", ".hg"]
-command = "sh"
-args = ["-c", "dart $(dirname $(command -v dart))/snapshots/analysis_server.dart.snapshot --lsp"]
+command = "fish"
+args = ["-c", "dart $(dirname $(asdf which dart))/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot --lsp"]
 
 [language.elixir]
 filetypes = ["elixir"]
@@ -394,6 +394,12 @@ filetypes = ["zig"]
 roots = ["build.zig"]
 command = "zls"
 
+[language.svelte]
+filetypes = ["svelte"]
+roots = ["package.json"]
+command = "svelteserver"
+args = ["--stdio"]
+
 # Semantic tokens support
 # See https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_semanticTokens
 # for the default list of tokens and modifiers.
@@ -402,6 +408,7 @@ command = "zls"
 # Examples:
 # - TypeScript: https://github.com/microsoft/vscode-languageserver-node/blob/main/client/src/common/semanticTokens.ts
 # - Rust Analyzer: https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/ide/src/syntax_highlighting.rs
+# TODO: add more faces here
 [semantic_tokens]
 faces = [
     {face="documentation", token="comment", modifiers=["documentation"]},

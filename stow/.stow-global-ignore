@@ -1,4 +1,2 @@
 /.git
 README.*
-/.local_env_vars_example
-/nvim_startup_profiler.sh
