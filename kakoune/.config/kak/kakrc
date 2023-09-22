@@ -1,5 +1,11 @@
 colorscheme kanagawa
 
+# Statusline on top
+set global ui_options terminal_status_on_top=yes
+
+# Cat
+set global ui_options terminal_assistant=cat
+
 add-highlighter global/ number-lines -relative -hlcursor -separator "   " -cursor-separator "  " -min-digits 3
 add-highlighter global/ wrap
 add-highlighter global/ show-matching
@@ -25,13 +31,11 @@ hook global InsertChar k %{ try %{
 # Comment keybind
 map global normal "#" ":comment-line<ret>"
 
-# Statusline on top
-set global ui_options terminal_status_on_top=yes
-
-
 # 'Find' user mode
 declare-user-mode find
 map global user f ':enter-user-mode find<ret>' -docstring 'enter find mode'
+#   fzf grep
+#   fzf files (smart git search)
 
 # Ranger
 def open-ranger %{
@@ -43,10 +47,6 @@ map global user e ':open-ranger<ret>' -docstring 'select files in ranger'
 
 # Lazygit
 map global user g ':suspend-and-resume "lazygit"<ret>' -docstring 'open LazyGit'
-
-# fzf
-#   fzf grep
-#   fzf files (smart git search)
 
 # kak-lsp
 # source "$HOME"/.config/kak/kak-lsp/kak-lsp.kak
