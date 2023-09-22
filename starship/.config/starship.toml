@@ -83,7 +83,7 @@ truncate_to_repo = true
 fish_style_pwd_dir_length = 1
 
 [git_branch]
-symbol = "> "
+symbol = ""
 style = "bold bright-black"
 format = "[$symbol$branch]($style) "
 
@@ -97,8 +97,8 @@ format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 
 [git_status]
 format='$ahead_behind$staged$deleted$modified$untracked$stashed'
-ahead = '[>$count](green) '
-behind = '[<$count](green) '
+ahead = '[>$count](bold green) '
+behind = '[<$count](bold green) '
 diverged ='[<>](red) '
 untracked = '[?$count](blue) '
 stashed = '[*](green) '
