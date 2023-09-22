@@ -83,8 +83,9 @@ truncate_to_repo = true
 fish_style_pwd_dir_length = 1
 
 [git_branch]
-symbol = "git "
-style = "bold bright-purple"
+symbol = "on "
+style = "bold bright-black"
+format = "[$symbol$branch]($style) "
 
 [git_state]
 merge = "MERGE"
