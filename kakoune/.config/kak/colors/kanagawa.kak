@@ -58,6 +58,9 @@ set-face global link "%opt{green}"
 set-face global bullet "%opt{green}"
 set-face global list "%opt{white}"
 
+# kak-lsp
+set-face global InlayHint "%opt{gray}+i"
+
 # Builtin faces
 set-face global Default "%opt{white},%opt{black}"
 # set-face global Default "%opt{white},default"
