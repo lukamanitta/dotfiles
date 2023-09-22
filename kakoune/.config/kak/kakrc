@@ -32,13 +32,21 @@ hook global InsertChar k %{ try %{
 map global normal "#" ":comment-line<ret>"
 
 # 'Find' user mode
+define-command -hidden -docstring "run a fzf command and save output to tmp file" \
+run-fzf-cmd -params .. %{
+    suspend-and-resume \
+        "%arg{@} > /tmp/fzf-files-%val{client_pid}" \
+        "for-each-line edit /tmp/fzf-files-%val{client_pid}"
+}
+
 declare-user-mode find
-map global user f ':enter-user-mode find<ret>' -docstring 'enter find mode'
+map global user f ":enter-user-mode find<ret>" -docstring "enter find mode"
+map global find f ":run-fzf-cmd 'fzf'<ret>"
 #   fzf grep
 #   fzf files (smart git search)
 
 # Ranger
-def open-ranger %{
+define-command open-ranger %{
     suspend-and-resume \
         "ranger --choosefiles=/tmp/ranger-files-%val{client_pid}" \
         "for-each-line edit /tmp/ranger-files-%val{client_pid}"
