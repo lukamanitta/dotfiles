@@ -83,7 +83,7 @@ truncate_to_repo = true
 fish_style_pwd_dir_length = 1
 
 [git_branch]
-symbol = "on "
+symbol = "> "
 style = "bold bright-black"
 format = "[$symbol$branch]($style) "
 
