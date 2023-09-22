@@ -42,14 +42,15 @@ local cfg = {
         "~/dotfiles/fonts/Terminess",     -- Terminess (Terminus) Nerd Font
     },
     -- font = wezterm.font("OperatorMono Nerd Font", { weight = "Book" }),
-    font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }),
-    font_size = 12.5,
-    line_height = 1.1,
+    -- font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }),
+    font = wezterm.font("FiraCode Nerd Font", { weight = "Medium" }),
+    font_size = 12.2,
+    line_height = 1.17,
     underline_thickness = 2,
     underline_position = -5.0,
     harfbuzz_features = { "clig=1" },
     bold_brightens_ansi_colors = true,
-    font_rules = require("font_rules")
+    font_rules = require("font_rules").firacode
 }
 
 -- Can't really refactor this nicely because using any kind of table.insert

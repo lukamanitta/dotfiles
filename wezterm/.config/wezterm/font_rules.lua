@@ -1,6 +1,8 @@
 local wezterm = require("wezterm")
 
-local U = {
+local U = {}
+
+U.jetbrains = {
     {
         intensity = "Bold",
         font = wezterm.font(
@@ -31,6 +33,16 @@ local U = {
     --         { weight = "LightItalic" }
     --     ),
     -- },
+}
+
+U.firacode = {
+    {
+        intensity = "Half",
+        font = wezterm.font(
+            "FiraCode Nerd Font",
+            { weight = "Light" }
+        ),
+    },
 }
 
 return U
