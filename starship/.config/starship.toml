@@ -62,14 +62,14 @@ scan_timeout = 200
 
 # Module settings
 
-continuation_prompt = "~ "
+continuation_prompt = " "
 [character]
-success_symbol = " [> ](bold green)"
-error_symbol = " [> ](bold red)"
-vicmd_symbol = " [< ](bold green)"
+success_symbol = " [ ](bold green)"
+error_symbol = " [ ](bold red)"
+vicmd_symbol = " [ ](bold green)"
 
 [fill]
-symbol = ". "
+symbol = " "
 style = "bright-black dimmed"
 
 [time]
@@ -97,9 +97,9 @@ format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 
 [git_status]
 format='$ahead_behind$staged$deleted$modified$untracked$stashed'
-ahead = '[>$count](bold green) '
-behind = '[<$count](bold green) '
-diverged ='[<>](red) '
+ahead = '[⇡$count](bold green) '
+behind = '[⇣$count](bold green) '
+diverged ='[󰹹](red) '
 untracked = '[?$count](blue) '
 stashed = '[*](green) '
 modified = '[!$count](bold yellow) '
