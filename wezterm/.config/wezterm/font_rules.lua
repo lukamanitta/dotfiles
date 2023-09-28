@@ -45,4 +45,14 @@ U.firacode = {
     },
 }
 
+U.commitmono= {
+    {
+        intensity = "Bold",
+        italic = true,
+        font = wezterm.font(
+            "CommitMono Nerd Font Bold Italic"
+        ),
+    },
+}
+
 return U

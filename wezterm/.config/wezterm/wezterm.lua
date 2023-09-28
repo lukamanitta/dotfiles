@@ -30,27 +30,20 @@ local cfg = {
     color_scheme = "Kanagawa",
 
     -- Fonts
-    font_dirs = {
-        "~/dotfiles/fonts",
-        "~/dotfiles/fonts/RobotoMono",
-        "~/dotfiles/fonts/Cousine",
-        "~/dotfiles/fonts/SourceCodePro", -- SourceCodePro Nerd Font
-        "~/dotfiles/fonts/Hasklug",       -- Hasklug Nerd Font Mono
-        "~/dotfiles/fonts/JetBrainsMono", -- JetBrainsMono Nerd Font
-        "~/dotfiles/fonts/OperatorMono",  -- OperatorMono Nerd Font
-        "~/dotfiles/fonts/Liga SFMono",   -- SFMono Nerd Font
-        "~/dotfiles/fonts/Terminess",     -- Terminess (Terminus) Nerd Font
-    },
-    -- font = wezterm.font("OperatorMono Nerd Font", { weight = "Book" }),
-    -- font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }),
-    font = wezterm.font("FiraCode Nerd Font", { weight = "Medium" }),
-    font_size = 12.3,
-    line_height = 1.15,
+    -- font_dirs = {
+    --     "~/dotfiles/fonts/.fonts",
+    -- },
+    -- font = wezterm.font("JetBrainsMono", { weight = "Medium" }),
+    font = wezterm.font("Fira Code", { weight = "Regular" }),
+    -- font = wezterm.font("CommitMono", { weight = "Regular" }),
+    -- font = wezterm.font("DinaRemasterII", { weight = "Medium" }),
+    font_size = 12,
+    line_height = 1.35,
     underline_thickness = 2,
     underline_position = -5.0,
     harfbuzz_features = { "clig=1" },
     bold_brightens_ansi_colors = true,
-    font_rules = require("font_rules").firacode
+    -- font_rules = require("font_rules").jetbrains
 }
 
 -- Can't really refactor this nicely because using any kind of table.insert
