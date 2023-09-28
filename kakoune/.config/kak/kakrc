@@ -34,6 +34,7 @@ map global normal "#" ":comment-line<ret>"
 # 'Find' user mode
 define-command -hidden -docstring "run a fzf command and save output to tmp file" \
 run-fzf-cmd -params .. %{
+    # fzf early exit results in 130 return code, so '; return' is required
     suspend-and-resume \
         "%arg{@} > /tmp/fzf-files-%val{client_pid}" \
         "for-each-line edit /tmp/fzf-files-%val{client_pid}"

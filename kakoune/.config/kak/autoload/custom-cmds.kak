@@ -4,7 +4,8 @@ def suspend-and-resume \
     %{ evaluate-commands %sh{
 
     # Note we are adding '&& fg' which resumes the kakoune client process after the cli command exits
-    cli_cmd="$1 && fg"
+    # Note Note - changed && to ; because fzf returns non-zero if exited early - failed & didn't run fg
+    cli_cmd="$1 ; fg"
     post_resume_cmd="$2"
 
     # automation is different platform to platform
