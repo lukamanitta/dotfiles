@@ -1,0 +1,1 @@
+/Users/luka/.asdf/completions/asdf.fish
