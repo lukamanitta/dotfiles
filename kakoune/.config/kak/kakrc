@@ -32,6 +32,9 @@ hook global InsertChar k %{ try %{
 map global normal "#" ":comment-line<ret>"
 
 # 'Find' user mode
+declare-user-mode find
+map global user f ":enter-user-mode find<ret>" -docstring "enter find mode"
+
 define-command -hidden -docstring "run a fzf command and save output to tmp file" \
 run-fzf-cmd -params .. %{
     # fzf early exit results in 130 return code, so '; return' is required
@@ -40,17 +43,9 @@ run-fzf-cmd -params .. %{
         "for-each-line edit /tmp/fzf-files-%val{client_pid}"
 }
 
-declare-user-mode find
-
 declare-option str fzf_grep_cmd 'rg --line-number . | fzf --delimiter=\":\" --preview \"fzf-grep-preview {1} {2}\" | sed \"s|\\([^:]*\\):\\([^:]*\\):.*|\\1 \\2|\"'
-define-command fzf-grep %{
-    suspend-and-resume \
-        "%opt{fzf_grep_cmd} > /tmp/fzf-files-%val{client_pid}" \
-        "for-each-line edit /tmp/fzf-files-%val{client_pid}"
-}
-map global find g ":fzf-grep<ret>" -docstring "find by file content"
+map global find g ":run-fzf-cmd '%opt{fzf_grep_cmd}'<ret>" -docstring "find by file content"
 
-map global user f ":enter-user-mode find<ret>" -docstring "enter find mode"
 map global find f ":run-fzf-cmd 'fzf'<ret>" -docstring "find filenames"
 
 # Ranger
