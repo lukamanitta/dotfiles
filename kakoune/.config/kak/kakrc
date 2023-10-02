@@ -41,10 +41,17 @@ run-fzf-cmd -params .. %{
 }
 
 declare-user-mode find
+
+declare-option str fzf_grep_cmd 'rg --line-number . | fzf --delimiter=\":\" --preview \"fzf-grep-preview {1} {2}\" | sed \"s|\\([^:]*\\):\\([^:]*\\):.*|\\1 \\2|\"'
+define-command fzf-grep %{
+    suspend-and-resume \
+        "%opt{fzf_grep_cmd} > /tmp/fzf-files-%val{client_pid}" \
+        "for-each-line edit /tmp/fzf-files-%val{client_pid}"
+}
+map global find g ":fzf-grep<ret>" -docstring "find by file content"
+
 map global user f ":enter-user-mode find<ret>" -docstring "enter find mode"
-map global find f ":run-fzf-cmd 'fzf'<ret>"
-#   fzf grep
-#   fzf files (smart git search)
+map global find f ":run-fzf-cmd 'fzf'<ret>" -docstring "find filenames"
 
 # Ranger
 define-command open-ranger %{

@@ -1,0 +1,16 @@
+#!/usr/bin/env fish
+
+set FILE $argv[1]
+set LINE $argv[2]
+set NUM_LINES $LINES
+
+set CENTER $(math "ceil($NUM_LINES / 2)")
+
+if [ $LINE -lt $CENTER ]
+    set CENTER $LINE
+end
+
+set START $(math $LINE - $CENTER)
+set END $(math $NUM_LINES + $START)
+
+bat -n $FILE --paging=never --color=always --line-range=$START:$END --highlight-line=$LINE
