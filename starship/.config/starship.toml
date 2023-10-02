@@ -69,7 +69,8 @@ error_symbol = " [ ](bold red)"
 vicmd_symbol = " [ ](bold green)"
 
 [fill]
-symbol = "  "
+# symbol = "  "
+symbol = "─"
 style = "bright-black dimmed"
 
 [time]
