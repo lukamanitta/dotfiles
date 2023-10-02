@@ -37,7 +37,6 @@ map global user f ":enter-user-mode find<ret>" -docstring "enter find mode"
 
 define-command -hidden -docstring "run a fzf command and save output to tmp file" \
 run-fzf-cmd -params .. %{
-    # fzf early exit results in 130 return code, so '; return' is required
     suspend-and-resume \
         "%arg{@} > /tmp/fzf-files-%val{client_pid}" \
         "for-each-line edit /tmp/fzf-files-%val{client_pid}"
@@ -54,17 +53,17 @@ define-command open-ranger %{
         "ranger --choosefiles=/tmp/ranger-files-%val{client_pid}" \
         "for-each-line edit /tmp/ranger-files-%val{client_pid}"
 }
-map global user e ':open-ranger<ret>' -docstring 'select files in ranger'
+map global user e ":open-ranger<ret>" -docstring "select files in ranger"
 
 # Lazygit
-map global user g ':suspend-and-resume "lazygit"<ret>' -docstring 'open LazyGit'
+map global user g ":suspend-and-resume 'lazygit'<ret>" -docstring "open LazyGit"
 
 # kak-lsp
 # source "$HOME"/.config/kak/kak-lsp/kak-lsp.kak
 eval %sh{kak-lsp --config $HOME/.config/kak/kak-lsp/kak-lsp.toml --kakoune -s $kak_session}
 # set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log"
  
-map global user l %{:enter-user-mode lsp<ret>} -docstring "LSP mode"
+map global user l ":enter-user-mode lsp<ret>" -docstring "LSP mode"
 
 hook global WinSetOption filetype=(rust|python|javascript|typescript|dart|svelte) %{
     lsp-enable-window
@@ -82,5 +81,3 @@ set-option global lsp_inlay_diagnostic_sign ""
 # wezterm.kak
 wezterm-integration-enable
 set-option global wezterm_terminal_default wezterm-terminal-horizontal
-
-
