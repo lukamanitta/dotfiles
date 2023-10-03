@@ -87,4 +87,4 @@ set-face global Prompt "%opt{green},%opt{black}"
 set-face global MatchingChar "%opt{blue},%opt{black}"
 set-face global Whitespace "%opt{dimgray},%opt{black}+f"
 set-face global WrapMarker Whitespace
-set-face global BufferPadding "%opt{black},%opt{black}"
+set-face global BufferPadding "%opt{dimgray},%opt{black}"
