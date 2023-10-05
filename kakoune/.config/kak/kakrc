@@ -1,10 +1,10 @@
 colorscheme kanagawa
 
 # Statusline on top
-set global ui_options terminal_status_on_top=yes
+set-option -add global ui_options terminal_status_on_top=yes
 
 # Cat
-set global ui_options terminal_assistant=cat
+set-option -add global ui_options terminal_assistant=cat
 
 add-highlighter global/ number-lines -relative -hlcursor -separator "   " -cursor-separator "  " -min-digits 3
 add-highlighter global/ wrap
