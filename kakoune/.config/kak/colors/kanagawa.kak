@@ -49,7 +49,7 @@ set-face global builtin "%opt{cyan}+b"
 
 # For markup
 set-face global title "%opt{pink}"
-set-face global header "%opt{orange}"
+set-face global header "%opt{blue}+b"
 set-face global bold "%opt{pink}"
 set-face global italic "%opt{purple}"
 set-face global mono "%opt{green}"
