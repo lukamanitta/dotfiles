@@ -12,6 +12,8 @@ source ~/.asdf/asdf.fish
 
 fish_add_path ~/bin/
 
+source ~/.env
+
 alias lg="lazygit"
 
 # Uni
