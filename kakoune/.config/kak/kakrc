@@ -31,22 +31,6 @@ hook global InsertChar k %{ try %{
 # Comment keybind
 map global normal "#" ":comment-line<ret>"
 
-# 'Find' user mode
-declare-user-mode find
-map global user f ":enter-user-mode find<ret>" -docstring "enter find mode"
-
-define-command -hidden -docstring "run a fzf command and save output to tmp file" \
-run-fzf-cmd -params .. %{
-    suspend-and-resume \
-        "%arg{@} > /tmp/fzf-files-%val{client_pid}" \
-        "for-each-line edit /tmp/fzf-files-%val{client_pid}"
-}
-
-declare-option str fzf_grep_cmd 'rg --line-number . | fzf --delimiter=\":\" --preview \"fzf-grep-preview {1} {2}\" | sed \"s|\\([^:]*\\):\\([^:]*\\):.*|\\1 \\2|\"'
-map global find g ":run-fzf-cmd '%opt{fzf_grep_cmd}'<ret>" -docstring "find by file content"
-
-map global find f ":run-fzf-cmd 'fzf'<ret>" -docstring "find filenames"
-
 # Ranger
 define-command open-ranger %{
     suspend-and-resume \
@@ -57,26 +41,6 @@ map global user e ":open-ranger<ret>" -docstring "select files in ranger"
 
 # Lazygit
 map global user g ":suspend-and-resume 'lazygit'<ret>" -docstring "open LazyGit"
-
-# kak-lsp
-# source "$HOME"/.config/kak/kak-lsp/kak-lsp.kak
-eval %sh{kak-lsp --config $HOME/.config/kak/kak-lsp/kak-lsp.toml --kakoune -s $kak_session}
-# set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log"
- 
-map global user l ":enter-user-mode lsp<ret>" -docstring "LSP mode"
-
-hook global WinSetOption filetype=(rust|python|javascript|typescript|dart|svelte) %{
-    lsp-enable-window
-    lsp-inlay-hints-enable global
-    # hook global BufWritePre .* lsp-formatting-sync
-}
-#   set icons
-set-option global lsp_diagnostic_line_error_sign ""
-set-option global lsp_diagnostic_line_warning_sign ""
-set-option global lsp_diagnostic_line_hint_sign ""
-set-option global lsp_diagnostic_line_info_sign ""
-set-option global lsp_code_lens_sign ""
-set-option global lsp_inlay_diagnostic_sign ""
 
 # wezterm.kak
 wezterm-integration-enable
