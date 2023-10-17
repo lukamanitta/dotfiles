@@ -21,7 +21,7 @@ hook global WinSetOption filetype=markdown %{
     hook global InsertKey <tab> %{
         md_indent_ul
     }
-    hook global InsertKey <alt-[> %{
+    hook global InsertKey <s-tab> %{
         md_unindent_ul
     }
 }

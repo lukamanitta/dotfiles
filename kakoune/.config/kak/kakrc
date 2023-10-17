@@ -1,4 +1,4 @@
-colorscheme kanagawa
+colorscheme Gruvbox
 
 # Statusline on top
 set-option -add global ui_options terminal_status_on_top=yes
