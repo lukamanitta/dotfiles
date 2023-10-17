@@ -5,6 +5,7 @@ local cfg = {
     warn_about_missing_glyphs = true,
     window_background_opacity = 1,
     native_macos_fullscreen_mode = true,
+    debug_key_events = false,
     
     initial_cols = 90,
     initial_rows = 28,
@@ -30,18 +31,19 @@ local cfg = {
     keys = require("keybinds"),
 
     -- Colors
-    color_scheme = "Kanagawa",
+    color_scheme = "Gruvbox",
 
     -- Fonts
     -- font_dirs = {
     --     "~/.fonts",
     -- },
     -- font = wezterm.font("JetBrainsMono", { weight = "Medium" }),
-    font = wezterm.font("Fira Code", { weight = "Regular" }),
+    -- font = wezterm.font("Fira Code", { weight = "Regular" }),
+    font = wezterm.font("Roboto Mono", { weight = "Medium" }),
     -- font = wezterm.font("CommitMono", { weight = "Regular" }),
     -- font = wezterm.font("DinaRemasterII", { weight = "Medium" }),
     -- font_rules = require("font_rules").jetbrains
-    font_size = 12,
+    font_size = 12.25,
     line_height = 1.35,
     
     underline_thickness = 2,
