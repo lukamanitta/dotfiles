@@ -1,3 +1,7 @@
 [wezterm]
-template = "~/.config/colourme/templates/wezterm.colours"
+template = "~/.config/colourme/templates/wezterm.toml"
 destination = "~/.config/wezterm/colors/Luka.toml"
+
+[kakoune]
+template = "~/.config/colourme/templates/kakoune.kak"
+detination = "~/.config/kak/colors/Luka.toml"
