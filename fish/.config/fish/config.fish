@@ -11,6 +11,7 @@ source ~/.asdf/asdf.fish
 # mkdir -p ~/.config/fish/completions; and ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
 
 fish_add_path ~/bin/
+fish_add_path ~/.pub-cache/bin/
 
 source ~/.env
 
