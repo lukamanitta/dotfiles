@@ -51,10 +51,10 @@ evaluate-commands %sh{
     echo "
         # Code highlighting
         face global value     ${b_orange}
-        face global type      ${b_yellow}
+        face global type      ${b_yellow}+i
         face global variable  ${b_aqua}
         face global module    ${f_yellow}
-        face global function  ${b_blue}
+        face global function  ${b_blue}+b
         face global string    ${b_green}
         face global keyword   ${b_purple}
         face global operator  ${b_blue}
