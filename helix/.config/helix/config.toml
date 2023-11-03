@@ -1,0 +1,130 @@
+theme = "Gruvbox"
+
+[editor]
+scrolloff = 5
+mouse = true
+middle-click-paste = true
+scroll-lines = 3
+shell = ["sh", "-c"] # Unix
+#shell = ["cmd", "/C"] # Windows
+line-number = "relative" # absolute*, relative
+cursorline = false
+cursorcolumn = false
+auto-completion = true
+auto-format = true
+auto-save = false
+idle-timeout = 400
+completion-trigger-len = 1
+completion-replace = false
+auto-info = true
+true-color = false
+undercurl = false
+rulers = []
+bufferline = "never" # never*, always, multiple
+auto-pairs = true
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name"]
+center = []
+right = ["diagnostics", "selections", "position", "file-encoding"]
+separator = "│"
+mode.normal = "N"
+mode.insert = "I"
+mode.select = "S"
+
+[editor.lsp]
+enable = true
+display-messages = true
+auto-signature-help = true
+display-inlay-hints = true
+display-signature-help-docs = true
+snippets = true
+goto-reference-include-declaration = true
+
+[editor.cursor-shape]
+# block*, bar, underline, hidden
+normal = "block"
+insert = "block"
+select = "block"
+
+[editor.file-picker]
+hidden = false
+follow-symlinks = true
+deduplicate-links = true
+parents = true
+ignore = true
+git-ignore = true
+git-global = true
+git-exclude = true
+#max-depth = 3
+
+[editor.search]
+smart-case = true
+wrap-around = true
+
+[editor.whitespace]
+render = "none" # all, none*, or table
+
+#[editor.whitespace.render]
+#space = "none"
+#nbsp = "none"
+#tab = "none"
+#newline = "none"
+
+#[editor.whitespace.characters]
+#space = "·"
+#nbsp = "⍽"
+#tab = "→"
+#newline = "⏎"
+#tabpad = "·"
+
+[editor.indent-guides]
+render = false
+character = "|"
+skip-levels = 1
+
+[editor.gutters]
+layout = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+
+[editor.gutters.line-numbers]
+min-width = 3
+
+[editor.soft-wrap]
+enable = false
+max-wrap = 20
+max-indent-retain = 40
+wrap-indicator = "↪"
+wrap-at-text-width = false
+
+[keys.insert]
+j = { k = "normal_mode" }
+
+[keys.normal.space]
+"'" = "no_op"
+F = "no_op"
+b = "no_op"
+j = "no_op"
+s = "no_op"
+S = "no_op"
+d = "no_op"
+D = "no_op"
+r = "no_op"
+a = "no_op"
+h = "no_op"
+
+[keys.normal.space.f]
+r = "last_picker"
+f = "file_picker"
+F = "file_picker_in_current_directory"
+b = "buffer_picker"
+j = "jumplist_picker"
+s = "symbol_picker"
+S = "workspace_symbol_picker"
+
+[keys.normal.space.l]
+d = "diagnostics_picker"
+D = "workspace_diagnostics_picker"
+r = "rename_symbol"
+a = "code_action"
+k = "select_references_to_symbol_under_cursor"
+h = "hover"
