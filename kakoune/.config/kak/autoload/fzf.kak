@@ -12,4 +12,5 @@ run-fzf-cmd -params .. %{
 declare-option str fzf_grep_cmd 'rg --line-number . | fzf --delimiter=\":\" --preview \"fzf-grep-preview {1} {2}\" | sed \"s|\\([^:]*\\):\\([^:]*\\):.*|\\1 \\2|\"'
 map global find g ":run-fzf-cmd '%opt{fzf_grep_cmd}'<ret>" -docstring "find by file content"
 
-map global find f ":run-fzf-cmd 'fzf'<ret>" -docstring "find filenames"
+declare-option str fzf_file_cmd 'fzf --preview \"fzf-grep-preview {} 0\"'
+map global find f ":run-fzf-cmd '%opt{fzf_file_cmd}'<ret>" -docstring "find filenames"
