@@ -19,9 +19,7 @@ local U = {
    {
        key = "=",
        mods = "LEADER",
-       action = wezterm.action_callback(function (_)
-           require("balance_panes").balance_panes(x)
-       end),
+       action = wezterm.action_callback(require("balance_panes").balance_panes("x")),
    },
    {
        key = "h",
