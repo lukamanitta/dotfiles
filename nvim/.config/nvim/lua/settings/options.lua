@@ -13,7 +13,7 @@ require("helpers").set_scope_opts(vim.o, {
     mouse = "a",
     signcolumn = "yes",
     updatetime = 50,
-    noequalalways = true,
+    equalalways = false,
     splitbelow = true,
     lazyredraw = false,
     ttyfast = true,
@@ -29,7 +29,7 @@ require("helpers").set_scope_opts(vim.o, {
     belloff = "all", -- Shut that fucking bell sound off
     foldmethod = "indent",
     foldnestmax = 10,
-    nofoldenable = true,
+    foldenable = false,
     foldlevel = 1,
     scrolloff = 8,
     sidescrolloff = 5,

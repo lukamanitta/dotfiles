@@ -1,3 +1,3 @@
 require("settings.options")
 require("settings.keybinds")
-require("settings.theme")
+require("settings.theme").pre_colorscheme()

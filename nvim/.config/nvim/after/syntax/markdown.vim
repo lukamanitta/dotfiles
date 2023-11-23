@@ -24,12 +24,4 @@ call matchadd('Conceal',  '\~\~.\+\zs\~\~\ze', 10, -1, {'conceal':'~'})
 
 set conceallevel=2
 
-lua << EOF
-
-local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
-
-for i = 1, 6 do
-    vim.cmd("hi! htmlH" .. i .. " guifg=" .. get_hi_group_fg("rainbowcol" .. i) .. " gui=bold")
-end
-
-EOF
+" TODO: rainbow header levels (h1-6)

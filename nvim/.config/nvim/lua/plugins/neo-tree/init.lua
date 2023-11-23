@@ -200,4 +200,4 @@ neotree.setup({
 })
 
 -- require("plugins.neo-tree.custom_hl")
--- require("plugins.plugin.keybinds")
+require("plugins.neo-tree.keybinds")

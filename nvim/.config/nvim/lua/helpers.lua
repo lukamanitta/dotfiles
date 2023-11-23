@@ -6,4 +6,8 @@ function U.set_scope_opts(scope, opts)
     end
 end
 
+function U.get_hl(hl_name, prop)
+    return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(hl_name)), prop)
+end
+
 return U

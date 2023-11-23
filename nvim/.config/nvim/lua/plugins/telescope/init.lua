@@ -1,8 +1,11 @@
 -- TODO: all of this. this is just basically functional
 
+local actions = require("telescope.actions")
+local previewers = require("telescope.previewers")
+local Job = require("plenary.job")
 local general_icons = require("icons").general
 
-function T.smart_buf_preview_maker(filepath, bufnr, opts)
+function smart_buf_preview_maker(filepath, bufnr, opts)
     opts = opts or {}
     filepath = vim.fn.expand(filepath)
     Job:new({
@@ -65,4 +68,4 @@ require("telescope").setup({
 })
 
 -- require("plugins.plugin").custom_hl
--- require("plugins.plugin").keybinds
+require("plugins.telescope.keybinds")

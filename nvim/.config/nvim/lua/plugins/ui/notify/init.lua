@@ -10,7 +10,7 @@ require("notify").setup({
 
     level = 2,
     minimum_width = 40,
-    render = "default"
+    render = "default",
 
     timeout = 3000,
 

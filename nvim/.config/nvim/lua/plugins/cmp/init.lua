@@ -1,6 +1,6 @@
 local cmp = require("cmp")
 local compare = require("cmp.config.compare")
-local comp_icons = require("assets.icons").types
+local comp_icons = require("icons").types
 
 cmp.setup.filetype({ "markdown" }, {
     sources = cmp.config.sources({
@@ -12,13 +12,6 @@ cmp.setup.filetype({ "markdown" }, {
         { name = "buffer" },
     }, {
         { name = "path", max_item_count = 5 },
-    }),
-})
-
-cmp.setup.filetype({ "gitcommit" }, {
-    sources = cmp.config.sources({
-        { name = "conventionalcommits" },
-        { name = "spell", max_item_count = 3 },
     }),
 })
 
@@ -80,7 +73,7 @@ cmp.setup({
         { name = "luasnip", max_item_count = 3 },
         -- { name = "copilot" },
         { name = "nvim_lsp_signature_help" },
-        { name = "nvim_lsp", max_item_count = 15 },
+        { name = "nvim_lsp", max_item_count = 10 },
         { name = "nvim_lua", max_item_count = 5 },
         { name = "buffer", keyword_length = 5, max_item_count = 5 },
     }, {
@@ -89,7 +82,7 @@ cmp.setup({
     formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
-            elseif entry.source.name == "spell" then
+            if entry.source.name == "spell" then
                 vim_item.kind = "Spell"
             elseif entry.source.name == "latex_symbols" then
                 vim_item.kind = "Latex"
@@ -141,14 +134,15 @@ cmp.setup({
             compare.order,
         },
     },
-    -- view = {
-    --     entries = cmp.EntriesConfig,
-    --     -- entries = { name = "custom", selection_order = "bottom_up" },
-    -- },
+    view = {
+        entries = {
+            vertical_positioning = "above",
+        }
+    },
     experimental = {
         ghost_text = false,
     },
 })
 
-require("plugins.cmp.custom_hl")
+-- require("plugins.cmp.custom_hl")
 -- require("plugins.plugin").keybinds

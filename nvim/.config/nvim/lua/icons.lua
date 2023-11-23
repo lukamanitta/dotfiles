@@ -145,32 +145,64 @@ I.types = { -- Arranged approximately in order of abstraction (lo - hi)
     CommitMsg = "",
 }
 
-I.lsp = ({
-    solid = {
+-- I.lsp = ({
+--     solid = {
+--         Error = "",
+--         Warn = "",
+--         Hint = "",
+--         Info = "",
+--         CodeAction = "󰂚",
+--     },
+--     outline = {
+--         Error = "",
+--         Warn = "",
+--         Hint = "",
+--         Info = "",
+--         CodeAction = "󰂜",
+--     },
+--     text = {
+--         Error = "E",
+--         Warn = "W",
+--         Hint = "H",
+--         Info = "I",
+--         CodeAction = "A",
+--     },
+-- })[require("settings.globals").lsp_icon_style]
+
+I.lsp = {
         Error = "",
         Warn = "",
         Hint = "",
         Info = "",
-        CodeAction = "",
-    },
-    outline = {
-        Error = "",
-        Warn = "",
-        Hint = "",
-        Info = "",
-        CodeAction = "",
-    },
-    text = {
-        Error = "E",
-        Warn = "W",
-        Hint = "H",
-        Info = "I",
-        CodeAction = "A",
-    },
-})[require("settings.globals").lsp_icon_style]
+        CodeAction = "󰂚",
+}
 
-I.git = ({
-    solid = {
+-- I.git = ({
+--     solid = {
+--         Branch = "",
+--         Merge = "",
+--         Unstaged = I.general.Exclamation,
+--         Ignored = "",
+--         Untracked = I.general.CrossThick,
+--         Added = "",
+--         Modified = "柳",
+--         Renamed = "柳",
+--         Removed = "",
+--     },
+--     outline = {
+--         Branch = "",
+--         Merge = "",
+--         Unstaged = I.general.Exclamation,
+--         Ignored = "",
+--         Untracked = I.general.CrossThick,
+--         Added = "",
+--         Modified = "",
+--         Renamed = "",
+--         Removed = "",
+--     },
+-- })[require("settings.globals").git_icon_style]
+
+I.git = {
         Branch = "",
         Merge = "",
         Unstaged = I.general.Exclamation,
@@ -180,18 +212,6 @@ I.git = ({
         Modified = "柳",
         Renamed = "柳",
         Removed = "",
-    },
-    outline = {
-        Branch = "",
-        Merge = "",
-        Unstaged = I.general.Exclamation,
-        Ignored = "",
-        Untracked = I.general.CrossThick,
-        Added = "",
-        Modified = "",
-        Renamed = "",
-        Removed = "",
-    },
-})[require("settings.globals").git_icon_style]
+}
 
 return I

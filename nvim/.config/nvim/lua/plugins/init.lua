@@ -13,8 +13,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     { "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
         config = function() require("plugins.ui.which-key") end,
     },
+    { "numToStr/Comment.nvim" },
 
     -- Finder
     { "nvim-telescope/telescope.nvim",
@@ -34,33 +40,46 @@ require("lazy").setup({
             "kyazdani42/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
         },
-    }
+    },
 
     -- Treesitter
     { "nvim-treesitter/nvim-treesitter",
         build = { ":TSInstall all", ":TSUpdate" }, -- Change all to a list of required ones
-    }
+    },
 
     -- LSP
     -- mason.nvim?
-    { "neovim/nvim-lspconfig" }
-    { "jose-elias-alvarez/null-ls.nvim" }
+    { "neovim/nvim-lspconfig" },
+    { "jose-elias-alvarez/null-ls.nvim" },
 
     -- Completions
-    { "hrsh7th/nvim-cmp", as = "cmp",
+    { "llllvvuu/nvim-cmp",
         config = function() require("plugins.cmp") end,
+        branch = "feat/above",
     },
-    { "hrsh7th/cmp-nvim-lsp", dependencies = "cmp" },
-    { "hrsh7th/cmp-nvim-lsp-signature-help", dependencies = "cmp" },
-    { "hrsh7th/cmp-nvim-lua", dependencies = "cmp" },
-    { "hrsh7th/cmp-buffer", dependencies = "cmp" },
-    { "hrsh7th/cmp-path", dependencies = "cmp" },
+    -- { "hrsh7th/cmp-nvim-lsp", dependencies = "llllvvuu/nvim-cmp" },
+    -- { "hrsh7th/cmp-nvim-lsp-signature-help", dependencies = "llllvvuu/nvim-cmp" },
+    -- { "hrsh7th/cmp-nvim-lua", dependencies = "llllvvuu/nvim-cmp" },
+    -- { "hrsh7th/cmp-buffer", dependencies = "llllvvuu/nvim-cmp" },
+    -- { "hrsh7th/cmp-path", dependencies = "llllvvuu/nvim-cmp" },
 
-    -- { "github/copilot.vim" },
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "hrsh7th/cmp-nvim-lsp-signature-help" },
+    { "hrsh7th/cmp-nvim-lua" },
+    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-path" },
+
+    { "L3MON4D3/LuaSnip" },
+
+    { "github/copilot.vim",
+        config = function()
+            require("plugins.copilot")
+        end
+    },
 
     -- UI
     { "rebelot/heirline.nvim" },
-    { "luka-reineke/indent-blankline.nvim",
+    { "lukas-reineke/indent-blankline.nvim",
         config = function() require("plugins.ui.indent-blankline") end,
     },
     { "rcarriga/nvim-notify",
@@ -76,7 +95,15 @@ require("lazy").setup({
 
     -- Colourschemes
     { "rebelot/kanagawa.nvim" },
-    { "ellisonleao/gruvbox.nvim" },
+    { "ellisonleao/gruvbox.nvim", priority = 1000,
+        config = function()
+            require("gruvbox").setup({
+                contrast = "hard"
+            })
+            vim.cmd("colorscheme gruvbox")
+            require("settings.theme").post_colorscheme()
+        end
+    },
 },
 {
     defaults = {
