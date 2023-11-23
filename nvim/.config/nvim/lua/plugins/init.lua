@@ -12,10 +12,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    { "folke/which-key.nvim" },
+    { "folke/which-key.nvim",
+        config = function() require("plugins.ui.which-key") end,
+    },
 
     -- Finder
-    { "nvim-telescope/telescope.nvim"
+    { "nvim-telescope/telescope.nvim",
+        config = function() require("plugins.telescope") end,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
@@ -23,7 +26,8 @@ require("lazy").setup({
     },
 
     -- File Explorer
-    { "nvim-neo-tree/neo-tree.nvim"
+    { "nvim-neo-tree/neo-tree.nvim",
+        config = function() require("plugins.neo-tree") end,
         version = "v3.x",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -43,22 +47,32 @@ require("lazy").setup({
     { "jose-elias-alvarez/null-ls.nvim" }
 
     -- Completions
-    { "hrsh7th/nvim-cmp", as = "cmp" },
+    { "hrsh7th/nvim-cmp", as = "cmp",
+        config = function() require("plugins.cmp") end,
+    },
     { "hrsh7th/cmp-nvim-lsp", dependencies = "cmp" },
     { "hrsh7th/cmp-nvim-lsp-signature-help", dependencies = "cmp" },
     { "hrsh7th/cmp-nvim-lua", dependencies = "cmp" },
     { "hrsh7th/cmp-buffer", dependencies = "cmp" },
     { "hrsh7th/cmp-path", dependencies = "cmp" },
 
-    { "github/copilot.vim" },
+    -- { "github/copilot.vim" },
 
     -- UI
     { "rebelot/heirline.nvim" },
-    { "luka-reineke/indent-blankline.nvim" },
-    { "rcarriga/nvim-notify" },
-    { "j-hui/fidget.nvim" },
+    { "luka-reineke/indent-blankline.nvim",
+        config = function() require("plugins.ui.indent-blankline") end,
+    },
+    { "rcarriga/nvim-notify",
+        config = function() require("plugins.ui.notify") end,
+    },
+    { "j-hui/fidget.nvim",
+        config = function() require("plugins.ui.fidget") end,
+    },
     { "RRethy/vim-hexokinase", build = "make hexokinase" }, -- requires go?
-    { "lewis6991/gitsigns.nvim" },
+    { "lewis6991/gitsigns.nvim",
+        config = function() require("plugins.ui.gitsigns") end,
+    },
 
     -- Colourschemes
     { "rebelot/kanagawa.nvim" },

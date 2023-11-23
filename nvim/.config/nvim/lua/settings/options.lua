@@ -1,20 +1,10 @@
--- globals AND options here
--- TODO: Maybe use a util to provide a list? like old config
-
--- Maybe don't need this
-function set_scope_opts(scope, opts)
-    for k, v in pairs(opts) do
-        scope[k] = v
-    end
-end
-
-set_scope_opts(vim.g, {
+require("helpers").set_scope_opts(vim.g, {
     scrolloff = 10,
     sidescrolloff = 5,
     omni_sql_default_compl_type = "syntax",
 })
 
-set_scope_opts(vim.o, {
+require("helpers").set_scope_opts(vim.o, {
     syntax = "off",
     hidden = true,
     number = true,
