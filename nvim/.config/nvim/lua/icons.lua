@@ -1,4 +1,3 @@
--- TODO: fix altered / removed icons in Nerdfont v3
 local I = {}
 
 I.general = {
@@ -41,26 +40,26 @@ I.general = {
     BarThick = "▊",
 
     CrossThick = "",
-    CrossThin = "",
+    CrossThin = "",
 
     PlusThick = "",
     PlusThin = "+",
 
-    DotsHorizontal = "",
+    DotsHorizontal = "󰇘",
 
     CheckThick = "",
-    CheckCircle = "﫟",
-    CheckCircleOutline = "﫠",
+    CheckCircle = "",
+    CheckCircleOutline = "",
     Square = "■",
     Exclamation = "",
     Bug = "",
     Pencil = "",
     Heart = "",
     Search = "",
-    Replace = "﯒",
+    -- Replace = "﯒",
     Shell = "",
     Crosshairs = "",
-    Percent = "",
+    Percent = "󰏰",
 
     ListThick = "",
 }
@@ -77,7 +76,7 @@ I.debug = {
 }
 
 I.filesystem = {
-    File = "",
+    File = "",
     FileSymlink = "",
     Folder = "",
     FolderOpen = "",
@@ -95,39 +94,39 @@ I.companies = {
 I.types = { -- Arranged approximately in order of abstraction (lo - hi)
     Constant = "",
     Text = "",
-    Value = "",
-    Float = "",
-    String = "",
+    Value = "󰎠",
+    Float = "󱂡",
+    String = "󰀬",
     Boolean = " ",
     Null = I.general.CircleOutline,
-    Operator = "",
+    Operator = "󰎂",
     Color = "",
 
-    Object = "",
-    Array = "",
-    Struct = "",
+    Object = "",
+    Array = "󰅨",
+    Struct = "",
 
-    Function = "",
-    Keyword = "",
-    Variable = "",
+    Function = "󰊕",
+    Keyword = "󰌋",
+    Variable = "󰂡",
 
     Enum = "",
     EnumMember = "",
 
-    Class = "ﴯ",
+    Class = "󰠱",
     Constructor = "",
     Property = "",
-    Field = "",
-    Method = "",
-    TypeParameter = "",
+    Field = "󰇽",
+    Method = "󰆧",
+    TypeParameter = "󰅲",
     Tag = "",
 
     Interface = "",
-    Module = "",
+    Module = "",
 
     Unit = "",
-    Date = "",
-    DateTime = "",
+    Date = "󰃭",
+    DateTime = "󰃰",
     Time = "",
 
     Folder = I.filesystem.FolderOpen .. "",
@@ -139,9 +138,9 @@ I.types = { -- Arranged approximately in order of abstraction (lo - hi)
     Spell = I.general.Pencil,
     Tabnine = I.companies.Tabnine,
     Copilot = I.companies.GitHub,
-    Omni = "",
+    Omni = "",
     Snippet = "",
-    Latex = "",
+    Latex = "󰀫",
     CommitMsg = "",
 }
 
@@ -154,8 +153,8 @@ I.types = { -- Arranged approximately in order of abstraction (lo - hi)
 --         CodeAction = "󰂚",
 --     },
 --     outline = {
---         Error = "",
---         Warn = "",
+--         Error = "󰅚",
+--         Warn = "󰗖",
 --         Hint = "",
 --         Info = "",
 --         CodeAction = "󰂜",
@@ -203,14 +202,14 @@ I.lsp = {
 -- })[require("settings.globals").git_icon_style]
 
 I.git = {
-        Branch = "",
+        Branch = "",
         Merge = "",
         Unstaged = I.general.Exclamation,
         Ignored = "",
         Untracked = I.general.CrossThick,
         Added = "",
-        Modified = "柳",
-        Renamed = "柳",
+        Modified = "󱗜",
+        Renamed = "󱥪",
         Removed = "",
 }
 
