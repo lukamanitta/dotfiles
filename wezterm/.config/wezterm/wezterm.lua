@@ -43,7 +43,7 @@ local cfg = {
     -- font = wezterm.font("CommitMono", { weight = "Regular" }),
     -- font = wezterm.font("DinaRemasterII", { weight = "Medium" }),
     -- font_rules = require("font_rules").jetbrains
-    font_size = 12,
+    font_size = 13,
     line_height = 1.3,
     
     underline_thickness = 2,

@@ -12,6 +12,3 @@ require("helpers").set_scope_opts(vim.g, {
         "colour_names", -- white
     },
 })
-
--- require("plugins.ui.hexokinase.custom_hl")
--- require("plugins.ui.hexokinase.keybinds")

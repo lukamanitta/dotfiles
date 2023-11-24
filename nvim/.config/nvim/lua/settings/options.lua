@@ -31,7 +31,7 @@ require("helpers").set_scope_opts(vim.o, {
     foldnestmax = 10,
     foldenable = false,
     foldlevel = 1,
-    scrolloff = 8,
+    scrolloff = 10,
     sidescrolloff = 5,
     spell = false,
     spelllang = "en_au,en_us",

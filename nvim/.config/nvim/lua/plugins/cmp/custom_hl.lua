@@ -55,12 +55,11 @@ local cmp_item_kind_highlights = {
     "CmpItemKindEnum",
 }
 
-local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
-local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
+local get_hl = require("helpers").get_hl
 -- For each of the above highlight groups, swap the foreground and background
+-- TODO: not working because of links in Gruvbox colour scheme
 for _, highlight in ipairs(cmp_item_kind_highlights) do
-    local fg = get_hi_group_fg(highlight)
-    local bg = get_hi_group_bg(highlight)
-    vim.cmd("highlight " .. highlight .. " guifg=" .. bg .. " guibg=" .. fg)
+    local fg = get_hl(highlight, "fg#")
+    local bg = get_hl(highlight, "bg#")
+    vim.cmd("hi! " .. highlight .. " guifg=" .. bg .. " guibg=" .. fg)
 end
-

@@ -34,34 +34,8 @@ lspconfig.tsserver.setup(make_config())
 lspconfig.rust_analyzer.setup(make_config())
 lspconfig.pyright.setup(make_config())
 
-local lua_settings = {
-    Lua = {
-        runtime = {
-            -- Neovim uses LuaJIT
-            version = "LuaJIT",
-            path = vim.split(package.path, ";"),
-        },
-        diagnostics = {
-            -- Get LS to recognise 'vim'
-            globals = { "vim" },
-            disable = { "trailing-space" },
-        },
-        workspace = {
-            -- Make LS aware of Neovim runtime files
-            library = {
-                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-            },
-        },
-        completion = {
-            keywordSnippet = "Replace",
-            callSnippet = "Replace",
-        },
-    },
-}
-
 local lua_config = make_config()
-lua_config.settings = lua_settings
+lua_config.settings = require("lsp.server_settings.lua_ls")
 lspconfig.lua_ls.setup(lua_config)
 
 require("lsp.theme")

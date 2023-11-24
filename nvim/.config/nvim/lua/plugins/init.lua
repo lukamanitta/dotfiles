@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+---@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -11,6 +12,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local function is_selected_colorscheme(plugin)
+    return plugin.name == require("settings.theme").colorscheme
+end
+
 require("lazy").setup({
     { "folke/which-key.nvim",
         event = "VeryLazy",
@@ -20,7 +25,17 @@ require("lazy").setup({
         end,
         config = function() require("plugins.ui.which-key") end,
     },
-    { "numToStr/Comment.nvim" },
+
+    -- Comments
+    { "JoosepAlviste/nvim-ts-context-commentstring" },
+    { "numToStr/Comment.nvim",
+        config = function()
+            require("Comment").setup({
+                pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+            })
+        end,
+        lazy = false,
+    },
 
     -- Finder
     { "nvim-telescope/telescope.nvim",
@@ -31,8 +46,8 @@ require("lazy").setup({
         },
     },
 
-    -- File Explorer
-    { "nvim-neo-tree/neo-tree.nvim",
+    -- Explorer
+    { "nvim-neo-tree/neo-tree.nvim", -- TODO: high perf impact
         config = function() require("plugins.neo-tree") end,
         version = "v3.x",
         dependencies = {
@@ -44,7 +59,10 @@ require("lazy").setup({
 
     -- Treesitter
     { "nvim-treesitter/nvim-treesitter",
-        build = { ":TSInstall all", ":TSUpdate" }, -- Change all to a list of required ones
+        build = { 
+            ":TSInstall all", 
+            ":TSUpdate" ,
+        }, -- Change all to a list of required ones
     },
 
     -- LSP
@@ -53,7 +71,7 @@ require("lazy").setup({
     { "jose-elias-alvarez/null-ls.nvim" },
 
     -- Completions
-    { "llllvvuu/nvim-cmp",
+    { "llllvvuu/nvim-cmp", -- Using this fork until hrs7th merges this
         config = function() require("plugins.cmp") end,
         branch = "feat/above",
     },
@@ -69,7 +87,7 @@ require("lazy").setup({
     { "hrsh7th/cmp-buffer" },
     { "hrsh7th/cmp-path" },
 
-    { "L3MON4D3/LuaSnip" },
+    { "L3MON4D3/LuaSnip" }, -- TODO: high perf impact
 
     { "github/copilot.vim",
         config = function()
@@ -95,13 +113,10 @@ require("lazy").setup({
 
     -- Colourschemes
     { "rebelot/kanagawa.nvim" },
-    { "ellisonleao/gruvbox.nvim", priority = 1000,
+    { "ellisonleao/gruvbox.nvim", priority = 1000, name = "gruvbox",
+        cond = is_selected_colorscheme,
         config = function()
-            require("gruvbox").setup({
-                contrast = "hard"
-            })
-            vim.cmd("colorscheme gruvbox")
-            require("settings.theme").post_colorscheme()
+            require("colorschemes.gruvbox")
         end
     },
 },

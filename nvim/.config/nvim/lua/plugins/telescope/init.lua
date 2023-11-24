@@ -5,7 +5,7 @@ local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
 local general_icons = require("icons").general
 
-function smart_buf_preview_maker(filepath, bufnr, opts)
+local function smart_buf_preview_maker(filepath, bufnr, opts)
     opts = opts or {}
     filepath = vim.fn.expand(filepath)
     Job:new({
@@ -31,6 +31,8 @@ function smart_buf_preview_maker(filepath, bufnr, opts)
     }):sync()
 end
 
+local border_chars_none = { " ", " ", " ", " ", " ", " ", " ", " " }
+
 require("telescope").setup({
     defaults = {
         mappings = {
@@ -47,8 +49,24 @@ require("telescope").setup({
         prompt_prefix = " " .. general_icons.Search .. "  ",
         selection_caret = " " .. general_icons.ArrowRight .. " ",
 
+        borderchars = {
+            prompt = border_chars_none,
+            results = border_chars_none,
+            preview = border_chars_none,
+        },
+        sort_mru = true,
+        sorting_strategy = "ascending",
+        results_title = false,
+        prompt_title = false,
+        hl_result_eol = false,
+        border = true,
+        winblend = 0,
+
         layout_strategy = "flex",
-        layout_config = { flex = { flip_columns = 120 } },
+        layout_config = { 
+            prompt_position = "top",
+            flex = { flip_columns = 120 } 
+        },
     },
 
     pickers = {
@@ -67,5 +85,5 @@ require("telescope").setup({
     },
 })
 
--- require("plugins.plugin").custom_hl
+require("plugins.telescope.custom_hl")
 require("plugins.telescope.keybinds")
