@@ -1,6 +1,6 @@
--- TODO: work out nice file structure for heirline
+-- TODO: setup this plugin
+local lines = require("plugins.heirline.lines")
 
--- require("plugin").setup({})
-
--- require("plugins.plugin").custom_hl
--- require("plugins.plugin").keybinds
+require("heirline").setup({
+    statusline = lines.BubbleStatusLine,
+})
