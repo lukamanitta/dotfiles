@@ -1,60 +1,30 @@
 local cmd = vim.cmd
 
-local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
-local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
+local get_hl = require("helpers").get_hl
 
+local background = get_hl("StatusLine", "bg#")
 
-local float_blend = require("settings.globals").float_blend
 cmd(
     "hi NeoTreeNormal guibg="
-    .. get_hi_group_bg("StableNormal")
-    .. "blend="
-    .. float_blend
+    .. background
 )
 cmd("hi link NeoTreeNormalNC NeoTreeNormal")
 cmd(
     "hi NeoTreeFloatBorder guibg="
-    .. get_hi_group_bg("StableNormal")
+    .. background
     .. " guifg="
-    .. get_hi_group_fg("NeoTreeFloatBorder")
-    .. " blend="
-    .. float_blend
+    .. background
 )
 cmd(
     "hi NeoTreeFloatTitle guibg="
-    .. get_hi_group_bg("StableNormal")
-    .. "blend="
-    .. float_blend
+    .. background
 )
 cmd(
     "hi VertSplit guibg="
-    .. get_hi_group_bg("StableNormal")
+    .. background
     .. " guifg="
-    .. get_hi_group_bg("StableNormal")
-    .. " blend="
-    .. float_blend
+    .. background
 )
-
-if require("settings.globals").transparent_bg then
-    local remove_hl_bg = require("utils.color.hl_groups").remove_hl_bg
-    local hl_to_remove_bg = {
-        "NeoTreePreview",
-        "NeoTreeGitAdded",
-        "NeoTreeGitModified",
-        "NeoTreeGitDeleted",
-        "NeoTreeGitRenamed",
-        "NeoTreeSignColumn",
-        "NeoTreeVertSplit",
-        "NeoTreeFloatBorder",
-        "NeoTreeFloatNormal",
-        "NeoTreeNormalNC",
-        "NeoTreeFileName",
-    }
-
-    for _, hl in ipairs(hl_to_remove_bg) do
-        remove_hl_bg(hl)
-    end
-end
 
 -- For colourschemes that support NvimTree but not NeoTree
 -- vim.cmd([[

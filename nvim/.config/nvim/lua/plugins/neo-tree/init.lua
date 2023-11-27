@@ -177,7 +177,7 @@ neotree.setup({
         group_empty_dirs = true,
         window = {
             mappings = {
-                ["bd"] = "buffer_delete",
+                ["d"] = "buffer_delete",
                 ["<bs>"] = "navigate_up",
                 ["."] = "set_root",
             },
@@ -199,5 +199,5 @@ neotree.setup({
     },
 })
 
--- require("plugins.neo-tree.custom_hl")
+require("plugins.neo-tree.custom_hl")
 require("plugins.neo-tree.keybinds")

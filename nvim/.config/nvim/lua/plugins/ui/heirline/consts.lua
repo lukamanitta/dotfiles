@@ -11,7 +11,7 @@ local colors = {
     blue = "#51afef",
     red = "#ec5f67",
 }
-
+-- TODO: make these use theme colours and no more blue please
 U.mode_colour = {
     n = colors.blue,
     i = colors.green,

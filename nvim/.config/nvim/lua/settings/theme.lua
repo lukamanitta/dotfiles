@@ -14,7 +14,7 @@ function U.post_colorscheme_actions()
 
     local bar_background = get_hl("StatusLine", "bg#")
     local bar_highlight_brightness_multi = ({
-        dark = 0.55,
+        dark = 1.55,
         light = -0.07,
     })[vim.o.background]
 
@@ -24,7 +24,7 @@ function U.post_colorscheme_actions()
     )
     vim.cmd(
         "hi! BarHighlight2 guibg="
-        .. multiply_hex_brightness(bar_background, bar_highlight_brightness_multi / 2)
+        .. multiply_hex_brightness(bar_background, bar_highlight_brightness_multi / 1.5)
     )
 end
 
