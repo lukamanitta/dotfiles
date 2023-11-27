@@ -1,6 +1,6 @@
-local components = require("plugins.heirline.components")
-local props = require("plugins.heirline.props")
-local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
+local components = require("plugins.ui.heirline.components")
+local props = require("plugins.ui.heirline.props")
+local get_hl = require("helpers").get_hl
 
 return {
     components.SingleSpace("Normal"),
@@ -9,21 +9,21 @@ return {
         {
             direction = "right",
             end_bgs = {
-                get_hi_group_bg("Normal"),
-                get_hi_group_bg("StatusLine"),
+                get_hl("Normal", "bg#"),
+                get_hl("StatusLine", "bg#"),
             },
         },
         components.ModeIndicator,
         vim.tbl_deep_extend("force", components.RootDir, {
             hl = {
-                bg = get_hi_group_bg("BarHighlight"),
+                bg = get_hl("BarHighlight", "bg#"),
                 bold = true,
             },
         }),
         vim.tbl_deep_extend("force", components.GitBranch, {
             hl = {
-                fg = get_hi_group_bg("BarAccent"),
-                bg = get_hi_group_bg("BarHighlight2"),
+                fg = get_hl("BarAccent", "bg#"),
+                bg = get_hl("BarHighlight2", "bg#"),
                 bold = true,
             },
         })
@@ -38,26 +38,26 @@ return {
 
     vim.tbl_deep_extend("force", components.LSPDiagnosticCounts, {
         hl = {
-            bg = get_hi_group_bg("StatusLine"),
+            bg = get_hl("StatusLine", "bg#"),
         },
     }),
     components.BubbleThese(
         {
             direction = "left",
             end_bgs = {
-                get_hi_group_bg("StatusLine"),
-                get_hi_group_bg("Normal"),
+                get_hl("StatusLine", "bg#"),
+                get_hl("Normal", "bg#"),
             },
         },
         vim.tbl_deep_extend("force", components.LSPServerName, {
             hl = {
-                bg = get_hi_group_bg("BarHighlight"),
+                bg = get_hl("BarHighlight", "bg#"),
             },
         }),
         vim.tbl_deep_extend(
             "force",
             { components.CursorLocation, components.ProgressText },
-            props.mode_colour_bg(get_hi_group_bg("StatusLine"))
+            props.mode_colour_bg(get_hl("StatusLine", "bg#"))
         )
     ),
     components.SingleSpace("Normal"),

@@ -1,14 +1,14 @@
 ---@diagnostic disable: undefined-field, undefined-doc-name
-local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
-local helpers = require("plugins.heirline.helpers")
-local Semicircle = require("plugins.heirline.components.Semicircle")
+local get_hl = require("helpers").get_hl
+local helpers = require("plugins.ui.heirline.helpers")
+local Semicircle = require("plugins.ui.heirline.components.Semicircle")
 
 --- Add circular separators to either side of a StatusLine component.
 ---@param component StatusLine component to wrap
 return function(component, edge_bgs)
     local bubble_components = {}
     edge_bgs = edge_bgs and edge_bgs
-        or { get_hi_group_bg("StatusLine"), get_hi_group_bg("StatusLine") }
+        or { get_hl("StatusLine", "bg#"), get_hl("StatusLine", "bg#") }
     if #edge_bgs == 1 then
         edge_bgs[2] = edge_bgs[1]
     end

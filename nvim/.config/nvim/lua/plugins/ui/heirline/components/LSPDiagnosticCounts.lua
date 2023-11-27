@@ -1,6 +1,6 @@
 local conditions = require("heirline.conditions")
 local lsp_icons = require("icons").lsp
-local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
+local get_hl = require("helpers").get_hl
 
 local function create_diagnostic_component(severity)
     return {
@@ -14,7 +14,7 @@ local function create_diagnostic_component(severity)
             return lsp_icons[severity] .. " " .. count .. " "
         end,
         hl = {
-            fg = get_hi_group_fg("Diagnostic" .. severity),
+            fg = get_hl("Diagnostic" .. severity, "fg#"),
         },
     }
 end

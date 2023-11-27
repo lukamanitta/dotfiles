@@ -1,6 +1,5 @@
 local conditions = require("heirline.conditions")
-local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
-local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
+local get_hl = require("helpers").get_hl
 local git_icons = require("icons").git
 
 return {
@@ -14,7 +13,7 @@ return {
             or self.status_dict.changed ~= 0
     end,
 
-    hl = { fg = "orange", bg = get_hi_group_bg("StatusLine") },
+    hl = { fg = "orange", bg = get_hl("StatusLine", "bg#") },
 
     {
         provider = " ",
@@ -25,7 +24,7 @@ return {
             local count = self.status_dict.added or 0
             return count > 0 and (git_icons.Added .. " " .. count .. " ")
         end,
-        hl = { fg = get_hi_group_fg("GitSignsAdd") },
+        hl = { fg = get_hl("GitSignsAdd", "fg#") },
     },
 
     {
@@ -33,7 +32,7 @@ return {
             local count = self.status_dict.removed or 0
             return count > 0 and (git_icons.Removed .. " " .. count .. " ")
         end,
-        hl = { fg = get_hi_group_fg("GitSignsDelete") },
+        hl = { fg = get_hl("GitSignsDelete", "fg#") },
     },
 
     {
@@ -41,6 +40,6 @@ return {
             local count = self.status_dict.changed or 0
             return count > 0 and (git_icons.Modified .. count)
         end,
-        hl = { fg = get_hi_group_fg("GitSignsChange") },
+        hl = { fg = get_hl("GitSignsChange", "fg#") },
     },
 }

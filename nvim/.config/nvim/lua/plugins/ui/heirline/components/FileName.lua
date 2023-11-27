@@ -1,8 +1,7 @@
-local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
-local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
+local get_hl = require("helpers").get_hl
 
 local ColouredBufferIcon =
-require("plugins.heirline.components.ColouredBufferIcon")
+require("plugins.ui.heirline.components.ColouredBufferIcon")
 
 local filename_translations = {
     [""] = "[No Name]",
@@ -28,7 +27,7 @@ return {
     },
 
     hl = {
-        fg = get_hi_group_fg("StatusLine"),
-        bg = get_hi_group_bg("StatusLine"),
+        fg = get_hl("StatusLine", "fg#"),
+        bg = get_hl("StatusLine", "fg#"),
     },
 }

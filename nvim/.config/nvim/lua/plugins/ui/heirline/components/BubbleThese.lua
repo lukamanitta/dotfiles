@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-field, undefined-doc-name
-local helpers = require("plugins.heirline.helpers")
-local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
-local BubbleThis = require("plugins.heirline.components.BubbleThis")
+local helpers = require("plugins.ui.heirline.helpers")
+local get_hl = require("helpers").get_hl
+local BubbleThis = require("plugins.ui.heirline.components.BubbleThis")
 
 --- Create a series of connected bubbles (one for each component given).
 ---@param opts table containing options for the bubble (e.g. direction).
@@ -9,7 +9,7 @@ local BubbleThis = require("plugins.heirline.components.BubbleThis")
 local function BubbleThese(opts, ...)
     opts.direction = opts.direction or "center"
     opts.end_bgs = opts.end_bgs and opts.end_bgs
-        or { get_hi_group_bg("StatusLine"), get_hi_group_bg("StatusLine") }
+        or { get_hl("StatusLine", "bg#"), get_hl("StatusLine", "bg#") }
     if #opts.end_bgs == 1 then
         opts.end_bgs[2] = opts.end_bgs[1]
     end

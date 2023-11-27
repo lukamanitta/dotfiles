@@ -1,7 +1,6 @@
-local components = require("plugins.heirline.components")
-local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
-local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
-local props = require("plugins.heirline.props")
+local components = require("plugins.ui.heirline.components")
+local get_hl = require("helpers").get_hl
+local props = require("plugins.ui.heirline.props")
 
 return {
     vim.tbl_deep_extend("force", components.FillSpace, {
@@ -13,13 +12,13 @@ return {
             components.FileName,
             {
                 hl = {
-                    bg = get_hi_group_bg("BarHighlight"),
-                    fg = get_hi_group_fg("StatusLine"),
+                    bg = get_hl("BarHighlight", "bg#"),
+                    fg = get_hl("StatusLine", "bg#"),
                 },
             }
-        -- props.mode_colour_bg(get_hi_group_bg("StatusLine"))
+        -- props.mode_colour_bg(get_hl("StatusLine", "bg#"))
         ),
-        { get_hi_group_bg("Normal") }
+        { get_hl("Normal", "bg#") }
     ),
     vim.tbl_deep_extend("force", components.FillSpace, {
         hl = "Normal",

@@ -1,14 +1,13 @@
-local components = require("plugins.heirline.components")
-local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
-local get_hi_group_fg = require("utils.color.hl_groups").get_hi_group_fg
+local components = require("plugins.ui.heirline.components")
+local get_hl = require("helpers").get_hl
 
 return {
     components.SingleSpace("Normal"),
 
     components.Semicircle("left", {
         hl = {
-            fg = get_hi_group_bg("StatusLine"),
-            bg = get_hi_group_bg("Normal"),
+            fg = get_hl("StatusLine", "bg#"),
+            bg = get_hl("Normal", "bg#"),
         },
     }),
 
@@ -22,14 +21,14 @@ return {
 
     vim.tbl_deep_extend("force", components.LSPDiagnosticCounts, {
         hl = {
-            bg = get_hi_group_bg("StatusLine"),
+            bg = get_hl("StatusLine", "bg#"),
         },
     }),
 
     components.Semicircle("right", {
         hl = {
-            fg = get_hi_group_bg("StatusLine"),
-            bg = get_hi_group_bg("Normal"),
+            fg = get_hl("StatusLine", "bg#"),
+            bg = get_hl("Normal", "bg#"),
         },
     }),
 
