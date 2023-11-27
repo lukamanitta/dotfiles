@@ -4,7 +4,7 @@ end
 
 set -g fish_greeting
 
-set -gx EDITOR kak
+set -gx EDITOR nvim
 
 source ~/.asdf/asdf.fish
 # Do this if link isn't already made
