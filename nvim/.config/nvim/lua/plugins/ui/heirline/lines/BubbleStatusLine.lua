@@ -36,11 +36,12 @@ return {
     components.FillSpace,
     --
 
-    vim.tbl_deep_extend("force", components.LSPDiagnosticCounts, {
-        hl = {
-            bg = get_hl("StatusLine", "bg#"),
-        },
-    }),
+    -- vim.tbl_deep_extend("force", components.LSPDiagnosticCounts, {
+    --     hl = {
+    --         bg = get_hl("StatusLine", "bg#"),
+    --     },
+    -- }),
+    components.LSPDiagnosticCountsBubble,
     components.BubbleThese(
         {
             direction = "left",

@@ -10,6 +10,9 @@ return {
     LSPDiagnosticCounts = require(
         "plugins.ui.heirline.components.LSPDiagnosticCounts"
     ),
+    LSPDiagnosticCountsBubble = require(
+        "plugins.ui.heirline.components.LSPDiagnosticCountsBubble"
+    ),
     ColouredBufferIcon = require(
         "plugins.ui.heirline.components.ColouredBufferIcon"
     ),

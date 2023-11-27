@@ -3,12 +3,6 @@ local get_hl = require("helpers").get_hl
 local props = require("plugins.ui.heirline.props")
 
 return table_merge({
-    -- {
-    --     provider = function()
-    --         return " " .. require("icons").companies.Vim .. " "
-    --     end,
-    -- },
-
     {
         provider = function()
             return "%2("
