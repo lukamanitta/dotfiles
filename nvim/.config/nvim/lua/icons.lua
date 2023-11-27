@@ -59,7 +59,7 @@ I.general = {
     -- Replace = "﯒",
     Shell = "",
     Crosshairs = "",
-    Percent = "󰏰",
+    Percent = "󱨂",
 
     ListThick = "",
 }

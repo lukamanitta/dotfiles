@@ -6,7 +6,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",
     lazypath,
   })
 end
@@ -96,7 +96,9 @@ require("lazy").setup({
     },
 
     -- UI
-    { "rebelot/heirline.nvim" },
+    { "rebelot/heirline.nvim",
+        config = function() require("plugins.ui.heirline") end,
+    },
     { "lukas-reineke/indent-blankline.nvim",
         config = function() require("plugins.ui.indent-blankline") end,
     },
@@ -109,6 +111,9 @@ require("lazy").setup({
     { "RRethy/vim-hexokinase", build = "make hexokinase" }, -- requires go?
     { "lewis6991/gitsigns.nvim",
         config = function() require("plugins.ui.gitsigns") end,
+    },
+    { "DaikyXendo/nvim-material-icon",
+        config = function() require("plugins.ui.nvim-material-icon") end,
     },
 
     -- Colourschemes

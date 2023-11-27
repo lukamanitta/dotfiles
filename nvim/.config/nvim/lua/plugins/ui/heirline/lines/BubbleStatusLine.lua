@@ -22,7 +22,7 @@ return {
         }),
         vim.tbl_deep_extend("force", components.GitBranch, {
             hl = {
-                fg = get_hl("BarAccent", "bg#"),
+                fg = get_hl("StatusLine", "fg#"),
                 bg = get_hl("BarHighlight2", "bg#"),
                 bold = true,
             },
@@ -56,7 +56,7 @@ return {
         }),
         vim.tbl_deep_extend(
             "force",
-            { components.CursorLocation, components.ProgressText },
+            { components.CursorLocation, components.ProgressBar },
             props.mode_colour_bg(get_hl("StatusLine", "bg#"))
         )
     ),

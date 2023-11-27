@@ -9,6 +9,7 @@ return {
         else
             return "%-3("
                 .. math.floor(cur / total * 100)
+                .. " "
                 .. require("icons").general.Percent
                 .. "%) "
         end

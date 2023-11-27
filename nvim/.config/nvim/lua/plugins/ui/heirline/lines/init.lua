@@ -1,7 +1,7 @@
 return {
-    BubbleStatusLine = require("plugins.heirline.lines.BubbleStatusLine"),
+    BubbleStatusLine = require("plugins.ui.heirline.lines.BubbleStatusLine"),
     BubbleCenterStatusLine = require(
-        "plugins.heirline.lines.BubbleCenterStatusLine"
+        "plugins.ui.heirline.lines.BubbleCenterStatusLine"
     ),
-    VerySimple = require("plugins.heirline.lines.VerySimple"),
+    VerySimple = require("plugins.ui.heirline.lines.VerySimple"),
 }

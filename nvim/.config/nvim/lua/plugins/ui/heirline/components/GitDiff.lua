@@ -38,7 +38,7 @@ return {
     {
         provider = function(self)
             local count = self.status_dict.changed or 0
-            return count > 0 and (git_icons.Modified .. count)
+            return count > 0 and (git_icons.Modified .. " " .. count .. " ")
         end,
         hl = { fg = get_hl("GitSignsChange", "fg#") },
     },

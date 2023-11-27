@@ -1,13 +1,13 @@
 -- TODO: big refactor here
 local Set = require("utils.collections.Set")
-local has_value = require("utils.tables").has_value
+local table_has_value = require("helpers").table_has_value
 
 return {
     provider = function()
         local icon = "  "
 
         local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-        local clients = vim.lsp.get_active_clients()
+        local clients = vim.lsp.get_active_clients() -- TODO: maybe this isn't working?
 
         if next(clients) == nil then
             return " " .. icon .. "No Active LSP" .. " "
@@ -15,7 +15,7 @@ return {
 
         local client_names = Set:new()
         for _, client in ipairs(clients) do
-            if has_value(client.config.filetypes, buf_ft) then
+            if table_has_value(client.config.filetypes, buf_ft) then
                 client_names:add(client.name)
             end
         end

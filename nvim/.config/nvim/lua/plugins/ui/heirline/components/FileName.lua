@@ -17,7 +17,8 @@ return {
 
     {
         provider = function()
-            local filename = vim.fn.expand("%:t")
+            -- local filename = vim.fn.expand("%:t")
+            local filename = vim.fn.pathshorten(vim.fn.expand("%:f"), 1)
             local filetype = vim.bo.filetype
             local display_name = special_filetype_filenames[filetype]
                 or filename_translations[filename]
@@ -28,6 +29,6 @@ return {
 
     hl = {
         fg = get_hl("StatusLine", "fg#"),
-        bg = get_hl("StatusLine", "fg#"),
+        bg = get_hl("StatusLine", "bg#"),
     },
 }

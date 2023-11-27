@@ -3,12 +3,12 @@ local conditions = require("heirline.conditions")
 
 function U.mode_colour()
     local mode = conditions.is_active() and vim.fn.mode() or "n"
-    return require("plugins.heirline.consts").mode_colour[mode]
+    return require("plugins.ui.heirline.consts").mode_colour[mode]
 end
 
 function U.mode_shortname()
     local mode = conditions.is_active() and vim.fn.mode() or "n"
-    return require("plugins.heirline.consts").mode_shortnames[mode]
+    return require("plugins.ui.heirline.consts").mode_shortnames[mode]
 end
 
 function U.component_hl(component)
