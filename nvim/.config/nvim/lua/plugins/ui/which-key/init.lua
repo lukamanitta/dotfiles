@@ -89,8 +89,5 @@ require("which-key").setup({
   },
 })
 
--- local get_hi_group_bg = require("utils.color.hl_groups").get_hi_group_bg
--- vim.cmd("hi WhichKeyFloat guibg=" .. get_hi_group_bg("StatusLine"))
-
--- require("plugins.ui.which-key.custom_hl")
+require("plugins.ui.which-key.custom_hl")
 -- require("plugins.plugin.keybinds")

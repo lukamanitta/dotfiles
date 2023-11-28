@@ -26,6 +26,8 @@ function U.post_colorscheme_actions()
         "hi! BarHighlight2 guibg="
         .. multiply_hex_brightness(bar_background, bar_highlight_brightness_multi / 1.5)
     )
+
+    vim.cmd("hi! Pmenu guibg=" .. get_hl("BarHighlight2", "bg#"))
 end
 
 return U

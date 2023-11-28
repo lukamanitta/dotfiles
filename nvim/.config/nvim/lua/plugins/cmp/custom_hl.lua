@@ -56,10 +56,14 @@ local cmp_item_kind_highlights = {
 }
 
 local get_hl = require("helpers").get_hl
+
+local new_fg = get_hl("Pmenu", "bg#")
+
 -- For each of the above highlight groups, swap the foreground and background
 -- TODO: not working because of links in Gruvbox colour scheme
 for _, highlight in ipairs(cmp_item_kind_highlights) do
-    local fg = get_hl(highlight, "fg#")
-    local bg = get_hl(highlight, "bg#")
-    vim.cmd("hi! " .. highlight .. " guifg=" .. bg .. " guibg=" .. fg)
+    local bg = get_hl(highlight, "fg#")
+    if bg ~= "" then
+        vim.cmd("hi " .. highlight .. " guifg=" .. new_fg .. " guibg=" .. bg)
+    end
 end

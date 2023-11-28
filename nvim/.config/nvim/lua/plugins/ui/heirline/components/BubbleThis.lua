@@ -41,7 +41,7 @@ return function(component, edge_bgs)
             -- hl = helpers.build_semicircle_hl(component, edge_bgs[1]),
             hl = function()
                 return {
-                    fg = helpers.component_hl(left_hl_component).bg,
+                    fg = left_hl_component and helpers.component_hl(left_hl_component).bg or edge_bgs[1],
                     bg = edge_bgs[1],
                 }
             end,
@@ -56,7 +56,7 @@ return function(component, edge_bgs)
         Semicircle("right", {
             hl = function()
                 return {
-                    fg = helpers.component_hl(right_hl_component).bg,
+                    fg = right_hl_component and helpers.component_hl(right_hl_component).bg or edge_bgs[2],
                     bg = edge_bgs[2],
                 }
             end,

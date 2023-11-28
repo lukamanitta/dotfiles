@@ -41,7 +41,7 @@ return {
     --         bg = get_hl("StatusLine", "bg#"),
     --     },
     -- }),
-    components.LSPDiagnosticCountsBubble,
+    components.LSPDiagnosticCounts,
     components.BubbleThese(
         {
             direction = "left",

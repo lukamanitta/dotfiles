@@ -100,7 +100,7 @@ cmp.setup({
 
             -- Display appropriate icons
             -- vim_item.kind = string.format("%s %s", comp_icons[vim_item.kind], vim_item.kind)
-            vim_item.kind = string.format("%s ", comp_icons[vim_item.kind])
+            vim_item.kind = string.format(" %s  ", comp_icons[vim_item.kind])
 
             -- Display source of completion
             vim_item.menu = ({
@@ -139,10 +139,13 @@ cmp.setup({
             vertical_positioning = "above",
         }
     },
+    window = {
+        completion = { side_padding = 0 },
+    },
     experimental = {
         ghost_text = false,
     },
 })
 
--- require("plugins.cmp.custom_hl")
+require("plugins.cmp.custom_hl")
 -- require("plugins.plugin").keybinds

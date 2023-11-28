@@ -15,6 +15,7 @@ local function create_diagnostic_component(severity)
         end,
         hl = {
             fg = get_hl("Diagnostic" .. severity, "fg#"),
+            bg = get_hl("StatusLine", "bg#"),
         },
     }
 end
