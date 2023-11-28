@@ -14,10 +14,15 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "<LEADER>K", vim.diagnostic.open_float, opts)
+    -- vim.keymap.set("n", "<LEADER>d", vim.diagnostic.show_line_diagnostics, opts)
 
     -- Alteration
     vim.keymap.set('n', '<LEADER>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set({ 'n', 'v' }, '<LEADER>ca', vim.lsp.buf.code_action, opts)
+
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(bufnr, true)
+    end
 end
 
 local function make_config()

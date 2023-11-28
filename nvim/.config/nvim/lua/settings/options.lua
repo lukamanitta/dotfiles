@@ -56,5 +56,5 @@ vim.opt.fillchars:append({
     vertleft = "┫",
     vertright = "┣",
     verthoriz = "╋",
-    eob = "", -- TODO: Themed maybe, use icon assets
+    eob = "", -- TODO: Themed maybe, use icon assets
 })

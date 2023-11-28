@@ -21,6 +21,9 @@ local U = {
             keywordSnippet = "Replace",
             callSnippet = "Replace",
         },
+        hint = {
+            enable = true,
+        },
     },
 }
 
