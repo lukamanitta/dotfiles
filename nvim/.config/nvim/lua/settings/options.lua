@@ -2,6 +2,9 @@ require("helpers").set_scope_opts(vim.g, {
     scrolloff = 10,
     sidescrolloff = 5,
     omni_sql_default_compl_type = "syntax",
+
+    -- My variables
+    icon_style = "solid" -- "solid" | "outline" | "text"
 })
 
 require("helpers").set_scope_opts(vim.o, {

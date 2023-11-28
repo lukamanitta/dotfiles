@@ -144,64 +144,32 @@ I.types = { -- Arranged approximately in order of abstraction (lo - hi)
     CommitMsg = "",
 }
 
--- I.lsp = ({
---     solid = {
---         Error = "",
---         Warn = "",
---         Hint = "",
---         Info = "",
---         CodeAction = "󰂚",
---     },
---     outline = {
---         Error = "󰅚",
---         Warn = "󰗖",
---         Hint = "",
---         Info = "",
---         CodeAction = "󰂜",
---     },
---     text = {
---         Error = "E",
---         Warn = "W",
---         Hint = "H",
---         Info = "I",
---         CodeAction = "A",
---     },
--- })[require("settings.globals").lsp_icon_style]
-
-I.lsp = {
+I.lsp = ({
+    solid = {
         Error = "",
         Warn = "",
         Hint = "",
         Info = "",
         CodeAction = "󰂚",
-}
+    },
+    outline = {
+        Error = "󰅚",
+        Warn = "󰗖",
+        Hint = "",
+        Info = "",
+        CodeAction = "󰂜",
+    },
+    text = {
+        Error = "E",
+        Warn = "W",
+        Hint = "H",
+        Info = "I",
+        CodeAction = "A",
+    },
+})[vim.g.icon_style]
 
--- I.git = ({
---     solid = {
---         Branch = "",
---         Merge = "",
---         Unstaged = I.general.Exclamation,
---         Ignored = "",
---         Untracked = I.general.CrossThick,
---         Added = "",
---         Modified = "柳",
---         Renamed = "柳",
---         Removed = "",
---     },
---     outline = {
---         Branch = "",
---         Merge = "",
---         Unstaged = I.general.Exclamation,
---         Ignored = "",
---         Untracked = I.general.CrossThick,
---         Added = "",
---         Modified = "",
---         Renamed = "",
---         Removed = "",
---     },
--- })[require("settings.globals").git_icon_style]
-
-I.git = {
+I.git = ({
+    solid = {
         Branch = "",
         Merge = "",
         Unstaged = I.general.Exclamation,
@@ -211,6 +179,29 @@ I.git = {
         Modified = "󱗜",
         Renamed = "󱥪",
         Removed = "",
-}
+    },
+    outline = {
+        Branch = "",
+        Merge = "",
+        Unstaged = I.general.Exclamation,
+        Ignored = "",
+        Untracked = I.general.CrossThick,
+        Added = "",
+        Modified = "",
+        Renamed = "󱥫",
+        Removed = "",
+    },
+    text = {
+        Branch = "B",
+        Merge = "M",
+        Unstaged = "!",
+        Ignored = "I",
+        Untracked = "U",
+        Added = "A",
+        Modified = "M",
+        Renamed = "R",
+        Removed = "D",
+    },
+})[vim.g.icon_style]
 
 return I
