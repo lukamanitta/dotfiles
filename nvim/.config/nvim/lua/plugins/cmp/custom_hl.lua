@@ -56,7 +56,6 @@ local cmp_item_kind_highlights = {
 }
 
 local get_hl = require("helpers").get_hl
-
 local new_fg = get_hl("Pmenu", "bg#")
 
 -- For each of the above highlight groups, swap the foreground and background

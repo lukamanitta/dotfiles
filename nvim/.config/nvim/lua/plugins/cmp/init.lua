@@ -15,14 +15,14 @@ cmp.setup.filetype({ "markdown" }, {
     }),
 })
 
-local luasnip = require("luasnip")
-
 -- require("copilot_cmp").setup({
 --     method = "getCompletionsCycling", -- or "getPanelCompletions"
 --     formatters = {
 --         insert_text = require("copilot_cmp.format").remove_existing,
 --     },
 -- })
+
+local luasnip = require("luasnip")
 
 cmp.setup({
     snippet = {
