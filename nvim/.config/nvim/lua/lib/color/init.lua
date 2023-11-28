@@ -1,5 +1,5 @@
 local U = {}
-local conversions = require("utils.color.conversions")
+local conversions = require("lib.color.conversions")
 
 local function clamp(value, min, max)
     if value < min then

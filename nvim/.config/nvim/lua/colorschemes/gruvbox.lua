@@ -11,7 +11,7 @@ local get_hl = require("helpers").get_hl
 -- vim.cmd("hi! StatusLine guibg=" .. statusline_fg .. " guifg=" .. statusline_bg .. "cterm=NONE gui=NONE")
 -- vim.cmd("hi! StatusLineNC guibg=" .. statusline_nc_fg .. " guifg=" .. statusline_nc_bg .. "cterm=NONE gui=NONE")
 
-local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
+local multiply_hex_brightness = require("lib.color").multiply_hex_brightness
 vim.cmd(
     "hi! StatusLine guibg="
     .. multiply_hex_brightness(get_hl("Normal", "bg#"), -0.35)

@@ -1,5 +1,5 @@
 local get_hl = require("helpers").get_hl
-local multiply_hex_brightness = require("utils.color").multiply_hex_brightness
+local multiply_hex_brightness = require("lib.color").multiply_hex_brightness
 
 local U = {}
 

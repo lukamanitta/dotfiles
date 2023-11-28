@@ -85,5 +85,7 @@ require("telescope").setup({
     },
 })
 
+require("telescope").load_extension("fzf")
+
 require("plugins.telescope.custom_hl")
 require("plugins.telescope.keybinds")

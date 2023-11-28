@@ -1,5 +1,5 @@
 -- TODO: big refactor here
-local Set = require("utils.collections.Set")
+local Set = require("lib.collections.Set")
 local table_has_value = require("helpers").table_has_value
 
 return {

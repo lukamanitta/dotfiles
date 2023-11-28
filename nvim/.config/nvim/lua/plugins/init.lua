@@ -45,6 +45,12 @@ require("lazy").setup({
             "nvim-lua/popup.nvim",
         },
     },
+    { 'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+        },
+    },
 
     -- Explorer
     { "nvim-neo-tree/neo-tree.nvim", -- TODO: high perf impact
@@ -66,7 +72,6 @@ require("lazy").setup({
     },
 
     -- LSP
-    -- mason.nvim?
     { "neovim/nvim-lspconfig" },
     { "jose-elias-alvarez/null-ls.nvim" },
 
