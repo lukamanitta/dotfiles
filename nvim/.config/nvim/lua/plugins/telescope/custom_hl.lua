@@ -1,41 +1,44 @@
 local get_hl = require("helpers").get_hl
 
+local prompt_bg = get_hl("StatusLineNC", "bg#")
+local other_bg_hl_group = "StatusLine"
+
 -- Normal
 
 vim.cmd(
     "hi! TelescopePromptNormal guibg=" 
-        .. get_hl("StatusLine", "bg#") 
+        .. prompt_bg
         .. " guifg=" 
         .. get_hl("Normal", "fg#")
         .. "cterm=NONE"
 )
-vim.cmd("hi! link TelescopeResultsNormal StatusLineNC")
-vim.cmd("hi! link TelescopePreviewNormal StatusLineNC")
+vim.cmd("hi! link TelescopeResultsNormal " .. other_bg_hl_group)
+vim.cmd("hi! link TelescopePreviewNormal " .. other_bg_hl_group)
 
 -- Borders
 
 vim.cmd(
     "hi! TelescopePromptBorder guibg="
-        .. get_hl("StatusLine", "bg#")
+        .. prompt_bg
         .. " guifg="
         .. get_hl("Normal", "fg#")
         .. "cterm=NONE"
 )
-vim.cmd("hi! link TelescopeResultsBorder StatusLineNC")
-vim.cmd("hi! link TelescopePreviewBorder StatusLineNC")
+vim.cmd("hi! link TelescopeResultsBorder " .. other_bg_hl_group)
+vim.cmd("hi! link TelescopePreviewBorder " .. other_bg_hl_group)
 vim.cmd("hi! link TelescopeBorder Normal")
 
 -- Titles
 
 vim.cmd(
     "hi! TelescopePromptTitle guibg="
-        .. get_hl("StatusLine", "bg#")
+        .. prompt_bg
         .. " guifg="
         .. get_hl("Normal", "fg#")
         .. "cterm=NONE"
 )
-vim.cmd("hi! link TelescopeResultsTitle StatusLineNC")
-vim.cmd("hi! link TelescopePreviewTitle StatusLineNC")
+vim.cmd("hi! link TelescopeResultsTitle " .. other_bg_hl_group)
+vim.cmd("hi! link TelescopePreviewTitle " .. other_bg_hl_group)
 vim.cmd("hi! link TelescopeTitle StatusLine")
 
 -- Selection Caret & Search Icon
