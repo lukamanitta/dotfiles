@@ -69,6 +69,13 @@ require("lazy").setup({
             ":TSInstall all", 
             ":TSUpdate" ,
         }, -- Change all to a list of required ones
+        config = function() 
+            require("nvim-treesitter.configs").setup({
+                highlight = {
+                    enabled = true,
+                }
+            })
+        end,
     },
 
     -- LSP
@@ -92,7 +99,7 @@ require("lazy").setup({
     { "hrsh7th/cmp-buffer" },
     { "hrsh7th/cmp-path" },
 
-    { "L3MON4D3/LuaSnip" }, -- TODO: high perf impact
+    { "L3MON4D3/LuaSnip", build = "make install_jsregexp" }, -- TODO: high perf impact
 
     { "github/copilot.vim",
         config = function()
