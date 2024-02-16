@@ -8,6 +8,7 @@ $username\
 $hostname\
 $shlvl\
 $directory\
+$jobs\
 $git_branch\
 $git_state\
 $git_metrics\
@@ -61,7 +62,6 @@ command_timeout = 1500
 scan_timeout = 200
 
 # Module settings
-
 continuation_prompt = " "
 [character]
 success_symbol = " [ ](bold green)"
@@ -69,7 +69,6 @@ error_symbol = " [ ](bold red)"
 vicmd_symbol = " [ ](bold green)"
 
 [fill]
-# symbol = "  "
 symbol = "─"
 style = "bright-black dimmed"
 
@@ -78,18 +77,21 @@ disabled = false
 use_12hr = true
 
 [directory]
-read_only = " readonly"
+read_only = ""
 truncation_length = 3
 truncate_to_repo = true
 fish_style_pwd_dir_length = 1
 
+[jobs]
+symbol = "󰽘 "
+style = "bold yellow"
+
 [git_branch]
-symbol = ""
-style = "bold bright-black"
-format = "[$symbol$branch]($style) "
+symbol = " "
+style = "bold purple"
 
 [git_state]
-merge = "MERGE"
+merge = " MERGE"
 
 [git_metrics]
 disabled = true
@@ -98,8 +100,8 @@ format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 
 [git_status]
 format='$ahead_behind$staged$deleted$modified$untracked$stashed'
-ahead = '[⇡$count](bold green) '
-behind = '[⇣$count](bold green) '
+ahead = '[⇡$count](green) '
+behind = '[⇣$count](green) '
 diverged ='[󰹹](red) '
 untracked = '[?$count](blue) '
 stashed = '[*](green) '
@@ -108,41 +110,41 @@ staged = '[+$count](bold yellow) '
 deleted = '[-$count](bold red) '
 
 [hg_branch]
-symbol = "git "
+symbol = " "
 
 [memory_usage]
-symbol = "mem "
+symbol = " "
 
 [shlvl]
-symbol = "sh "
+symbol = " "
 
 [package]
-symbol = "pkg "
+symbol = " "
 
 [aws]
 format = 'with [$symbol($profile)(\($region\))(with $duration)]($style) '
-symbol = "aws  "
+symbol = "  "
 
 [bun]
 format = 'with [$symbol($version)]($style) '
 
 [c]
 format = 'with [$symbol($version(-$name))]($style) '
-symbol = "c "
+symbol = " "
 
 [cmake]
 format = 'with [$symbol($version)]($style) '
 
 [cmd_duration]
-format = '[took $duration]($style) '
-style = "bold yellow"
+format = '[󱞹 $duration]($style) '
+style = "bold yellow dimmed"
 
 [cobol]
 format = 'with [$symbol($version)]($style) '
 
 [conda]
 format = 'with [$symbol$environment]($style) '
-symbol = "conda "
+symbol = " "
 
 [crystal]
 format = 'with [$symbol($version)]($style) '
@@ -152,25 +154,25 @@ format = 'with [$symbol($version)]($style) '
 
 [dart]
 format = 'with [$symbol($version)]($style) '
-symbol = "dart "
+symbol = " "
 
 [deno]
 format = 'with [$symbol($version)]($style) '
 
 [docker_context]
 format = 'with [$symbol$context]($style) '
-symbol = "docker "
+symbol = " "
 
 [dotnet]
-format = 'with [$symbol($version)($tfm)]($style) '
+format = 'with [$symbol($version)(🎯 $tfm)]($style) '
 
 [elixir]
 format = 'with [$symbol($version \(OTP $otp_version\))]($style) '
-symbol = "elixir "
+symbol = " "
 
 [elm]
 format = 'with [$symbol($version)]($style) '
-symbol = "elm "
+symbol = " "
 
 [erlang]
 format = 'with [$symbol($version)]($style) '
@@ -180,22 +182,22 @@ format = 'with [$symbol$account(@$domain)(\($region\))]($style) '
 
 [golang]
 format = 'with [$symbol($version)]($style) '
-symbol = "go "
+symbol = "󰟓 "
 
 [haskell]
 format = 'with [$symbol($version)]($style) '
-symbol = "haskell "
+symbol = " "
 
 [helm]
 format = 'with [$symbol($version)]($style) '
 
 [java]
 format = 'with [$symbol($version)]($style) '
-symbol = "java "
+symbol = "󰌞 "
 
 [julia]
 format = 'with [$symbol($version)]($style) '
-symbol = "julia "
+symbol = " "
 
 [kotlin]
 format = 'with [$symbol($version)]($style) '
@@ -205,19 +207,19 @@ format = 'with [$symbol$context( \($namespace\))]($style) '
 
 [lua]
 format = 'with [$symbol($version)]($style) '
-symbol = "lua "
+symbol = " "
 
 [nim]
 format = 'with [$symbol($version)]($style) '
-symbol = "nim "
+symbol = " "
 
 [nix_shell]
 format = 'with [$symbol$state( \($name\))]($style) '
-symbol = "nix "
+symbol = " "
 
 [nodejs]
 format = 'with [$symbol($version)]($style) '
-symbol = "node "
+symbol = " "
 
 [ocaml]
 format = 'with [$symbol($version)(\($switch_indicator$switch_name\))]($style) '
@@ -233,7 +235,7 @@ format = 'with [$symbol($version)]($style) '
 
 [python]
 format = 'with [${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style) '
-symbol = "py "
+symbol = " "
 
 [raku]
 format = 'with [$symbol($version-$vm_version)]($style) '
@@ -243,15 +245,15 @@ format = 'with [$symbol($version)]($style) '
 
 [ruby]
 format = 'with [$symbol($version)]($style) '
-symbol = "ruby "
+symbol = " "
 
 [rust]
 format = 'with [$symbol($version)]($style) '
-symbol = "rust "
+symbol = " "
 
 [scala]
 format = 'with [$symbol($version)]($style) '
-symbol = "scala "
+symbol = " "
 
 [spack]
 format = 'with [$symbol$environment]($style) '
