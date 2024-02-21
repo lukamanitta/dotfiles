@@ -72,7 +72,7 @@ require("lazy").setup({
         config = function() 
             require("nvim-treesitter.configs").setup({
                 highlight = {
-                    enabled = true,
+                    enable = true,
                 }
             })
         end,
