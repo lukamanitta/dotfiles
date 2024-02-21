@@ -17,10 +17,6 @@ source ~/.env
 
 alias lg="lazygit"
 
-# Uni
-set -g MOSS_SERVER "s4697584@moss.labs.eait.uq.edu.au"
-set -g LICHEN_SERVER "s4697584@lichen.labs.eait.uq.edu.au"
-
 # MSI stuff
 source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
 fish_add_path ~/code/msi-utils/bin/
