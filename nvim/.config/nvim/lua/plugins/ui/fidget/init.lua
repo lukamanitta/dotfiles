@@ -14,7 +14,7 @@ require("fidget").setup({
     display = {
       render_limit = 16,          -- How many LSP messages to show at once
       done_ttl = 3,               -- How long a message should persist after completion
-      done_icon = "✔",            -- Icon shown when all LSP progress tasks are complete
+      done_icon = "",            -- Icon shown when all LSP progress tasks are complete
       done_style = "Constant",    -- Highlight group for completed LSP tasks
       progress_ttl = math.huge,   -- How long a message should persist when in progress
       progress_icon =             -- Icon shown when LSP progress tasks are in progress
@@ -46,8 +46,9 @@ require("fidget").setup({
     poll_rate = 10,               -- How frequently to update and render notifications
     filter = vim.log.levels.INFO, -- Minimum notifications level
     override_vim_notify = false,  -- Automatically override vim.notify() with Fidget
-    configs =                     -- How to configure notification groups when instantiated
-      { default = require("fidget.notification").default_config },
+    configs = {                   -- How to configure notification groups when instantiated
+        default = require("fidget.notification").default_config 
+    },
 
     -- Options related to how notifications are rendered as text
     view = {
