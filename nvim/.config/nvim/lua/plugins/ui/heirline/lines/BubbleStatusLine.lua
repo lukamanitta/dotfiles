@@ -20,6 +20,8 @@ return {
                 bold = true,
             },
         }),
+
+        -- TODO: Hide this component if there is no git repo
         vim.tbl_deep_extend("force", components.GitBranch, {
             hl = {
                 fg = get_hl("StatusLine", "fg#"),
