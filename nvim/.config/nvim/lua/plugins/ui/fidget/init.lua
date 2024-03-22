@@ -7,7 +7,7 @@ require("fidget").setup({
     suppress_on_insert = false,   -- Suppress new messages while in insert mode
     ignore_done_already = false,  -- Ignore new tasks that are already complete
     notification_group =          -- How to get a progress message's notification group key
-      function(msg) return msg.lsp_name end,
+      function(msg) return msg.lsp_client.name end,
     ignore = {},                  -- List of LSP servers to ignore
 
     -- Options related to how LSP progress messages are displayed as notifications
