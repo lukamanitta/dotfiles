@@ -19,6 +19,7 @@ vim.cmd(
     .. get_hl("Normal", "fg#")
     .. " gui=NONE cterm=NONE"
 )
+
 vim.cmd(
     "hi! StatusLineNC guibg="
     .. multiply_hex_brightness(get_hl("Normal", "bg#"), -0.1)
@@ -26,5 +27,13 @@ vim.cmd(
     .. get_hl("Normal", "fg#")
     .. " gui=NONE cterm=NONE"
 )
+
+vim.cmd('hi link DiagnosticOk GruvboxGreen')
+
+vim.cmd("hi link DiagnosticSignError DiagnosticError")
+vim.cmd("hi link DiagnosticSignWarn DiagnosticWarn")
+vim.cmd("hi link DiagnosticSignInfo DiagnosticInfo")
+vim.cmd("hi link DiagnosticSignHint DiagnosticHint")
+vim.cmd("hi link DiagnosticSignOk DiagnosticOk")
 
 require("settings.theme").post_colorscheme_actions()
