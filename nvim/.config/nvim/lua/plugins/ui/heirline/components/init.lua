@@ -22,4 +22,6 @@ return {
     GitBranch = require("plugins.ui.heirline.components.GitBranch"),
     GitDiff = require("plugins.ui.heirline.components.GitDiff"),
     RootDir = require("plugins.ui.heirline.components.RootDir"),
+    CopilotIndicator = require("plugins.ui.heirline.components.CopilotIndicator"),
+    NullLSIndicator = require("plugins.ui.heirline.components.NullLSIndicator"),
 }

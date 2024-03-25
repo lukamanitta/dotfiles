@@ -44,6 +44,8 @@ return {
     --     },
     -- }),
     components.LSPDiagnosticCounts,
+    -- components.CopilotIndicator,
+    -- components.NullLSIndicator,
     components.BubbleThese(
         {
             direction = "left",
@@ -52,6 +54,18 @@ return {
                 get_hl("Normal", "bg#"),
             },
         },
+        vim.tbl_deep_extend("force",
+            { 
+                components.SingleSpace("BarHighlight2"),
+                components.CopilotIndicator,
+                components.NullLSIndicator
+            },
+            {
+                hl = {
+                    bg = get_hl("BarHighlight2", "bg#"),
+                },
+            }
+        ),
         vim.tbl_deep_extend("force", components.LSPServerName, {
             hl = {
                 bg = get_hl("BarHighlight", "bg#"),
