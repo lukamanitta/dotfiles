@@ -1,13 +1,12 @@
--- TODO: big refactor here
 local Set = require("lib.collections.Set")
-local table_has_value = require("helpers").table_has_value
 
 return {
     provider = function()
         local icon = "  "
 
-        local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-        local clients = vim.lsp.get_active_clients() -- TODO: maybe this isn't working?
+        local clients = vim.lsp.get_clients({
+            bufnr = 0,
+        })
 
         if next(clients) == nil then
             return " " .. icon .. "No Active LSP" .. " "
@@ -15,17 +14,14 @@ return {
 
         local client_names = Set:new()
         for _, client in ipairs(clients) do
-            if table_has_value(client.config.filetypes, buf_ft) then
-                client_names:add(client.name)
-            end
+            client_names:add(client.name)
         end
 
-        if client_names:size() < 2 then
-            return " " .. icon .. "No Active LSP" .. " "
-        end
-
-        if client_names:contains("null-ls") and client_names:size() > 1 then
+        if client_names:contains("null-ls") then
             client_names:remove("null-ls")
+        end
+        if client_names:contains("copilot") then
+            client_names:remove("copilot")
         end
 
         return " " .. icon .. client_names:to_string() .. " "
