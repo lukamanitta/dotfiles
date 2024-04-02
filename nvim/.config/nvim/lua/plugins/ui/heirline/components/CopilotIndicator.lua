@@ -18,9 +18,9 @@ end
 return {
     provider = function()
         if copilot_active() then
-            return success_icon .. " "
+            return success_icon
         end
-        return failure_icon .. " "
+        return failure_icon
     end,
     hl = function()
         return {

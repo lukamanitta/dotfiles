@@ -55,10 +55,11 @@ return {
             },
         },
         vim.tbl_deep_extend("force",
-            { 
+            {
                 components.SingleSpace("BarHighlight2"),
                 components.CopilotIndicator,
-                components.NullLSIndicator
+                -- components.SingleSpace("BarHighlight2"),
+                -- components.NullLSIndicator
             },
             {
                 hl = {
