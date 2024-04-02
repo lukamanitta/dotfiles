@@ -34,7 +34,6 @@ local function make_config()
     }
 end
 
--- TODO: maybe bootstrap these
 lspconfig.tsserver.setup(make_config())
 lspconfig.rust_analyzer.setup(make_config())
 lspconfig.pyright.setup(make_config())
