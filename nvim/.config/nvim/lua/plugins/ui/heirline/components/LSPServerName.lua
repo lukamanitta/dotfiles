@@ -8,10 +8,6 @@ return {
             bufnr = 0,
         })
 
-        if next(clients) == nil then
-            return " " .. icon .. "No Active LSP" .. " "
-        end
-
         local client_names = Set:new()
         for _, client in ipairs(clients) do
             client_names:add(client.name)
@@ -22,6 +18,10 @@ return {
         end
         if client_names:contains("copilot") then
             client_names:remove("copilot")
+        end
+
+        if client_names:is_empty() then
+            return " " .. icon .. "No Active LSP" .. " "
         end
 
         return " " .. icon .. client_names:to_string() .. " "
