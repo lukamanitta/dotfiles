@@ -26,6 +26,12 @@ require("lazy").setup({
         config = function() require("plugins.ui.which-key") end,
     },
 
+    -- Motions & Objects
+    { "smoka7/hop.nvim",
+        version = "*",
+        config = function() require("plugins.hop") end
+    },
+
     -- Comments
     { "JoosepAlviste/nvim-ts-context-commentstring" },
     { "numToStr/Comment.nvim",
@@ -65,11 +71,11 @@ require("lazy").setup({
 
     -- Treesitter
     { "nvim-treesitter/nvim-treesitter",
-        build = { 
-            ":TSInstall all", 
+        build = {
+            ":TSInstall all",
             ":TSUpdate" ,
         }, -- Change all to a list of required ones
-        config = function() 
+        config = function()
             require("nvim-treesitter.configs").setup({
                 highlight = {
                     enable = true,
