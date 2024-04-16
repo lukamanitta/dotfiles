@@ -20,6 +20,14 @@ end
 
 function U.get_buf_icon(bufnr)
     bufnr = bufnr or vim.api.nvim_get_current_buf()
+
+    local filetype = U.get_buf_filetype(bufnr)
+    if filetype == "TelescopePrompt" then
+        return ""
+    elseif filetype == "neo-tree" then
+        return ""
+    end
+
     local filename = vim.api.nvim_buf_get_name(bufnr)
     local file_ext = string.match(filename, "(%w+)$")
     local default_icon = ""
