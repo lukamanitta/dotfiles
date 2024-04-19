@@ -136,11 +136,19 @@ require("lazy").setup({
     },
 
     -- Colourschemes
-    { "rebelot/kanagawa.nvim" },
+    { "rebelot/kanagawa.nvim", priority = 1000, name = "kanagawa",
+        cond = is_selected_colorscheme,
+        config = function()
+            require("settings.theme").pre_colorscheme_actions()
+            require("colorschemes.kanagawa")
+            require("settings.theme").post_colorscheme_actions()
+        end},
     { "ellisonleao/gruvbox.nvim", priority = 1000, name = "gruvbox",
         cond = is_selected_colorscheme,
         config = function()
+            require("settings.theme").pre_colorscheme_actions()
             require("colorschemes.gruvbox")
+            require("settings.theme").post_colorscheme_actions()
         end
     },
 },
