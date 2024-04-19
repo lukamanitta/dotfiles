@@ -119,7 +119,7 @@ symbol = " "
 symbol = " "
 
 [package]
-symbol = " "
+symbol = "󰏗 "
 
 [aws]
 format = 'with [$symbol($profile)(\($region\))(with $duration)]($style) '
