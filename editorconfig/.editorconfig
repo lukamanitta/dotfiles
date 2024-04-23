@@ -1,5 +1,17 @@
 root = true
 
 [*]
+charset = utf-8
+indent_size = 4
+indent_style = space
+end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = false
+
+# documentation, utils
+[*.{md,mdx,diff}]
+trim_trailing_whitespace = false
+
+# windows shell scripts
+[*.{cmd,bat,ps1}]
+end_of_line = crlf
