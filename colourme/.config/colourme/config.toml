@@ -2,6 +2,6 @@
 template = "~/.config/colourme/templates/wezterm.toml"
 destination = "~/.config/wezterm/colors/Luka.toml"
 
-[kakoune]
-template = "~/.config/colourme/templates/kakoune.kak"
-detination = "~/.config/kak/colors/Luka.toml"
+# [kakoune]
+# template = "~/.config/colourme/templates/kakoune.kak"
+# destination = "~/.config/kak/colors/Luka.toml"
