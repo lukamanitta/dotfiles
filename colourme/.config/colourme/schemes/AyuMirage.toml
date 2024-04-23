@@ -1,4 +1,3 @@
-[colours]
 background =   "#1f2430"
 foreground =   "#cbccc6"
 
@@ -8,7 +7,7 @@ cursor_fg =    "#1f2430"
 selection_bg = "#33415e"
 selection_fg = "#cbccc6"
 
-[colours.regular]
+[regular]
 black =   "#1f2430"
 red =     "#f28779"
 green =   "#bae67e"
@@ -18,7 +17,7 @@ magenta = "#d4bfff"
 cyan =    "#95e6cb"
 white =   "#cbccc6"
 
-[colours.bright]
+[bright]
 black =   "#607080"
 red =     "#ff3333"
 green =   "#bae67e"
