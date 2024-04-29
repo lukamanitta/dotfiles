@@ -25,6 +25,7 @@ cmd(
     .. " guifg="
     .. background
 )
+cmd("hi NeoTreeTabSeparatorActive guibg=" .. background)
 
 -- For colourschemes that support NvimTree but not NeoTree
 -- vim.cmd([[
@@ -35,4 +36,3 @@ cmd(
 -- highlight! link NeoTreeDirectoryName NvimTreeOpenedFolderName
 -- highlight! link NeoTreeFileNameOpened NvimTreeOpenedFile
 -- ]])
-
