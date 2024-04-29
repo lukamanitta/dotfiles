@@ -3,7 +3,8 @@ local multiply_hex_brightness = require("lib.color").multiply_hex_brightness
 
 local U = {}
 
-U.colorscheme = "gruvbox"
+-- gruvbox | kanagawa
+U.colorscheme = "kanagawa"
 
 function U.pre_colorscheme_actions()
     vim.o.background = "dark"
@@ -15,7 +16,7 @@ function U.post_colorscheme_actions()
     local bar_background = get_hl("StatusLine", "bg#")
     local bar_highlight_brightness_multi = ({
         dark = 1.55,
-        light = -0.07,
+        light = -0.1,
     })[vim.o.background]
 
     vim.cmd(

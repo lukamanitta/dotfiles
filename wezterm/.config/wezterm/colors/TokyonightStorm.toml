@@ -1,0 +1,88 @@
+[colors]
+ansi = [
+    "#", # Black
+    "#", # Red
+    "#", # Green
+    "#", # Yellow
+    "#", # Blue
+    "#", # Magenta
+    "#", # Cyan
+    "#", # White
+]
+
+brights = [
+    "#", # Black
+    "#", # Red
+    "#", # Green
+    "#", # Yellow
+    "#", # Blue
+    "#", # Magenta
+    "#", # Cyan
+    "#", # White
+]
+
+background = "#"
+foreground = "#"
+
+cursor_bg = "#"
+cursor_fg = "#"
+cursor_border = "#"
+
+scrollbar_thumb = "#"
+
+selection_bg = "#"
+selection_fg = "#"
+
+split = "#"
+visual_bell = "#"
+
+[colors.indexed]
+
+[colors.tab_bar]
+background = "#"
+inactive_tab_edge = "#"
+
+[colors.tab_bar.active_tab]
+bg_color = "#"
+fg_color = "#"
+
+intensity = "Bold"      # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = false
+strikethrough = false
+
+[colors.tab_bar.inactive_tab]
+bg_color = "#"
+fg_color = "#"
+
+intensity = "Normal"    # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = true
+strikethrough = false
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color = "#"
+fg_color = "#"
+
+intensity = "Normal"    # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = true
+strikethrough = false
+
+[colors.tab_bar.new_tab]
+bg_color = "#"
+fg_color = "#"
+
+intensity = "Normal"    # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = false
+strikethrough = false
+
+[colors.tab_bar.new_tab_hover]
+bg_color = "#"
+fg_color = "#"
+
+intensity = "Normal"    # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = false
+strikethrough = false

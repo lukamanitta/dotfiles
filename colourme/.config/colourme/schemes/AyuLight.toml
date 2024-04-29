@@ -1,0 +1,28 @@
+background =   "#fafafa"
+foreground =   "#575f66"
+
+cursor_bg =    "#575f66"
+cursor_fg =    "#fafafa"
+
+selection_bg = "#d1e4f4"
+selection_fg = "#575f66"
+
+[regular]
+black =   "#fafafa"
+red =     "#f07171"
+green =   "#86b300"
+yellow =  "#ff9940"
+blue =    "#55b4d4"
+magenta = "#a37acc"
+cyan =    "#4cbf99"
+white =   "#575f66"
+
+[bright]
+black =   "#828c99"
+red =     "#f51818"
+green =   "#86b300"
+yellow =  "#ff9940"
+blue =    "#55b4d4"
+magenta = "#a37acc"
+cyan =    "#4cbf99"
+white =   "#abb0b6"

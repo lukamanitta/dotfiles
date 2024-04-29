@@ -35,5 +35,3 @@ vim.cmd("hi link DiagnosticSignWarn DiagnosticWarn")
 vim.cmd("hi link DiagnosticSignInfo DiagnosticInfo")
 vim.cmd("hi link DiagnosticSignHint DiagnosticHint")
 vim.cmd("hi link DiagnosticSignOk DiagnosticOk")
-
-require("settings.theme").post_colorscheme_actions()

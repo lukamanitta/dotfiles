@@ -1,7 +1,7 @@
 [colors]
 ansi = [
     "#{{hex:regular.black}}", # Black
-    "#{{hex:regular.red}}", # Red
+    "#{{hex:regular.red}", # Red
     "#{{hex:regular.green}}", # Green
     "#{{hex:regular.yellow}}", # Yellow
     "#{{hex:regular.blue}}", # Blue
@@ -24,14 +24,14 @@ brights = [
 background = "#{{hex:background}}"
 foreground = "#{{hex:foreground}}"
 
-cursor_bg = "#{{hex:cursor_bg}}"
-cursor_fg = "#{{hex:cursor_fg}}"
-cursor_border = "#{{hex:cursor_bg}}"
+cursor_bg = "#{{hex:cursor_bg || hex:foreground}}"
+cursor_fg = "#{{hex:cursor_fg || hex:background}}"
+cursor_border = "#{{hex:cursor_bg || hex:foreground}}"
 
 scrollbar_thumb = "#{{hex:regular.black}}"
 
-selection_bg = "#{{hex:selection_bg}}"
-selection_fg = "#{{hex:selection_fg}}"
+selection_bg = "#{{hex:selection_bg || hex:darken(cursor_fg, 0.2) || hex:foreground}}"
+selection_fg = "#{{hex:selection_fg || hex:cursor_bg || hex:background}}"
 
 split = "#{{hex:regular.black}}"
 visual_bell = "#{{hex:regular.black}}"
