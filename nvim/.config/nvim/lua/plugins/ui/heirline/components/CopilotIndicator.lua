@@ -8,7 +8,7 @@ local function copilot_active()
     })
 
     for _, client in ipairs(clients) do
-        if client.name == "copilot" then
+        if client.name == "copilot" or client.name == "GitHub Copilot" then
             return true
         end
     end

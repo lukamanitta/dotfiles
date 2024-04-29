@@ -19,6 +19,10 @@ return {
         if client_names:contains("copilot") then
             client_names:remove("copilot")
         end
+        -- Sometimes copilot is called this
+        if client_names:contains("GitHub Copilot") then
+            client_names:remove("GitHub Copilot")
+        end
 
         if client_names:is_empty() then
             return " " .. icon .. "No Active LSP" .. " "
