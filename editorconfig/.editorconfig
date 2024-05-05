@@ -15,3 +15,6 @@ trim_trailing_whitespace = false
 # windows shell scripts
 [*.{cmd,bat,ps1}]
 end_of_line = crlf
+
+[*.{svelte,html}]
+indent_size = 4
