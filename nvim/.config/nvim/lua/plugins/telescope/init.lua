@@ -63,10 +63,15 @@ require("telescope").setup({
         winblend = 0,
 
         layout_strategy = "flex",
-        layout_config = { 
+        layout_config = {
             prompt_position = "top",
-            flex = { flip_columns = 120 } 
+            flex = { flip_columns = 120 }
         },
+        path_display = {
+            filename_first = {
+                reverse_directories = false
+            }
+        }
     },
 
     pickers = {
