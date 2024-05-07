@@ -29,10 +29,10 @@ cmd("hi NeoTreeTabSeparatorActive guibg=" .. background)
 
 -- For colourschemes that support NvimTree but not NeoTree
 -- vim.cmd([[
--- highlight! link NeoTreeDirectoryIcon NvimTreeFolderIcon
--- highlight! link NeoTreeDirectoryName NvimTreeFolderName
--- highlight! link NeoTreeSymbolicLinkTarget NvimTreeSymlink
--- highlight! link NeoTreeRootName NvimTreeRootFolder
--- highlight! link NeoTreeDirectoryName NvimTreeOpenedFolderName
--- highlight! link NeoTreeFileNameOpened NvimTreeOpenedFile
+    -- highlight! link NeoTreeDirectoryIcon NvimTreeFolderIcon
+    -- highlight! link NeoTreeDirectoryName NvimTreeFolderName
+    -- highlight! link NeoTreeSymbolicLinkTarget NvimTreeSymlink
+    -- highlight! link NeoTreeRootName NvimTreeRootFolder
+    -- highlight! link NeoTreeDirectoryName NvimTreeOpenedFolderName
+    -- highlight! link NeoTreeFileNameOpened NvimTreeOpenedFile
 -- ]])
