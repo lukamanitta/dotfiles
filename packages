@@ -10,3 +10,6 @@ ranger
 ripgrep
 starship
 stow
+asdf
+    golang
+    neovim
