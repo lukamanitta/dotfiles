@@ -6,10 +6,6 @@ vim.g.mapleader = " "
 -- Map jk to leave ins mode
 vim.keymap.set("i", "jk", "<Esc>")
 
--- map('', ';', ':', silentnoremap)
--- cmd("map ; :") -- cmdline is hidden until another key is pressed unless this is done in viml
-vim.keymap.set("n", ";", ":")
-
 vim.keymap.set("n", "-", "^")
 
 -- Switch to alternate file
