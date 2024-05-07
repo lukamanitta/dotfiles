@@ -91,6 +91,7 @@ require("lazy").setup({
 
     -- Completions
     { "llllvvuu/nvim-cmp", -- Using this fork until hrs7th merges this
+    -- { "ckyrouac/nvim-cmp", -- Using this fork until hrs7th merges this
         config = function() require("plugins.cmp") end,
         branch = "feat/above",
     },
@@ -127,7 +128,7 @@ require("lazy").setup({
     { "j-hui/fidget.nvim",
         config = function() require("plugins.ui.fidget") end,
     },
-    { "RRethy/vim-hexokinase", build = "make hexokinase" }, -- requires go?
+    { "RRethy/vim-hexokinase", build = "make hexokinase" }, -- requires go
     { "lewis6991/gitsigns.nvim",
         config = function() require("plugins.ui.gitsigns") end,
     },
