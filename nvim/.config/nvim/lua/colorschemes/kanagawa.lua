@@ -32,13 +32,28 @@ require("kanagawa").setup(vim.tbl_deep_extend("force", opts, {
     dimInactive = false, -- dim inactive window `:h hl-NormalNC`
     globalStatus = vim.opt.laststatus == 3, -- adjust window separators highlight for laststatus=3
 }))
+
 vim.cmd("colorscheme kanagawa")
 
 local get_hl = require("helpers").get_hl
 
-vim.cmd("hi! LineNr guibg=" .. get_hl("Normal", "bg#"))
-vim.cmd("hi! LineNrAbove guibg=" .. get_hl("Normal", "bg#"))
-vim.cmd("hi! LineNrBelow guibg=" .. get_hl("Normal", "bg#"))
+vim.cmd(
+    "hi! LineNr"
+    .. " guibg=" .. get_hl("Normal", "bg#")
+    .. " guifg=" .. get_hl("Comment", "fg#")
+)
+vim.cmd(
+    "hi! LineNrAbove"
+    .. " guibg=" .. get_hl("Normal", "bg#")
+    .. " guifg=" .. get_hl("Comment", "fg#")
+)
+vim.cmd(
+    "hi! LineNrBelow"
+    .. " guibg=" .. get_hl("Normal", "bg#")
+    .. " guifg=" .. get_hl("Comment", "fg#")
+)
+
+
 vim.cmd("hi! CursorLineFold guibg=" .. get_hl("Normal", "bg#"))
 vim.cmd("hi! CursorLineNr guibg=" .. get_hl("Normal", "bg#"))
 
