@@ -6,6 +6,8 @@ set -g fish_greeting
 
 set -gx EDITOR nvim
 
+export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
+
 source ~/.asdf/asdf.fish
 # Do this if link isn't already made
 # mkdir -p ~/.config/fish/completions; and ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
