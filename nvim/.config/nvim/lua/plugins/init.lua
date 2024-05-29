@@ -143,13 +143,27 @@ require("lazy").setup({
             require("settings.theme").pre_colorscheme_actions()
             require("colorschemes.kanagawa")
             require("settings.theme").post_colorscheme_actions()
-        end},
+        end
+    },
     { "ellisonleao/gruvbox.nvim", priority = 999, name = "gruvbox",
         cond = is_selected_colorscheme,
         config = function()
             require("settings.theme").pre_colorscheme_actions()
             require("colorschemes.gruvbox")
             require("settings.theme").post_colorscheme_actions()
+        end
+    },
+
+    -- Mini
+    { 'echasnovski/mini.nvim', version = false,
+        config = function()
+            require("mini.move").setup()
+            require("mini.surround").setup({
+                mappings = {
+                    delete = 'ds', -- Delete surrounding
+                    replace = 'cs', -- Replace surrounding
+                },
+            })
         end
     },
 },
