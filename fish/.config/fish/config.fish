@@ -24,3 +24,5 @@ source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
 fish_add_path ~/code/msi-utils/bin/
 
 starship init fish | source
+
+neofetch --ascii ~/.config/neofetch/ascii/small-skull.txt
