@@ -4,7 +4,7 @@ local multiply_hex_brightness = require("lib.color").multiply_hex_brightness
 local U = {}
 
 -- gruvbox | kanagawa
-U.colorscheme = "kanagawa"
+U.colorscheme = "gruvbox"
 
 function U.pre_colorscheme_actions()
     vim.o.background = "dark"
