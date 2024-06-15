@@ -6,9 +6,9 @@ local other_bg_hl_group = "StatusLine"
 -- Normal
 
 vim.cmd(
-    "hi! TelescopePromptNormal guibg=" 
+    "hi! TelescopePromptNormal guibg="
         .. prompt_bg
-        .. " guifg=" 
+        .. " guifg="
         .. get_hl("Normal", "fg#")
         .. "cterm=NONE"
 )

@@ -101,6 +101,12 @@ require("lazy").setup({
             vim.treesitter.language.register("markdown", "mdx")
         end,
     },
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        config = function()
+            require("plugins.treesitter-context")
+        end,
+    },
 
     -- LSP & Formatting
     { "neovim/nvim-lspconfig" },
