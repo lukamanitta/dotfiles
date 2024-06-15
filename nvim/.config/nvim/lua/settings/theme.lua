@@ -29,6 +29,11 @@ function U.post_colorscheme_actions()
     )
 
     vim.cmd("hi! Pmenu guibg=" .. get_hl("BarHighlight2", "bg#"))
+
+    vim.cmd(
+        "hi! String guifg=" .. get_hl("String", "fg#")
+        .. " gui=NONE cterm=NONE"
+    )
 end
 
 return U
