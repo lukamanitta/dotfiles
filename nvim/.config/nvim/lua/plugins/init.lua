@@ -1,14 +1,14 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 ---@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -17,50 +17,66 @@ local function is_selected_colorscheme(plugin)
 end
 
 require("lazy").setup({
-    { "folke/which-key.nvim",
+    {
+        "folke/which-key.nvim",
         event = "VeryLazy",
         init = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
         end,
-        config = function() require("plugins.ui.which-key") end,
+        config = function()
+            require("plugins.ui.which-key")
+        end,
     },
 
     -- Motions & Objects
-    { "smoka7/hop.nvim",
+    {
+        "smoka7/hop.nvim",
         version = "*",
-        config = function() require("plugins.hop") end
+        config = function()
+            require("plugins.hop")
+        end,
     },
 
     -- Comments
     { "JoosepAlviste/nvim-ts-context-commentstring" },
-    { "numToStr/Comment.nvim",
+    {
+        "numToStr/Comment.nvim",
         config = function()
             require("Comment").setup({
-                pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+                pre_hook = require(
+                    "ts_context_commentstring.integrations.comment_nvim"
+                ).create_pre_hook(),
             })
         end,
         lazy = false,
     },
 
     -- Finder
-    { "nvim-telescope/telescope.nvim",
-        config = function() require("plugins.telescope") end,
+    {
+        "nvim-telescope/telescope.nvim",
+        config = function()
+            require("plugins.telescope")
+        end,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
         },
     },
-    { 'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make',
+    {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
         dependencies = {
             "nvim-telescope/telescope.nvim",
         },
     },
 
     -- Explorer
-    { "nvim-neo-tree/neo-tree.nvim", -- TODO: high perf impact
-        config = function() require("plugins.neo-tree") end,
+    {
+        "nvim-neo-tree/neo-tree.nvim", -- TODO: high perf impact
+        config = function()
+            require("plugins.neo-tree")
+        end,
         version = "v3.x",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -70,29 +86,38 @@ require("lazy").setup({
     },
 
     -- Treesitter
-    { "nvim-treesitter/nvim-treesitter",
+    {
+        "nvim-treesitter/nvim-treesitter",
         build = {
             ":TSInstall all",
-            ":TSUpdate" ,
+            ":TSUpdate",
         }, -- Change all to a list of required ones
         config = function()
             require("nvim-treesitter.configs").setup({
                 highlight = {
                     enable = true,
-                }
+                },
             })
             vim.treesitter.language.register("markdown", "mdx")
         end,
     },
 
-    -- LSP
+    -- LSP & Formatting
     { "neovim/nvim-lspconfig" },
     { "jose-elias-alvarez/null-ls.nvim" },
+    {
+        "stevearc/conform.nvim",
+        config = function()
+            require("plugins.conform")
+        end,
+    },
 
     -- Completions
-    { "llllvvuu/nvim-cmp", -- Using this fork until hrs7th merges this
-    -- { "ckyrouac/nvim-cmp", -- Using this fork until hrs7th merges this
-        config = function() require("plugins.cmp") end,
+    {
+        "llllvvuu/nvim-cmp", -- Using this fork until hrs7th merges this
+        config = function()
+            require("plugins.cmp")
+        end,
         branch = "feat/above",
     },
     -- { "hrsh7th/cmp-nvim-lsp", dependencies = "llllvvuu/nvim-cmp" },
@@ -109,70 +134,95 @@ require("lazy").setup({
 
     { "L3MON4D3/LuaSnip", build = "make install_jsregexp" }, -- TODO: high perf impact
 
-    { "github/copilot.vim",
+    {
+        "github/copilot.vim",
         config = function()
             require("plugins.copilot")
-        end
+        end,
     },
 
     -- UI
-    { "rebelot/heirline.nvim",
-        config = function() require("plugins.ui.heirline") end,
+    {
+        "rebelot/heirline.nvim",
+        config = function()
+            require("plugins.ui.heirline")
+        end,
     },
-    { "lukas-reineke/indent-blankline.nvim",
-        config = function() require("plugins.ui.indent-blankline") end,
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("plugins.ui.indent-blankline")
+        end,
     },
-    { "rcarriga/nvim-notify",
-        config = function() require("plugins.ui.notify") end,
+    {
+        "rcarriga/nvim-notify",
+        config = function()
+            require("plugins.ui.notify")
+        end,
     },
-    { "j-hui/fidget.nvim",
-        config = function() require("plugins.ui.fidget") end,
+    {
+        "j-hui/fidget.nvim",
+        config = function()
+            require("plugins.ui.fidget")
+        end,
     },
     { "RRethy/vim-hexokinase", build = "make hexokinase" }, -- requires go
-    { "lewis6991/gitsigns.nvim",
-        config = function() require("plugins.ui.gitsigns") end,
+    {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require("plugins.ui.gitsigns")
+        end,
     },
-    { "DaikyXendo/nvim-material-icon",
-        config = function() require("plugins.ui.nvim-material-icon") end,
+    {
+        "DaikyXendo/nvim-material-icon",
+        config = function()
+            require("plugins.ui.nvim-material-icon")
+        end,
     },
 
     -- Colourschemes
-    { "rebelot/kanagawa.nvim", priority = 999, name = "kanagawa",
+    {
+        "rebelot/kanagawa.nvim",
+        priority = 999,
+        name = "kanagawa",
         cond = is_selected_colorscheme,
         config = function()
             require("settings.theme").pre_colorscheme_actions()
             require("colorschemes.kanagawa")
             require("settings.theme").post_colorscheme_actions()
-        end
+        end,
     },
-    { "ellisonleao/gruvbox.nvim", priority = 999, name = "gruvbox",
+    {
+        "ellisonleao/gruvbox.nvim",
+        priority = 999,
+        name = "gruvbox",
         cond = is_selected_colorscheme,
         config = function()
             require("settings.theme").pre_colorscheme_actions()
             require("colorschemes.gruvbox")
             require("settings.theme").post_colorscheme_actions()
-        end
+        end,
     },
 
     -- Mini
-    { 'echasnovski/mini.nvim', version = false,
+    {
+        "echasnovski/mini.nvim",
+        version = false,
         config = function()
             require("mini.move").setup()
             require("mini.surround").setup({
                 mappings = {
-                    delete = 'ds', -- Delete surrounding
-                    replace = 'cs', -- Replace surrounding
+                    delete = "ds", -- Delete surrounding
+                    replace = "cs", -- Replace surrounding
                 },
             })
-        end
+        end,
     },
-},
-{
+}, {
     defaults = {
         lazy = false,
     },
     dev = {
         path = "~/code/personal",
-    }
-}
-)
+    },
+})
