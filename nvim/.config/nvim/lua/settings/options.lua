@@ -4,7 +4,7 @@ require("helpers").set_scope_opts(vim.g, {
     omni_sql_default_compl_type = "syntax",
 
     -- My variables
-    icon_style = "solid" -- "solid" | "outline" | "text"
+    icon_style = "solid", -- "solid" | "outline" | "text"
 })
 
 require("helpers").set_scope_opts(vim.o, {
@@ -56,5 +56,5 @@ vim.opt.fillchars:append({
     vertleft = "┫",
     vertright = "┣",
     verthoriz = "╋",
-    eob = " ", -- TODO: Themed maybe, use icon assets
+    eob = " ",
 })

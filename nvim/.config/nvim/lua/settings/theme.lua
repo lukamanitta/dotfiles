@@ -11,7 +11,9 @@ function U.pre_colorscheme_actions()
 end
 
 function U.post_colorscheme_actions()
-    vim.cmd("hi! SignColumn guibg=" .. require("helpers").get_hl("Normal", "bg#"))
+    vim.cmd(
+        "hi! SignColumn guibg=" .. require("helpers").get_hl("Normal", "bg#")
+    )
 
     local bar_background = get_hl("StatusLine", "bg#")
     local bar_highlight_brightness_multi = ({
@@ -21,18 +23,23 @@ function U.post_colorscheme_actions()
 
     vim.cmd(
         "hi! BarHighlight guibg="
-        .. multiply_hex_brightness(bar_background, bar_highlight_brightness_multi)
+            .. multiply_hex_brightness(
+                bar_background,
+                bar_highlight_brightness_multi
+            )
     )
     vim.cmd(
         "hi! BarHighlight2 guibg="
-        .. multiply_hex_brightness(bar_background, bar_highlight_brightness_multi / 1.5)
+            .. multiply_hex_brightness(
+                bar_background,
+                bar_highlight_brightness_multi / 1.5
+            )
     )
 
     vim.cmd("hi! Pmenu guibg=" .. get_hl("BarHighlight2", "bg#"))
 
     vim.cmd(
-        "hi! String guifg=" .. get_hl("String", "fg#")
-        .. " gui=NONE cterm=NONE"
+        "hi! String guifg=" .. get_hl("String", "fg#") .. " gui=NONE cterm=NONE"
     )
 end
 

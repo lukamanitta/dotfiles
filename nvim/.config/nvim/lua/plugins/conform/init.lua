@@ -41,7 +41,4 @@ for _, ft in ipairs({ "html", "css", "scss", "json", "svelte" }) do
 end
 
 -- Format embedded languages in different filetypes
--- conform.formatters_by_ft["*"] = { "injected" }
-
--- require("plugins.plugin.custom_hl")
--- require("plugins.plugin.keybinds")
+conform.formatters_by_ft["*"] = { "injected" }

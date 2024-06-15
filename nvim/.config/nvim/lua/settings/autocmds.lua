@@ -1,19 +1,15 @@
--- TODO: rewrite these in lua
-local exec = vim.api.nvim_exec
-
-exec(
-    [[
-augroup nvim
-    au!
-    " Jump to last position when reopening
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-
-    " Enable spell for markdown
-    au FileType markdown setlocal spell
-augroup END
-]],
-    false
-)
+vim.api.nvim_create_autocmd("BufReadPost", {
+    group = vim.api.nvim_create_augroup("jump_to_last_pos", {}),
+    pattern = "*",
+    callback = function()
+        if
+            vim.fn.line("'\"") > 1
+            and vim.fn.line("'\"") <= vim.fn.line("$")
+        then
+            vim.cmd('normal! g`"')
+        end
+    end,
+})
 
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = vim.api.nvim_create_augroup("yank_highlight", {}),

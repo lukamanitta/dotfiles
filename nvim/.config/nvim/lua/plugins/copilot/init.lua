@@ -4,5 +4,4 @@ require("helpers").set_scope_opts(vim.g, {
     -- copilot_filetypes = { rust = false },
 })
 
--- require("plugins.plugin").custom_hl
 require("plugins.copilot.keybinds")
