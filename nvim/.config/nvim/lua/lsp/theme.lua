@@ -1,39 +1,22 @@
 local lsp_icons = require("icons").lsp
 
 vim.diagnostic.config({
-    signs = true,
     underline = true,
     update_in_insert = true,
     virtual_lines = false,
     -- virtual_text = false,
     virtual_text = {
-        prefix = "●", -- Could be '●', '▎', '■'
+        prefix = "", -- Could be '●', '▎', '■'
         source = "if_many",
         spacing = 1,
     },
+    severity_sort = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = lsp_icons.Error .. " ",
+            [vim.diagnostic.severity.WARN] = lsp_icons.Warn .. " ",
+            [vim.diagnostic.severity.HINT] = lsp_icons.Hint .. " ",
+            [vim.diagnostic.severity.INFO] = lsp_icons.Info .. " ",
+        },
+    },
 })
-
-vim.fn.sign_define("DiagnosticSignError", {
-    text = lsp_icons.Error .. " ",
-    texthl = "DiagnosticError",
-})
-
-vim.fn.sign_define(
-    "DiagnosticSignWarn",
-    { text = lsp_icons.Warn .. " ", texthl = "DiagnosticWarn" }
-)
-
-vim.fn.sign_define(
-    "DiagnosticSignHint",
-    { text = lsp_icons.Hint .. " ", texthl = "DiagnosticHint" }
-)
-
-vim.fn.sign_define(
-    "DiagnosticSignInfo",
-    { text = lsp_icons.Info .. " ", texthl = "DiagnosticInfo" }
-)
-
-vim.fn.sign_define(
-    "LightBulbSign",
-    { text = lsp_icons.CodeAction .. " ", texthl = "DiagnosticWarn" }
-)

@@ -31,7 +31,7 @@ function U.get_buf_icon(bufnr)
     local filename = vim.api.nvim_buf_get_name(bufnr)
     local file_ext = string.match(filename, "(%w+)$")
     local default_icon = ""
-    return require("nvim-material-icon").get_icon(
+    return require("nvim-web-devicons").get_icon(
         filename,
         file_ext,
         { default = default_icon }
@@ -43,7 +43,7 @@ function U.get_buf_icon_colour(bufnr)
     local filename = vim.api.nvim_buf_get_name(bufnr)
     local file_ext = string.match(filename, "(%w+)$")
     local default_icon = ""
-    return require("nvim-material-icon").get_icon_color(
+    return require("nvim-web-devicons").get_icon_color(
         filename,
         file_ext,
         { default = default_icon }
