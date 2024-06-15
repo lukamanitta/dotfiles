@@ -6,7 +6,7 @@ vim.diagnostic.config({
     virtual_lines = false,
     -- virtual_text = false,
     virtual_text = {
-        prefix = "", -- Could be '●', '▎', '■'
+        prefix = "█", -- Could be '●', '▎', '■'
         source = "if_many",
         spacing = 1,
     },

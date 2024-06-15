@@ -1,5 +1,6 @@
 local get_hl = require("helpers").get_hl
 local multiply_hex_brightness = require("lib.color").multiply_hex_brightness
+local blend_hex = require("lib.color").blend_hex
 
 local U = {}
 
@@ -41,6 +42,23 @@ function U.post_colorscheme_actions()
     vim.cmd(
         "hi! String guifg=" .. get_hl("String", "fg#") .. " gui=NONE cterm=NONE"
     )
+
+    local diagnostic_levels = { "Error", "Warn", "Hint", "Info" }
+    for _, diagnostic_level in ipairs(diagnostic_levels) do
+        local hl_name = "DiagnosticVirtualText" .. diagnostic_level
+        vim.cmd(
+            "hi! "
+                .. hl_name
+                .. " guifg="
+                .. get_hl(hl_name, "fg#")
+                .. " guibg="
+                .. blend_hex(
+                    get_hl("Normal", "bg#"),
+                    get_hl(hl_name, "fg#"),
+                    0.09
+                )
+        )
+    end
 end
 
 return U

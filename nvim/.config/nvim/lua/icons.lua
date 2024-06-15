@@ -39,6 +39,8 @@ I.general = {
     Bar = "▎",
     BarThick = "▊",
 
+    Block = "█",
+
     CrossThick = "",
     CrossThin = "",
 
