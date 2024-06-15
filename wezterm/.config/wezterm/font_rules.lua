@@ -6,7 +6,7 @@ U.jetbrains = {
     {
         intensity = "Bold",
         font = wezterm.font(
-            "JetBrainsMono Nerd Font",
+            "JetBrains Mono",
             { weight = "ExtraBold" }
         ),
     },
@@ -14,32 +14,31 @@ U.jetbrains = {
         intensity = "Bold",
         italic = true,
         font = wezterm.font(
-            "JetBrainsMono Nerd Font",
+            "JetBrains Mono",
             { weight = "ExtraBold" }
         ),
     },
     {
         intensity = "Half",
         font = wezterm.font(
-            "JetBrainsMono Nerd Font",
+            "JetBrains Mono",
             { weight = "Light" }
         ),
     },
-    -- {
-    --     intensity = "Half",
-    --     italic = true,
-    --     font = wezterm.font(
-    --         "JetBrainsMono Light Italic Nerd Font",
-    --         { weight = "LightItalic" }
-    --     ),
-    -- },
+    {
+        intensity = "Half",
+        italic = true,
+        font = wezterm.font(
+            "JetBrains Mono Light Italic"
+        ),
+    },
 }
 
 U.firacode = {
     {
         intensity = "Half",
         font = wezterm.font(
-            "FiraCode Nerd Font",
+            "Fira Code",
             { weight = "Light" }
         ),
     },
