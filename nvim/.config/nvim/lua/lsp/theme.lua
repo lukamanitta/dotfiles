@@ -9,6 +9,9 @@ vim.diagnostic.config({
         prefix = "█", -- Could be '●', '▎', '■'
         source = "if_many",
         spacing = 1,
+        format = function(diagnostic)
+            return string.format("%s ", diagnostic.message)
+        end,
     },
     severity_sort = true,
     signs = {
