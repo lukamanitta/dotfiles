@@ -180,7 +180,7 @@ require("lazy").setup({
         end,
     },
     {
-        "DaikyXendo/nvim-material-icon",
+        "DaikyXendo/nvim-material-icon", -- TODO: maybe high perf impact? seems large for what it is
         config = function()
             require("plugins.ui.nvim-material-icon")
         end,
