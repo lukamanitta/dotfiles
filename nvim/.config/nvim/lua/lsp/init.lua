@@ -42,6 +42,8 @@ lspconfig.tsserver.setup(make_config())
 lspconfig.rust_analyzer.setup(make_config())
 lspconfig.pyright.setup(make_config())
 lspconfig.svelte.setup(make_config())
+lspconfig.gdscript.setup(make_config())
+lspconfig.gdshader_lsp.setup(make_config())
 
 local lua_config = make_config()
 lua_config.settings = require("lsp.server_settings.lua_ls")
