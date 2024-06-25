@@ -6,8 +6,8 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", "[e", vim.diagnostic.goto_prev, opts)
-    vim.keymap.set("n", "]e", vim.diagnostic.goto_next, opts)
+    vim.keymap.set("n", "[e", vim.diagnostic.jump({ count = -1 }), opts)
+    vim.keymap.set("n", "]e", vim.diagnostic.jump({ count = 1 }), opts)
 
     -- Information
     vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
