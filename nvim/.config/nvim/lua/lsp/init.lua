@@ -38,7 +38,7 @@ local function make_config()
     }
 end
 
-lspconfig.tsserver.setup(make_config())
+lspconfig.ts_ls.setup(make_config())
 lspconfig.rust_analyzer.setup(make_config())
 lspconfig.pyright.setup(make_config())
 lspconfig.svelte.setup(make_config())
