@@ -54,4 +54,37 @@ U.commitmono= {
     },
 }
 
+U.ibmplexmono = {
+    {
+        intensity = "Bold",
+        font = wezterm.font(
+            "IBM Plex Mono",
+            { weight = "Bold" }
+        ),
+    },
+    {
+        intensity = "Bold",
+        italic = true,
+        font = wezterm.font(
+            "IBM Plex Mono",
+            { weight = "Bold" }
+        ),
+    },
+    {
+        intensity = "Half",
+        font = wezterm.font(
+            "IBM Plex Mono",
+            { weight = "Light" }
+        ),
+    },
+    {
+        intensity = "Half",
+        italic = true,
+        font = wezterm.font(
+            "IBM Plex Mono",
+            { weight = "Light" }
+        ),
+    },
+}
+
 return U

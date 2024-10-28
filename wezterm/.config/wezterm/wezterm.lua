@@ -34,21 +34,26 @@ local cfg = {
     color_scheme = "Luka",
 
     -- Fonts
-    -- font_dirs = {
-    --     "~/.fonts",
-    -- },
+    font_locator = "ConfigDirsOnly",
+    font_dirs = {
+        "~/.fonts",
+    },
     -- font = wezterm.font("JetBrains Mono", { weight = "Medium" }),
     -- font_rules = require("font_rules").jetbrains,
 
-    font = wezterm.font("Fira Code", { weight = "Medium" }),
-    font_rules = require("font_rules").firacode,
+    -- font = wezterm.font("Fira Code", { weight = "Medium" }),
+    -- font_rules = require("font_rules").firacode,
 
     -- font = wezterm.font("Roboto Mono", { weight = "Medium" }),
 
     -- font = wezterm.font("CommitMono", { weight = "Regular" }),
     -- font_rules = require("font_rules").commitmono,
 
+    font = wezterm.font("IBM Plex Mono", { weight = "Medium" }),
+    font_rules = require("font_rules").ibmplexmono,
+
     -- font = wezterm.font("DinaRemasterII", { weight = "Medium" }),
+
     font_size = 13,
     line_height = 1.3,
 
