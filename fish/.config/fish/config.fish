@@ -33,4 +33,8 @@ if not type -q starship
 	curl -sS https://starship.rs/install.sh | sh
 end
 
+if type -q fzf
+	fzf --fish | source
+end
+
 starship init fish | source
