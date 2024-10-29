@@ -10,3 +10,10 @@ starship
 stow
 asdf
     neovim
+    python
+    rust
+    node
+        typescript
+        typescript language server
+        svelte-language-server
+lua-language-server

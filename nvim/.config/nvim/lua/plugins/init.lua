@@ -89,7 +89,7 @@ require("lazy").setup({
     {
         "nvim-treesitter/nvim-treesitter",
         build = {
-            ":TSInstall ruby javascript javascriptreact typescript typescriptreact html css scss json yaml markdown bash lua python rust svelte",
+            ":TSInstall ruby javascript typescript tsx html css scss json yaml markdown bash lua python rust svelte",
             ":TSUpdate",
         }, -- Change all to a list of required ones
         config = function()
