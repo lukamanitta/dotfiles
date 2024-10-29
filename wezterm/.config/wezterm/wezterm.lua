@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local home = os.getenv("HOME")
 
 local cfg = {
     --General--
@@ -36,10 +37,10 @@ local cfg = {
     -- Fonts
     font_locator = "ConfigDirsOnly",
     font_dirs = {
-        "~/.fonts",
+        home .. "/.fonts",
     },
-    -- font = wezterm.font("JetBrains Mono", { weight = "Medium" }),
-    -- font_rules = require("font_rules").jetbrains,
+    font = wezterm.font("JetBrains Mono", { weight = "Medium" }),
+    font_rules = require("font_rules").jetbrains,
 
     -- font = wezterm.font("Fira Code", { weight = "Medium" }),
     -- font_rules = require("font_rules").firacode,
@@ -49,12 +50,12 @@ local cfg = {
     -- font = wezterm.font("CommitMono", { weight = "Regular" }),
     -- font_rules = require("font_rules").commitmono,
 
-    font = wezterm.font("IBM Plex Mono", { weight = "Medium" }),
-    font_rules = require("font_rules").ibmplexmono,
+    -- font = wezterm.font("IBM Plex Mono", { weight = "Medium" }),
+    -- font_rules = require("font_rules").ibmplexmono,
 
     -- font = wezterm.font("DinaRemasterII", { weight = "Medium" }),
 
-    font_size = 13,
+    font_size = 11.5,
     line_height = 1.3,
 
     underline_thickness = 2,
