@@ -68,7 +68,6 @@ local cfg = {
 -- Can't really refactor this nicely because using any kind of table.insert
 -- or table[k] = v turns the table into an Array? Wezterm can't convert this
 -- to a config object
-local home = os.getenv("HOME")
 wezterm.add_to_config_reload_watch_list(home .. "/.config/wezterm/colors/Luka.toml")
 
 return cfg
