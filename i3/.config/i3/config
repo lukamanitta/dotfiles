@@ -69,6 +69,10 @@ bindsym $mod+space exec --no-startup-id dmenu_run
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
 
+# screenshot
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui -p ~/screenshots/
+bindsym $mod+Shift+Mod1+s exec --no-startup-id flameshot full -p ~/screenshots/
+
 # change focus
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
@@ -199,7 +203,7 @@ bindsym $mod+r mode "resize"
 
 # Gaps
 
-gaps inner 10
+gaps inner 12
 gaps outer -2
 gaps top 0
 
@@ -208,7 +212,7 @@ gaps top 0
 default_border none
 default_floating_border 1pixel
 hide_edge_borders both
-for_window [class=".*"] border pixel 1
+for_window [class=".*"] border pixel 0
 
 focus_follows_mouse no
 
