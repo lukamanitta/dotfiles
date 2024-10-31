@@ -1,50 +1,50 @@
 [colors]
 ansi = [
-    "#1d2021", # Black
-    "#cc241d", # Red
-    "#98971a", # Green
-    "#d79921", # Yellow
-    "#458588", # Blue
-    "#b16286", # Magenta
-    "#689d6a", # Cyan
-    "#f9f5d7", # White
+    "#190a01", # Black
+    "#b03726", # Red
+    "#e07b32", # Green
+    "#f1a335", # Yellow
+    "#40344c", # Blue
+    "#df5f66", # Magenta
+    "#815c41", # Cyan
+    "#e2d7d0", # White
 ]
 
 brights = [
-    "#7c6f64", # Black
-    "#fb4934", # Red
-    "#b8bb26", # Green
-    "#fabd2f", # Yellow
-    "#83a598", # Blue
-    "#d3869b", # Magenta
-    "#8ec07c", # Cyan
+    "#756c67", # Black
+    "#e9523f", # Red
+    "#e6955b", # Green
+    "#f4b55d", # Yellow
+    "#665d70", # Blue
+    "#f9797f", # Magenta
+    "#9a7d67", # Cyan
     "#ebdbb2", # White
 ]
 
-background = "#1d2021"
-foreground = "#f9f5d7"
+background = "#190a01"
+foreground = "#e2d7d0"
 
-cursor_bg = "#f9f5d7"
-cursor_fg = "#1d2021"
-cursor_border = "#f9f5d7"
+cursor_bg = "#e2d7d0"
+cursor_fg = "#190a01"
+cursor_border = "#e2d7d0"
 
-scrollbar_thumb = "#1d2021"
+scrollbar_thumb = "#190a01"
 
-selection_bg = "#665c54"
-selection_fg = "#f9f5d7"
+selection_bg = "#a6511e"
+selection_fg = "#e2d7d0"
 
-split = "#1d2021"
-visual_bell = "#1d2021"
+split = "#190a01"
+visual_bell = "#190a01"
 
 [colors.indexed]
 
 [colors.tab_bar]
-background = "#1d2021"
-inactive_tab_edge = "#1d2021"
+background = "#190a01"
+inactive_tab_edge = "#190a01"
 
 [colors.tab_bar.active_tab]
-bg_color = "#1d2021"
-fg_color = "#f9f5d7"
+bg_color = "#190a01"
+fg_color = "#e2d7d0"
 
 intensity = "Bold"      # Half | Normal | Bold
 underline = "None"      # None | Single | Double
@@ -52,8 +52,8 @@ italic = false
 strikethrough = false
 
 [colors.tab_bar.inactive_tab]
-bg_color = "#1d2021"
-fg_color = "#7c6f64"
+bg_color = "#190a01"
+fg_color = "#756c67"
 
 intensity = "Normal"    # Half | Normal | Bold
 underline = "None"      # None | Single | Double
@@ -61,8 +61,8 @@ italic = true
 strikethrough = false
 
 [colors.tab_bar.inactive_tab_hover]
-bg_color = "#1d2021"
-fg_color = "#f9f5d7"
+bg_color = "#190a01"
+fg_color = "#e2d7d0"
 
 intensity = "Normal"    # Half | Normal | Bold
 underline = "None"      # None | Single | Double
@@ -70,8 +70,8 @@ italic = true
 strikethrough = false
 
 [colors.tab_bar.new_tab]
-bg_color = "#1d2021"
-fg_color = "#7c6f64"
+bg_color = "#190a01"
+fg_color = "#756c67"
 
 intensity = "Normal"    # Half | Normal | Bold
 underline = "None"      # None | Single | Double
@@ -79,8 +79,8 @@ italic = false
 strikethrough = false
 
 [colors.tab_bar.new_tab_hover]
-bg_color = "#1d2021"
-fg_color = "#f9f5d7"
+bg_color = "#190a01"
+fg_color = "#e2d7d0"
 
 intensity = "Normal"    # Half | Normal | Bold
 underline = "None"      # None | Single | Double

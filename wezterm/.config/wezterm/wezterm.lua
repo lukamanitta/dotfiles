@@ -1,10 +1,19 @@
 local wezterm = require("wezterm")
 local home = os.getenv("HOME")
 
+-- TODO: get this working
+-- local helpers = require("helpers")
+-- wezterm.font = function(name, opts)
+--     wezterm.font_with_fallback(
+--         helpers.combine_tables({ family = name }, opts),
+--         "Symbols Nerd Font"
+--     )
+-- end
+
 local cfg = {
     --General--
     warn_about_missing_glyphs = true,
-    window_background_opacity = 1,
+    window_background_opacity = 0.9,
     native_macos_fullscreen_mode = true,
     debug_key_events = false,
 
