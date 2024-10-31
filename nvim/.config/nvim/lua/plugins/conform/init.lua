@@ -41,4 +41,5 @@ for _, ft in ipairs({ "html", "css", "scss", "json", "svelte" }) do
 end
 
 -- Format embedded languages in different filetypes
-conform.formatters_by_ft["*"] = { "injected" }
+-- TODO: isn't working for mdx
+-- conform.formatters_by_ft["*"] = { "injected" }
