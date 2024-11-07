@@ -7,6 +7,8 @@ cursor_fg =    "#190a01"
 selection_bg = "#a6511e"
 selection_fg = "#e2d7d0"
 
+accent =       "#cf6525"
+
 [regular]
 black =   "#190a01"
 red =     "#b03726"

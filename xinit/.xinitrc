@@ -8,6 +8,6 @@ $HOME/.fehbg &
 
 picom &
 
-xborders --border-width 4 --border-rgba "#CF6525FF" &
+$HOME/.config/.xborders &
 
 i3
