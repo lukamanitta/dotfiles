@@ -206,6 +206,7 @@ bindsym $mod+r mode "resize"
 gaps inner 12
 gaps outer -2
 gaps top 0
+gaps bottom -8
 
 # Window borders
 

@@ -48,13 +48,13 @@ local cfg = {
     font_dirs = {
         home .. "/.fonts",
     },
-    font = wezterm.font("JetBrains Mono", { weight = "Medium" }),
-    font_rules = require("font_rules").jetbrains,
+    -- font = wezterm.font("JetBrains Mono", { weight = "Medium" }),
+    -- font_rules = require("font_rules").jetbrains,
 
     -- font = wezterm.font("Fira Code", { weight = "Medium" }),
     -- font_rules = require("font_rules").firacode,
 
-    -- font = wezterm.font("Roboto Mono", { weight = "Medium" }),
+    font = wezterm.font("Roboto Mono", { weight = "Medium" }),
 
     -- font = wezterm.font("CommitMono", { weight = "Regular" }),
     -- font_rules = require("font_rules").commitmono,
