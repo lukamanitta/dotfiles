@@ -5,7 +5,7 @@ local blend_hex = require("lib.color").blend_hex
 local U = {}
 
 -- gruvbox | kanagawa
-U.colorscheme = "gruvbox"
+U.colorscheme = "kanagawa"
 
 function U.pre_colorscheme_actions()
     vim.o.background = "dark"
@@ -24,17 +24,17 @@ function U.post_colorscheme_actions()
 
     vim.cmd(
         "hi! BarHighlight guibg="
-            .. multiply_hex_brightness(
-                bar_background,
-                bar_highlight_brightness_multi
-            )
+        .. multiply_hex_brightness(
+            bar_background,
+            bar_highlight_brightness_multi
+        )
     )
     vim.cmd(
         "hi! BarHighlight2 guibg="
-            .. multiply_hex_brightness(
-                bar_background,
-                bar_highlight_brightness_multi / 1.5
-            )
+        .. multiply_hex_brightness(
+            bar_background,
+            bar_highlight_brightness_multi / 1.5
+        )
     )
 
     vim.cmd("hi! Pmenu guibg=" .. get_hl("BarHighlight2", "bg#"))
@@ -48,15 +48,15 @@ function U.post_colorscheme_actions()
         local hl_name = "DiagnosticVirtualText" .. diagnostic_level
         vim.cmd(
             "hi! "
-                .. hl_name
-                .. " guifg="
-                .. get_hl(hl_name, "fg#")
-                .. " guibg="
-                .. blend_hex(
-                    get_hl("Normal", "bg#"),
-                    get_hl(hl_name, "fg#"),
-                    0.09
-                )
+            .. hl_name
+            .. " guifg="
+            .. get_hl(hl_name, "fg#")
+            .. " guibg="
+            .. blend_hex(
+                get_hl("Normal", "bg#"),
+                get_hl(hl_name, "fg#"),
+                0.09
+            )
         )
     end
 end

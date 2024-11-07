@@ -13,7 +13,7 @@ local home = os.getenv("HOME")
 local cfg = {
     --General--
     warn_about_missing_glyphs = true,
-    window_background_opacity = 0.9,
+    window_background_opacity = 0.95,
     native_macos_fullscreen_mode = true,
     debug_key_events = false,
 
