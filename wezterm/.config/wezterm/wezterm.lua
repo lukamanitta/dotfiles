@@ -1,8 +1,8 @@
 local wezterm = require("wezterm")
 local home = os.getenv("HOME")
+local helpers = require("helpers")
 
 -- TODO: get this working
--- local helpers = require("helpers")
 -- wezterm.font = function(name, opts)
 --     wezterm.font_with_fallback(
 --         helpers.combine_tables({ family = name }, opts),
@@ -16,7 +16,7 @@ local cfg = {
     },
     --General--
     warn_about_missing_glyphs = true,
-    window_background_opacity = 0.96,
+    window_background_opacity = helpers.is_linux() and 0.95 or 1,
     native_macos_fullscreen_mode = true,
     debug_key_events = false,
 
