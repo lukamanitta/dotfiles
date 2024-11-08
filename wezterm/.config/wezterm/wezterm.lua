@@ -11,6 +11,9 @@ local home = os.getenv("HOME")
 -- end
 
 local cfg = {
+    set_environment_variables = {
+        COLORTERM = "truecolor",
+    },
     --General--
     warn_about_missing_glyphs = true,
     window_background_opacity = 0.96,
@@ -44,7 +47,7 @@ local cfg = {
     color_scheme = "Luka",
 
     -- Fonts
-    font_locator = "ConfigDirsOnly",
+    -- font_locator = "ConfigDirsOnly",
     font_dirs = {
         home .. "/.fonts",
     },
@@ -64,7 +67,7 @@ local cfg = {
 
     -- font = wezterm.font("DinaRemasterII", { weight = "Medium" }),
 
-    font_size = 11.5,
+    font_size = 12,
     line_height = 1.3,
 
     underline_thickness = 2,
