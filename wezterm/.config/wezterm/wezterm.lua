@@ -16,7 +16,7 @@ local cfg = {
     },
     --General--
     warn_about_missing_glyphs = true,
-    window_background_opacity = helpers.is_linux() and 0.95 or 1,
+    window_background_opacity = helpers.is_linux() and 0.95 or 0.98,
     native_macos_fullscreen_mode = true,
     debug_key_events = false,
 
