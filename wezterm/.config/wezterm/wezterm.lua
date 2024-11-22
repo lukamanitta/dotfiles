@@ -67,7 +67,7 @@ local cfg = {
 
     -- font = wezterm.font("DinaRemasterII", { weight = "Medium" }),
 
-    font_size = 12,
+    font_size = helpers.is_linux() and 11.0 or 12.0,
     line_height = 1.3,
 
     underline_thickness = 2,
