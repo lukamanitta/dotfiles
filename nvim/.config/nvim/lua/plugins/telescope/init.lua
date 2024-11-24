@@ -71,7 +71,17 @@ require("telescope").setup({
             filename_first = {
                 reverse_directories = false
             }
-        }
+        },
+        vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--hidden",
+        },
     },
 
     pickers = {
