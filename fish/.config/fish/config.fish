@@ -16,10 +16,12 @@ if test -d ~/code/msi-utils/bin
 	fish_add_path ~/code/msi-utils/bin/
 end
 
-source ~/.asdf/asdf.fish
+set -gx ASDF_DATA_DIR ~/.asdf/
+fish_add_path $ASDF_DATA_DIR/shims
 # Do this if link isn't already made
 # mkdir -p ~/.config/fish/completions; and ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
 
+fish_add_path ~/bin/
 fish_add_path ~/.local/bin/
 fish_add_path ~/.pub-cache/bin/
 
@@ -31,10 +33,6 @@ alias lg="lazygit"
 
 if not type -q starship
 	curl -sS https://starship.rs/install.sh | sh
-end
-
-if type -q fzf
-	fzf --fish | source
 end
 
 starship init fish | source
