@@ -85,6 +85,21 @@ require("lazy").setup({
         },
     },
 
+    -- Git
+    {
+        "kdheepak/lazygit.nvim",
+        lazy = true,
+        cmd = {
+            "LazyGit"
+        },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        keys = {
+            { "<leader>git", ":LazyGit<CR>", desc = "LazyGit" },
+        },
+    },
+
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
