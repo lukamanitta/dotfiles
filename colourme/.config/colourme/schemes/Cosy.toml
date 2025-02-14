@@ -1,29 +1,30 @@
 background =   "#190a01"
-foreground =   "#e2d7d0"
+foreground =   "#e8cab3"
 
-cursor_bg =    "#e2d7d0"
+cursor_bg =    "#e8cab3"
 cursor_fg =    "#190a01"
 
 selection_bg = "#a6511e"
-selection_fg = "#e2d7d0"
+selection_fg = "#e8cab3"
+
+accent =       "#cf6525"
 
 [regular]
 black =   "#190a01"
 red =     "#b03726"
-# green =   "#cf6525"
-green =   "#e07b32"
+green =   "#c44f20"
 yellow =  "#f1a335"
-blue =    "#40344c"
-magenta = "#df5f66"
+blue =    "#e0630f"
+magenta = "#f0642d"
 cyan =    "#815c41"
-white =   "#e2d7d0"
+white =   "#e8cab3"
 
 [bright]
 black =   "#756c67"
 red =     "#e9523f"
-green =   "#e6955b"
+green =   "#cf6525"
 yellow =  "#f4b55d"
-blue =    "#665d70"
-magenta = "#f9797f"
+blue =    "#ff7a21"
+magenta = "#eb8057"
 cyan =    "#9a7d67"
-white =   "#ebdbb2"
+white =   "#e6d3c5"

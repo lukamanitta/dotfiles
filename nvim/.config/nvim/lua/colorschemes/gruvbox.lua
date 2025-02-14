@@ -1,5 +1,5 @@
 require("gruvbox").setup({
-    contrast = "hard"
+    -- contrast = "hard"
 })
 vim.cmd("colorscheme gruvbox")
 vim.cmd("hi link Function GruvboxOrangeBold")
@@ -35,3 +35,4 @@ vim.cmd("hi link DiagnosticSignWarn DiagnosticWarn")
 vim.cmd("hi link DiagnosticSignInfo DiagnosticInfo")
 vim.cmd("hi link DiagnosticSignHint DiagnosticHint")
 vim.cmd("hi link DiagnosticSignOk DiagnosticOk")
+

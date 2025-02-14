@@ -1,9 +1,8 @@
 local conform = require("conform")
 
 conform.setup({
-    format_on_save = {
+    format_after_save = {
         lsp_fallback = true,
-        timeout_ms = 500,
     },
 })
 
@@ -26,17 +25,26 @@ conform.formatters_by_ft.ruby = { "rubocop" }
 conform.formatters_by_ft.gdscript = { "gdformat" }
 
 -- Installation: npm install -g eslint_d
+-- for _, ft in ipairs({
+--     "javascript",
+--     "typescript",
+--     "javascriptreact",
+--     "typescriptreact",
+-- }) do
+--     conform.formatters_by_ft[ft] = { "eslint_d" }
+-- end
+
+-- Installation: npm install -g @fsouza/prettierd
+for _, ft in ipairs({ "html", "css", "scss", "json", "svelte" }) do
+    conform.formatters_by_ft[ft] = { "prettierd" }
+end
+
 for _, ft in ipairs({
     "javascript",
     "typescript",
     "javascriptreact",
     "typescriptreact",
 }) do
-    conform.formatters_by_ft[ft] = { "eslint_d" }
-end
-
--- Installation: npm install -g @fsouza/prettierd
-for _, ft in ipairs({ "html", "css", "scss", "json", "svelte" }) do
     conform.formatters_by_ft[ft] = { "prettierd" }
 end
 

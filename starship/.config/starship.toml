@@ -100,9 +100,9 @@ format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 
 [git_status]
 format='$ahead_behind$staged$deleted$modified$untracked$stashed'
-ahead = '[⇡$count](green) '
-behind = '[⇣$count](green) '
-diverged ='[󰹹](red) '
+ahead = '[↑$count](green) '
+behind = '[↓$count](green) '
+diverged ='[↕](red) '
 untracked = '[?$count](blue) '
 stashed = '[*](green) '
 modified = '[!$count](bold yellow) '

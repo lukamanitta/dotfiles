@@ -1,8 +1,8 @@
-background =   "#1d2021"
+background =   "#282828"
 foreground =   "#f9f5d7"
 
 cursor_bg =    "#f9f5d7"
-cursor_fg =    "#1d2021"
+cursor_fg =    "#282828"
 
 selection_bg = "#665c54"
 selection_fg = "#f9f5d7"
@@ -10,7 +10,7 @@ selection_fg = "#f9f5d7"
 accent =       "#d79921"
 
 [regular]
-black =   "#1d2021"
+black =   "#282828"
 red =     "#cc241d"
 green =   "#98971a"
 yellow =  "#d79921"

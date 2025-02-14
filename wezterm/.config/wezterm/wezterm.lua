@@ -1,8 +1,8 @@
 local wezterm = require("wezterm")
 local home = os.getenv("HOME")
+local helpers = require("helpers")
 
 -- TODO: get this working
--- local helpers = require("helpers")
 -- wezterm.font = function(name, opts)
 --     wezterm.font_with_fallback(
 --         helpers.combine_tables({ family = name }, opts),
@@ -11,9 +11,12 @@ local home = os.getenv("HOME")
 -- end
 
 local cfg = {
+    set_environment_variables = {
+        COLORTERM = "truecolor",
+    },
     --General--
     warn_about_missing_glyphs = true,
-    window_background_opacity = 0.9,
+    window_background_opacity = helpers.is_linux() and 0.95 or 0.98,
     native_macos_fullscreen_mode = true,
     debug_key_events = false,
 
@@ -44,17 +47,17 @@ local cfg = {
     color_scheme = "Luka",
 
     -- Fonts
-    font_locator = "ConfigDirsOnly",
+    -- font_locator = "ConfigDirsOnly",
     font_dirs = {
         home .. "/.fonts",
     },
-    font = wezterm.font("JetBrains Mono", { weight = "Medium" }),
-    font_rules = require("font_rules").jetbrains,
+    -- font = wezterm.font("JetBrains Mono", { weight = "Medium" }),
+    -- font_rules = require("font_rules").jetbrains,
 
     -- font = wezterm.font("Fira Code", { weight = "Medium" }),
     -- font_rules = require("font_rules").firacode,
 
-    -- font = wezterm.font("Roboto Mono", { weight = "Medium" }),
+    font = wezterm.font("Roboto Mono", { weight = "Medium" }),
 
     -- font = wezterm.font("CommitMono", { weight = "Regular" }),
     -- font_rules = require("font_rules").commitmono,
@@ -64,7 +67,7 @@ local cfg = {
 
     -- font = wezterm.font("DinaRemasterII", { weight = "Medium" }),
 
-    font_size = 11.5,
+    font_size = helpers.is_linux() and 11.25 or 12.0,
     line_height = 1.3,
 
     underline_thickness = 2,
