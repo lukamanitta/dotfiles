@@ -1,7 +1,7 @@
 local get_hl = require("helpers").get_hl
 
 local ColouredBufferIcon =
-require("plugins.ui.heirline.components.ColouredBufferIcon")
+    require("plugins.ui.heirline.components.ColouredBufferIcon")
 
 local filename_translations = {
     [""] = "[No Name]",
@@ -29,6 +29,6 @@ return {
 
     hl = {
         fg = get_hl("StatusLine", "fg#"),
-        bg = get_hl("StatusLine", "bg#"),
+        -- bg = get_hl("StatusLine", "bg#"),
     },
 }

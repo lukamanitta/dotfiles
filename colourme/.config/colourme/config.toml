@@ -2,20 +2,20 @@
 template = "~/.config/colourme/templates/wezterm.toml"
 destination = "~/.config/wezterm/colors/Luka.toml"
 
-[xborders]
-template = "~/.config/colourme/templates/xborders.sh"
-destination = "~/.config/.xborders"
-post_hook = "sh $HOME/.config/.xborders"
-
-[polybar]
-template = "~/.config/colourme/templates/polybar.ini"
-destination = "~/.config/polybar/colors.ini"
-post_hook = "i3-msg restart"
-
-[feh]
-template = "~/.config/colourme/templates/feh.sh"
-destination = "~/.config/.fehbg"
-post_hook = "sh $HOME/.config/.fehbg"
+# [xborders]
+# template = "~/.config/colourme/templates/xborders.sh"
+# destination = "~/.config/.xborders"
+# post_hook = "sh $HOME/.config/.xborders"
+#
+# [polybar]
+# template = "~/.config/colourme/templates/polybar.ini"
+# destination = "~/.config/polybar/colors.ini"
+# post_hook = "i3-msg restart"
+#
+# [feh]
+# template = "~/.config/colourme/templates/feh.sh"
+# destination = "~/.config/.fehbg"
+# post_hook = "sh $HOME/.config/.fehbg"
 
 # [kakoune]
 # template = "~/.config/colourme/templates/kakoune.kak"

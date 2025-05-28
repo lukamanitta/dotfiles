@@ -4,8 +4,8 @@ local blend_hex = require("lib.color").blend_hex
 
 local U = {}
 
--- gruvbox | kanagawa
-U.colorscheme = "gruvbox"
+-- gruvbox | kanagawa | catppuccin
+U.colorscheme = "catppuccin"
 
 function U.pre_colorscheme_actions()
     vim.o.background = "dark"

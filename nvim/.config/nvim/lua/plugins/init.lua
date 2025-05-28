@@ -224,6 +224,16 @@ require("lazy").setup({
             require("settings.theme").post_colorscheme_actions()
         end,
     },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        cond = is_selected_colorscheme,
+        config = function()
+            require("settings.theme").pre_colorscheme_actions()
+            require("colorschemes.catppuccin")
+            require("settings.theme").post_colorscheme_actions()
+        end,
+    },
 
     -- Mini
     {
