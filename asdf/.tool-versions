@@ -1,7 +1,7 @@
-nodejs 21.7.3
+nodejs 25.4.0
 rust 1.72.0
 flutter 3.13.3-stable
 ruby 2.7.6
-golang 1.22.2
+golang 1.25.6
 neovim nightly
 python 3.12.4
