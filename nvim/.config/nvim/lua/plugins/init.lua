@@ -105,6 +105,7 @@ require("lazy").setup({
             build = ":TSUpdate",
             config = function()
                 require("plugins.nvim-treesitter")
+                vim.api.nvim_set_hl(0, "TreesitterContext", { link = "Normal" })
             end,
             dependencies = {
                 {
@@ -155,6 +156,13 @@ require("lazy").setup({
             end,
         },
 
+        {
+            "github/copilot.vim",
+            config = function()
+                require("plugins.copilot")
+            end,
+        },
+
         -- UI
         {
             "lukas-reineke/indent-blankline.nvim",
@@ -166,12 +174,15 @@ require("lazy").setup({
         },
         {
             "rcarriga/nvim-notify",
-            opts = {
-                fps = 60,
-                timeout = 3000,
-            },
+            config = function()
+                require("notify").setup({
+                    fps = 60,
+                    timeout = 3000,
+                })
+                vim.notify = require("notify")
+            end,
         },
-        { "j-hui/fidget.nvim" },
+        { "j-hui/fidget.nvim", opts = {} },
         { "RRethy/vim-hexokinase", build = "make hexokinase" }, -- requires go
         { "nvim-mini/mini.diff" },
 
@@ -182,7 +193,44 @@ require("lazy").setup({
             priority = 1000,
             cond = is_selected_colourscheme,
             config = function()
-                vim.cmd("colorscheme monochrome")
+                vim.cmd.colorscheme("monochrome")
+            end,
+        },
+        {
+            "rebelot/kanagawa.nvim",
+            name = "kanagawa",
+            priority = 1000,
+            cond = is_selected_colourscheme,
+            config = function()
+                vim.cmd.colorscheme("kanagawa")
+            end,
+        },
+        {
+            "ellisonleao/gruvbox.nvim",
+            name = "gruvbox",
+            priority = 1000,
+            cond = is_selected_colourscheme,
+            config = function()
+                vim.cmd.colorscheme("gruvbox")
+            end,
+        },
+        {
+            "catppuccin/nvim",
+            name = "catppuccin",
+            priority = 1000,
+            cond = is_selected_colourscheme,
+            config = function()
+                vim.cmd.colorscheme("catppuccin")
+            end,
+        },
+        {
+            "zenbones-theme/zenbones.nvim",
+            name = "zenwritten",
+            dependencies = { "rktjmp/lush.nvim" },
+            priority = 1000,
+            cond = is_selected_colourscheme,
+            config = function()
+                require("plugins.colourschemes.zenwritten")
             end,
         },
     },

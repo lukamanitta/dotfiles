@@ -1,1 +1,0 @@
-vim.g.colourscheme = "monochrome"
