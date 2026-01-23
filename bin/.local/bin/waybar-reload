@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+# Restart waybar (within Hyprland)
+
+pkill waybar && hyprctl dispatch exec waybar
