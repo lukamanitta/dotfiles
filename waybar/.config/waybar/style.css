@@ -1,0 +1,121 @@
+/**
+ * ════════════════════════════════════════════════════════
+ *   Symphony by https://github.com/vyrx-dev
+ * ════════════════════════════════════════════════════════
+ */
+
+@import "./colors.css";
+
+* {
+  background-color: transparent;
+  color: @on_background;
+  border: none;
+  border-radius: 0;
+  font-family: "CaskaydiaMono Nerd Font Propo";
+  font-size: 12px;
+}
+
+tooltip {
+  background: rgba(15, 15, 15, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+menu {
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px;
+}
+
+menu menuitem:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+window#waybar {
+  background: rgba(16, 16, 16, 0.75);
+}
+
+.modules-center {
+  padding: 0 80px;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 0 3px;
+  margin: 0 2px;
+  min-width: 6px;
+  min-height: 6px;
+  opacity: 0.3;
+  transition: all 150ms ease;
+}
+
+#workspaces button.active {
+  opacity: 1;
+  color: @waybar_accent;
+  font-weight: 600;
+}
+
+#workspaces button.empty {
+  opacity: 0.15;
+}
+
+#workspaces button:hover {
+  opacity: 0.7;
+}
+
+#mpris.paused {
+  opacity: 0.4;
+}
+
+#disk,
+#memory,
+#battery,
+#network,
+#bluetooth,
+#pulseaudio,
+#backlight,
+#tray,
+#custom-screenrecording-indicator,
+#custom-expand,
+#custom-logo,
+#mpris,
+#clock,
+#custom-idle-indicator {
+  padding: 0 6px;
+  font-weight: 600;
+  opacity: 1;
+  transition: opacity 150ms ease;
+}
+
+#clock {
+  font-weight: 800;
+}
+
+#custom-expand {
+  font-size: 12px;
+}
+
+#custom-screenrecording-indicator {
+  min-width: 12px;
+  font-size: 12px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: #a55555;
+}
+
+#battery.warning {
+  color: #e0af68;
+}
+
+#battery.critical {
+  color: @error;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.5;
+  }
+}
