@@ -1,7 +1,6 @@
-local lspconfig = require("lspconfig")
-
 local on_attach = function(client, bufnr)
     local opts = { buffer = bufnr, noremap = true, silent = true }
+
     -- Navigation
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -16,7 +15,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "<LEADER>K", vim.diagnostic.open_float, opts)
     -- vim.keymap.set("n", "<LEADER>d", vim.diagnostic.show_line_diagnostics, opts)
 
-    -- Alteration
+    -- Modification
     vim.keymap.set("n", "<LEADER>rn", vim.lsp.buf.rename, opts)
     vim.keymap.set({ "n", "v" }, "<LEADER>ca", vim.lsp.buf.code_action, opts)
 
@@ -29,24 +28,22 @@ local on_attach = function(client, bufnr)
     end
 end
 
-local function make_config()
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
-    -- capabilities.textDocument.completion.completionItem.snippetSupport = true
-    return {
-        capabilities = capabilities,
-        on_attach = on_attach,
-    }
-end
+-- Default config
+vim.lsp.config("*", {
+    capabilities = require("blink.cmp").get_lsp_capabilities(),
+    on_attach = on_attach,
+})
+-- Per-server config in after/lsp/
 
-lspconfig.ts_ls.setup(make_config())
-lspconfig.rust_analyzer.setup(make_config())
-lspconfig.pyright.setup(make_config())
-lspconfig.svelte.setup(make_config())
-lspconfig.gdscript.setup(make_config())
-lspconfig.gdshader_lsp.setup(make_config())
-
-local lua_config = make_config()
-lua_config.settings = require("lsp.server_settings.lua_ls")
-lspconfig.lua_ls.setup(lua_config)
+-- NOT NECESSARY WITH MASON-LSPCONFIG
+-- Enable servers corresponding to filenames in lsp/
+-- local lsp_configs = {}
+-- for _, f in pairs(vim.api.nvim_get_runtime_file('lsp/*.lua', true)) do
+--     if not f:find("init") or f:find("theme") then
+--         local server_name = vim.fn.fnamemodify(f, ':t:r')
+--         table.insert(lsp_configs, server_name)
+--     end
+-- end
+-- vim.lsp.enable(lsp_configs)
 
 require("lsp.theme")

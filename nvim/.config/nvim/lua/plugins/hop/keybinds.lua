@@ -38,4 +38,4 @@ vim.keymap.set("", "T", function()
         hint_offset = -1,
     })
 end)
-vim.keymap.set("n", "<leader>w", ":HopWord<CR>", { silent = true })
+vim.keymap.set("n", "<LEADER>w", ":HopWord<CR>", { silent = true })

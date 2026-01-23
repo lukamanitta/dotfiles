@@ -2,7 +2,8 @@ local conform = require("conform")
 
 conform.setup({
     format_after_save = {
-        lsp_fallback = true,
+        timeout_ms = 500,
+        lsp_format = "fallback",
     },
 })
 

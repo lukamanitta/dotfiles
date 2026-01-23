@@ -1,259 +1,189 @@
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
----@diagnostic disable-next-line: undefined-field
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({
         "git",
         "clone",
         "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
         "--branch=stable",
+        lazyrepo,
         lazypath,
     })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out, "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
 vim.opt.rtp:prepend(lazypath)
 
-local function is_selected_colorscheme(plugin)
-    return plugin.name == require("settings.theme").colorscheme
+local function is_selected_colourscheme(plugin)
+    return plugin.name == vim.g.colourscheme
 end
 
 require("lazy").setup({
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        init = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-        end,
-        config = function()
-            require("plugins.ui.which-key")
-        end,
-    },
-
-    -- Motions & Objects
-    {
-        "smoka7/hop.nvim",
-        version = "*",
-        config = function()
-            require("plugins.hop")
-        end,
-    },
-
-    -- Comments
-    { "JoosepAlviste/nvim-ts-context-commentstring" },
-    {
-        "numToStr/Comment.nvim",
-        config = function()
-            require("Comment").setup({
-                pre_hook = require(
-                    "ts_context_commentstring.integrations.comment_nvim"
-                ).create_pre_hook(),
-            })
-        end,
-        lazy = false,
-    },
-
-    -- Finder
-    {
-        "nvim-telescope/telescope.nvim",
-        config = function()
-            require("plugins.telescope")
-        end,
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-lua/popup.nvim",
+    spec = {
+        {
+            "folke/which-key.nvim",
+            lazy = true,
+            init = function()
+                vim.o.timeout = true
+                vim.o.timeoutlen = 300
+            end,
         },
-    },
-    {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
+
+        -- Motions & Objects
+        {
+            "wsdjeg/hop.nvim",
+            config = function()
+                require("plugins.hop")
+            end,
         },
-    },
-
-    -- Explorer
-    {
-        "nvim-neo-tree/neo-tree.nvim", -- TODO: high perf impact
-        config = function()
-            require("plugins.neo-tree")
-        end,
-        version = "v3.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "kyazdani42/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
-        },
-    },
-
-    -- Git
-    {
-        "kdheepak/lazygit.nvim",
-        lazy = true,
-        cmd = {
-            "LazyGit"
-        },
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        keys = {
-            { "<leader>git", ":LazyGit<CR>", desc = "LazyGit" },
-        },
-    },
-
-    -- Treesitter
-    {
-        "nvim-treesitter/nvim-treesitter",
-        build = {
-            ":TSInstall ruby javascript typescript tsx html css scss json yaml markdown bash lua python rust svelte",
-            ":TSUpdate",
-        }, -- Change all to a list of required ones
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                highlight = {
-                    enable = true,
-                },
-            })
-            vim.treesitter.language.register("markdown", "mdx")
-        end,
-    },
-    {
-        "nvim-treesitter/nvim-treesitter-context",
-        config = function()
-            require("plugins.treesitter-context")
-        end,
-    },
-
-    -- LSP & Formatting
-    { "neovim/nvim-lspconfig" },
-    { "jose-elias-alvarez/null-ls.nvim" },
-    {
-        "stevearc/conform.nvim",
-        config = function()
-            require("plugins.conform")
-        end,
-    },
-
-    -- Completions
-    {
-        "llllvvuu/nvim-cmp", -- Using this fork until hrs7th merges this
-        config = function()
-            require("plugins.cmp")
-        end,
-        branch = "feat/above",
-    },
-    -- { "hrsh7th/cmp-nvim-lsp", dependencies = "llllvvuu/nvim-cmp" },
-    -- { "hrsh7th/cmp-nvim-lsp-signature-help", dependencies = "llllvvuu/nvim-cmp" },
-    -- { "hrsh7th/cmp-nvim-lua", dependencies = "llllvvuu/nvim-cmp" },
-    -- { "hrsh7th/cmp-buffer", dependencies = "llllvvuu/nvim-cmp" },
-    -- { "hrsh7th/cmp-path", dependencies = "llllvvuu/nvim-cmp" },
-
-    { "hrsh7th/cmp-nvim-lsp" },
-    { "hrsh7th/cmp-nvim-lsp-signature-help" },
-    { "hrsh7th/cmp-nvim-lua" },
-    { "hrsh7th/cmp-buffer" },
-    { "hrsh7th/cmp-path" },
-
-    { "L3MON4D3/LuaSnip",                   build = "make install_jsregexp" }, -- TODO: high perf impact
-
-    {
-        "github/copilot.vim",
-        config = function()
-            require("plugins.copilot")
-        end,
-    },
-
-    -- UI
-    {
-        "rebelot/heirline.nvim",
-        config = function()
-            require("plugins.ui.heirline")
-        end,
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        config = function()
-            require("plugins.ui.indent-blankline")
-        end,
-    },
-    {
-        "rcarriga/nvim-notify",
-        config = function()
-            require("plugins.ui.notify")
-        end,
-    },
-    {
-        "j-hui/fidget.nvim",
-        config = function()
-            require("plugins.ui.fidget")
-        end,
-    },
-    { "RRethy/vim-hexokinase", build = "make hexokinase" }, -- requires go
-    {
-        "lewis6991/gitsigns.nvim",
-        config = function()
-            require("plugins.ui.gitsigns")
-        end,
-    },
-    {
-        "DaikyXendo/nvim-material-icon", -- TODO: maybe high perf impact? seems large for what it is
-        config = function()
-            require("plugins.ui.nvim-material-icon")
-        end,
-    },
-
-    -- Colourschemes
-    {
-        "rebelot/kanagawa.nvim",
-        priority = 999,
-        name = "kanagawa",
-        cond = is_selected_colorscheme,
-        config = function()
-            require("settings.theme").pre_colorscheme_actions()
-            require("colorschemes.kanagawa")
-            require("settings.theme").post_colorscheme_actions()
-        end,
-    },
-    {
-        "ellisonleao/gruvbox.nvim",
-        priority = 999,
-        name = "gruvbox",
-        cond = is_selected_colorscheme,
-        config = function()
-            require("settings.theme").pre_colorscheme_actions()
-            require("colorschemes.gruvbox")
-            require("settings.theme").post_colorscheme_actions()
-        end,
-    },
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        cond = is_selected_colorscheme,
-        config = function()
-            require("settings.theme").pre_colorscheme_actions()
-            require("colorschemes.catppuccin")
-            require("settings.theme").post_colorscheme_actions()
-        end,
-    },
-
-    -- Mini
-    {
-        "echasnovski/mini.nvim",
-        version = false,
-        config = function()
-            require("mini.move").setup()
-            require("mini.surround").setup({
+        { "nvim-mini/mini.move" },
+        {
+            "nvim-mini/mini.surround",
+            opts = {
                 mappings = {
-                    delete = "ds",  -- Delete surrounding
-                    replace = "cs", -- Replace surrounding
+                    delete = "ds",
+                    replace = "cs",
                 },
-            })
-        end,
-    },
-}, {
-    defaults = {
-        lazy = false,
-    },
-    dev = {
-        path = "~/code/personal",
+            },
+        },
+
+        -- Comments
+        {
+            "JoosepAlviste/nvim-ts-context-commentstring",
+            config = function()
+                require("plugins.nvim-ts-context-commentstring")
+            end,
+        },
+
+        -- Finder
+        {
+            "nvim-telescope/telescope.nvim",
+            version = "*",
+            config = function()
+                require("plugins.telescope")
+            end,
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+            },
+        },
+
+        -- Explorer
+        {
+            "nvim-neo-tree/neo-tree.nvim",
+            branch = "v3.x",
+            config = function()
+                require("plugins.neo-tree")
+            end,
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                "MunifTanjim/nui.nvim",
+                "nvim-tree/nvim-web-devicons",
+            },
+        },
+        {
+            "antosha417/nvim-lsp-file-operations",
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                "nvim-neo-tree/neo-tree.nvim", -- makes sure that this loads after Neo-tree.
+            },
+        },
+
+        -- Treesitter
+        {
+            "nvim-treesitter/nvim-treesitter",
+            branch = "main",
+            lazy = false,
+            build = ":TSUpdate",
+            config = function()
+                require("plugins.nvim-treesitter")
+            end,
+            dependencies = {
+                {
+                    "nvim-treesitter/nvim-treesitter-context",
+                    opts = {
+                        max_line = 4,
+                        multiline_threshold = 2,
+                        separator = "·",
+                    },
+                },
+            },
+        },
+
+        -- LSP & Formatting
+        { "neovim/nvim-lspconfig", lazy = false },
+        {
+            "mason-org/mason-lspconfig.nvim",
+            dependencies = {
+                { "mason-org/mason.nvim", opts = {} },
+                "neovim/nvim-lspconfig",
+            },
+            opts = {
+                ensure_installed = {
+                    "lua_ls",
+                    "rust_analyzer",
+                    "svelte",
+                    "ts_ls",
+                    "copilot",
+                },
+            },
+        },
+        {
+            "stevearc/conform.nvim",
+            config = function()
+                require("plugins.conform")
+            end,
+        },
+
+        -- Completions
+        {
+            "saghen/blink.cmp",
+            version = "1.*",
+            dependencies = {
+                "rafamadriz/friendly-snippets",
+            },
+            config = function()
+                require("plugins.blink-cmp")
+            end,
+        },
+
+        -- UI
+        {
+            "lukas-reineke/indent-blankline.nvim",
+            main = "ibl",
+            opts = {
+                indent = { char = "▏" },
+                scope = { enabled = false },
+            },
+        },
+        {
+            "rcarriga/nvim-notify",
+            opts = {
+                fps = 60,
+                timeout = 3000,
+            },
+        },
+        { "j-hui/fidget.nvim" },
+        { "RRethy/vim-hexokinase", build = "make hexokinase" }, -- requires go
+        { "nvim-mini/mini.diff" },
+
+        -- Colourschemes
+        {
+            "kdheepak/monochrome.nvim",
+            name = "monochrome",
+            priority = 1000,
+            cond = is_selected_colourscheme,
+            config = function()
+                vim.cmd("colorscheme monochrome")
+            end,
+        },
     },
 })

@@ -1,7 +1,7 @@
 -- TODO: clean dis up
 
 vim.keymap.set("n", "<LEADER>ff", function()
-    return require("plugins.telescope.custom_finders").smart_file_finder()
+    return require("plugins.telescope.finders").smart_file_finder()
 end, { silent = true })
 
 vim.keymap.set("n", "<LEADER>fc", function()
@@ -40,4 +40,3 @@ vim.keymap.set("n", "z=", function()
         },
     })
 end)
-

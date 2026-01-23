@@ -1,4 +1,11 @@
-local lsp_icons = require("icons").lsp
+-- local lsp_icons = require("icons").lsp
+
+local lsp_icons = {
+    Error = "E",
+    Warn = "W",
+    Hint = "H",
+    Info = "I",
+}
 
 vim.diagnostic.config({
     underline = true,

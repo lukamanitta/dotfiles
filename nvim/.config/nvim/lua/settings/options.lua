@@ -1,53 +1,39 @@
-require("helpers").set_scope_opts(vim.g, {
-    scrolloff = 10,
-    sidescrolloff = 5,
-    omni_sql_default_compl_type = "syntax",
+require("h").overwrite_keys(vim.g, {
 
     -- My variables
-    icon_style = "solid", -- "solid" | "outline" | "text"
 })
 
-require("helpers").set_scope_opts(vim.o, {
+require("h").overwrite_keys(vim.o, {
     syntax = "off",
-    hidden = true,
+    hidden = true, -- Switch away from unsaved buffers
     number = true,
     relativenumber = true,
-    cmdheight = 1,
+    scrolloff = 10,
+    sidescrolloff = 5,
     mouse = "a",
     signcolumn = "yes",
     updatetime = 50,
     equalalways = false,
     splitbelow = true,
-    lazyredraw = false,
-    ttyfast = true,
     termguicolors = true,
     cursorline = true,
     laststatus = 3,
     incsearch = true,
     inccommand = "nosplit",
-    encoding = "utf-8",
-    expandtab = true, -- Expand tabs to spaces
-    shiftwidth = 4, -- Tab = 4 spaces
-    backspace = "indent,eol,start",
-    belloff = "all", -- Shut that fucking bell sound off
+    belloff = "all", -- Shut that f**king bell sound off >:(
     foldmethod = "indent",
-    foldnestmax = 10,
-    foldenable = false,
-    foldlevel = 1,
-    scrolloff = 10,
-    sidescrolloff = 5,
-    spell = false,
+    foldlevel = 99,
     spelllang = "en_au,en_us",
     spelloptions = "camel,noplainbuffer",
     splitkeep = "screen",
-    completeopt = "menu,menuone,preview",
+    completeopt = "fuzzy,menu,menuone,noinsert,popup",
 })
 
--- Recognise _ as word separator
-vim.cmd("set iskeyword-=_") -- TODO: write this in lua
+-- Recognise _ as a word separator
+vim.opt.iskeyword:remove("_")
 vim.fn.matchadd("ColorColumn", "\\%80v", 100) -- DANGER ZONE FUCK NOT 80 CHARAC
 
--- Global statusline
+-- Window separators to accomodate global statusline (laststatus=3)
 vim.opt.fillchars:append({
     horiz = "━",
     horizup = "┻",

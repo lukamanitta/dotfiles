@@ -2,7 +2,7 @@
 vim.keymap.set("n", "<SPACE>", "<NOP>")
 vim.g.mapleader = " "
 
--- "jk" to leave ins mode
+-- "jk" to leave insert mode
 vim.keymap.set("i", "jk", "<ESC>")
 
 -- Switch to alternate file

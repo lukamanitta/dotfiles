@@ -1,4 +1,5 @@
 vim.loader.enable()
 require("settings")
+require("ui")
 require("plugins")
 require("lsp")
