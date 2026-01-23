@@ -73,6 +73,18 @@ local U = {
        mods = "LEADER",
        action = wezterm.action({ ActivateTabRelative = -1 }),
    },
+
+   --- Keybindings for clipboard paste
+   {
+       key = 'V',
+       mods = "CTRL",
+       action = wezterm.action.PasteFrom 'Clipboard'
+   },
+--   {
+--      key = 'V',
+--       mods = "CTRL",
+--       action = wezterm.action.PasteFrom 'PrimarySelection'
+--   },
 }
 
 -- Tab switching keys (saves repeating essentially the same keybinding 10 times)

@@ -16,7 +16,7 @@ local cfg = {
     },
     --General--
     warn_about_missing_glyphs = true,
-    window_background_opacity = helpers.is_linux() and 0.95 or 0.98,
+    window_background_opacity = helpers.is_linux() and 0.98 or 0.98,
     native_macos_fullscreen_mode = true,
     debug_key_events = false,
 
@@ -34,6 +34,7 @@ local cfg = {
     tab_max_width = 15,
 
     enable_kitty_graphics = true,
+    enable_wayland = false,
     default_cursor_style = "BlinkingBlock",
     force_reverse_video_cursor = true,
 
@@ -44,7 +45,8 @@ local cfg = {
     keys = require("keybinds"),
 
     -- Colors
-    color_scheme = "Luka",
+    -- color_scheme = "Luka",
+    color_scheme = "Mono (terminal.sexy)",
 
     -- Fonts
     -- font_locator = "ConfigDirsOnly",
