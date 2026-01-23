@@ -16,10 +16,20 @@ if test -d ~/code/msi-utils/bin
 	fish_add_path ~/code/msi-utils/bin/
 end
 
-set -gx ASDF_DATA_DIR ~/.asdf/
-fish_add_path $ASDF_DATA_DIR/shims
-# Do this if link isn't already made
-# mkdir -p ~/.config/fish/completions; and ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
+if test -z $ASDF_DATA_DIR
+	set _asdf_shims "$HOME/.asdf/shims"
+	# set -gx ASDF_DATA_DIR ~/.asdf/
+else
+	set _asdf_shims "$ASDF_DATA_DIR/shims"
+end
+
+if not contains $_asdf_shims $PATH
+	set -gx --prepend PATH $_asdf_shims
+end
+set --erase _asdf_shims
+
+# Do this once if completions aren't configured
+# asdf completion fish > ~/.config/fish/completions/asdf.fish
 
 fish_add_path ~/bin/
 fish_add_path ~/.local/bin/
