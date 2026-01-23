@@ -1,50 +1,50 @@
 [colors]
 ansi = [
-    "#", # Black
-    "#", # Red
-    "#", # Green
-    "#", # Yellow
-    "#", # Blue
-    "#", # Magenta
-    "#", # Cyan
-    "#", # White
+    "#black", # Black
+    "#red", # Red
+    "#green", # Green
+    "#yellow", # Yellow
+    "#blue", # Blue
+    "#magenta", # Magenta
+    "#cyan", # Cyan
+    "#white", # White
 ]
 
 brights = [
-    "#", # Black
-    "#", # Red
-    "#", # Green
-    "#", # Yellow
-    "#", # Blue
-    "#", # Magenta
-    "#", # Cyan
-    "#", # White
+    "#bblack", # Black
+    "#bred", # Red
+    "#bgreen", # Green
+    "#byellow", # Yellow
+    "#bblue", # Blue
+    "#bmagenta", # Magenta
+    "#bcyan", # Cyan
+    "#bwhite", # White
 ]
 
-background = "#"
-foreground = "#"
+background = "#background"
+foreground = "#foreground"
 
-cursor_bg = "#"
-cursor_fg = "#"
-cursor_border = "#"
+cursor_bg = "#foreground"
+cursor_fg = "#background"
+cursor_border = "#foreground"
 
-scrollbar_thumb = "#"
+scrollbar_thumb = "#black"
 
-selection_bg = "#"
-selection_fg = "#"
+selection_bg = "#black"
+selection_fg = "#foreground"
 
-split = "#"
-visual_bell = "#"
+split = "#black"
+visual_bell = "#black"
 
 [colors.indexed]
 
 [colors.tab_bar]
-background = "#"
-inactive_tab_edge = "#"
+background = "#background"
+inactive_tab_edge = "#background"
 
 [colors.tab_bar.active_tab]
-bg_color = "#"
-fg_color = "#"
+bg_color = "#background"
+fg_color = "#foreground"
 
 intensity = "Bold"      # Half | Normal | Bold
 underline = "None"      # None | Single | Double
@@ -52,8 +52,8 @@ italic = false
 strikethrough = false
 
 [colors.tab_bar.inactive_tab]
-bg_color = "#"
-fg_color = "#"
+bg_color = "#background"
+fg_color = "#bblack"
 
 intensity = "Normal"    # Half | Normal | Bold
 underline = "None"      # None | Single | Double
@@ -61,8 +61,8 @@ italic = true
 strikethrough = false
 
 [colors.tab_bar.inactive_tab_hover]
-bg_color = "#"
-fg_color = "#"
+bg_color = "#background"
+fg_color = "#foreground"
 
 intensity = "Normal"    # Half | Normal | Bold
 underline = "None"      # None | Single | Double
@@ -70,8 +70,8 @@ italic = true
 strikethrough = false
 
 [colors.tab_bar.new_tab]
-bg_color = "#"
-fg_color = "#"
+bg_color = "#background"
+fg_color = "#bblack"
 
 intensity = "Normal"    # Half | Normal | Bold
 underline = "None"      # None | Single | Double
@@ -79,8 +79,8 @@ italic = false
 strikethrough = false
 
 [colors.tab_bar.new_tab_hover]
-bg_color = "#"
-fg_color = "#"
+bg_color = "#background"
+fg_color = "#foreground"
 
 intensity = "Normal"    # Half | Normal | Bold
 underline = "None"      # None | Single | Double

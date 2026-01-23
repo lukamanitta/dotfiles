@@ -1,0 +1,88 @@
+[colors]
+ansi = [
+    "#101010", # Black
+    "#de6e7c", # Red
+    "#819b69", # Green
+    "#b77e64", # Yellow
+    "#6099c0", # Blue
+    "#b279a7", # Magenta
+    "#66a5ad", # Cyan
+    "#bbbbbb", # White
+]
+
+brights = [
+    "#3d3839", # Black
+    "#e8838f", # Red
+    "#8bae68", # Green
+    "#d68c67", # Yellow
+    "#61abda", # Blue
+    "#cf86c1", # Magenta
+    "#65b8c1", # Cyan
+    "#8e8e8e", # White
+]
+
+background = "#191919"
+foreground = "#bbbbbb"
+
+cursor_bg = "#bbbbbb"
+cursor_fg = "#191919"
+cursor_border = "#bbbbbb"
+
+scrollbar_thumb = "#101010"
+
+selection_bg = "#101010"
+selection_fg = "#bbbbbb"
+
+split = "#101010"
+visual_bell = "#101010"
+
+[colors.indexed]
+
+[colors.tab_bar]
+background = "#191919"
+inactive_tab_edge = "#191919"
+
+[colors.tab_bar.active_tab]
+bg_color = "#191919"
+fg_color = "#bbbbbb"
+
+intensity = "Bold"      # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = false
+strikethrough = false
+
+[colors.tab_bar.inactive_tab]
+bg_color = "#191919"
+fg_color = "#3d3839"
+
+intensity = "Normal"    # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = true
+strikethrough = false
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color = "#191919"
+fg_color = "#bbbbbb"
+
+intensity = "Normal"    # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = true
+strikethrough = false
+
+[colors.tab_bar.new_tab]
+bg_color = "#191919"
+fg_color = "#3d3839"
+
+intensity = "Normal"    # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = false
+strikethrough = false
+
+[colors.tab_bar.new_tab_hover]
+bg_color = "#191919"
+fg_color = "#bbbbbb"
+
+intensity = "Normal"    # Half | Normal | Bold
+underline = "None"      # None | Single | Double
+italic = false
+strikethrough = false
