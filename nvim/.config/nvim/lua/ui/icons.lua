@@ -96,7 +96,7 @@ I.companies = {
     Vim = "",
 }
 
-I.types = { -- Arranged approximately in order of abstraction (lo - hi)
+I.types = {
     Constant = "",
     Text = "",
     Value = "󰎠",

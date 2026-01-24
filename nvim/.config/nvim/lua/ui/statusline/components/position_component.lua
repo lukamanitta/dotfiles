@@ -4,8 +4,9 @@ return function()
     local col = vim.fn.virtcol(".")
 
     return table.concat({
-        "%#Italic#l: ",
-        string.format("%%#StatuslineTitle#%d", line),
-        string.format("%%#Italic#/%d c: %d", line_count, col),
+        -- "%#Italic#l: ",
+        " %2(%3l%):%-2c",
+        -- string.format("%%#StatuslineTitle#%d", line),
+        -- string.format("%%#Italic#/%d c: %d", line_count, col),
     })
 end
