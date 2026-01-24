@@ -9,7 +9,10 @@ function U.render()
         require("ui.statusline.components.lsp_server_name")(),
         require("ui.statusline.components.filetype_component")(),
         table.concat({
-            require("ui.statusline.components.file_progress_component")(),
+            table.concat({
+                require("ui.statusline.components.file_progress_component")(),
+                " ",
+            }),
             -- require("ui.statusline.components.position_component")(),
         }),
     }, "   ")

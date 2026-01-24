@@ -133,7 +133,6 @@ require("lazy").setup({
                     "rust_analyzer",
                     "svelte",
                     "ts_ls",
-                    "copilot",
                 },
             },
         },
@@ -184,7 +183,7 @@ require("lazy").setup({
         },
         { "j-hui/fidget.nvim", opts = {} },
         { "RRethy/vim-hexokinase", build = "make hexokinase" }, -- requires go
-        { "nvim-mini/mini.diff" },
+        { "nvim-mini/mini.diff", opts = {} },
 
         -- Colourschemes
         {
