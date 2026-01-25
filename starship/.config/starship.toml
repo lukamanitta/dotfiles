@@ -64,9 +64,12 @@ scan_timeout = 200
 # Module settings
 continuation_prompt = " "
 [character]
-success_symbol = " [ ](bold green)"
-error_symbol = " [ ](bold red)"
-vicmd_symbol = " [ ](bold green)"
+# success_symbol = " [ ](bold green)"
+# error_symbol = " [ ](bold red)"
+# vicmd_symbol = " [ ](bold green)"
+success_symbol = " [λ](bold bright-black)"
+error_symbol = " [λ](bold red)"
+vicmd_symbol = " [Π](bold blue)"
 
 [fill]
 symbol = "─"
