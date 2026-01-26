@@ -4,7 +4,7 @@ function U.render()
     vim.api.nvim_set_hl(0, "Winbar", { link = "StatusLine" })
     local prefix = require("ui.icons").filesystem.Folder
     local filepath = vim.fn.expand("%:f")
-    local separator = " %#StatusLineNC#"
+    local separator = " %#StatusLine#"
         .. require("ui.icons").general.ArrowRight
         .. " %#Winbar#"
 
@@ -15,7 +15,7 @@ function U.render()
     filepath = filepath:gsub("^/", "")
 
     return table.concat({
-        " %#Winbar#",
+        "%#Winbar# ",
         prefix,
         "  ",
         table.concat(vim.split(filepath, "/"), separator),

@@ -1,6 +1,6 @@
 return function()
     local head = vim.fn.systemlist("git rev-parse --abbrev-ref HEAD")[1]
-    if not head or head == "" then
+    if not head or head == "" or head:find("fatal") then
         return ""
     end
 
