@@ -1,3 +1,4 @@
 lazygit/.config/lazygit/**/*.patch
 lazygit/.config/lazygit/state.yml
 **/.DS_Store
+fish/.config/fish/env/*
