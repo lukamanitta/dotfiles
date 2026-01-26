@@ -2,6 +2,13 @@ local wezterm = require("wezterm")
 local home = os.getenv("HOME")
 local helpers = require("helpers")
 
+local function font(name, opts)
+    return wezterm.font_with_fallback(
+        helpers.combine_tables({ family = name }, opts),
+        { "Symbols Nerd Font" }
+    )
+end
+
 -- TODO: get this working
 -- wezterm.font = function(name, opts)
 --     wezterm.font_with_fallback(
@@ -16,7 +23,7 @@ local cfg = {
     },
     --General--
     warn_about_missing_glyphs = true,
-    window_background_opacity = helpers.is_linux() and 0.98 or 0.98,
+    window_background_opacity = helpers.is_linux() and 1 or 0.98,
     native_macos_fullscreen_mode = true,
     debug_key_events = false,
 
@@ -46,7 +53,7 @@ local cfg = {
 
     -- Colors
     -- color_scheme = "Luka",
-    color_scheme = "zenwritten-dark",
+    color_scheme = "Gruvbox",
 
     -- Fonts
     -- font_locator = "ConfigDirsOnly",
@@ -59,7 +66,11 @@ local cfg = {
     -- font = wezterm.font("Fira Code", { weight = "Medium" }),
     -- font_rules = require("font_rules").firacode,
 
-    font = wezterm.font("Roboto Mono", { weight = "Medium" }),
+    -- font = wezterm.font("Roboto Mono", { weight = "Medium" }),
+    font = wezterm.font_with_fallback({
+        { family = "Roboto Mono", weight = "Medium" },
+        "Symbols Nerd Font",
+    }),
 
     -- font = wezterm.font("CommitMono", { weight = "Regular" }),
     -- font_rules = require("font_rules").commitmono,
