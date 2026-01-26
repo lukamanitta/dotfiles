@@ -1,27 +1,27 @@
 sort=-time
 layer=overlay
-background-color=#2e3440
+background-color=#151515
 width=300
-height=110
-border-size=2
-border-color=#88c0d0
-border-radius=15
+height=80
+border-size=1
+border-color=#151515
+border-radius=2
 icons=0
 max-icon-size=64
 default-timeout=5000
 ignore-timeout=1
 max-visible=5
-font=monospace 14
+font=CaskaydiaMono Nerd Font Propo 11
 
 [urgency=low]
-border-color=#cccccc
+border-color=#151515
 
 [urgency=normal]
-border-color=#d08770
+border-color=#151515
 
 [urgency=high]
 border-color=#bf616a
-default-timeout=0
+default-timeout=10000
 
 [category=mpd]
 default-timeout=2000
