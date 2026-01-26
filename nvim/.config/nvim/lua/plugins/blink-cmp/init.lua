@@ -1,5 +1,20 @@
 require("blink.cmp").setup({
     -- keymap = { preset = "default" },
+    sources = {
+        default = {
+            "avante",
+            "lsp",
+            "path",
+            "snippets",
+            "buffer",
+        },
+        providers = {
+            avante = {
+                module = "blink-cmp-avante",
+                name = "Avante",
+            },
+        },
+    },
     keymap = {
         ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
         ["<C-e>"] = { "hide", "fallback" },

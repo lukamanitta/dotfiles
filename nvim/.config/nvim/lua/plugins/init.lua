@@ -30,10 +30,10 @@ require("lazy").setup({
     spec = {
         {
             "folke/which-key.nvim",
-            lazy = true,
+            event = "VeryLazy",
             init = function()
                 vim.o.timeout = true
-                vim.o.timeoutlen = 300
+                vim.o.timeoutlen = 3000
             end,
         },
 
@@ -149,18 +149,42 @@ require("lazy").setup({
             version = "1.*",
             dependencies = {
                 "rafamadriz/friendly-snippets",
+                "Kaiser-Yang/blink-cmp-avante",
             },
             config = function()
                 require("plugins.blink-cmp")
             end,
         },
-
         {
             "github/copilot.vim",
             config = function()
                 require("plugins.copilot")
             end,
         },
+        -- {
+        --     "yetone/avante.nvim",
+        --     build = "make",
+        --     event = "VeryLazy",
+        --     version = false,
+        --     dependencies = {
+        --         "nvim-lua/plenary.nvim",
+        --         "MunifTanjim/nui.nvim",
+        --         "zbirenbaum/nvim-web-devicons",
+        --     },
+        --     opts = {
+        --         provider = "gemini",
+        --         acp_providers = {
+        --             ["gemini-cli"] = {
+        --                 command = "gemini",
+        --                 args = { "--experimental-acp" },
+        --                 env = {
+        --                     NODE_NO_WARNINGS = "1",
+        --                     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY"),
+        --                 },
+        --             },
+        --         },
+        --     },
+        -- },
 
         -- UI
         {
@@ -211,6 +235,7 @@ require("lazy").setup({
             cond = is_selected_colourscheme,
             config = function()
                 vim.cmd.colorscheme("gruvbox")
+                vim.api.nvim_set_hl(0, "SignColumn", { link = "Normal" })
             end,
         },
         {
