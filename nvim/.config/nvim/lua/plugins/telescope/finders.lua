@@ -8,8 +8,11 @@ end
 function U.smart_file_finder(opts)
     opts = opts or {}
     local is_in_git_dir = inside_git_dir()
+    -- Need to still show untracked files even if inside a git directory
     if is_in_git_dir then
-        require("telescope.builtin").git_files(opts)
+        require("telescope.builtin").git_files(
+            vim.tbl_deep_extend("keep", opts, { show_untracked = true })
+        )
     else
         require("telescope.builtin").find_files(opts)
     end
@@ -24,7 +27,7 @@ function U.git_modified_finder(opts)
             "--modified",
             "--full-name",
             "--exclude-standard",
-        }
+        },
     })
 
     require("telescope.builtin").git_files(git_modified_opts)
