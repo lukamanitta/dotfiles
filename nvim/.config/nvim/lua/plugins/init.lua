@@ -96,6 +96,19 @@ require("lazy").setup({
                 "nvim-neo-tree/neo-tree.nvim", -- makes sure that this loads after Neo-tree.
             },
         },
+        {
+            "otavioschwanck/arrow.nvim",
+            dependencies = { "nvim-tree/nvim-web-devicons" },
+            opts = {
+                show_icons = true,
+                leader_key = ";",
+                buffer_leader_key = "m",
+                window = { border = "none" },
+                per_buffer_config = {
+                    lines = 6,
+                },
+            },
+        },
 
         -- Treesitter
         {
@@ -208,6 +221,7 @@ require("lazy").setup({
         { "j-hui/fidget.nvim", opts = {} },
         { "RRethy/vim-hexokinase", build = "make hexokinase" }, -- requires go
         { "nvim-mini/mini.diff", opts = {} },
+        { "mawkler/hml.nvim", opts = {} },
 
         -- Colourschemes
         {
