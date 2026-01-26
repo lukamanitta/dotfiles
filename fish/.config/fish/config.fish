@@ -45,4 +45,6 @@ if not type -q starship
 	curl -sS https://starship.rs/install.sh | sh
 end
 
+source ~/.config/fish/env/set_gemini_api_key.fish
+
 starship init fish | source
