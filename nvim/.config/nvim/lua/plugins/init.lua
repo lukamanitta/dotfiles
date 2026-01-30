@@ -248,8 +248,7 @@ require("lazy").setup({
             priority = 1000,
             cond = is_selected_colourscheme,
             config = function()
-                vim.cmd.colorscheme("gruvbox")
-                vim.api.nvim_set_hl(0, "SignColumn", { link = "Normal" })
+                require("plugins.colourschemes.gruvbox")
             end,
         },
         {
