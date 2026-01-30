@@ -5,6 +5,7 @@
   "spacing": 0,
   "height": 28,
   "modules-left": [
+    // "custom/weather",
     "custom/logo",
     "mpris"
   ],
@@ -14,12 +15,12 @@
   ],
   "modules-right": [
     "group/tray-drawer",
+    "network",
     "memory",
     "disk",
     "custom/screenrecording-indicator",
     "custom/idle-indicator",
-    // "network",
-    "bluetooth",
+    // "bluetooth",
     "backlight",
     "pulseaudio",
     "battery",
@@ -57,6 +58,11 @@
     "signal": 9,
     "return-type": "json"
   },
+  "custom/weather": {
+    "format": "{}",
+    "exec": "wttr.in/?format=1",
+    "interval": 1800,
+  },
   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{icon}",
@@ -90,7 +96,7 @@
   },
   "disk": {
     "interval": 30,
-    "format": "󱛟 {percentage_free}%",
+    "format": "󱛟 {percentage_used}%",
     "tooltip-format": "Used: {used}\nFree: {free}\nTotal: {total}",
     "path": "/"
   },
@@ -105,12 +111,14 @@
     "on-click": "wezterm start -- btop"
   },
   "clock": {
-    "format": "{:%H:%M}",
-    "format-alt": "{:L%A %d %B}",
+    // "format": "{:%H:%M}",
+    // "format-alt": "{:L%A %d %B}",
+    "format": "{:L%a %Y-%m-%d %H:%M}",
+    "format-alt": "{:L%A %d %B %Y %H:%M:%S}",
     "tooltip": false
   },
   "network": {
-    "interface": "wlan*",
+    "interface": "enp10s0",
     "format-icons": [
       "󰤯",
       "󰤟",
@@ -120,11 +128,11 @@
     ],
     "format": "{icon} {essid}",
     "format-wifi": "{icon}",
-    "format-ethernet": "󰀂",
-    "format-disconnected": "󰤮",
+    "format-ethernet": "󱘖 {ifname}",
+    "format-disconnected": " No network",
     "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-disconnected": "Disconnected",
+    "tooltip-format-disconnected": "󰤮 Disconnected",
     "interval": 3,
     "on-click": "nmgui"
   },
