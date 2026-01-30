@@ -5,15 +5,18 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = -1 }) end, opts)
-    vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = 1 }) end, opts)
+    vim.keymap.set("n", "[e", function()
+        vim.diagnostic.jump({ count = -1 })
+    end, opts)
+    vim.keymap.set("n", "]e", function()
+        vim.diagnostic.jump({ count = 1 })
+    end, opts)
 
     -- Information
     vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "<LEADER>K", vim.diagnostic.open_float, opts)
-    -- vim.keymap.set("n", "<LEADER>d", vim.diagnostic.show_line_diagnostics, opts)
 
     -- Modification
     vim.keymap.set("n", "<LEADER>rn", vim.lsp.buf.rename, opts)
