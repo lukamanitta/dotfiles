@@ -146,6 +146,8 @@ require("lazy").setup({
                     "rust_analyzer",
                     "svelte",
                     "ts_ls",
+                    "clangd",
+                    "cmake",
                 },
             },
         },
@@ -153,6 +155,32 @@ require("lazy").setup({
             "stevearc/conform.nvim",
             config = function()
                 require("plugins.conform")
+            end,
+        },
+
+        -- Debugging
+        {
+            "mfussenegger/nvim-dap",
+            lazy = true,
+            keys = require("plugins.debugging.keybinds"),
+            config = function()
+                require("plugins.debugging.dap")
+            end,
+        },
+        {
+            "rcarriga/nvim-dap-ui",
+            lazy = true,
+            dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+            config = function()
+                require("plugins.debugging.dap-ui")
+            end,
+        },
+        {
+            "theHamsta/nvim-dap-virtual-text",
+            lazy = true,
+            dependencies = { "mfussenegger/nvim-dap" },
+            config = function()
+                require("plugins.debugging.dap-virtual-text")
             end,
         },
 

@@ -73,6 +73,7 @@ I.general = {
 I.debug = {
     Pause = "",
     Play = "",
+    Breakpoint = "",
     StepInto = "",
     StepOver = "",
     StepOut = "",
