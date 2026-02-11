@@ -298,5 +298,14 @@ require("lazy").setup({
                 require("plugins.colourschemes.zenwritten")
             end,
         },
+        {
+            "thekylehuang/cole.nvim",
+            name = "cole",
+            priority = 1000,
+            cond = is_selected_colourscheme,
+            config = function()
+                require("plugins.colourschemes.cole")
+            end,
+        },
     },
 })
