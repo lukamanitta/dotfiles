@@ -168,12 +168,12 @@ require("lazy").setup({
                 require("plugins.blink-cmp")
             end,
         },
-        {
-            "github/copilot.vim",
-            config = function()
-                require("plugins.copilot")
-            end,
-        },
+        -- {
+        --     "github/copilot.vim",
+        --     config = function()
+        --         require("plugins.copilot")
+        --     end,
+        -- },
         -- {
         --     "yetone/avante.nvim",
         --     build = "make",
