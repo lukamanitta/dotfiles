@@ -33,7 +33,7 @@ menu menuitem:hover {
 }
 
 window#waybar {
-  background: rgba(16, 16, 16, 0.75);
+  background: @surface_container;
 }
 
 .modules-center {

@@ -53,7 +53,7 @@ local cfg = {
 
     -- Colors
     -- color_scheme = "Luka",
-    color_scheme = "Cole",
+    color_scheme = "Coal",
 
     -- Fonts
     -- font_locator = "ConfigDirsOnly",

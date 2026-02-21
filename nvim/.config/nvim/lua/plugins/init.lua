@@ -307,5 +307,14 @@ require("lazy").setup({
                 require("plugins.colourschemes.cole")
             end,
         },
+        {
+            "cranberry-clockworks/coal.nvim",
+            name = "coal",
+            priority = 1000,
+            cond = is_selected_colourscheme,
+            config = function()
+                require("plugins.colourschemes.coal")
+            end,
+        },
     },
 })
