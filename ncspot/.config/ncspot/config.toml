@@ -1,0 +1,23 @@
+use_nerdfont = true
+flip_status_indicators = true
+library_tabs = ["albums", "playlists", "tracks", "browse", "artists"]
+playback_state = "Playing"
+
+[theme]
+background = "default"
+primary = "foreground"
+secondary = "light black"
+title = "primary"
+playing = "primary"
+playing_selected = "primary"
+playing_bg = "primary"
+highlight = "#FFFFFF"
+highlight_bg = "#484848"
+error = "#FF0000"
+error_bg = "red"
+statusbar = "primary"
+statusbar_progress = "primary"
+statusbar_bg = "primary"
+cmdline = "default"
+cmdline_bg = "primary"
+search_match = "light red"
