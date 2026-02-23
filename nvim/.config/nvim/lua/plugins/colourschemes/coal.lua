@@ -6,6 +6,7 @@ vim.api.nvim_set_hl(0, "LspInlayHint", { link = "Comment" })
 vim.api.nvim_set_hl(0, "@function", { bold = true })
 vim.api.nvim_set_hl(0, "@function.builtin", { bold = true })
 vim.api.nvim_set_hl(0, "@method", { bold = true })
+vim.api.nvim_set_hl(0, "@none", { link = "Comment" })
 
 local status_colours = {
     ok = "#2e9969",
