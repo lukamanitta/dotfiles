@@ -1,0 +1,27 @@
+palette = 0=##black
+palette = 1=##red
+palette = 2=##green
+palette = 3=##yellow
+palette = 4=##blue
+palette = 5=##magenta
+palette = 6=##cyan
+palette = 7=##white
+palette = 8=##bblack
+palette = 9=##bred
+palette = 10=##bgreen
+palette = 11=##byellow
+palette = 12=##bblue
+palette = 13=##bmagenta
+palette = 14=###bcyan
+palette = 15=##bwhite
+
+background = !background
+foreground = !foreground
+
+cursor-color = !foreground
+cursor-text = !background
+
+selection-background = #black
+selection-foreground = !foreground
+
+split-divider-color = #black
