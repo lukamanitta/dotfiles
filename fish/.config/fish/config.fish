@@ -46,5 +46,6 @@ if not type -q starship
 end
 
 source ~/.config/fish/env/set_gemini_api_key.fish
+source ~/.config/fish/env/csse3010_env.fish
 
 starship init fish | source
