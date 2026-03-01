@@ -1,40 +1,49 @@
-local on_attach = function(client, bufnr)
-    local opts = { buffer = bufnr, noremap = true, silent = true }
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("lsp_attach_config", { clear = true }),
+    callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+        local bufnr = args.buf
+        local opts = { buffer = bufnr, noremap = true, silent = true }
 
-    -- Navigation
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", "[e", function()
-        vim.diagnostic.jump({ count = -1 })
-    end, opts)
-    vim.keymap.set("n", "]e", function()
-        vim.diagnostic.jump({ count = 1 })
-    end, opts)
+        -- Navigation
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+        vim.keymap.set("n", "[e", function()
+            vim.diagnostic.jump({ count = -1 })
+        end, opts)
+        vim.keymap.set("n", "]e", function()
+            vim.diagnostic.jump({ count = 1 })
+        end, opts)
 
-    -- Information
-    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "<LEADER>K", vim.diagnostic.open_float, opts)
+        -- Information
+        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "<LEADER>K", vim.diagnostic.open_float, opts)
 
-    -- Modification
-    vim.keymap.set("n", "<LEADER>rn", vim.lsp.buf.rename, opts)
-    vim.keymap.set({ "n", "v" }, "<LEADER>ca", vim.lsp.buf.code_action, opts)
+        -- Modification
+        vim.keymap.set("n", "<LEADER>rn", vim.lsp.buf.rename, opts)
+        vim.keymap.set(
+            { "n", "v" },
+            "<LEADER>ca",
+            vim.lsp.buf.code_action,
+            opts
+        )
 
-    if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(true)
-    end
+        if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(true)
+        end
 
-    if client.server_capabilities.semanticTokensProvider then
-        client.server_capabilities.semanticTokensProvider = nil
-    end
-end
+        if client.server_capabilities.semanticTokensProvider then
+            client.server_capabilities.semanticTokensProvider = nil
+        end
+    end,
+})
 
 -- Default config
 vim.lsp.config("*", {
     capabilities = require("blink.cmp").get_lsp_capabilities(),
-    on_attach = on_attach,
 })
 -- Per-server config in after/lsp/
 
