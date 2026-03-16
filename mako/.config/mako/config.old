@@ -1,19 +1,17 @@
 sort=-time
 layer=overlay
 background-color=#0c0c0c
-width=400
-height=200
-padding=12
+width=300
+height=80
 border-size=1
 border-color=#303030
-border-radius=12
+border-radius=12px
 icons=0
 max-icon-size=64
 default-timeout=5000
 ignore-timeout=1
 max-visible=5
-text-color=#ccccccff
-font=Roboto Mono 12, Symbols Nerd Font 12
+font=CaskaydiaMono Nerd Font Propo 11
 
 [urgency=low]
 border-color=#303030
@@ -22,6 +20,5 @@ border-color=#303030
 border-color=#303030
 
 [urgency=high]
-border-size=2
 border-color=#cc5d4b
 default-timeout=10000
