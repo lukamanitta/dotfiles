@@ -40,14 +40,14 @@ for _, ft in ipairs({ "html", "css", "scss", "json", "svelte" }) do
     conform.formatters_by_ft[ft] = { "prettierd" }
 end
 
-for _, ft in ipairs({
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
-}) do
-    conform.formatters_by_ft[ft] = { "prettierd" }
-end
+-- for _, ft in ipairs({
+--     "javascript",
+--     "typescript",
+--     "javascriptreact",
+--     "typescriptreact",
+-- }) do
+--     conform.formatters_by_ft[ft] = { "prettierd" }
+-- end
 
 -- Format embedded languages in different filetypes
 -- TODO: isn't working for mdx
