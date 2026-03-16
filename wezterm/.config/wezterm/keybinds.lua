@@ -19,7 +19,10 @@ local U = {
     {
         key = "=",
         mods = "LEADER",
-        action = wezterm.action_callback(require("balance_panes").balance_panes("x")),
+        -- action = wezterm.action_callback(require("balance_panes").balance_panes("x")),
+        action = wezterm.action_callback(function(window)
+            require("equalize_panes").equalize_tab(window)
+        end),
     },
     {
         key = "h",
@@ -76,9 +79,9 @@ local U = {
 
     --- Keybindings for clipboard paste
     {
-        key = 'V',
+        key = "V",
         mods = "CTRL",
-        action = wezterm.action.PasteFrom 'Clipboard'
+        action = wezterm.action.PasteFrom("Clipboard"),
     },
     --   {
     --      key = 'V',
@@ -90,8 +93,8 @@ local U = {
     {
         key = "a",
         mods = "LEADER|CTRL",
-        action = wezterm.action.SendKey { key = 'a', mods = 'CTRL' },
-    }
+        action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
+    },
 }
 
 -- Tab switching keys (saves repeating essentially the same keybinding 10 times)
