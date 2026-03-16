@@ -11,7 +11,8 @@
   color: @on_background;
   border: none;
   border-radius: 0;
-  font-family: "CaskaydiaMono Nerd Font Propo";
+  /* font-family: "CaskaydiaMono Nerd Font Propo"; */
+  font-family: "Roboto Mono", "Symbols Nerd Font", sans-serif;
   font-size: 12px;
 }
 
