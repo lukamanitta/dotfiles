@@ -13,7 +13,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     if vim.v.shell_error ~= 0 then
         vim.api.nvim_echo({
             { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out, "WarningMsg" },
+            { out,                            "WarningMsg" },
             { "\nPress any key to exit..." },
         }, true, {})
         vim.fn.getchar()
@@ -246,10 +246,10 @@ require("lazy").setup({
                 vim.notify = require("notify")
             end,
         },
-        { "j-hui/fidget.nvim", opts = {} },
+        { "j-hui/fidget.nvim",     opts = {} },
         { "RRethy/vim-hexokinase", build = "make hexokinase" }, -- requires go
-        { "nvim-mini/mini.diff", opts = {} },
-        { "mawkler/hml.nvim", opts = {} },
+        { "nvim-mini/mini.diff",   opts = {} },
+        { "mawkler/hml.nvim",      opts = {} },
 
         -- Colourschemes
         {
@@ -316,5 +316,15 @@ require("lazy").setup({
                 require("plugins.colourschemes.coal")
             end,
         },
+
+        -- Misc
+        {
+            "kdheepak/lazygit.nvim",
+            lazy = true,
+            cmd = { "LazyGit" },
+            dependencies = { "nvim-lua/plenary.nvim" },
+            keys = { { "<LEADER>git", "<CMD>LazyGit<CR>", desc = "LazyGit" } }
+        }
+
     },
 })
