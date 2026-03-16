@@ -40,17 +40,27 @@ return function()
 
     local mode = mode_to_str[vim.api.nvim_get_mode().mode] or "UNKNOWN"
 
-    local hl = "MiniStatusLineModeOther"
-    if mode:find("NORMAL") then
-        hl = "MiniStatuslineModeNormal"
-    elseif mode:find("INSERT") or mode:find("SELECT") then
-        hl = "MiniStatuslineModeInsert"
-    elseif mode:find("VISUAL") then
-        hl = "MiniStatuslineModeVisual"
-    elseif mode:find("PENDING") then
-        hl = "MiniStatuslineModeReplace"
-    elseif mode:find("COMMAND") or mode:find("TERMINAL") or mode:find("EX") then
-        hl = "MiniStatuslineModeCommand"
+    -- If MiniStatusline is installed, use its highlight groups for different modes
+    local hl
+    if vim.fn.exists("g:loaded_mini_statusline") == 1 then
+        hl = "MiniStatusLineModeOther"
+        if mode:find("NORMAL") then
+            hl = "MiniStatuslineModeNormal"
+        elseif mode:find("INSERT") or mode:find("SELECT") then
+            hl = "MiniStatuslineModeInsert"
+        elseif mode:find("VISUAL") then
+            hl = "MiniStatuslineModeVisual"
+        elseif mode:find("PENDING") then
+            hl = "MiniStatuslineModeReplace"
+        elseif
+            mode:find("COMMAND")
+            or mode:find("TERMINAL")
+            or mode:find("EX")
+        then
+            hl = "MiniStatuslineModeCommand"
+        end
+    else
+        hl = "RedrawDebugNormal"
     end
 
     return string.format("%%#%s# %s %%#Statusline#", hl, mode)
