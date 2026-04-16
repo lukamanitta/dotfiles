@@ -1,4 +1,6 @@
 require("h").overwrite_keys(vim.g, {
+    loaded_netrw = 1,
+    loaded_netrwPlugin = 1,
 
     -- My variables
 })

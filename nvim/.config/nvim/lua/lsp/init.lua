@@ -42,9 +42,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Default config
-vim.lsp.config("*", {
-    capabilities = require("blink.cmp").get_lsp_capabilities(),
-})
+-- vim.lsp.config("*", {
+--     capabilities = require("blink.cmp").get_lsp_capabilities(),
+-- })
 -- Per-server config in after/lsp/
 
 -- NOT NECESSARY WITH MASON-LSPCONFIG
