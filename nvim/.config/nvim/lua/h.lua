@@ -50,6 +50,10 @@ function U.get_buf_filetype(bufnr)
     return vim.api.nvim_get_option_value("filetype", { buf = bufnr })
 end
 
+vim.pack.add({
+    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+})
+
 function U.get_buf_icon(bufnr)
     bufnr = bufnr or vim.api.nvim_get_current_buf()
 
