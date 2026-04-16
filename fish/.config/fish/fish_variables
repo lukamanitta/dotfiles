@@ -1,10 +1,11 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR Z_DATA_DIR:/home/luka/\x2elocal/share/z
-SETUVAR __fish_initialized:4300
+SETUVAR __fish_initialized:3400
 SETUVAR _fisher_jorgebucaran_2F_autopair_2E_fish_files:\x7e/\x2econfig/fish/functions/_autopair_backspace\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_left\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_right\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_same\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_tab\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/autopair\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_kidonng_2F_zoxide_2E_fish_files:\x7e/\x2econfig/fish/functions/__zoxide_cd\x2efish\x1e\x7e/\x2econfig/fish/functions/__zoxide_pwd\x2efish\x1e\x7e/\x2econfig/fish/functions/__zoxide_z\x2efish\x1e\x7e/\x2econfig/fish/functions/__zoxide_z_complete\x2efish\x1e\x7e/\x2econfig/fish/functions/__zoxide_zi\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/zoxide\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/autopair\x2efish\x1ekidonng/zoxide\x2efish
 SETUVAR _fisher_upgraded_to_4_4:\x1d
-SETUVAR fish_user_paths:/home/luka/\x2easdf/shims\x1e/home/luka/bin\x1e/home/luka/\x2elocal/bin\x1e/Users/luka/code/msi\x2dutils/bin\x1e/Users/luka/\x2easdf/shims\x1e/opt/homebrew/Cellar/asdf/0\x2e12\x2e0/libexec/bin\x1e/Users/luka/bin\x1e/opt/homebrew/bin\x1e/opt/homebrew/opt/fzf/bin
+SETUVAR fish_key_bindings:fish_vi_key_bindings
+SETUVAR fish_user_paths:/Users/luka/\x2epub\x2dcache/bin\x1e/Users/luka/\x2elocal/bin\x1e/home/luka/\x2easdf/shims\x1e/home/luka/bin\x1e/home/luka/\x2elocal/bin\x1e/Users/luka/code/msi\x2dutils/bin\x1e/Users/luka/\x2easdf/shims\x1e/opt/homebrew/Cellar/asdf/0\x2e12\x2e0/libexec/bin\x1e/Users/luka/bin\x1e/opt/homebrew/bin\x1e/opt/homebrew/opt/fzf/bin

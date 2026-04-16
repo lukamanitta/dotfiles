@@ -316,15 +316,5 @@ require("lazy").setup({
                 require("plugins.colourschemes.coal")
             end,
         },
-
-        -- Misc
-        {
-            "kdheepak/lazygit.nvim",
-            lazy = true,
-            cmd = { "LazyGit" },
-            dependencies = { "nvim-lua/plenary.nvim" },
-            keys = { { "<LEADER>git", "<CMD>LazyGit<CR>", desc = "LazyGit" } }
-        }
-
     },
 })

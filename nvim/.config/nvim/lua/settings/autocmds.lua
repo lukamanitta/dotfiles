@@ -18,3 +18,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank({ higroup = "IncSearch", timeout = 300 })
     end,
 })
+
+-- Close terminal buffer when terminal process exits
+vim.cmd("autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif")

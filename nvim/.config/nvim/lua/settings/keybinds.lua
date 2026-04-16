@@ -19,3 +19,7 @@ vim.keymap.set("n", "Y", "y$")
 
 -- Clear search highlight
 vim.keymap.set("n", "//", ":nohlsearch<CR>")
+
+if vim.fn.executable("lazygit") == 1 then
+    vim.keymap.set("n", "<LEADER>git", "<CMD>terminal lazygit<CR>")
+end
