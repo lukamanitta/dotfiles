@@ -1,5 +1,5 @@
 vim.keymap.set("n", "<LEADER>ff", function()
-    return require("plugin.telescope.finders").smart_file_finder()
+    return require("lib.telescope_finders").smart_file_finder()
 end, { silent = true })
 
 vim.keymap.set("n", "<LEADER>fc", function()
@@ -27,7 +27,7 @@ vim.keymap.set("n", "<LEADER>fr", function()
 end)
 
 vim.keymap.set("n", "<LEADER>fm", function()
-    return require("plugin.telescope.tele_utils").git_modified_finder()
+    return require("lib.telescope_finders").git_modified_finder()
 end)
 
 vim.keymap.set("n", "z=", function()
