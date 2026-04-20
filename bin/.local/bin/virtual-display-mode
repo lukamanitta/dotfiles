@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ "$1" == "enable" ]; then
+    echo "Enabling virtual display..."
+    hyprctl output create headless Virtual-1
+    hyprctl keyword monitor "Virtual-1, 1920x1200, 0x0, 1"
+
+    hyprctl keyword monitor "DP-2, disable"
+    hyprctl keyword monitor "HDMI-A-2, disable"
+elif [ "$1" == "disable" ]; then
+    echo "Disabling virtual display..."
+    hyprctl reload
+
+    hyprctl keyword monitor "Virtual-1, disable"
+    hyprctl output destroy Virtual-1
+else
+    echo "Usage: $0 [enable|disable]"
+fi
