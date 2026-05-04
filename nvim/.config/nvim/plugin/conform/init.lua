@@ -53,6 +53,9 @@ end
 --     conform.formatters_by_ft[ft] = { "prettierd" }
 -- end
 
+-- Terraform
+conform.formatters_by_ft.terraform = { "terraform_fmt" }
+
 -- Format embedded languages in different filetypes
 -- TODO: isn't working for mdx
 -- conform.formatters_by_ft["*"] = { "injected" }
