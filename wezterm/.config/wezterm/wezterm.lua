@@ -52,8 +52,7 @@ local cfg = {
     keys = require("keybinds"),
 
     -- Colors
-    -- color_scheme = "Luka",
-    color_scheme = "Coal",
+    color_scheme = "Luka",
 
     -- Fonts
     -- font_locator = "ConfigDirsOnly",

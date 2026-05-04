@@ -1,0 +1,28 @@
+background =   "#0c0c0c"
+foreground =   "#cccccc"
+
+cursor_bg =    "#cccccc"
+cursor_fg =    "#0c0c0c"
+
+selection_bg = "#1a1a1a"
+selection_fg = "#cccccc"
+
+[regular]
+black =   "#1a1a1a"
+red =     "#cc5d4b"
+green =   "#2e9969"
+yellow =  "#b38d59"
+blue =    "#6179c2"
+magenta = "#303030"
+cyan =    "#a5a5a5"
+white =   "#f2f2f2"
+
+[bright]
+black =   "#7e7e7e"
+red =     "#d96857"
+green =   "#66cc69"
+yellow =  "#cc9b52"
+blue =    "#5582c2"
+magenta = "#7e7e7e"
+cyan =    "#cccccc"
+white =   "#ffffff"

@@ -2,6 +2,25 @@
 template = "~/.config/colourme/templates/wezterm.toml"
 destination = "~/.config/wezterm/colors/Luka.toml"
 
+# [hyprland]
+# template = "~/.config/colourme/templates/hyprland.conf"
+# destination = "~/.config/hypr/theme/luka.conf"
+# # post_hook = "hyprctl reload"
+#
+# [waybar]
+# template = "~/.config/colourme/templates/waybar.css"
+# destination = "~/.config/waybar/style.css"
+# # post_hook = "waybar-reload"
+#
+# [waypaper]
+# template = "~/.config/colourme/templates/waypaper.ini"
+# destination = "~/.config/waypaper/config.ini"
+# # post_hook = "waypaper --restore"
+#
+# [nvim]
+# template = "~/.config/colourme/templates/nvim.lua"
+# destination = "~/.config/nvim/lua/ui/set_colourscheme.lua"
+
 # [xborders]
 # template = "~/.config/colourme/templates/xborders.sh"
 # destination = "~/.config/.xborders"

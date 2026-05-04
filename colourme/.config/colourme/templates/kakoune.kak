@@ -1,4 +1,4 @@
-# Monokai theme for Kakoune
+# WIP: Theme template for Kakoune
 
 # Color palette
 declare-option str bg 'rgb:{{hex:background}}'
