@@ -2,6 +2,10 @@
 template = "~/.config/colourme/templates/wezterm.toml"
 destination = "~/.config/wezterm/colors/Luka.toml"
 
+[ghostty]
+template = "~/.config/colourme/templates/ghostty"
+destination = "~/.config/ghostty/themes/Luka"
+
 # [hyprland]
 # template = "~/.config/colourme/templates/hyprland.conf"
 # destination = "~/.config/hypr/theme/luka.conf"

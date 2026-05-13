@@ -10,6 +10,10 @@ if type -q brew
 	export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
 end
 
+if set -q GHOSTTY_RESOURCES_DIR
+    source "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish"
+end
+
 # MSI stuff
 if test -d ~/code/msi-utils/bin
 	source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"

@@ -1,8 +1,19 @@
-theme = Coal
+theme = Luka
+
+command = tmux new-session -A -s main
 
 font-family = "Roboto Mono"
 font-style = "Medium"
-font-size = 11.25
+font-variation-italic = wght=480
+font-variation-bold = wght=999
+font-size = 11.5
+adjust-font-baseline = 1
+adjust-underline-thickness = 1
 
-adjust-cell-height = 30%
+font-codepoint-map = U+E000-U+EFFF=Symbols Nerd Font
+adjust-icon-height = -30%
+adjust-cursor-thickness = 2
+
+adjust-cell-height = 25%
 window-padding-x = 0
+window-padding-y = 0

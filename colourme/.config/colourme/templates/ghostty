@@ -1,0 +1,27 @@
+palette = 0=#{{hex:regular.black}}
+palette = 1=#{{hex:regular.red}}
+palette = 2=#{{hex:regular.green}}
+palette = 3=#{{hex:regular.yellow}}
+palette = 4=#{{hex:regular.blue}}
+palette = 5=#{{hex:regular.magenta}}
+palette = 6=#{{hex:regular.cyan}}
+palette = 7=#{{hex:regular.white}}
+palette = 8=#{{hex:bright.black}}
+palette = 9=#{{hex:bright.red}}
+palette = 10=#{{hex:bright.green}}
+palette = 11=#{{hex:bright.yellow}}
+palette = 12=#{{hex:bright.blue}}
+palette = 13=#{{hex:bright.magenta}}
+palette = 14=#{{hex:bright.cyan}}
+palette = 15=#{{hex:bright.white}}
+
+background = {{hex:background}}
+foreground = {{hex:foreground}}
+
+cursor-color = {{hex:cursor_bg || hex:foreground}}
+cursor-text = {{hex:cursor_fg || hex:background}}
+
+selection-background = {{hex:selection_bg || hex:darken(cursor_fg, 0.1) || hex:foreground}}
+selection-foreground = {{hex:selection_fg || hex:cursor_bg || hex:background}}
+
+split-divider-color = {{hex:regular.black}}
