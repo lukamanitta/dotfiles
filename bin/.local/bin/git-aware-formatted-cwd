@@ -1,0 +1,83 @@
+#!/bin/bash
+
+RELATIVE_TO=$PWD
+WITH_ICONS=false
+BOLD_ROOT=false
+
+for arg in "$@"; do
+    case $arg in
+        --relative-to)
+            shift
+            RELATIVE_TO="$1"
+            shift
+            ;;
+        --icons)
+            WITH_ICONS=true
+            shift
+            ;;
+        --bold)
+            BOLD_ROOT=true
+            shift
+            ;;
+        -*)
+            echo "Unknown option: $arg"
+            exit 1
+            ;;
+        *)
+            # Ignore non-option arguments
+            ;;
+    esac
+done
+
+RAW_PATH=""
+OUTPUT=""
+
+BOLD_START=$(tput bold)
+BOLD_END=$(tput sgr0)
+
+PARENT_PROC=$(ps -o comm= -p $PPID)
+
+# if PARENT_PROC starts with "tmux"
+if [[ "$PARENT_PROC" == tmux* ]]; then
+    BOLD_START="#[bold]"
+    BOLD_END="#[nobold]"
+fi
+
+if git -C $RELATIVE_TO rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    if [ "$WITH_ICONS" = true ]; then OUTPUT+=" "; fi
+    if [ "$BOLD_ROOT" = true ]; then OUTPUT+=$BOLD_START; fi
+    OUTPUT+="$(basename "$(git -C $RELATIVE_TO rev-parse --show-toplevel 2>/dev/null)")"
+    if [ "$BOLD_ROOT" = true ]; then OUTPUT+=$BOLD_END; fi
+
+    RAW_PATH="$(git -C $RELATIVE_TO rev-parse --show-prefix 2>/dev/null)"
+    if [ -n "$RAW_PATH" ]; then OUTPUT+="/"; fi
+else
+    if [ "$WITH_ICONS" = true ]; then OUTPUT+=" "; fi
+    RAW_PATH=$RELATIVE_TO
+fi
+
+# Substitute home directory with ~
+RAW_PATH="${RAW_PATH/#$HOME/\~}"
+
+IFS='/' read -ra FOLDERS <<< "$RAW_PATH"
+if [ ${#FOLDERS[@]} -gt 5 ]; then
+    if [[ "${FOLDERS[0]}" == .* ]]; then
+        OUTPUT+="${FOLDERS[0]:0:2}/.../${FOLDERS[-1]}"
+    else
+        OUTPUT+="${FOLDERS[0]:0:1}/.../${FOLDERS[-1]}"
+    fi
+else
+    for i in "${!FOLDERS[@]}"; do
+        if [ $i -lt $((${#FOLDERS[@]} - 1)) ]; then
+            if [[ "${FOLDERS[i]}" == .* ]]; then
+                OUTPUT+="${FOLDERS[i]:0:2}/"
+            else
+                OUTPUT+="${FOLDERS[i]:0:1}/"
+            fi
+        else
+            OUTPUT+="${FOLDERS[i]}"
+        fi
+    done
+fi
+
+echo "$OUTPUT"
