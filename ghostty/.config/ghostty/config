@@ -3,9 +3,10 @@ theme = Luka
 command = $SHELL -c "tmux new-session -A -s main"
 
 font-family = "Roboto Mono"
-font-style = "Medium"
-font-variation-italic = wght=480
-font-variation-bold = wght=999
+font-style = "Regular"
+font-variation = wght=470
+font-variation-italic = wght=470
+font-variation-bold = wght=700
 font-size = 11.5
 adjust-font-baseline = 1
 adjust-underline-thickness = 1
