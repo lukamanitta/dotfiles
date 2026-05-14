@@ -1,6 +1,6 @@
 theme = Luka
 
-command = tmux new-session -A -s main
+command = $SHELL -c "tmux new-session -A -s main"
 
 font-family = "Roboto Mono"
 font-style = "Medium"
