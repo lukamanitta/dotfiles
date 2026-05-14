@@ -52,4 +52,8 @@ end
 source ~/.config/fish/env/set_gemini_api_key.fish
 source ~/.config/fish/env/csse3010_env.fish
 
+if set -q TMUX
+    source $fish_function_path/tmux_window_rename.fish
+end
+
 starship init fish | source
