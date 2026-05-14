@@ -12,7 +12,11 @@ vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged", "BufReadPost" }, {
         end
         local head = vim.fn.systemlist("git rev-parse --abbrev-ref HEAD")[1]
         if not head or head == "" or head:find("fatal") then
-            git_head_name = ""
+            -- Use current directory name
+            git_head_name = string.format(
+                require("ui.icons").filesystem.Folder .. " %s",
+                vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+            )
         else
             git_head_name =
                 string.format(require("ui.icons").git.Branch .. " %s", head)
