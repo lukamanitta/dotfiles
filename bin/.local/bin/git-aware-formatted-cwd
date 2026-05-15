@@ -45,16 +45,34 @@ if [[ "$TMUX_FMT" == true ]]; then
     BOLD_END="#[nobold]"
 fi
 
+# In git repo
 if git -C $RELATIVE_TO rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    if [ "$WITH_ICONS" = true ]; then OUTPUT+=" "; fi
+    # if [ "$WITH_ICONS" = true ]; then OUTPUT+=" "; fi
+    if [ "$WITH_ICONS" = true ]; then OUTPUT+="󱌣 "; fi
     if [ "$BOLD_ROOT" = true ]; then OUTPUT+=$BOLD_START; fi
     OUTPUT+="$(basename "$(git -C $RELATIVE_TO rev-parse --show-toplevel 2>/dev/null)")"
     if [ "$BOLD_ROOT" = true ]; then OUTPUT+=$BOLD_END; fi
 
     RAW_PATH="$(git -C $RELATIVE_TO rev-parse --show-prefix 2>/dev/null)"
     if [ -n "$RAW_PATH" ]; then OUTPUT+="/"; fi
+# In Google Drive
+elif [[ "$RELATIVE_TO" == *"gdrive"* ]]; then
+    if [ "$WITH_ICONS" = true ]; then OUTPUT+="󰉎 "; fi
+    RAW_PATH=$RELATIVE_TO
+# In home directory
+elif [[ "$RELATIVE_TO" == "$HOME" ]]; then
+    if [ "$WITH_ICONS" = true ]; then OUTPUT+="󱂵 "; fi
+    RAW_PATH=$RELATIVE_TO
+# Read-only directory
+elif [ ! -w "$RELATIVE_TO" ]; then
+    if [ "$WITH_ICONS" = true ]; then OUTPUT+="󰉐 "; fi
+    RAW_PATH=$RELATIVE_TO
+# Network path
+elif [[ "$RELATIVE_TO" == *"//"* ]]; then
+    if [ "$WITH_ICONS" = true ]; then OUTPUT+="󰡰 "; fi
+    RAW_PATH=$RELATIVE_TO
 else
-    if [ "$WITH_ICONS" = true ]; then OUTPUT+=" "; fi
+    if [ "$WITH_ICONS" = true ]; then OUTPUT+="󰉋 "; fi
     RAW_PATH=$RELATIVE_TO
 fi
 

@@ -1,8 +1,10 @@
 #!/bin/bash
 
-# check for --relative-to and --command-pid
+# DEBUG_LOG="/tmp/tmux-window-rename-cmd-debug.log"
+
 SHELL_PID=""
-RELATIVE_TO=""
+RELATIVE_TO=$PWD
+COMMAND_STRING=""
 
 for arg in "$@"; do
     case $arg in
@@ -11,28 +13,56 @@ for arg in "$@"; do
             RELATIVE_TO="$1"
             shift
             ;;
-        --command-pid)
+        --shell-pid)
             shift
             SHELL_PID="$1"
+            shift
+            ;;
+        --command-string)
+            shift
+            COMMAND_STRING="$1"
             shift
             ;;
     esac
 done
 
-TTY_NAME=""
-if [ -n "$SHELL_PID" ]; then
-    TTY_NAME=$(ps -p "$SHELL_PID" -o tty= | tr -d ' ')
+if [ -z "$SHELL_PID" ] && [ -z "$COMMAND_STRING" ]; then
+    echo "Error: Requires one of --shell-pid or --command-string"
+    exit 1
 fi
 
 PROCESS_NAME=""
-if [ -n "$TTY_NAME" ]; then
-    PROCESS_NAME+=" "
-    PROCESS_NAME+=$(ps -t "$TTY_NAME" -o comm= | grep -vE "fish|bash|sh|ps|grep|sed|awk|sleep|tail" | tail -n 1 | awk -F'/' '{print $NF}')
+if [ -n "$COMMAND_STRING" ]; then
+    PROCESS_NAME=$(echo "$COMMAND_STRING" | awk '{print $1}' | xargs basename)
+else
+    PROCESS_NAME=$(pgrep -P "$SHELL_PID" -n -l | grep -vE "tmux|tmux-window-ren" | awk '{print $2}' | xargs basename 2>/dev/null)
 fi
 
-if [ -n "$RELATIVE_TO" ]; then
-    echo "[$(git-aware-formatted-cwd --relative-to $RELATIVE_TO --icons --bold --tmux)]$PROCESS_NAME"
-    exit 0
+
+if [[ "$PROCESS_NAME" == "ssh" ]]; then
+    if [ -n "$COMMAND_STRING" ]; then
+        SSH_ARGS="$COMMAND_STRING"
+    else
+        SSH_ARGS=$(pgrep -P "$SHELL_PID" -n -a | sed "s/^[0-9]* //" | grep "ssh")
+    fi
+
+    # Ignore the first word (ssh), then find the first argument
+    # that does NOT start with '-' (the flags).
+    SSH_DESTINATION=$(echo "$SSH_ARGS" | awk '{
+        for (i=2; i<=NF; i++) {
+            if ($i !~ /^-/) {
+                print $i;
+                exit;
+            }
+        }
+    }')
+
+    if [ -n "$SSH_DESTINATION" ]; then
+        echo "[󰌘 $SSH_DESTINATION]"
+        exit 0
+    fi
 fi
 
-echo "[$(git-aware-formatted-cwd --icons --bold --tmux)]$PROCESS_NAME"
+PROCESS_NAME=" $PROCESS_NAME"
+
+echo "[$(git-aware-formatted-cwd --relative-to $RELATIVE_TO --icons --bold --tmux)]$PROCESS_NAME"
