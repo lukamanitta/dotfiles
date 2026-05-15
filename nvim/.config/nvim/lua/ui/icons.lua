@@ -85,11 +85,11 @@ I.debug = {
 I.filesystem = {
     File = "",
     FileSymlink = "",
-    Folder = "",
-    FolderOpen = "",
-    FolderEmpty = "",
-    FolderEmptyOpen = "",
-    FolderSymlink = "",
+    Folder = "󰉋",
+    FolderOpen = "󰝰",
+    FolderEmpty = "󰉖",
+    FolderEmptyOpen = "󰷏",
+    FolderSymlink = "󱧮",
 }
 
 I.companies = {
