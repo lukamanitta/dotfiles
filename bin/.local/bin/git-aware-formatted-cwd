@@ -3,6 +3,7 @@
 RELATIVE_TO=$PWD
 WITH_ICONS=false
 BOLD_ROOT=false
+TMUX_FMT=false
 
 for arg in "$@"; do
     case $arg in
@@ -17,6 +18,10 @@ for arg in "$@"; do
             ;;
         --bold)
             BOLD_ROOT=true
+            shift
+            ;;
+        --tmux)
+            TMUX_FMT=true
             shift
             ;;
         -*)
@@ -35,10 +40,7 @@ OUTPUT=""
 BOLD_START=$(tput bold)
 BOLD_END=$(tput sgr0)
 
-PARENT_PROC=$(ps -o comm= -p $PPID)
-
-# if PARENT_PROC starts with "tmux"
-if [[ "$PARENT_PROC" == tmux* ]]; then
+if [[ "$TMUX_FMT" == true ]]; then
     BOLD_START="#[bold]"
     BOLD_END="#[nobold]"
 fi

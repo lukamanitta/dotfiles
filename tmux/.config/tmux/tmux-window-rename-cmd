@@ -27,12 +27,12 @@ fi
 PROCESS_NAME=""
 if [ -n "$TTY_NAME" ]; then
     PROCESS_NAME+=" "
-    PROCESS_NAME+=$(ps -t "$TTY_NAME" -o comm= | grep -vE "fish|bash|sh|ps|grep|sed|awk|sleep|tail" | tail -n 1)
+    PROCESS_NAME+=$(ps -t "$TTY_NAME" -o comm= | grep -vE "fish|bash|sh|ps|grep|sed|awk|sleep|tail" | tail -n 1 | awk -F'/' '{print $NF}')
 fi
 
 if [ -n "$RELATIVE_TO" ]; then
-    echo "[$(git-aware-formatted-cwd --relative-to $RELATIVE_TO --icons --bold)]$PROCESS_NAME"
+    echo "[$(git-aware-formatted-cwd --relative-to $RELATIVE_TO --icons --bold --tmux)]$PROCESS_NAME"
     exit 0
 fi
 
-echo "[$(git-aware-formatted-cwd --icons --bold)]$PROCESS_NAME"
+echo "[$(git-aware-formatted-cwd --icons --bold --tmux)]$PROCESS_NAME"
