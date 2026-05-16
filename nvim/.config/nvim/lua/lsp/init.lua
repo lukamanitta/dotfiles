@@ -1,14 +1,23 @@
+-- Remove default LSP keymaps
+pcall(vim.keymap.del, "n", "gri")
+pcall(vim.keymap.del, "n", "grt")
+pcall(vim.keymap.del, "n", "grr")
+pcall(vim.keymap.del, "n", "grn")
+pcall(vim.keymap.del, { "n", "v" }, "gra")
+pcall(vim.keymap.del, "n", "grx")
+
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("lsp_attach_config", { clear = true }),
     callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
         local bufnr = args.buf
-        local opts = { buffer = bufnr, noremap = true, silent = true }
+        local opts = { buf = bufnr, noremap = true, silent = true }
 
         -- Navigation
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+        vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
         vim.keymap.set("n", "[e", function()
             vim.diagnostic.jump({ count = -1 })
         end, opts)
@@ -17,7 +26,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end, opts)
 
         -- Information
-        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+        vim.keymap.set({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help, opts)
         vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
         vim.keymap.set("n", "<LEADER>K", vim.diagnostic.open_float, opts)
@@ -30,6 +39,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.lsp.buf.code_action,
             opts
         )
+        vim.keymap.set({ "n", "v" }, "<LEADER>cl", vim.lsp.codelens.run, opts)
 
         if client.server_capabilities.inlayHintProvider then
             vim.lsp.inlay_hint.enable(true)
