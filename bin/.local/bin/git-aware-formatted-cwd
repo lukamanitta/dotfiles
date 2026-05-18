@@ -76,8 +76,8 @@ else
     RAW_PATH=$RELATIVE_TO
 fi
 
-# Substitute home directory with ~
-RAW_PATH="${RAW_PATH/#$HOME/\~}"
+# Substitute home directory with ~ (use sed for macOS compat)
+RAW_PATH=$(sed "s|^$HOME|~|" <<< "$RAW_PATH")
 
 IFS='/' read -ra FOLDERS <<< "$RAW_PATH"
 if [ ${#FOLDERS[@]} -gt 5 ]; then
