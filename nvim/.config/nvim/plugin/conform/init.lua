@@ -40,7 +40,15 @@ for _, ft in ipairs({
 end
 
 -- Installation: npm install -g @fsouza/prettierd
-for _, ft in ipairs({ "html", "css", "scss", "json", "svelte" }) do
+for _, ft in ipairs({
+    "html",
+    "css",
+    "scss",
+    "json",
+    "svelte",
+    "typescript",
+    "javascript",
+}) do
     conform.formatters_by_ft[ft] = { "prettierd" }
 end
 
