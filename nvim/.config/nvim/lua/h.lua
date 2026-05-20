@@ -86,4 +86,16 @@ function U.get_buf_icon_colour(bufnr)
     )
 end
 
+function U.get_visual_selection()
+    local mode = vim.api.nvim_get_mode().mode
+
+    local lines = vim.fn.getregion(
+        vim.fn.getpos("v"),
+        vim.fn.getpos("."),
+        { type = mode }
+    )
+
+    return table.concat(lines, "\n")
+end
+
 return U
