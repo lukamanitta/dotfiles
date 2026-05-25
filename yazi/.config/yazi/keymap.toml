@@ -1,0 +1,4 @@
+[[mgr.prepend_keymap]]
+on   = [ "<C-d>" ]
+run  = "shell -- ripdrag %s -x 2>/dev/null &"
+desc = "Drag files"
