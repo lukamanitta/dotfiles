@@ -98,6 +98,10 @@
       "rev": "8701bece920b38ea289b457f902e2ad184131a5d",
       "src": "https://github.com/rcarriga/nvim-notify"
     },
+    "nvim-plantuml": {
+      "rev": "a8307408af84dd8c1e3e16963e0513d5412217bc",
+      "src": "https://github.com/Maduki-tech/nvim-plantuml"
+    },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
@@ -117,6 +121,10 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "symbols.nvim": {
+      "rev": "b22e987c69749adcf1342e8040312e9318083d4a",
+      "src": "https://github.com/oskarrrrrrr/symbols.nvim"
     },
     "telescope-fzf-native.nvim": {
       "rev": "6fea601bd2b694c6f2ae08a6c6fab14930c60e2c",

@@ -7,6 +7,9 @@ return function()
     local line_count = vim.api.nvim_buf_line_count(0)
     local i = math.floor((line - 1) / line_count * #progress_indicator) + 1
 
-    -- return progress_indicator[i] .. " "
-    return ""
+    if not i or i > #progress_indicator or i ~= i then
+        return progress_indicator[1] .. " "
+    end
+
+    return progress_indicator[i] .. " "
 end

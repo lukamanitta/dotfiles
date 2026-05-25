@@ -10,13 +10,13 @@
 --     return require("telescope.builtin").live_grep()
 -- end, { silent = true }) -- Search project
 --
--- vim.keymap.set("n", "<LEADER>fs", "<CMD>Telescope lsp_document_symbols<CR>", {
---     silent = true,
--- }) -- Search symbols
+vim.keymap.set("n", "<LEADER>fs", "<CMD>Telescope lsp_document_symbols<CR>", {
+    silent = true,
+}) -- Search symbols
 --
--- vim.keymap.set("n", "<LEADER>fas", function()
---     return require("telescope.builtin").lsp_workspace_symbols()
--- end, { silent = true }) -- Search all project symbols
+vim.keymap.set("n", "<LEADER>fas", function()
+    return require("telescope.builtin").lsp_workspace_symbols()
+end, { silent = true }) -- Search all project symbols
 --
 -- vim.keymap.set("n", "<LEADER>fb", function()
 --     require("telescope.builtin").buffers()
