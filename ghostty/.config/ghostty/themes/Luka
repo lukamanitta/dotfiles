@@ -1,27 +1,27 @@
-palette = 0=#1a1a1a
-palette = 1=#cc5d4b
-palette = 2=#2e9969
-palette = 3=#b38d59
-palette = 4=#6179c2
-palette = 5=#303030
-palette = 6=#a5a5a5
-palette = 7=#f2f2f2
-palette = 8=#7e7e7e
-palette = 9=#d96857
-palette = 10=#66cc69
-palette = 11=#cc9b52
-palette = 12=#5582c2
-palette = 13=#7e7e7e
-palette = 14=#cccccc
-palette = 15=#ffffff
+palette = 0=#45475a
+palette = 1=#f38ba8
+palette = 2=#a6e3a1
+palette = 3=#f9e2af
+palette = 4=#89b4fa
+palette = 5=#f5c2e7
+palette = 6=#94e2d5
+palette = 7=#bac2de
+palette = 8=#585b70
+palette = 9=#f38ba8
+palette = 10=#a6e3a1
+palette = 11=#f9e2af
+palette = 12=#89b4fa
+palette = 13=#f5c2e7
+palette = 14=#94e2d5
+palette = 15=#a6adc8
 
-background = 0c0c0c
-foreground = cccccc
+background = 1e1e2e
+foreground = cdd6f4
 
-cursor-color = cccccc
-cursor-text = 0c0c0c
+cursor-color = cdd6f4
+cursor-text = 1e1e2e
 
-selection-background = 1a1a1a
-selection-foreground = cccccc
+selection-background = 45475a
+selection-foreground = cdd6f4
 
-split-divider-color = 1a1a1a
+split-divider-color = 45475a
