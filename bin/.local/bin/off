@@ -1,0 +1,14 @@
+#!/bin/bash
+
+read -p "Are you sure you want to hibernate? (y/n) " -n 1 -r
+echo    # move to a new line
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Hibernation cancelled."
+    exit 1
+fi
+
+echo "Turning off RGB lighting..."
+openrgb -c 000000
+
+echo "Hibernating the system..."
+hyprshutdown -p "systemctl hibernate"
