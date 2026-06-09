@@ -28,3 +28,6 @@ blue =    "#7fb4ca"
 magenta = "#938aa9"
 cyan =    "#7aa89f"
 white =   "#dcd7ba"
+
+vim_background = "dark"
+vim_name = "Kanagawa"

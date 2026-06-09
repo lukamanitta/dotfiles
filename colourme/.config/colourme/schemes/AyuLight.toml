@@ -7,6 +7,9 @@ cursor_fg =    "#fafafa"
 selection_bg = "#d1e4f4"
 selection_fg = "#575f66"
 
+vim_background = "light"
+vim_name = "Ayu"
+
 [regular]
 black =   "#fafafa"
 red =     "#f07171"

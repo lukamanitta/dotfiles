@@ -1,0 +1,43 @@
+{
+  "svelte-form-action": {
+    "prefix": "s-form-action-ts",
+    "body": [
+      "import { fail, redirect } from \"@sveltejs/kit\";",
+      "import type { Actions } from \"./\\$types\";",
+      "",
+      "type Form = {",
+      "\t${1:field}: ${2:string};",
+      "};",
+      "",
+      "export const actions: Actions = {",
+      "\tdefault: async ({ request }) => {",
+      "\t\tconst formData = await request.formData();",
+      "\t\tconst form: Form = {",
+      "\t\t\t$1: formData.get(\"$1\") as $2",
+      "\t\t};",
+      "",
+      "\t\tconst fieldErrors = validate(form);",
+      "\t\tif (Object.keys(fieldErrors).length > 0) {",
+      "\t\t\treturn fail(400, { success: false, fieldErrors, values: form });",
+      "\t\t}",
+      "",
+      "\t\t${3:// form logic}",
+      "",
+      "\t\treturn {",
+      "\t\t\tsuccess: true,",
+      "\t\t\tmessage: \"Form submitted successfully!\"",
+      "\t\t};",
+      "\t}",
+      "};",
+      "",
+      "function validate(form: Form) {",
+      "\tconst errors: Partial<Record<keyof Form, string>> = {};",
+      "\tif (!form.$1) {",
+      "\t\terrors.$1 = \"${1/(.*)/${1:/capitalize}/} is required\";",
+      "\t}",
+      "\treturn errors;",
+      "}"
+    ],
+    "description": "form action boilerplate"
+  }
+}

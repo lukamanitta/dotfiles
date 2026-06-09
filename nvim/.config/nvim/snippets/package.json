@@ -1,8 +1,15 @@
 {
-    "name": "personal-snippets",
-    "contributes": {
-        "snippets": [
-            { "language": "svelte", "path": "./svelte.json" }
-        ]
-    }
+  "name": "personal-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "svelte",
+        "path": "./svelte.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./typescript.json"
+      }
+    ]
+  }
 }

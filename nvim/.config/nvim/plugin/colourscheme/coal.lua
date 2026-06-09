@@ -1,6 +1,6 @@
-if vim.g.colourscheme == "coal" then
+if vim.g.colourscheme == "Coal" then
     vim.pack.add({
-        { src = "https://github.com/cranberry-clockworks/coal.nvim" }
+        { src = "https://github.com/cranberry-clockworks/coal.nvim" },
     })
 
     require("coal").setup({

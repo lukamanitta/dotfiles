@@ -63,6 +63,7 @@ end
 
 -- Terraform
 conform.formatters_by_ft.terraform = { "terraform_fmt" }
+conform.formatters_by_ft.tf = { "terraform_fmt" }
 
 -- Format embedded languages in different filetypes
 -- TODO: isn't working for mdx

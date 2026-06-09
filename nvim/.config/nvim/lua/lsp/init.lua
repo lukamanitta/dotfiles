@@ -68,4 +68,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- end
 -- vim.lsp.enable(lsp_configs)
 
+vim.lsp.enable("ruby_lsp")
+
 require("lsp.theme")

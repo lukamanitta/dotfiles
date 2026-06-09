@@ -9,6 +9,9 @@ selection_fg = "#f9f5d7"
 
 accent =       "#d79921"
 
+vim_background = "dark"
+vim_name = "Gruvbox Soft"
+
 [regular]
 black =   "#282828"
 red =     "#cc241d"

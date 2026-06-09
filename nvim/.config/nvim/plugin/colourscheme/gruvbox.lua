@@ -1,6 +1,6 @@
-if vim.g.colourscheme == "gruvbox" then
+if vim.g.colourscheme == "Gruvbox" then
     vim.pack.add({
-        { src = "https://github.com/ellisonleao/gruvbox.nvim" }
+        { src = "https://github.com/ellisonleao/gruvbox.nvim" },
     })
 
     vim.cmd.colorscheme("gruvbox")

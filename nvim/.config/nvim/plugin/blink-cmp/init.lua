@@ -1,30 +1,51 @@
+vim.api.nvim_create_autocmd("PackChanged", {
+    callback = function(ev)
+        if ev.data.spec.name == "LuaSnip" then
+            vim.system({ "make", "install_jsregexp", "-C", ev.data.path })
+                :wait()
+            vim.notify(
+                "luasnip built successfully",
+                vim.log.levels.INFO,
+                { title = "Pack" }
+            )
+        end
+    end,
+})
+
 vim.pack.add({
-    { src = "https://github.com/rafamadriz/friendly-snippets" }
+    { src = "https://github.com/rafamadriz/friendly-snippets" },
+    {
+        src = "https://github.com/L3MON4D3/LuaSnip",
+        version = vim.version.range("2.x"),
+    },
+})
+
+require("luasnip").config.setup({
+    enable_autosnippets = true,
+})
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
+require("luasnip.loaders.from_vscode").lazy_load({
+    paths = { vim.fn.stdpath("config") .. "/snippets" },
 })
 
 vim.pack.add({
     {
         src = "https://github.com/saghen/blink.cmp",
-        version = vim.version.range("1.x")
-    }
+        version = vim.version.range("2.x"),
+    },
 })
 
 require("blink.cmp").setup({
-    -- keymap = { preset = "default" },
+    snippets = { preset = "luasnip" },
     sources = {
         default = {
-            -- "avante",
             "lsp",
             "path",
             "snippets",
             "buffer",
         },
-        -- providers = {
-        --     avante = {
-        --         module = "blink-cmp-avante",
-        --         name = "Avante",
-        --     },
-        -- },
     },
     keymap = {
         ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
