@@ -6,4 +6,7 @@ vim.api.nvim_set_hl(0, "Ignored", { link = "Comment" })
 
 vim.api.nvim_set_hl(0, "Float", { link = "StatusLine" })
 vim.api.nvim_set_hl(0, "NormalFloat", { link = "StatusLine" })
-vim.api.nvim_set_hl(0, "FloatBorder", { link = "StatusLine" })
+vim.api.nvim_set_hl(0, "FloatBorder", {
+    fg = require("h").get_hl("StatusLine", "bg#"),
+    bg = require("h").get_hl("StatusLine", "bg#"),
+})

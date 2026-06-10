@@ -46,6 +46,22 @@ function U.get_hl(hl_name, prop)
     return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(hl_name)), prop)
 end
 
+function U.set_hl(hl_name, opts)
+    vim.api.nvim_get_hl(0, { name = hl_name, create = true })
+    vim.api.nvim_set_hl(0, hl_name, opts)
+end
+
+function U.mod_hl(hl_name, opts)
+    local is_ok, hl_def =
+        pcall(vim.api.nvim_get_hl, 0, { name = hl_name, create = false })
+    if is_ok then
+        for k, v in pairs(opts) do
+            hl_def[k] = v
+        end
+        vim.api.nvim_set_hl(0, hl_name, hl_def)
+    end
+end
+
 function U.get_buf_filetype(bufnr)
     return vim.api.nvim_get_option_value("filetype", { buf = bufnr })
 end

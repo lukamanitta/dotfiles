@@ -33,11 +33,11 @@ require("fff").setup({
         flex = { size = 130, wrap = "top" },
     },
     hl = {
-        winhl = {
-            prompt = "Normal:StatusLineNC,FloatBorder:StatusLineNC,FloatTitle:StatusLineNC",
-            list = "Normal:StatusLine,FloatBorder:StatusLine,FloatTitle:StatusLine",
-            preview = "Normal:StatusLine,FloatBorder:StatusLine,FloatTitle:StatusLine",
-        },
+        -- winhl = {
+        --     prompt = "Normal:StatusLineNC,FloatBorder:StatusLineNC,FloatTitle:StatusLineNC",
+        --     list = "Normal:StatusLine,FloatBorder:StatusLine,FloatTitle:StatusLine",
+        --     preview = "Normal:StatusLine,FloatBorder:StatusLine,FloatTitle:StatusLine",
+        -- },
         -- normal = "StatusLine",
         -- border = "StatusLine",
         -- title = "StatusLine",
