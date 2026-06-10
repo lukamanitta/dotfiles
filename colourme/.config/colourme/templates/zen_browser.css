@@ -1,0 +1,5 @@
+:root {
+  --zen-main-browser-background: #{{hex: multiply_brightness(background, 0.7)}} !important;
+  --zen-primary-color: #{{hex: accent || hex: regular.blue}} !important;
+  --toolbox-textcolor: #{{hex: foreground || hex: regular.white}} !important;
+}

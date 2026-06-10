@@ -1,0 +1,5 @@
+@define-color waybar_accent rgba(160, 160, 160, 0.25);
+@define-color waybar_accent_fb @on_background;
+@define-color on_background #{{hex:foreground}};
+@define-color surface_container #{{hex:multiply_brightness(background, 0.7)}};
+@define-color error #{{hex:error || hex:regular.red}};

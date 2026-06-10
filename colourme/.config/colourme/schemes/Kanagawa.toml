@@ -9,6 +9,12 @@ selection_fg = "#c8c093"
 
 accent =       "#e6c384"
 
+vim_background = "dark"
+vim_name = "Kanagawa"
+
+# wallpaper = "~/.wallpaper/the-great-wave-off-kanagawa-inverse.jpg"
+wallpaper = "~/.wallpaper/kanagawa-scheme-bg.jpeg"
+
 [regular]
 black =   "#16161d"
 red =     "#c34043"

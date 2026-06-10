@@ -9,6 +9,9 @@ selection_fg = "#c0caf5"
 
 accent =       "#bb9af7"
 
+vim_background = "dark"
+vim_name = "Tokyo Night Storm"
+
 [regular]
 black =   "#1D202F"
 red =     "#f7768e"

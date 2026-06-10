@@ -12,6 +12,8 @@ accent =       "#d79921"
 vim_background = "dark"
 vim_name = "Gruvbox"
 
+wallpaper = "~/.wallpaper/gruvbox/gruvbox_spaceguy.jpeg"
+
 [regular]
 black =   "#1d2021"
 red =     "#cc241d"

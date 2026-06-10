@@ -10,6 +10,8 @@ selection_fg = "#cccccc"
 vim_background = "dark"
 vim_name = "Coal"
 
+wallpaper = "~/.wallpaper/blackwhite/nature-of-fear.jpg"
+
 [regular]
 black =   "#1a1a1a"
 red =     "#cc5d4b"

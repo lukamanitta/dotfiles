@@ -7,8 +7,12 @@ cursor_fg =    "#1e1e2e"
 selection_bg = "#45475a"
 selection_fg = "#cdd6f4"
 
+accent =       "#f5c2e7"
+
 vim_background = "dark"
 vim_name = "Catppuccin"
+
+wallpaper = "~/.wallpaper/catppuccin/wave-ctppccn-mocha-mauve.png"
 
 [regular]
 black =   "#45475a"

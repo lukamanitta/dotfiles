@@ -11,6 +11,19 @@ post_hook = "pkill -USR2 ghostty"
 template = "~/.config/colourme/templates/nvim.lua"
 destination = "~/.config/nvim/lua/ui/set_colourscheme.lua"
 
+[zen_browser]
+template = "~/.config/colourme/templates/zen_browser.css"
+destination = "~/.zen/vsyh95ca.Default (release)/chrome/userChrome.css"
+
+[waybar]
+template = "~/.config/colourme/templates/waybar.css"
+destination = "~/.config/waybar/colors.css"
+
+[waypaper]
+template = "~/.config/colourme/templates/waypaper.txt"
+destination = "~/.config/waypaper/wallpaper.txt"
+post_hook = "test -s ~/.config/waypaper/wallpaper.txt && waypaper --wallpaper $(cat ~/.config/waypaper/wallpaper.txt)"
+
 # [hyprland]
 # template = "~/.config/colourme/templates/hyprland.conf"
 # destination = "~/.config/hypr/theme/luka.conf"
