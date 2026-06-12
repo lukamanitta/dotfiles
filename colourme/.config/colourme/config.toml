@@ -29,9 +29,9 @@ template = "~/.config/colourme/templates/waybar.css"
 destination = "~/.config/waybar/colors.css"
 
 [waypaper]
-template = "~/.config/colourme/templates/waypaper.txt"
-destination = "~/.config/waypaper/wallpaper.txt"
-post_hook = "test -s ~/.config/waypaper/wallpaper.txt && waypaper --wallpaper $(cat ~/.config/waypaper/wallpaper.txt)"
+template = "~/.config/colourme/templates/waypaper.ini"
+destination = "~/.config/waypaper/wallpaper.ini"
+post_hook = "waypaper --restore --state-file ~/.config/waypaper/wallpaper.ini"
 
 # [hyprland]
 # template = "~/.config/colourme/templates/hyprland.conf"
