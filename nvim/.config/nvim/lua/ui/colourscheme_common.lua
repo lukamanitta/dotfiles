@@ -1,12 +1,20 @@
-vim.api.nvim_set_hl(0, "Added", { link = "DiagnosticOk" })
-vim.api.nvim_set_hl(0, "Modified", { link = "DiagnosticHint" })
-vim.api.nvim_set_hl(0, "Removed", { link = "DiagnosticError" })
-vim.api.nvim_set_hl(0, "Unstaged", { link = "DiagnosticWarn" })
-vim.api.nvim_set_hl(0, "Ignored", { link = "Comment" })
+return function()
+    require("h").set_hl("Added", { link = "DiagnosticOk" })
+    require("h").set_hl("Modified", { link = "DiagnosticHint" })
+    require("h").set_hl("Removed", { link = "DiagnosticError" })
+    require("h").set_hl("Unstaged", { link = "DiagnosticWarn" })
+    require("h").set_hl("Untracked", { link = "DiagnosticWarn" })
+    require("h").set_hl("Ignored", { link = "Comment" })
 
-vim.api.nvim_set_hl(0, "Float", { link = "StatusLine" })
-vim.api.nvim_set_hl(0, "NormalFloat", { link = "StatusLine" })
-vim.api.nvim_set_hl(0, "FloatBorder", {
-    fg = require("h").get_hl("StatusLine", "bg#"),
-    bg = require("h").get_hl("StatusLine", "bg#"),
-})
+    require("h").set_hl("Float", { link = "StatusLine" })
+    require("h").set_hl("NormalFloat", { link = "StatusLine" })
+    require("h").set_hl("FloatBorder", {
+        fg = require("h").get_hl("StatusLine", "bg#"),
+        bg = require("h").get_hl("StatusLine", "bg#"),
+    })
+
+    require("h").set_hl("TreesitterContextLineNumber", { link = "LineNr" })
+    require("h").set_hl("TreeSitterContextSeparator", { link = "Comment" })
+
+    require("h").set_hl("SignColumn", { link = "Normal" })
+end

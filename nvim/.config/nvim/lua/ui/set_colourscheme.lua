@@ -1,2 +1,2 @@
 vim.cmd.set("background=dark")
-vim.g.colourscheme = "Catppuccin"
+vim.g.colourscheme = "Gruvbox"

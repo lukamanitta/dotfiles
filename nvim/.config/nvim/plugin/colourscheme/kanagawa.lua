@@ -69,13 +69,5 @@ if vim.g.colourscheme == "Kanagawa" then
         require("h").mod_hl(mini_hl, { bg = "NONE" })
     end
 
-    -- TODO: why does it work when I put the code from this file here, but not when I require the file?
-    require("ui.colourscheme_common")
-
-    require("h").set_hl("Float", { link = "StatusLine" })
-    require("h").set_hl("NormalFloat", { link = "StatusLine" })
-    require("h").set_hl("FloatBorder", {
-        fg = require("h").get_hl("StatusLine", "bg#"),
-        bg = require("h").get_hl("StatusLine", "bg#"),
-    })
+    require("ui.colourscheme_common")()
 end

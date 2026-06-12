@@ -114,4 +114,9 @@ function U.get_visual_selection()
     return table.concat(lines, "\n")
 end
 
+function U.git_root_or_cwd()
+    local git_root = vim.fs.root(0, ".git")
+    return git_root or vim.fn.getcwd()
+end
+
 return U

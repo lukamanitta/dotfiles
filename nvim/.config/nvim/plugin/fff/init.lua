@@ -33,16 +33,16 @@ require("fff").setup({
         flex = { size = 130, wrap = "top" },
     },
     hl = {
-        -- winhl = {
-        --     prompt = "Normal:StatusLineNC,FloatBorder:StatusLineNC,FloatTitle:StatusLineNC",
-        --     list = "Normal:StatusLine,FloatBorder:StatusLine,FloatTitle:StatusLine",
-        --     preview = "Normal:StatusLine,FloatBorder:StatusLine,FloatTitle:StatusLine",
-        -- },
-        -- normal = "StatusLine",
-        -- border = "StatusLine",
-        -- title = "StatusLine",
+        winhl = {
+            prompt = "Normal:StatusLineNC,FloatBorder:TelescopePromptBorder,FloatTitle:StatusLineNC",
+            list = "Normal:Float,FloatBorder:TelescopePromptBorder,FloatTitle:FloatTitle",
+            preview = "Normal:StatusLineNC,FloatBorder:TelescopePromptBorder,FloatTitle:StatusLineNC",
+        },
 
-        cursor = "CursorLine",
+        cursor = "Visual",
+
+        border = "TelescopePromptBorder",
+        combo_header = "DiagnosticHint",
 
         git_staged = "Added",
         git_deleted = "Removed",

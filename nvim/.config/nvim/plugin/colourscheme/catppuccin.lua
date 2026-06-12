@@ -4,4 +4,5 @@ if vim.g.colourscheme == "Catppuccin" then
     })
 
     vim.cmd.colorscheme("catppuccin")
+    require("ui.colourscheme_common")()
 end

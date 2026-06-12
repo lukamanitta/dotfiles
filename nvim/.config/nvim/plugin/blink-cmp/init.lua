@@ -33,7 +33,7 @@ require("luasnip.loaders.from_vscode").lazy_load({
 vim.pack.add({
     {
         src = "https://github.com/saghen/blink.cmp",
-        version = vim.version.range("2.x"),
+        version = "v1",
     },
 })
 
