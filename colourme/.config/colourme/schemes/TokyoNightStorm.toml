@@ -8,9 +8,13 @@ selection_bg = "#364A82"
 selection_fg = "#c0caf5"
 
 accent =       "#bb9af7"
+accent_alt_1 = "#7dcfff"
+accent_alt_2 = "#7aa2f7"
 
 vim_background = "dark"
 vim_name = "Tokyo Night Storm"
+
+wallpaper = "~/.wallpaper/tokyonight/heart_original.png"
 
 [regular]
 black =   "#1D202F"

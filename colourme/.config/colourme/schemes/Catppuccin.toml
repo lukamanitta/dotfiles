@@ -12,7 +12,7 @@ accent =       "#f5c2e7"
 vim_background = "dark"
 vim_name = "Catppuccin"
 
-wallpaper = "~/.wallpaper/catppuccin/wave-ctppccn-mocha-mauve.png"
+wallpaper = "~/.wallpaper/catppuccin/catp-leaves.png"
 
 [regular]
 black =   "#45475a"

@@ -7,9 +7,18 @@ template = "~/.config/colourme/templates/ghostty"
 destination = "~/.config/ghostty/themes/Luka"
 post_hook = "pkill -USR2 ghostty"
 
+[hypr]
+template = "~/.config/colourme/templates/hypr.conf"
+destination = "~/.config/hypr/theme/colourme.conf"
+post_hook = "hyprctl reload"
+
 [nvim]
 template = "~/.config/colourme/templates/nvim.lua"
 destination = "~/.config/nvim/lua/ui/set_colourscheme.lua"
+
+# [nvim]
+# template = "~/.config/colourme/templates/nvim-base16.lua"
+# destination = "~/.config/nvim/lua/ui/palettes/colourme.lua"
 
 [zen_browser]
 template = "~/.config/colourme/templates/zen_browser.css"

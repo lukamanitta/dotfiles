@@ -8,11 +8,13 @@ selection_bg = "#665c54"
 selection_fg = "#f9f5d7"
 
 accent =       "#d79921"
+accent_alt_1 = "#98971a"
+accent_alt_2 = "#689d6a"
 
 vim_background = "dark"
 vim_name = "Gruvbox"
 
-wallpaper = "~/.wallpaper/gruvbox/gruvbox_spaceguy.jpeg"
+wallpaper = "~/.wallpaper/gruvbox/flower-pot.jpg"
 
 [regular]
 black =   "#282828"

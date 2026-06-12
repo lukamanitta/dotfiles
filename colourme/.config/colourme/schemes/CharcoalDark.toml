@@ -1,0 +1,35 @@
+background =   "#0f0b05"
+foreground =   "#a88c62"
+
+cursor_bg =    "#a88c62"
+cursor_fg =    "#0f0b05"
+
+selection_bg = "#a88c62"
+selection_fg = "#0f0b05"
+
+accent =       "#dec8a7"
+
+vim_background = "dark"
+vim_name = "Mini Base16"
+
+wallpaper = "~/.wallpaper/cosy/howls-moving-castle-calcifer.png"
+
+[regular]
+black =   "#0f0b05"
+red =     "#231b0e"
+green =   "#2a2012"
+yellow =  "#57462c"
+blue =    "#a88c62"
+magenta = "#c3a983"
+cyan =    "#dec8a7"
+white =   "#231b0e"
+
+[bright]
+black =   "#a88c62"
+red =     "#dec8a7"
+green =   "#dec8a7"
+yellow =  "#dec8a7"
+blue =    "#dec8a7"
+magenta = "#c3a983"
+cyan =    "#a88c62"
+white =   "#876e48"

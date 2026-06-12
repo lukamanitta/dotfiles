@@ -1,14 +1,18 @@
-background =   "#242933"
-foreground =   "#bbc3d4"
+background =     "#242933"
+foreground =     "#bbc3d4"
 
-cursor_bg =    "#bbc3d4"
-cursor_fg =    "#242933"
+cursor_bg =      "#bbc3d4"
+cursor_fg =      "#242933"
 
-selection_bg = "#2e3440"
-selection_fg = "#d8dee9"
+selection_bg =   "#2e3440"
+selection_fg =   "#d8dee9"
+
+accent =         "#8fbcbb"
 
 vim_background = "dark"
-vim_name = "Nordic"
+vim_name =       "Nordic"
+
+wallpaper =      "~/.wallpaper/nordified/unicorn.png"
 
 [regular]
 black =   "#191c24"

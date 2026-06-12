@@ -1,0 +1,37 @@
+background =   "#222436"
+foreground =   "#c8d3f5"
+
+cursor_bg =    "#c8d3f5"
+cursor_fg =    "#222436"
+
+selection_bg = "#2d3f76"
+selection_fg = "#c8d3f5"
+
+accent =       "#c099ff"
+accent_alt_1 = "#86e1fc"
+accent_alt_2 = "#82aaff"
+
+vim_background = "dark"
+vim_name = "Tokyo Night Moon"
+
+wallpaper = "~/.wallpaper/tokyonight/heart_original.png"
+
+[regular]
+black = '#1b1d2b'
+red = '#ff757f'
+green = '#c3e88d'
+yellow = '#ffc777'
+blue = '#82aaff'
+magenta = '#c099ff'
+cyan = '#86e1fc'
+white = '#828bb8'
+
+[bright]
+black = '#444a73'
+red = '#ff8d94'
+green = '#c7fb6d'
+yellow = '#ffd8ab'
+blue = '#9ab8ff'
+magenta = '#caabff'
+cyan = '#b2ebff'
+white = '#c8d3f5'

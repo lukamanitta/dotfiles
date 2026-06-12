@@ -1,11 +1,18 @@
-background =   "#"
-foreground =   "#"
+background =     "#"
+foreground =     "#"
 
-cursor_bg =    "#"
-cursor_fg =    "#"
+cursor_bg =      "#"
+cursor_fg =      "#"
 
-selection_bg = "#"
-selection_fg = "#"
+selection_bg =   "#"
+selection_fg =   "#"
+
+accent =         "#"
+
+vim_background = ""
+vim_name =       ""
+
+wallpaper =      ""
 
 [regular]
 black =   "#"

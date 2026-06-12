@@ -13,7 +13,7 @@ vim_background = "dark"
 vim_name = "Kanagawa"
 
 # wallpaper = "~/.wallpaper/the-great-wave-off-kanagawa-inverse.jpg"
-wallpaper = "~/.wallpaper/kanagawa-scheme-bg.jpeg"
+wallpaper = "~/.wallpaper/kanagawa/wave-outline.jpg"
 
 [regular]
 black =   "#16161d"

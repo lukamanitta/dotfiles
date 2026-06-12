@@ -9,6 +9,11 @@ selection_fg = "#e8cab3"
 
 accent =       "#cf6525"
 
+vim_background = "dark"
+vim_name = "Mini Base16"
+
+wallpaper = "~/.wallpaper/cosy/howls-moving-castle-calcifer.png"
+
 [regular]
 black =   "#190a01"
 red =     "#b03726"
