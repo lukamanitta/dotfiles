@@ -6,8 +6,7 @@
     "height": 28,
     "modules-left": [
         // "custom/weather",
-        "custom/logo",
-        "mpris"
+        "group/audio"
     ],
     "modules-center": [
         "hyprland/workspaces",
@@ -26,6 +25,18 @@
         "battery",
         "clock"
     ],
+    "group/audio": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 200,
+            "click-to-reveal": true,
+            "start-expanded": true
+        },
+        "modules": [
+            "custom/logo",
+            "mpris"
+        ]
+    },
     "group/tray-drawer": {
         "orientation": "horizontal",
         "drawer": {
@@ -42,8 +53,8 @@
     },
     "custom/logo": {
         "format": "󰎈",
-        "on-click": "flatpak run com.spotify.Client",
-        "on-click-right": "~/.config/rofi/scripts/rofibeats",
+        // "on-click": "flatpak run com.spotify.Client",
+        // "on-click-right": "~/.config/rofi/scripts/rofibeats",
         "tooltip": false
     },
     "custom/screenrecording-indicator": {
