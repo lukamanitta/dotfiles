@@ -16,9 +16,9 @@ post_hook = "hyprctl reload"
 template = "~/.config/colourme/templates/nvim.lua"
 destination = "~/.config/nvim/lua/ui/set_colourscheme.lua"
 
-# [nvim]
-# template = "~/.config/colourme/templates/nvim-base16.lua"
-# destination = "~/.config/nvim/lua/ui/palettes/colourme.lua"
+[nvim-base16]
+template = "~/.config/colourme/templates/nvim-base16.lua"
+destination = "~/.config/nvim/lua/ui/palettes/colourme.lua"
 
 [zen_browser]
 template = "~/.config/colourme/templates/zen_browser.css"
@@ -28,10 +28,23 @@ destination = "~/.zen/vsyh95ca.Default (release)/chrome/userChrome.css"
 template = "~/.config/colourme/templates/waybar.css"
 destination = "~/.config/waybar/colors.css"
 
+[quickshell]
+template = "~/.config/colourme/templates/quickshell.qml"
+destination = "~/.config/quickshell/_Shared/Colours.qml"
+
 [waypaper]
 template = "~/.config/colourme/templates/waypaper.ini"
 destination = "~/.config/waypaper/wallpaper.ini"
 post_hook = "waypaper --restore --state-file ~/.config/waypaper/wallpaper.ini"
+
+[wofi]
+template = "~/.config/colourme/templates/wofi.css"
+destination = "~/.config/wofi/colors.css"
+
+[spicetify-matte]
+template = "~/.config/colourme/templates/spicetify-matte.ini"
+destination = "~/.config/spicetify/Themes/Matte/color.ini"
+post_hook = "spicetify apply"
 
 # [hyprland]
 # template = "~/.config/colourme/templates/hyprland.conf"

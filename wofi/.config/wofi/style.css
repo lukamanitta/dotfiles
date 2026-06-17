@@ -1,42 +1,50 @@
+@import url("/home/luka/.config/wofi/colors.css");
+
 window {
-margin: 0px;
-border: 1px solid #303030;
-background-color: #0c0c0c;
-border-radius: 12px;
+  margin: 0px;
+  border: 1px solid @outer-border;
+  background-color: @background;
+  border-radius: 12px;
 }
 
 #input {
-margin: 5px;
-border: none;
-color: #cccccc;
-background-color: #1a1a1a;
+  margin: 5px;
+  border: none;
+  color: @foreground;
+  background-color: @background-selected;
+}
+
+#input:focus {
+  box-shadow: none;
+  border: 1px solid @input-selected-border;
 }
 
 #inner-box {
-margin: 5px;
-border: none;
-background-color: #0c0c0c;
+  margin: 5px;
+  border: none;
+  background-color: @background;
 }
 
 #outer-box {
-margin: 5px;
-border: none;
-background-color: #0c0c0c;
+  margin: 5px;
+  border: none;
+  background-color: @background;
 }
 
 #scroll {
-margin: 0px;
-border: none;
+  margin: 0px;
+  border: none;
 }
 
 #text {
-margin: 5px;
-border: none;
-color: #cccccc;
+  margin: 5px;
+  border: none;
+  color: @foreground;
 }
 
 #entry:selected {
-background-color: #1a1a1a;
-border-radius: 6px;
-border: none;
+  background-color: @background-selected;
+  border-radius: 6px;
+  border: none;
+  outline: none;
 }

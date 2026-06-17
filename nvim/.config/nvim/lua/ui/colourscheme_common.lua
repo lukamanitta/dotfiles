@@ -13,8 +13,15 @@ return function()
         bg = require("h").get_hl("StatusLine", "bg#"),
     })
 
+    require("h").set_hl("SignColumn", { link = "Normal" })
+    require("h").set_hl("ColorColumn", { link = "Normal" })
+    require("h").set_hl("LineNr", {
+        bg = require("h").get_hl("Normal", "bg#"),
+        fg = require("h").get_hl("LineNr", "fg#"),
+    })
+    require("h").set_hl("LineNrAbove", { link = "LineNr" })
+    require("h").set_hl("LineNrBelow", { link = "LineNr" })
+
     require("h").set_hl("TreesitterContextLineNumber", { link = "LineNr" })
     require("h").set_hl("TreeSitterContextSeparator", { link = "Comment" })
-
-    require("h").set_hl("SignColumn", { link = "Normal" })
 end

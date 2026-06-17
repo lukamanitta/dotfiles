@@ -1,0 +1,5 @@
+@define-color background #{{hex: base01 || hex: regular.black}};
+@define-color background-selected #{{hex: base02 || hex: background}};
+@define-color foreground #{{hex: base04 || hex: foreground}};
+@define-color outer-border #{{hex: base03 || hex: bright.black}};
+@define-color input-selected-border #{{hex: accent}};

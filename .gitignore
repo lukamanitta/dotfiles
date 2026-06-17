@@ -3,3 +3,4 @@ lazygit/.config/lazygit/state.yml
 **/.DS_Store
 fish/.config/fish/env/*
 ncspot/.config/ncspot/userstate.cbor
+quickshell/.config/quickshell/.qmlls.ini

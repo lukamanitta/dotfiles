@@ -26,6 +26,10 @@
       "rev": "a12fd5672110c8aa7e3c8419e28c96943ca179be",
       "src": "https://github.com/github/copilot.vim"
     },
+    "everforest-nvim": {
+      "rev": "d235ca0aa6a29546e661a020e2618612acbbffbe",
+      "src": "https://github.com/neanias/everforest-nvim"
+    },
     "fff.nvim": {
       "rev": "cf171e067d99a7ee1298bd3903f14a04addd8b39",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
@@ -87,6 +91,10 @@
       "src": "https://github.com/nvim-neo-tree/neo-tree.nvim",
       "version": "'v3.x'"
     },
+    "neovim": {
+      "rev": "ff483051a47e27d84bdef47703538df1ed9f4a47",
+      "src": "https://github.com/rose-pine/neovim"
+    },
     "nord.nvim": {
       "rev": "80c1e5321505aeb22b7a9f23eb82f1e193c12470",
       "src": "https://github.com/shaunsingh/nord.nvim"
@@ -146,6 +154,10 @@
     "oil.nvim": {
       "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
       "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "outline.nvim": {
+      "rev": "2a132953b944561d45b52e4541ebfff71934a742",
+      "src": "https://github.com/hedyhli/outline.nvim"
     },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",

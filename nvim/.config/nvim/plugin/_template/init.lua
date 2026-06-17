@@ -10,16 +10,16 @@
 --         end
 --     end,
 -- })
---
+
 -- vim.pack.add({
 --     { src = "<plugin-dependency>" },
 -- })
---
+
 -- vim.pack.add({
 --     {
 --         src = "<plugin-repo>",
 --     },
 -- })
---
+
 -- require("<plugin-name>").setup({
 -- })

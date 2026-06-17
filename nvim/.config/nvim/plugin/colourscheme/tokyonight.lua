@@ -40,7 +40,9 @@ end
 if vim.g.colourscheme == "Tokyo Night Storm" then
     common_cfg()
     vim.cmd.colorscheme("tokyonight-storm")
+    require("ui.colourscheme_common")()
 elseif vim.g.colourscheme == "Tokyo Night Moon" then
     common_cfg()
     vim.cmd.colorscheme("tokyonight-moon")
+    require("ui.colourscheme_common")()
 end

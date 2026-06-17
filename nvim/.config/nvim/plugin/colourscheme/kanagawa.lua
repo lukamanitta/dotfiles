@@ -51,15 +51,15 @@ if vim.g.colourscheme == "Kanagawa" then
     })
 
     vim.cmd.colorscheme("kanagawa")
-    require("h").set_hl("SignColumn", { link = "Normal" })
-    require("h").set_hl("ColorColumn", { link = "Normal" })
-    require("h").set_hl("LineNr", {
-        bg = require("h").get_hl("Normal", "bg#"),
-        fg = require("h").get_hl("LineNr", "fg#"),
-    })
-
-    require("h").set_hl("TreesitterContextLineNumber", { link = "LineNr" })
-    require("h").set_hl("TreeSitterContextSeparator", { link = "Comment" })
+    -- require("h").set_hl("SignColumn", { link = "Normal" })
+    -- require("h").set_hl("ColorColumn", { link = "Normal" })
+    -- require("h").set_hl("LineNr", {
+    --     bg = require("h").get_hl("Normal", "bg#"),
+    --     fg = require("h").get_hl("LineNr", "fg#"),
+    -- })
+    --
+    -- require("h").set_hl("TreesitterContextLineNumber", { link = "LineNr" })
+    -- require("h").set_hl("TreeSitterContextSeparator", { link = "Comment" })
 
     local git_sign_type = { "Add", "Change", "Delete" }
     for _, type in ipairs(git_sign_type) do

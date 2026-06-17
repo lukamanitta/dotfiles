@@ -1,3 +1,19 @@
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--     callback = function()
+--         if vim.fn.argc() == 0 then
+--             vim.schedule(function()
+--                 local keys = vim.api.nvim_replace_termcodes(
+--                     "<LEADER>ff",
+--                     true,
+--                     false,
+--                     true
+--                 )
+--                 vim.api.nvim_feedkeys(keys, "m", false)
+--             end)
+--         end
+--     end,
+-- })
+
 vim.api.nvim_create_autocmd("BufReadPost", {
     group = vim.api.nvim_create_augroup("jump_to_last_pos", {}),
     pattern = "*",

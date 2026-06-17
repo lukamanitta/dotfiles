@@ -1,27 +1,34 @@
-palette = 0=#{{hex:regular.black}}
-palette = 1=#{{hex:regular.red}}
-palette = 2=#{{hex:regular.green}}
-palette = 3=#{{hex:regular.yellow}}
-palette = 4=#{{hex:regular.blue}}
-palette = 5=#{{hex:regular.magenta}}
-palette = 6=#{{hex:regular.cyan}}
-palette = 7=#{{hex:regular.white}}
-palette = 8=#{{hex:bright.black}}
-palette = 9=#{{hex:bright.red}}
-palette = 10=#{{hex:bright.green}}
-palette = 11=#{{hex:bright.yellow}}
-palette = 12=#{{hex:bright.blue}}
-palette = 13=#{{hex:bright.magenta}}
-palette = 14=#{{hex:bright.cyan}}
-palette = 15=#{{hex:bright.white}}
+background = #{{hex: base00 || hex: background}}
+foreground = #{{hex: base05 || hex: foreground}}
+cursor-color = #{{hex: base05 || hex: cursor_bg || hex: foreground}}
+selection-background = #{{hex: base05 || hex: selection_bg || hex: cursor_bg || hex: foreground}}
+selection-foreground = #{{hex: base02 || hex: selection_fg || hex: cursor_fg || hex: background}}
+search-background = #{{hex: base0A || hex: base05 || hex: selection_bg || hex: cursor_bg || hex: foreground}}
+search-foreground = #{{hex: base01 || hex: selection_fg || hex: cursor_fg || hex: background}}
+search-selected-background = #{{hex: base09 || hex: regular.green}}
+search-selected-foreground = #{{hex: base01 || hex: selection_fg || hex: cursor_fg || hex: background}}
 
-background = {{hex:background}}
-foreground = {{hex:foreground}}
+split-divider-color = {{hex: base11 || hex: base01 || hex:regular.black}}
 
-cursor-color = {{hex:cursor_bg || hex:foreground}}
-cursor-text = {{hex:cursor_fg || hex:background}}
-
-selection-background = {{hex:selection_bg || hex:darken(cursor_fg, 0.1) || hex:foreground}}
-selection-foreground = {{hex:selection_fg || hex:cursor_bg || hex:background}}
-
-split-divider-color = {{hex:regular.black}}
+palette = 0=#{{hex: base00 || hex: regular.black}}
+palette = 1=#{{hex: base08 || hex: regular.red}}
+palette = 2=#{{hex: base0B || hex: regular.green}}
+palette = 3=#{{hex: base0A || hex: regular.yellow}}
+palette = 4=#{{hex: base0D || hex: regular.blue}}
+palette = 5=#{{hex: base0E || hex: regular.magenta}}
+palette = 6=#{{hex: base0C || hex: regular.cyan}}
+palette = 7=#{{hex: base05 || hex: regular.white}}
+palette = 8=#{{hex: base03 || hex: bright.black}}
+palette = 9=#{{hex: base12 || hex: base08 || hex: bright.red}}
+palette = 10=#{{hex: base14 || hex: base0B || hex: bright.green}}
+palette = 11=#{{hex: base13 || hex: base0A || hex: bright.yellow}}
+palette = 12=#{{hex: base16 || hex: base0D || hex: bright.blue}}
+palette = 13=#{{hex: base17 || hex: base0E || hex: bright.magenta}}
+palette = 14=#{{hex: base15 || hex: base0C || hex: bright.cyan}}
+palette = 15=#{{hex: base07 || hex: bright.white}}
+palette = 16=#{{hex: base09 || hex: regular.green}}
+palette = 17=#{{hex: base0F || hex: regular.red}}
+palette = 18=#{{hex: base01 || hex: background}}
+palette = 19=#{{hex: base02 || hex: background}}
+palette = 20=#{{hex: base04 || hex: foreground}}
+palette = 21=#{{hex: base06 || hex: foreground}}

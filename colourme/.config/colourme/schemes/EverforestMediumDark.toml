@@ -1,0 +1,52 @@
+background =     "#2d353b"
+foreground =     "#d3c6aa"
+
+cursor_bg =      "#d3c6aa"
+cursor_fg =      "#2d353b"
+
+selection_bg =   "#d3c6aa"
+selection_fg =   "#2d353b"
+
+accent =         "#35a77c"
+
+vim_background = "dark"
+vim_name =       "Everforest Medium"
+
+wallpaper =      "~/.wallpaper/everforest/japanese_pedestrian_street.png"
+
+base00 = "#2d353b" # default darker bg, bg0
+base01 = "#343f44" # dark bg, bg1
+base02 = "#3d484d" # least dark bg, bg2
+base03 = "#475258" # bright bg, bg3
+base04 = "#7a8478" # dark fg, gray0
+base05 = "#859289" # default fg, gray1
+base06 = "#9da9a0" # light fg, gray2
+base07 = "#d3c6aa" # lightest fg, fg
+base08 = "#e67e80" # red
+base09 = "#e69875" # orange
+base0A = "#dbbc7f" # yellow
+base0B = "#a7c080" # green
+base0C = "#83c092" # cyan, aqua
+base0D = "#7fbbb3" # blue
+base0E = "#d699b6" # purple
+base0F = "#514045" # dark red or brown, bg_visual
+
+[regular]
+black =   "#343f44"
+red =     "#e67e80"
+green =   "#a7c080"
+yellow =  "#dbbc7f"
+blue =    "#7fbbb3"
+magenta = "#d699b6"
+cyan =    "#83c092"
+white =   "#d3c6aa"
+
+[bright]
+black =   "#5c6a72"
+red =     "#f85552"
+green =   "#8da101"
+yellow =  "#dfa000"
+blue =    "#3a94c5"
+magenta = "#df69ba"
+cyan =    "#35a77c"
+white =   "#dfddc8"

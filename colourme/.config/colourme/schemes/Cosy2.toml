@@ -1,0 +1,23 @@
+accent =       "#c16250"
+
+vim_background = "dark"
+vim_name = "Mini Base16"
+
+wallpaper = "~/.wallpaper/cosy/howls-moving-castle-calcifer.png"
+
+base00 = "#070809"
+base01 = "#280100"
+base02 = "#1b1718"
+base03 = "#7e3a2c"
+base04 = "#a42730"
+base05 = "#c33b2a"
+base06 = "#40100b"
+base07 = "#2f2531"
+base08 = "#c16250"
+base09 = "#ef6776"
+base0A = "#af4c3f"
+base0B = "#e14e3c"
+base0C = "#db212d"
+base0D = "#af4c3f"
+base0E = "#db212d"
+base0F = "#af4c3f"
