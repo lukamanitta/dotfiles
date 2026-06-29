@@ -2,18 +2,20 @@ import Quickshell
 import QtQuick
 import Quickshell.Networking
 import QtQuick.Layouts
-import "_Shared"
+import "_Shared/Components"
 
 RowLayout {
     id: root
 
-    property var connectedNetwork: Networking.devices.values.find(function(device) { return device.connected; })
+    property var connectedNetwork: Networking.devices.values.find(function (device) {
+        return device.connected;
+    })
 
     property string networkText: {
         if (!connectedNetwork) {
-            return " No network"
+            return " No network";
         } else {
-            return "󱘖 " + connectedNetwork.name
+            return "󱘖 " + connectedNetwork.name;
         }
     }
 

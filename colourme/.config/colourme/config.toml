@@ -30,7 +30,7 @@ destination = "~/.config/waybar/colors.css"
 
 [quickshell]
 template = "~/.config/colourme/templates/quickshell.qml"
-destination = "~/.config/quickshell/_Shared/Colours.qml"
+destination = "~/.config/quickshell/_Shared/Singletons/Colours.qml"
 
 [waypaper]
 template = "~/.config/colourme/templates/waypaper.ini"
@@ -45,6 +45,12 @@ destination = "~/.config/wofi/colors.css"
 template = "~/.config/colourme/templates/spicetify-matte.ini"
 destination = "~/.config/spicetify/Themes/Matte/color.ini"
 post_hook = "spicetify apply"
+
+[openrgb]
+template = "~/.config/colourme/templates/openrgb.txt"
+destination = "~/.config/OpenRGB/colourme.txt"
+post_hook = "openrgb -c $(cat ~/.config/OpenRGB/colourme.txt)"
+
 
 # [hyprland]
 # template = "~/.config/colourme/templates/hyprland.conf"

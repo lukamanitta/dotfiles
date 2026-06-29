@@ -1,7 +1,8 @@
 import Quickshell
 import QtQuick
 import QtQuick.Layouts
-import "_Shared"
+import "_Shared/Singletons"
+import "_Shared/Components"
 
 Item {
     id: root
@@ -19,6 +20,7 @@ Item {
         anchors.bottomMargin: -10
         anchors.leftMargin: -10
         anchors.rightMargin: -10
+        cursorShape: Qt.PointingHandCursor
 
         onClicked: root.isCollapsed = !root.isCollapsed
     }
@@ -38,7 +40,7 @@ Item {
             visible: !root.isCollapsed || hideAnimation.running
             clip: true
 
-            implicitWidth: root.isCollapsed ? 0 : titleText.implicitWidth
+            implicitWidth: root.isCollapsed ? 0 : Math.min(titleText.implicitWidth, 400)
             implicitHeight: titleText.implicitHeight
 
             Behavior on implicitWidth {
@@ -51,7 +53,7 @@ Item {
                     // TODO: This results in a jump at the end, but not setting visible = false leaves spacing on the right
                     onStopped: {
                         if (root.isCollapsed) {
-                            titleContainer.visible = false
+                            titleContainer.visible = false;
                         }
                     }
                 }
@@ -62,7 +64,7 @@ Item {
                 text: MprisState.artistAndTitle || "No Media Playing"
                 elide: Text.ElideRight
                 maximumLineCount: 1
-                width: 300
+                width: parent.width
             }
         }
     }

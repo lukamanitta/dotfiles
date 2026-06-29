@@ -1,2 +1,2 @@
 vim.cmd.set("background=dark")
-vim.g.colourscheme = "Rose Pine"
+vim.g.colourscheme = "Tokyo Night Moon"

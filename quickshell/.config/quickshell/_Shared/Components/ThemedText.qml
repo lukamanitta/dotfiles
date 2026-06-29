@@ -1,6 +1,6 @@
 import Quickshell
 import QtQuick
-import "_Shared"
+import "../Singletons"
 
 Text {
     id: root
