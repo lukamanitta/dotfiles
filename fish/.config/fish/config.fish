@@ -60,3 +60,10 @@ end
 starship init fish | source
 
 fish_add_path /home/luka/.spicetify
+
+# pnpm
+set -gx PNPM_HOME "/home/luka/.local/share/pnpm"
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+  set -gx PATH "$PNPM_HOME/bin" $PATH
+end
+# pnpm end
