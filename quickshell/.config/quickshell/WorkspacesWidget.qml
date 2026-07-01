@@ -17,12 +17,12 @@ Item {
     readonly property point heroPoint: {
         void root.width;
         void root.height;
-        return container.children[0].mapToItem(root, container.children[0].width / 2, container.children[0].height / 2)
+        return container.children[0].mapToItem(root, container.children[0].width / 2, container.children[0].height / 2);
     }
 
     // property string ameForm: "rest"
     property string ameForm: container.children.some(child => child.isFocused) ? "rest" : "soul"
-    property real ameS: ameForm === "soul" ? 1.4 : 1
+    property real ameS: ameForm === "soul" ? 1.2 : 1
     property point amePoint: activeRing ? Qt.point(root.activeRing.x + root.activeRing.width / 2, root.activeRing.y + root.activeRing.height / 2) : heroPoint
 
     RowLayout {

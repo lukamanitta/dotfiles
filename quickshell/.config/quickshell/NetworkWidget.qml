@@ -13,9 +13,9 @@ RowLayout {
 
     property string networkText: {
         if (!connectedNetwork) {
-            return " No network";
+            return "  No network";
         } else {
-            return "󱘖 " + connectedNetwork.name;
+            return "󱘖  " + connectedNetwork.name;
         }
     }
 

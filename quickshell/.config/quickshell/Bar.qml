@@ -36,44 +36,46 @@ Scope {
                 anchors.leftMargin: marginHorizontal
                 anchors.rightMargin: marginHorizontal
 
-                property int barHeight: 30
+                property int barHeight: 36
                 property real implicitHeight: barHeight ? barHeight : centerPill.implicitHeight
 
-                Pill {
+                RowLayout {
+                    id: leftRow
                     anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
-                    pillCrossAxis: content.barHeight
 
-                    MediaWidget {}
+                    StaticPill {
+                        id: centerPill
+                        anchors.verticalCenter: parent.verticalCenter
+                        pillCrossAxis: content.barHeight
+
+                        WorkspacesWidget {
+                            id: workspaces
+                            currentMonitor: root.monitorName
+                        }
+                    }
+
+                    StaticPill {
+                        anchors.verticalCenter: parent.verticalCenter
+                        pillCrossAxis: content.barHeight
+
+                        MediaWidget {}
+                    }
                 }
 
-                Pill {
-                    id: centerPill
+                StaticPill {
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                     pillCrossAxis: content.barHeight
 
-                    WorkspacesWidget {
-                        id: workspaces
-                        currentMonitor: root.monitorName
-                    }
+                    ClockWidget {}
                 }
 
                 RowLayout {
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
 
-                    Pill {
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        pillCrossAxis: content.barHeight
-
-                        CPUWidget {}
-                        MemoryWidget {}
-                        NetworkWidget {}
-                    }
-
-                    Pill {
+                    StaticPill {
                         anchors.verticalCenter: parent.verticalCenter
 
                         pillCrossAxis: content.barHeight
@@ -81,12 +83,14 @@ Scope {
                         AudioWidget {}
                     }
 
-                    Pill {
+                    StaticPill {
                         anchors.verticalCenter: parent.verticalCenter
 
                         pillCrossAxis: content.barHeight
 
-                        ClockWidget {}
+                        CPUWidget {}
+                        MemoryWidget {}
+                        NetworkWidget {}
                     }
                 }
             }
@@ -97,20 +101,24 @@ Scope {
                 form: workspaces.ameForm
                 heat: 0
                 wake: {
+                    void leftRow.x;
+                    void leftRow.y;
                     void centerPill.x;
                     void centerPill.y;
                     void workspaces.x;
                     void workspaces.y;
 
-                    workspaces.mapToItem(null, workspaces.heroPoint.x, workspaces.heroPoint.y)
+                    workspaces.mapToItem(null, workspaces.heroPoint.x, workspaces.heroPoint.y);
                 }
                 point: {
+                    void leftRow.x;
+                    void leftRow.y;
                     void centerPill.x;
                     void centerPill.y;
                     void workspaces.x;
                     void workspaces.y;
 
-                    workspaces.mapToItem(null, workspaces.amePoint.x, workspaces.amePoint.y)
+                    workspaces.mapToItem(null, workspaces.amePoint.x, workspaces.amePoint.y);
                 }
             }
         }

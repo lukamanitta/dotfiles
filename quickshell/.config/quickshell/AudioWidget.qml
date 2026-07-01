@@ -29,7 +29,7 @@ ThemedText {
 
     property string volumeText: pwNode ? Math.round(pwNode.volume * 100) + "%" : "N/A"
 
-    text: icon + " " + volumeText
+    text: icon + "   " + volumeText
 
     Process {
         id: wiremixProcess
@@ -47,7 +47,7 @@ ThemedText {
         cursorShape: Qt.PointingHandCursor
 
         acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: (mouse) => {
+        onClicked: mouse => {
             if (mouse.button === Qt.LeftButton) {
                 wiremixProcess.running = true;
             } else if (mouse.button === Qt.RightButton) {
@@ -55,7 +55,7 @@ ThemedText {
             }
         }
 
-        onWheel: (wheel) => {
+        onWheel: wheel => {
             if (pwNode) {
                 const dir = wheel.angleDelta.y > 0 ? 1 : -1;
                 const step = 0.05;

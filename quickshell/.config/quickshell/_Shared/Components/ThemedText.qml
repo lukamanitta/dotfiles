@@ -8,7 +8,7 @@ Text {
     font.family: Theme.fontFamily
     font.pixelSize: Theme.fontSize
     color: Theme.colour.foregroundDefault
-    font.weight: Font.Medium
+    font.weight: Theme.defaultFontWeight
 
     renderType: Text.NativeRendering
 }

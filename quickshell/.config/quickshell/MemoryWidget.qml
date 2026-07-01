@@ -6,7 +6,7 @@ import "_Shared/Singletons"
 import "_Shared/Components"
 
 ThemedText {
-    text: " " + SysMetrics.memUsageGB + "gb"
+    text: "   " + SysMetrics.memUsageGB + "gb"
 
     Process {
         id: btopProcess

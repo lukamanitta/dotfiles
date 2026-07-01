@@ -6,7 +6,7 @@ import "_Shared/Singletons"
 import "_Shared/Components"
 
 ThemedText {
-    text: "󰍛 " + SysMetrics.cpuUsagePc + "%"
+    text: "󰍛  " + SysMetrics.cpuUsagePc + "%"
 
     Process {
         id: btopProcess

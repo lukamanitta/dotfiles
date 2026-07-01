@@ -5,6 +5,7 @@ import Quickshell
 
 Singleton {
     readonly property color surfaceDefault: "#{{hex: base01 || hex: background}}"
+    readonly property color surfaceLight: "#{{hex: multiply_brightness(base01, 1.2) || hex: multiply_brightness(background, 1.2)}}"
     readonly property color foregroundDefault: "#{{hex: base05 || hex: foreground}}"
     readonly property color foregroundMuted: "#{{hex: base03 || hex: bright.black}}"
     readonly property color accent: "#{{hex: accent}}"
