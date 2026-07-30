@@ -16,6 +16,7 @@ return {
                 library = {
                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                     [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                    ["/usr/share/hypr/stubs"] = true,
                 },
             },
             completion = {
@@ -26,5 +27,5 @@ return {
                 enable = true,
             },
         },
-    }
+    },
 }

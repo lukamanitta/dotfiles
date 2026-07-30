@@ -16,9 +16,7 @@
 -- })
 
 -- vim.pack.add({
---     {
---         src = "<plugin-repo>",
---     },
+--     { src = "<plugin-repo>" },
 -- })
 
 -- require("<plugin-name>").setup({
