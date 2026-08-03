@@ -29,6 +29,7 @@ require("h").overwrite_keys(vim.o, {
     spelloptions = "camel,noplainbuffer",
     splitkeep = "screen",
     completeopt = "fuzzy,menu,menuone,noinsert,popup",
+    exrc = true,
 })
 
 -- Recognise _ as a word separator
