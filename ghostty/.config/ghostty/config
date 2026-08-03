@@ -2,6 +2,8 @@ theme = Luka
 
 command = $SHELL -c "tmux new-session -A -s main"
 
+keybind = ctrl+shift+r=reload_config
+
 font-family = "Roboto Mono"
 font-style = "Regular"
 font-variation = wght=470
