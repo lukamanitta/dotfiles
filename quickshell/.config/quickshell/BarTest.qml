@@ -43,6 +43,7 @@ ShellRoot {
             if (root.refreshEvents[event.name]) {
                 root.refresh();
             }
+            root.refresh();
         }
     }
 
@@ -62,6 +63,7 @@ ShellRoot {
 
     IpcHandler {
         target: "pill"
+        function calendar(mon: string): void { root.toggleSurface(mon, "calendar"); }
         function launcher(mon: string): void { root.toggleSurface(mon, "launcher"); }
         function power(mon: string): void { root.toggleSurface(mon, "power"); }
         function hide(): void { root.close(); }
@@ -74,8 +76,8 @@ ShellRoot {
             id: reserve
             required property var modelData
             readonly property real s: modelData ? modelData.height / 1080 : 1
-            readonly property real mVert: 8 * s
-            readonly property real restHeight: 38 * s
+            readonly property real mVert: 6 * s
+            readonly property real restHeight: 34 * s
 
             screen: modelData
             color: "transparent"
@@ -98,19 +100,29 @@ ShellRoot {
             id: overlay
             required property var modelData
             readonly property real s: modelData ? modelData.height / 1080 : 1
-            readonly property real mVert: 8 * s
+            readonly property real mVert: 6 * s
             readonly property string surface: root.openMon === modelData.name ? root.openSurface : ""
             readonly property bool surfaceOpen: surface.length > 0
             readonly property bool modal: surfaceOpen || pill.held
+
+            Text {
+                id: debugText
+                text: ""
+            }
 
             readonly property bool monFullscreen: {
                 var mons = Hyprland.monitors.values;
                 for (var i = 0; i < mons.length; i++) {
                     if (mons[i].name === modelData.name) {
                         var ws = mons[i].activeWorkspace;
-                        // var o = ws ? ws.lastIpcObject : null;
-                        var o = ws;
-                        return o ? !!o.hasFullscreen : false;
+                        if (!ws || !ws.hasFullscreen) return false;
+
+                        for (var j = 0; j < ws.toplevels.values.length; j++) {
+                            var tl = ws.toplevels.values[j];
+                            if (tl && tl.wayland && tl.wayland.fullscreen) return true;
+                        }
+
+                        return false;
                     }
                 }
                 return false;

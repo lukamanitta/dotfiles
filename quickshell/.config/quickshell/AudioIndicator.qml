@@ -13,18 +13,18 @@ Row {
     Repeater {
         model: 4
         delegate: Rectangle {
-            width: 3
+            width: 4
             anchors.verticalCenter: parent.verticalCenter
             color: Theme.colour.accent
-            radius: 1
+            radius: 2
             property bool isAudioPlaying: root.isAudioPlaying
 
             // Default flat state height
-            height: 3
+            height: 4
 
             onIsAudioPlayingChanged: {
-                if (!root.isAudioPlaying) {
-                    height = 3
+                if (!isAudioPlaying) {
+                    height = 4
                 }
             }
 

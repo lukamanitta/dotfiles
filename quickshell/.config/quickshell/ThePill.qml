@@ -19,6 +19,7 @@ Item {
     property bool pinned: false
 
     readonly property bool held: pinned
+    readonly property bool calendarOpen: surface === "calendar"
     readonly property bool launcherOpen: surface === "launcher"
     readonly property bool powerOpen: surface === "power"
 
@@ -28,11 +29,13 @@ Item {
 
     readonly property real restPad: 8 * s
     readonly property real restW: 120 * s
-    readonly property real restH: 38 * s
+    readonly property real restH: 34 * s
     readonly property real hoverPad: 20 * s
     readonly property real hoverW: hoverRow.implicitWidth + (hoverPad * 2)
     readonly property real hoverH: 58 * s
 
+    readonly property real calendarW: 318 * s
+    readonly property real calendarH: calendar.implicitHeight + 32 * s
     readonly property real launcherW: 360 * s
     readonly property real launcherH: 332 * s
     readonly property real powerW: 330 * s
@@ -42,6 +45,8 @@ Item {
     readonly property real openCornerRadius: 22 * s
 
     readonly property string mode: {
+        if (calendarOpen)
+            return "calendar";
         if (launcherOpen)
             return "launcher";
         if (powerOpen)
@@ -50,13 +55,15 @@ Item {
     }
 
     signal requestSurface(string name)
-    signal requestClose()
+    signal requestClose
 
-    onSurfaceOpenChanged: if (surfaceOpen) pinned = false
+    onSurfaceOpenChanged: if (surfaceOpen)
+        pinned = false
 
     property real morphRadius: (mode === "rest" || mode === "hover") ? restCornerRadius : openCornerRadius
 
     readonly property var surfaceSize: ({
+            calendar: () => Qt.size(calendarW, calendarH),
             launcher: () => Qt.size(launcherW, launcherH),
             power: () => Qt.size(powerW, powerH),
             hover: () => Qt.size(hoverW, hoverH)
@@ -80,14 +87,19 @@ Item {
     // Soul bead gate (wait until hover morph is complete before allowing it to move)
     property bool hoverSoulGate: false
     readonly property bool hoverArrived: mode === "hover" && morphCloseness > 0.55
-    onHoverArrivedChanged: if (hoverArrived) hoverSoulGate = true
+    onHoverArrivedChanged: if (hoverArrived)
+        hoverSoulGate = true
     onModeChanged: if (mode !== "hover") {
         hoverSoulGate = false;
         soulTarget = "";
+        soulWsIndex = -1;
     }
-    onHoverSoulGateChanged: if (hoverSoulGate) heroFlashAnim.restart()
+    onHoverSoulGateChanged: if (hoverSoulGate)
+        heroFlashAnim.restart()
 
     property string soulTarget: ""
+    property int soulWsIndex: -1
+
     property real heroFlash: 0
 
     SequentialAnimation {
@@ -183,11 +195,20 @@ Item {
             return inboxIcon.mapToItem(pill, inboxIcon.width / 2, inboxIcon.height / 2 + drop);
         if (soulTarget === "power")
             return powerIcon.mapToItem(pill, powerIcon.width / 2, powerIcon.height / 2 + drop);
-        return hoverHero.mapToItem(pill, hoverHero.width / 2, hoverHero.height / 2);
+        if (soulTarget === "ws" && soulWsIndex >= 0) {
+            void ws.activeName;
+            void ws.width;
+            const p = ws.mapToItem(pill, ws.slotCenterX(soulWsIndex), ws.height / 2);
+            return Qt.point(p.x, p.y + drop);
+        }
+        // return hoverHero.mapToItem(pill, hoverHero.width / 2, hoverHero.height / 2);
+        return ws.mapToItem(pill, ws.activeDotPoint.x, ws.activeDotPoint.y + drop);
     }
 
     // Which open surface owns the bead's anchor
     readonly property var ameSurface: {
+        if (calendarOpen)
+            return calendar;
         if (launcherOpen)
             return launcher;
         if (powerOpen)
@@ -311,38 +332,18 @@ Item {
             anchors.centerIn: parent
             spacing: 20 * pill.s
 
-            Item {
-                id: hoverHero
+            Workspaces {
+                id: ws
                 anchors.verticalCenter: parent.verticalCenter
-                width: hoverHeroFill.implicitWidth
-                height: hoverHeroFill.implicitHeight
-
-                AudioIndicator {
-                    id: hoverHeroFill
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: 17 * pill.s
-                    height: 17 * pill.s
-                    isAudioPlaying: MprisState.isPlaying
+                width: implicitWidth
+                screenName: pill.screenName
+                s: pill.s
+                gap: 8 * pill.s
+                enabled: hover.live
+                onHoverIndexChanged: if (hoverIndex >= 0) {
+                    pill.soulTarget = "ws";
+                    pill.soulWsIndex = hoverIndex;
                 }
-
-                // Text {
-                //     id: hoverHeroFill
-                //     anchors.verticalCenter: parent.verticalCenter
-                //     text: ""
-                //     color: Theme.colour.foregroundDefault
-                //     font.family: "Symbols Nerd Font"
-                //     font.pixelSize: Theme.fontSizeXLarge * pill.s
-                // }
-                //
-                // MultiEffect {
-                //     source: hoverHeroFill
-                //     anchors.fill: hoverHeroFill
-                //     shadowEnabled: true
-                //     shadowColor: Qt.alpha(Theme.colour.vermLit, Math.min(1, (pill.mode === "rest" || !pill.hoverSoulGate ? 0.5 : 0) + pill.heroFlash))
-                //     shadowBlur: 0.3
-                //     shadowVerticalOffset: 0
-                //     shadowHorizontalOffset: 0
-                // }
             }
 
             Rectangle {
@@ -351,6 +352,47 @@ Item {
                 height: 22 * pill.s
                 color: Theme.colour.foregroundMuted
             }
+
+            // Item {
+            //     id: hoverHero
+            //     anchors.verticalCenter: parent.verticalCenter
+            //     width: hoverHeroFill.implicitWidth
+            //     height: hoverHeroFill.implicitHeight
+            //
+            //     AudioIndicator {
+            //         id: hoverHeroFill
+            //         anchors.verticalCenter: parent.verticalCenter
+            //         width: 17 * pill.s
+            //         height: 17 * pill.s
+            //         isAudioPlaying: MprisState.isPlaying
+            //     }
+
+            // Text {
+            //     id: hoverHeroFill
+            //     anchors.verticalCenter: parent.verticalCenter
+            //     text: ""
+            //     color: Theme.colour.foregroundDefault
+            //     font.family: "Symbols Nerd Font"
+            //     font.pixelSize: Theme.fontSizeXLarge * pill.s
+            // }
+            //
+            // MultiEffect {
+            //     source: hoverHeroFill
+            //     anchors.fill: hoverHeroFill
+            //     shadowEnabled: true
+            //     shadowColor: Qt.alpha(Theme.colour.vermLit, Math.min(1, (pill.mode === "rest" || !pill.hoverSoulGate ? 0.5 : 0) + pill.heroFlash))
+            //     shadowBlur: 0.3
+            //     shadowVerticalOffset: 0
+            //     shadowHorizontalOffset: 0
+            // }
+            // }
+
+            // Rectangle {
+            //     anchors.verticalCenter: parent.verticalCenter
+            //     width: 1
+            //     height: 22 * pill.s
+            //     color: Theme.colour.foregroundMuted
+            // }
 
             Item {
                 anchors.verticalCenter: parent.verticalCenter
@@ -384,29 +426,30 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: 12 * pill.s
 
-                // MinimisedTray {
-                //     id: minimised
-                //     anchors.verticalCenter: parent.verticalCenter
-                //     s: pill.s
-                //     screenName: pill.screenName
-                //     enabled: hover.live
-                //     visible: count > 0
-                // }
-                //
-                // Rectangle {
-                //     anchors.verticalCenter: parent.verticalCenter
-                //     width: 1
-                //     height: 14 * pill.s
-                //     color: Theme.colour.foregroundMuted
-                //     opacity: 0.7
-                // }
-                //
-                // Tray {
-                //     anchors.verticalCenter: parent.verticalCenter
-                //     s: pill.s
-                //     barWindow: pill.barWindow
-                //     enabled: hover.live
-                // }
+                MinimisedTray {
+                    id: minimised
+                    anchors.verticalCenter: parent.verticalCenter
+                    s: pill.s
+                    screenName: pill.screenName
+                    enabled: hover.live
+                    visible: count > 0
+                }
+
+                Rectangle {
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: 1
+                    height: 14 * pill.s
+                    color: Theme.colour.foregroundMuted
+                    opacity: 0.7
+                    visible: minimised.visible
+                }
+
+                Tray {
+                    anchors.verticalCenter: parent.verticalCenter
+                    s: pill.s
+                    barWindow: pill.barWindow
+                    enabled: hover.live
+                }
 
                 Item {
                     id: inboxIcon
@@ -484,6 +527,13 @@ Item {
     //     morphCloseness: pill.morphCloseness
     //     onRequestClose: pill.requestClose()
     // }
+
+    ThePillCalendar {
+        id: calendar
+        s: pill.s
+        open: pill.calendarOpen
+        morphCloseness: pill.morphCloseness
+    }
 
     ThePillPower {
         id: power

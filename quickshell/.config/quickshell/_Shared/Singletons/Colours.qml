@@ -4,19 +4,19 @@ import QtQuick
 import Quickshell
 
 Singleton {
-    readonly property color surfaceDefault: "#1f1d2e"
-    readonly property color surfaceLight: "#252337"
-    readonly property color foregroundDefault: "#e0def4"
-    readonly property color foregroundMuted: "#6e6a86"
-    readonly property color accent: "#eb6f92"
-    readonly property color accentMuted: "#763749"
+    readonly property color surfaceDefault: "#3c3836"
+    readonly property color surfaceLight: "#484341"
+    readonly property color foregroundDefault: "#ebdbb2"
+    readonly property color foregroundMuted: "#665c54"
+    readonly property color accent: "#d79921"
+    readonly property color accentMuted: "#6c4c10"
 
-    readonly property color verm: "#bf2a54"
-    readonly property color vermLit: "#e03a69"
-    readonly property color flameCore: "#ffc2d3"
-    readonly property color flameGlow: "#ff638f"
-    readonly property string flameInk: "#f05b85"
-    readonly property string flameEmber: "#7d1130"
-    readonly property string flameBurn: "#8a1335"
-    readonly property string flameTip: "#ff8aab"
+    readonly property color verm: "#bf8c2a"
+    readonly property color vermLit: "#e0a83a"
+    readonly property color flameCore: "#ffeac2"
+    readonly property color flameGlow: "#ffca63"
+    readonly property string flameInk: "#f0bd5b"
+    readonly property string flameEmber: "#7d5811"
+    readonly property string flameBurn: "#8a6113"
+    readonly property string flameTip: "#ffd78a"
 }
