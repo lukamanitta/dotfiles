@@ -21,7 +21,6 @@ mount() {
 
     elif [ "$ACTION" == "down" ]; then
         echo "Unmounting $REMOTE_HOST workspace..."
-        # Forcefully unmount to clear the connection [cite: 92]
         fusermount -uz "$LOCAL_USER_DIR"
         echo "Unmounted safely."
 
@@ -80,27 +79,20 @@ localise_compile_commands() {
     echo "Localised compile_commands.json ready at $CACHE_COMPILE_COMMANDS_JSON"
 }
 
-write_nvim_config() {
+write_clangd_config() {
     LOCAL_PROJECT_DIR=$1
     PROJECT_CLANGD_CACHE_DIR=$2
 
-    NVIM_CONFIG_FILE="${LOCAL_PROJECT_DIR}/.nvim.lua"
-    if [ ! -f "$NVIM_CONFIG_FILE" ]; then
-        echo "Creating Neovim config for clangd..."
-        cat <<EOL > "$NVIM_CONFIG_FILE"
-vim.lsp.config("clangd", {
-    cmd = {
-        "clangd",
-        "--background-index",
-        "--clang-tidy",
-        "--compile-commands-dir=${PROJECT_CLANGD_CACHE_DIR}",
-    },
-})
+    CLANGD_CONFIG_FILE="${LOCAL_PROJECT_DIR}/.clangd"
+    if [ ! -f "$CLANGD_CONFIG_FILE" ]; then
+        echo "Creating .clangd config..."
+        cat <<EOL > "$CLANGD_CONFIG_FILE"
+CompileFlags:
+  CompilationDatabase: ${PROJECT_CLANGD_CACHE_DIR}
 EOL
-        echo "Neovim config created at $NVIM_CONFIG_FILE"
-        cat "$NVIM_CONFIG_FILE"
+        echo ".clangd config created at $CLANGD_CONFIG_FILE"
     else
-        echo "Neovim config already exists at $NVIM_CONFIG_FILE. Skipping creation."
+        echo ".clangd config already exists at $CLANGD_CONFIG_FILE. Skipping creation."
     fi
 }
 
@@ -127,7 +119,7 @@ sync_project() {
 
     mirror_headers "$LOCAL_PROJECT_DIR" "$SERVER_COMPILE_COMMANDS_JSON"
     localise_compile_commands "$LOCAL_PROJECT_DIR" "$PROJECT_CLANGD_CACHE_DIR" "$SERVER_COMPILE_COMMANDS_JSON" "$CACHE_COMPILE_COMMANDS_JSON"
-    write_nvim_config "$LOCAL_PROJECT_DIR" "$PROJECT_CLANGD_CACHE_DIR"
+    write_clangd_config "$LOCAL_PROJECT_DIR" "$PROJECT_CLANGD_CACHE_DIR"
 }
 
 if [ "$1" == "mount" ]; then
