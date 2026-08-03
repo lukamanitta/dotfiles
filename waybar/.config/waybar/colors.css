@@ -1,5 +1,5 @@
 @define-color waybar_accent rgba(160, 160, 160, 0.25);
 @define-color waybar_accent_fg @on_background;
-@define-color on_background #c8d3f5;
-@define-color surface_container #1a1b2a;
-@define-color error #c099ff;
+@define-color on_background #ebdbb2;
+@define-color surface_container #1d1d1d;
+@define-color error #cc241d;
