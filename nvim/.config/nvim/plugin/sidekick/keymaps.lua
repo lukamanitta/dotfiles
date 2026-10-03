@@ -1,0 +1,5 @@
+-- vim.keymap.set(
+--     "n",
+--     "<LEADER>x",
+--     "<CMD><plugin-command><CR>"
+-- )

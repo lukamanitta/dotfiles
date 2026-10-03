@@ -175,6 +175,10 @@
       "rev": "7a12a1677bbe96ca98f0c713448ac1f518ba09b7",
       "src": "https://github.com/nosduco/remote-sshfs.nvim"
     },
+    "sidekick.nvim": {
+      "rev": "208e1c5b8170c01fd1d07df0139322a76479b235",
+      "src": "https://github.com/folke/sidekick.nvim"
+    },
     "telescope-fzf-native.nvim": {
       "rev": "b25b749b9db64d375d782094e2b9dce53ad53a40",
       "src": "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
