@@ -1,7 +1,14 @@
+local theme = require("theme.colourme")
+
 hl.config({
     general = {
         gaps_in = 4,
-        gaps_out = "3,8,8,8",
+        gaps_out = {
+            top = 3,
+            right = 8,
+            bottom = 8,
+            left = 8,
+        },
         border_size = 2,
         -- https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
         -- col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
@@ -12,7 +19,7 @@ hl.config({
         allow_tearing = false,
         layout = "dwindle",
         col = {
-            active_border = activeBorderColor,
+            active_border = theme.activeBorderColor,
         },
     },
     -- https://wiki.hypr.land/Configuring/Variables/#decoration
@@ -38,52 +45,23 @@ hl.config({
         shadow = {
             color = "rgba(15, 15, 15, 0.6)",
             color_inactive = "rgba(15, 15, 15, 0.3)",
-            offset = "2 2",
+            offset = {
+                2,
+                2,
+            },
             range = 11,
             render_power = 2,
         },
     },
     group = {
         col = {
-            border_active = activeBorderColor,
+            border_active = theme.activeBorderColor,
         },
     },
     -- https://wiki.hypr.land/Configuring/Variables/#animations
     animations = {
-        enabled = "yes, please :)",
-        -- Default curves, see https://wiki.hypr.land/Configuring/Animations/#curves
-        --        NAME,           X0,   Y0,   X1,   Y1
-        -- Default animations, see https://wiki.hypr.land/Configuring/Animations/
-        --           NAME,          ONOFF, SPEED, CURVE,        [STYLE]
+        enabled = true,
     },
-    -- Ref https://wiki.hypr.land/Configuring/Workspace-Rules/
-    -- "Smart gaps" / "No gaps when only"
-    -- uncomment all if you wish to use that.
-    -- workspace = w[tv1], gapsout:0, gapsin:0
-    -- workspace = f[1], gapsout:0, gapsin:0
-    -- windowrule {
-    --     name = no-gaps-wtv1
-    --     match:float = false
-    --     match:workspace = w[tv1]
-    --
-    --     border_size = 0
-    --     rounding = 0
-    -- }
-    --
-    -- windowrule {
-    --     name = no-gaps-f1
-    --     match:float = false
-    --     match:workspace = f[1]
-    --
-    --     border_size = 0
-    --     rounding = 0
-    -- }
-    -- See https://wiki.hypr.land/Configuring/Dwindle-Layout/ for more
-    -- dwindle {
-    --     pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-    --     preserve_split = true # You probably want this
-    -- }
-    -- See https://wiki.hypr.land/Configuring/Master-Layout/ for more
     master = {
         new_status = "master",
     },
@@ -92,7 +70,15 @@ hl.config({
         middle_click_paste = false,
         force_default_wallpaper = 0, -- Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo = true, -- If true disables the random hyprland logo / anime girl background. :(
-        initial_workspace_tracking = 0,
+        -- Stamp launched processes with the workspace they were invoked on, so
+        -- apps open where the user was, even if focus moves before the window
+        -- maps (e.g. the launcher's layer surface closing).
+        initial_workspace_tracking = 1,
+        -- Don't let passive mouse movement re-focus the monitor under the
+        -- cursor. Together with cursor:no_warps this lets keyboard workspace
+        -- switches move focus to an empty workspace on another monitor without
+        -- dragging the pointer along. Clicking a window still focuses it.
+        mouse_move_focuses_monitor = false,
     },
     --############
     --## INPUT ###
@@ -114,6 +100,8 @@ hl.config({
     },
     cursor = {
         hide_on_key_press = true,
+        -- Keep the cursor still when switching workspaces; monitor focus is
+        -- handled by misc:mouse_move_focuses_monitor (see below) instead.
         no_warps = true,
     },
 })

@@ -5,20 +5,20 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(programs.terminal))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(programs.browser))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(programs.fileManager))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(programs.file_explorer))
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(
     mainMod .. " + SHIFT + F",
     hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" })
 )
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(programs.menu .. " --show drun"))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(programs.launcher))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(programs.pill_keyboard))
 hl.bind("ALT + Tab", hl.dsp.focus({ workspace = "previous," }))
 
 hl.bind(
     mainMod .. " + S",
     hl.dsp.exec_cmd(
-        'ghostty --title="scratch" -e nvim --cmd "let g:is_hypr_scratch = 1" /tmp/scratch'
+        'ghostty --title="scratch" -e nvim --cmd "let g:is_hypr_scratch = 1" /tmp/scratch.md'
     )
 )
 

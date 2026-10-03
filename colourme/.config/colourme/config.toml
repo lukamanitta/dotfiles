@@ -8,8 +8,8 @@ destination = "~/.config/ghostty/themes/Luka"
 post_hook = "pkill -USR2 ghostty"
 
 [hypr]
-template = "~/.config/colourme/templates/hypr.conf"
-destination = "~/.config/hypr/theme/colourme.conf"
+template = "~/.config/colourme/templates/hypr.lua"
+destination = "~/.config/hypr/theme/colourme.lua"
 post_hook = "hyprctl reload"
 
 [nvim]

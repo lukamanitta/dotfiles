@@ -9,8 +9,18 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("wl-paste --type-image --watch cliphist store")
     hl.exec_cmd("sunshine")
 
+    hl.exec_cmd(
+        'gsetting set org.gnome.desktop.interface color-scheme "prefer-dark"'
+    )
+    hl.exec_cmd(
+        'gsetting set org.gnome.desktop.interface gtk-theme "adw-gtk-dark"'
+    )
+    hl.exec_cmd(
+        "waypaper --restore --state-file ~/.config/waypaper/wallpaper.ini"
+    )
+
     hl.exec_cmd(programs.status_bar)
-    hl.exec_cmd("hyprlock")
+    hl.exec_cmd(programs.lock)
 end)
 
 hl.on("config.reloaded", function()
