@@ -8,7 +8,7 @@ dragon-drop / dragon
 ripgrep
 starship
 stow
-asdf
+mise
     neovim
     python
     rust

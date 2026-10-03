@@ -8,8 +8,6 @@ set -gx CLOUDSDK_PYTHON "python3"
 fish_add_path "$MSI_CODE_ROOT/msi-utils/bin"
 fish_add_path "/home/luka/projects/code/msi/machine-setup/bin"
 fish_add_path "$HOME/bin"
-fish_add_path "$HOME/.asdf/shims"
-fish_add_path "$HOME/.asdf/bin"
 
 # Google Cloud SDK shell integration (AUR google-cloud-cli locations).
 for _gcloud_dir in /opt/google-cloud-sdk /usr/lib/google-cloud-sdk /usr/share/google-cloud-sdk
@@ -20,9 +18,9 @@ for _gcloud_dir in /opt/google-cloud-sdk /usr/lib/google-cloud-sdk /usr/share/go
 end
 
 # Install any versions declared in this directory's .tool-versions.
-function msi-sync-versions --description "asdf install for the current .tool-versions"
+function msi-sync-versions --description "mise install for the current .tool-versions"
     if test -f .tool-versions
-        asdf install
+        mise install
     else
         echo "machine-setup: no .tool-versions in "(pwd) >&2
     end
