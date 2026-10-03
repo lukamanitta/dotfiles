@@ -1,4 +1,24 @@
+# macOS
 .DS_Store
-._.DS_Store
-**/.DS_Store
-**/._.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Ehthumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Logs & envs
+*.log
+.env
+.env.local
+.env.development
