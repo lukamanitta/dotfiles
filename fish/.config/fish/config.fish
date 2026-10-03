@@ -51,6 +51,7 @@ if not type -q starship
 end
 
 source ~/.config/fish/env/set_gemini_api_key.fish
+source ~/.config/fish/env/set_deepseek_api_key.fish
 source ~/.config/fish/env/csse3010_env.fish
 
 if set -q TMUX
@@ -71,3 +72,15 @@ end
 
 # Added by Antigravity CLI installer
 set -gx PATH "/home/luka/.local/bin" $PATH
+
+# Daily driver: Fast, ultra-cheap edits using DeepSeek V3 (~$0.14/1M tokens)
+alias aider-cheap="aider --model deepseek/deepseek-chat"
+
+# Architect mode: DeepSeek R1 reasons through the problem, DeepSeek V3 writes code
+alias aider-arch="aider --architect --model deepseek/deepseek-reasoner --editor-model deepseek/deepseek-chat"
+
+# Gemini mode: Leverage Gemini Pro for massive context / broad codebase analysis
+alias aider-gemini="aider --model gemini/gemini-2.5-pro"
+
+# opencode
+fish_add_path /home/luka/.opencode/bin
