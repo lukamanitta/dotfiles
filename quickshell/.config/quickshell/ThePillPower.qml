@@ -20,6 +20,62 @@ ThePillSurface {
     property int holdingIndex: -1
     property real holdProgress: 0
 
+    /** Keyboard focus over the action tiles (rightmost on entry). */
+    property int navIndex: -1
+    signal navActivate()
+    signal navRelease()
+
+    function handleKey(e, pressed) {
+        if (root.actions.length === 0)
+            return true;
+        const k = e.key;
+        if (k === Qt.Key_Left || k === Qt.Key_H || k === Qt.Key_Up || k === Qt.Key_K) {
+            if (pressed)
+                root.moveNav(-1);
+            return true;
+        }
+        if (k === Qt.Key_Right || k === Qt.Key_L || k === Qt.Key_Down || k === Qt.Key_J) {
+            if (pressed)
+                root.moveNav(1);
+            return true;
+        }
+        if (k === Qt.Key_Return || k === Qt.Key_Enter) {
+            // Qt wayland synthesizes an auto-repeat as a KeyRelease + KeyPress
+            // pair, both flagged isAutoRepeat. Ignore those so a held Enter is
+            // exactly one press and one (immediately reactive) real release.
+            if (e.isAutoRepeat)
+                return true;
+            if (pressed)
+                root.navActivate();
+            else
+                root.navRelease();
+            return true;
+        }
+        return false;
+    }
+
+    function moveNav(d) {
+        const base = root.navIndex < 0 ? (d > 0 ? -1 : root.actions.length) : root.navIndex;
+        root.navIndex = Math.max(0, Math.min(root.actions.length - 1, base + d));
+        root.hovered = root.actions[root.navIndex].key;
+        root.soulKey = root.actions[root.navIndex].key;
+        root.focusNavTile();
+    }
+
+    /**
+     * Anchor the keyboard focus bead under the focused tile. The tiles are laid
+     * out after navIndex is first set (on open), so callers defer this via
+     * Qt.callLater when entering the surface.
+     */
+    function focusNavTile() {
+        const cell = tileRep.itemAt(root.navIndex);
+        if (!cell || !cell.tileRef)
+            return;
+        const c = cell.tileRef.mapToItem(root, cell.tileRef.width / 2, 0);
+        root.hoverX = c.x;
+        root.hoverY = c.y - 9 * root.s;
+    }
+
     readonly property real anchorX: tiles.x + tiles.width / 2
     readonly property real anchorY: tiles.y - 10 * root.s
     property real tileHeatX: 0
@@ -40,7 +96,7 @@ ThePillSurface {
             label: "Lock",
             confirm: false,
             dispatch: "",
-            argv: ["hyprlock"]
+            argv: [Quickshell.env("HOME") + "/.config/hypr/scripts/lock.sh"]
         },
         {
             key: "reboot",
@@ -72,11 +128,19 @@ ThePillSurface {
         root.requestClose();
     }
 
-    onActiveChanged: if (!active) {
-        hovered = "";
-        soulKey = "";
-        holdingIndex = -1;
-        holdProgress = 0;
+    onActiveChanged: {
+        if (active) {
+            navIndex = actions.length - 1;
+            hovered = actions[navIndex].key;
+            soulKey = actions[navIndex].key;
+            Qt.callLater(root.focusNavTile);
+        } else {
+            hovered = "";
+            soulKey = "";
+            holdingIndex = -1;
+            holdProgress = 0;
+            navIndex = -1;
+        }
     }
 
     Item {
@@ -93,7 +157,7 @@ ThePillSurface {
             ThemedText {
                 anchors.verticalCenter: parent.verticalCenter
                 text: "POWER"
-                color: Theme.colour.foregroundMuted
+                color: Theme.colour.foregroundSubtle
                 font.pixelSize: Theme.fontSizeSmall
                 font.weight: Font.DemiBold
                 font.capitalization: Font.AllUppercase
@@ -110,12 +174,14 @@ ThePillSurface {
         spacing: 12 * root.s
 
         Repeater {
+            id: tileRep
             model: root.actions
 
             delegate: Row {
                 id: cell
                 required property int index
                 required property var modelData
+                readonly property Item tileRef: tile
                 spacing: 12 * root.s
 
                 Rectangle {
@@ -123,7 +189,7 @@ ThePillSurface {
                     visible: cell.index === root.splitAfter
                     width: 1
                     height: 26 * root.s
-                    color: Theme.colour.foregroundMuted
+                    color: Theme.colour.border
                 }
 
                 Item {
@@ -153,9 +219,9 @@ ThePillSurface {
                     Rectangle {
                         anchors.fill: parent
                         radius: Motion.rTile * root.s
-                        color: tile.isHover ? Theme.colour.foregroundMuted : "transparent"
+                        color: tile.isHover ? Theme.colour.surfaceOverlay : "transparent"
                         border.width: 1
-                        border.color: tile.isHover ? Theme.colour.foregroundMuted : Theme.colour.foregroundDefault
+                        border.color: tile.isHover ? Theme.colour.foregroundSubtle : Theme.colour.border
                         Behavior on color {
                             ColorAnimation {
                                 duration: Motion.fast
@@ -191,7 +257,7 @@ ThePillSurface {
                     ThemedText {
                         anchors.centerIn: parent
                         text: cell.modelData.glyph
-                        color: tile.holding ? Theme.colour.flameCore : (tile.lit ? tile.accent : Theme.colour.foregroundMuted)
+                        color: tile.holding ? Theme.colour.foregroundDefault : (tile.lit ? tile.accent : Theme.colour.foregroundMuted)
                         font.pixelSize: Theme.fontSizeLarge
                         font.weight: Font.Bold
                     }
@@ -199,6 +265,22 @@ ThePillSurface {
                     HeatHold {
                         id: heat
                         onConfirmed: root.run(cell.modelData)
+                    }
+
+                    Connections {
+                        target: root
+                        function onNavActivate() {
+                            if (cell.index !== root.navIndex)
+                                return;
+                            if (cell.modelData.confirm)
+                                heat.press();
+                            else
+                                root.run(cell.modelData);
+                        }
+                        function onNavRelease() {
+                            if (cell.index === root.navIndex)
+                                heat.release();
+                        }
                     }
 
                     MouseArea {

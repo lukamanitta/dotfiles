@@ -130,16 +130,16 @@ ThePillSurface {
                     width: 22 * root.s
                     height: 22 * root.s
                     radius: Motion.rSmall * root.s
-                    color: navArea.containsMouse ? Theme.colour.foregroundMuted : "transparent"
+                    color: navArea.containsMouse ? Theme.colour.surfaceOverlay : "transparent"
                     border.width: navArea.containsMouse ? 1 : 0
-                    border.color: Theme.colour.foregroundMuted
+                    border.color: Theme.colour.border
 
                     ThemedText {
                         anchors.centerIn: parent
                         width: 16 * root.s
                         height: 16 * root.s
                         text: nav.modelData < 0 ? " " : " "
-                        color: navArea.containsMouse ? Theme.colour.foregroundDefault : Theme.colour.foregroundMuted
+                        color: navArea.containsMouse ? Theme.colour.foregroundDefault : Theme.colour.foregroundSubtle
                     }
 
                     MouseArea {
@@ -161,7 +161,7 @@ ThePillSurface {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 1
-        color: Theme.colour.foregroundMuted
+        color: Theme.colour.border
     }
 
     Row {
@@ -226,8 +226,8 @@ ThePillSurface {
                     width: 22 * root.s
                     height: 22 * root.s
                     radius: Motion.rSmall * root.s
-                    color: cellArea.containsMouse && cell.inMonth && !cell.current
-                        ? Qt.rgba(0.94, 0.88, 0.84, 0.04) : "transparent"
+                    color: Theme.colour.surfaceOverlay
+                    opacity: cellArea.containsMouse && cell.inMonth && !cell.current ? 0.7 : 0
                 }
 
                 // Rectangle {
@@ -245,7 +245,7 @@ ThePillSurface {
                     anchors.centerIn: parent
                     text: cell.inMonth ? cell.dayNum : cell.ghostNum
                     color: cell.inMonth
-                        ? (cell.current ? Theme.colour.flameGlow
+                        ? (cell.current ? Theme.colour.accent
                             : (cell.weekend ? Theme.colour.foregroundMuted : Theme.colour.foregroundDefault))
                         : Theme.colour.foregroundMuted
                     opacity: cell.inMonth && !cell.current && !cell.weekend ? 0.85 : 1.0

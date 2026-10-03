@@ -1,17 +1,19 @@
-// WIP
 pragma ComponentBehavior: Bound
 
 import QtQuick
 import Quickshell
 import Quickshell.Io
-import "Singletons"
+import Quickshell.Hyprland
+import "_Shared/Singletons"
+import "_Shared/Components"
 import "lib/fuzzy.js" as Fuzzy
 
 /**
- * Launcher surface: search field over a ranked application list, drawn as one
- * of the pill's surfaces. Desktop entries are ranked by fuzzy match and prior
- * launch frequency (usage file shared with the standalone launcher), the
- * chosen entry executes directly.
+ * Launcher surface built on the reusable Palette. Three providers, switched by
+ * a leading prefix:
+ *   (none) desktop applications (ranked by fuzzy match + launch usage)
+ *   >      shell commands (open other surfaces, lock/reboot, …)
+ *   :      flags (Do Not Disturb, notification position, …)
  */
 ThePillSurface {
     id: root
@@ -21,31 +23,44 @@ ThePillSurface {
     mRight: 17
     mBottom: 14
 
-    property string query: ""
-    property int selectedIndex: 0
     property var usage: ({})
 
     /**
-     * Window-coordinate position of the last hover event that was allowed to
-     * move the selection. Rows sliding under a stationary cursor during
-     * keyboard scrolling produce hover events at an unchanged window position,
-     * which must not steal the keyboard selection.
+     * Workspace to re-focus shortly after launching an app. The launch goes
+     * through Hyprland with a workspace token so the window is placed on the
+     * right workspace, but a token places it silently; when the launcher's
+     * layer surface closes, Hyprland hands keyboard focus back to the last
+     * window. Re-asserting the workspace after that makes the new window
+     * focused (and focus follows it if it maps a moment later).
      */
-    property point lastPointer: Qt.point(-1, -1)
+    property string pendingFocusWs: ""
 
-    readonly property point caretPoint: {
-        void root.width;
-        void root.height;
-        void search.input.width;
-        return search.input.mapToItem(root, search.input.cursorRectangle.x + search.input.cursorRectangle.width / 2, search.input.cursorRectangle.y + search.input.cursorRectangle.height / 2);
+    Timer {
+        id: focusRestore
+        interval: 220
+        onTriggered: {
+            if (root.pendingFocusWs.length === 0)
+                return;
+            Hyprland.dispatch('hl.dsp.focus({ workspace = "' + root.pendingFocusWs + '" })');
+            root.pendingFocusWs = "";
+        }
     }
-    readonly property real caretX: caretPoint.x
-    readonly property real caretY: caretPoint.y
 
-    ameForm: "caret"
-    amePoint: Qt.point(caretX, caretY)
+    readonly property string mode: {
+        const q = palette.query;
+        if (q.indexOf(">") === 0)
+            return "cmd";
+        if (q.indexOf(":") === 0)
+            return "flags";
+        return "apps";
+    }
+    readonly property string effectiveQuery: {
+        if (mode === "apps")
+            return palette.query;
+        return palette.query.substring(1).replace(/^\s+/, "");
+    }
 
-    readonly property string usageFile: (Quickshell.env("XDG_STATE_HOME") || (Quickshell.env("HOME") + "/.local/state")) + "/ricelin/launcher-usage.json"
+    readonly property string usageFile: (Quickshell.env("XDG_STATE_HOME") || (Quickshell.env("HOME") + "/.local/state")) + "/LiquoRice/launcher-usage.json"
 
     readonly property var allEntries: {
         var src = DesktopEntries.applications.values;
@@ -55,11 +70,105 @@ ThePillSurface {
                 out.push(src[i]);
         return out;
     }
-    readonly property int totalCount: allEntries.length
-    readonly property var results: Fuzzy.rank(allEntries, query, usage)
 
-    function focusField() {
-        search.input.forceActiveFocus();
+    readonly property string surfaceScript: (Quickshell.env("HOME") || "") + "/.config/hypr/scripts/open-pill-surface.sh"
+
+    function runIpc(name) {
+        Quickshell.execDetached([root.surfaceScript, name]);
+    }
+
+    function luaString(s) {
+        return '"' + String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"') + '"';
+    }
+
+    /**
+     * Launch a desktop entry through Hyprland rather than Quickshell's own fork.
+     * Hyprland's executor stamps the child with the workspace it was invoked on
+     * (misc:initial_workspace_tracking), so the app opens on the workspace the
+     * user picked even though the launcher's layer surface closing snaps focus
+     * back to the last focused window's monitor.
+     */
+    function execEntry(entry) {
+        if (!entry || !entry.command || entry.command.length === 0) {
+            if (entry)
+                entry.execute();
+            return;
+        }
+        var quoted = [];
+        for (var i = 0; i < entry.command.length; i++)
+            quoted.push("'" + String(entry.command[i]).replace(/'/g, "'\\''") + "'");
+        Hyprland.dispatch("hl.dsp.exec_cmd(" + root.luaString(quoted.join(" ")) + ")");
+    }
+
+    readonly property var commandItems: [
+        {
+            title: "Open inbox",
+            subtitle: "link",
+            glyph: "inbox",
+            keywords: "notifications inbox messages",
+            run: () => root.runIpc("link")
+        },
+        {
+            title: "Open power menu",
+            subtitle: "power",
+            glyph: "shutdown",
+            keywords: "power lock reboot shutdown session",
+            run: () => root.runIpc("power")
+        },
+        {
+            title: "Open calendar",
+            subtitle: "calendar",
+            glyph: "clock",
+            keywords: "calendar date time",
+            run: () => root.runIpc("calendar")
+        },
+        {
+            title: "Open network",
+            subtitle: "network",
+            glyph: "wifi",
+            keywords: "network wifi ethernet connectivity",
+            run: () => root.runIpc("network")
+        },
+        {
+            title: "Open mixer",
+            subtitle: "mixer",
+            glyph: "mixer",
+            keywords: "mixer audio volume sound brightness microphone",
+            run: () => root.runIpc("mixer")
+        },
+        {
+            title: "Toggle Do Not Disturb",
+            subtitle: "dnd",
+            glyph: "dnd",
+            keywords: "dnd silence notifications",
+            run: () => { Flags.doNotDisturb = !Flags.doNotDisturb; }
+        },
+        {
+            title: "Toggle notification position",
+            subtitle: "pill / corner",
+            glyph: "bell",
+            keywords: "notifications corner pill position",
+            run: () => { Notifs.popupMode = Notifs.popupMode === "pill" ? "corner" : "pill"; }
+        }
+    ]
+
+    function flagItems() {
+        return [
+            {
+                title: "Do Not Disturb",
+                subtitle: Flags.doNotDisturb ? "on" : "off",
+                glyph: "dnd",
+                keywords: "dnd silence notifications",
+                run: () => { Flags.doNotDisturb = !Flags.doNotDisturb; }
+            },
+            {
+                title: "Notification position",
+                subtitle: Flags.notifMode,
+                glyph: "bell",
+                keywords: "notifications corner pill position",
+            run: () => { Flags.notifMode = Flags.notifMode === "pill" ? "corner" : "pill"; }
+            }
+        ];
     }
 
     function mapCategory(raw) {
@@ -71,37 +180,54 @@ ThePillSurface {
         return "";
     }
 
-    function move(delta) {
-        if (results.length === 0)
-            return;
-        selectedIndex = Math.max(0, Math.min(results.length - 1, selectedIndex + delta));
-        list.positionViewAtIndex(selectedIndex, ListView.Contain);
+    function appResults(q) {
+        var ranked = Fuzzy.rank(allEntries, q, root.usage);
+        return ranked.map(function(e) {
+            return { title: e.name, subtitle: root.mapCategory(e.categories), icon: e.icon, entry: e };
+        });
+    }
+
+    function matchItems(items, q) {
+        q = (q || "").toLowerCase();
+        if (q.length === 0)
+            return items;
+        return items.filter(function(it) {
+            return (it.title + " " + (it.keywords || "")).toLowerCase().indexOf(q) !== -1;
+        });
+    }
+
+    readonly property var results: {
+        if (mode === "cmd")
+            return matchItems(commandItems, effectiveQuery);
+        if (mode === "flags")
+            return matchItems(flagItems(), effectiveQuery);
+        return appResults(effectiveQuery);
     }
 
     function activate() {
-        if (results.length === 0 || selectedIndex < 0 || selectedIndex >= results.length)
+        var it = results[palette.selectedIndex];
+        if (!it)
             return;
-        var entry = results[selectedIndex];
-        if (entry) {
-            if (entry.id) {
-                root.usage[entry.id] = (root.usage[entry.id] || 0) + 1;
+        if (it.entry) {
+            root.pendingFocusWs = Hyprland.focusedMonitor && Hyprland.focusedMonitor.activeWorkspace ? Hyprland.focusedMonitor.activeWorkspace.name : "";
+            if (it.entry.id) {
+                root.usage[it.entry.id] = (root.usage[it.entry.id] || 0) + 1;
                 usageStore.setText(JSON.stringify(root.usage));
             }
-            entry.execute();
+            root.execEntry(it.entry);
+            focusRestore.restart();
+        } else if (it.run) {
+            it.run();
         }
         root.requestClose();
     }
 
     onActiveChanged: {
         if (active) {
-            query = "";
-            search.text = "";
-            selectedIndex = 0;
-            Qt.callLater(root.focusField);
+            palette.reset();
+            Qt.callLater(palette.focusField);
         }
     }
-    onResultsChanged: if (selectedIndex >= results.length)
-        selectedIndex = 0
 
     FileView {
         id: usageStore
@@ -120,169 +246,23 @@ ThePillSurface {
         }
     }
 
-    SearchField {
-        id: search
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
+    Palette {
+        id: palette
+        anchors.fill: parent
         s: root.s
-        kanji: "探"
-        placeholder: "Search apps"
-        counterText: root.results.length + " / " + root.totalCount
-        onTextChanged: {
-            root.query = text;
-            root.selectedIndex = 0;
+        results: root.results
+        placeholder: {
+            if (root.mode === "cmd")
+                return "Run a command";
+            if (root.mode === "flags")
+                return "Toggle a flag";
+            return "Search apps  (> commands  : flags)";
         }
-        onMoved: d => root.move(d)
+        emptyText: root.mode === "apps" ? "No apps found" : "No matches"
         onAccepted: root.activate()
         onDismissed: root.requestClose()
     }
 
-    Rectangle {
-        id: divider
-        anchors.top: search.bottom
-        anchors.topMargin: 8 * root.s
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: 1
-        color: Theme.hair
-    }
-
-    Text {
-        anchors.centerIn: list
-        visible: root.results.length === 0
-        text: root.query.length ? "No matches" : "No apps found"
-        color: Theme.faint
-        font.family: Theme.font
-        font.pixelSize: 10.5 * root.s
-    }
-
-    ListView {
-        id: list
-        anchors.top: divider.bottom
-        anchors.topMargin: 6 * root.s
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        spacing: 2 * root.s
-        clip: true
-        boundsBehavior: Flickable.StopAtBounds
-        model: root.results.length
-
-        delegate: Item {
-            id: appRow
-            required property int index
-            width: list.width
-            height: 34 * root.s
-
-            readonly property var entry: root.results[index]
-            readonly property bool selected: index === root.selectedIndex
-
-            readonly property string secondary: {
-                if (!entry)
-                    return "";
-                if (entry.genericName && entry.genericName.length > 0)
-                    return entry.genericName;
-                if (entry.categories && entry.categories.length > 0)
-                    return root.mapCategory(entry.categories);
-                return "";
-            }
-
-            Rectangle {
-                anchors.fill: parent
-                radius: 9 * root.s
-                visible: appRow.selected || rowArea.containsMouse
-                color: appRow.selected ? Theme.frameBg : Qt.rgba(0.94, 0.88, 0.84, 0.03)
-                border.width: appRow.selected ? 1 : 0
-                border.color: Theme.frameBorder
-            }
-
-            MouseArea {
-                id: rowArea
-                anchors.fill: parent
-                hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
-                onPositionChanged: m => {
-                    var g = rowArea.mapToItem(null, m.x, m.y);
-                    if (g.x !== root.lastPointer.x || g.y !== root.lastPointer.y) {
-                        root.lastPointer = Qt.point(g.x, g.y);
-                        root.selectedIndex = appRow.index;
-                    }
-                }
-                onClicked: {
-                    root.selectedIndex = appRow.index;
-                    root.activate();
-                }
-            }
-
-            Item {
-                anchors.fill: parent
-                anchors.leftMargin: 11 * root.s
-                anchors.rightMargin: 11 * root.s
-
-                Rectangle {
-                    id: iconBg
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: 20 * root.s
-                    height: 20 * root.s
-                    radius: 5 * root.s
-                    color: Qt.rgba(1, 1, 1, 0.05)
-                    visible: !(icon.status === Image.Ready && icon.source != "")
-                }
-                Image {
-                    id: icon
-                    anchors.fill: iconBg
-                    sourceSize.width: Math.round(40 * root.s)
-                    sourceSize.height: Math.round(40 * root.s)
-                    fillMode: Image.PreserveAspectFit
-                    asynchronous: true
-                    smooth: true
-                    visible: status === Image.Ready && source != ""
-                    source: appRow.entry && appRow.entry.icon ? Quickshell.iconPath(appRow.entry.icon, true) : ""
-                }
-
-                Text {
-                    id: nameText
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: icon.right
-                    anchors.leftMargin: 10 * root.s
-                    text: appRow.entry ? appRow.entry.name : ""
-                    color: Theme.cream
-                    font.family: Theme.font
-                    font.pixelSize: 13 * root.s
-                    font.weight: appRow.selected ? Font.DemiBold : Font.Normal
-                    elide: Text.ElideRight
-                    width: Math.min(implicitWidth, parent.width - icon.width - 10 * root.s - sec.width - ret.width - 12 * root.s)
-                }
-                TextMetrics {
-                    id: retMetrics
-                    font.family: Theme.font
-                    font.pixelSize: 12 * root.s
-                    text: "↵"
-                }
-                Text {
-                    id: ret
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.right: parent.right
-                    text: retMetrics.text
-                    color: Theme.vermLit
-                    font.family: Theme.font
-                    font.pixelSize: 12 * root.s
-                    visible: appRow.selected
-                    width: visible ? retMetrics.advanceWidth + 6 * root.s : 0
-                    horizontalAlignment: Text.AlignRight
-                }
-                Text {
-                    id: sec
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.right: ret.left
-                    text: appRow.secondary
-                    color: appRow.selected ? Theme.dim : Theme.faint
-                    font.family: Theme.font
-                    font.pixelSize: 10.5 * root.s
-                    horizontalAlignment: Text.AlignRight
-                }
-            }
-        }
-    }
+    ameForm: "caret"
+    amePoint: Qt.point(palette.caretPoint.x, palette.caretPoint.y)
 }

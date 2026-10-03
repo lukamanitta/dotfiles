@@ -13,11 +13,13 @@ ShellRoot {
 
     property string openMon: ""
     property string openSurface: ""
+    /** Monitor whose pill is in keyboard-navigation mode (SUPER+P), or "". */
+    property string keyboardMon: ""
 
     function refresh() {
         Hyprland.refreshMonitors();
         Hyprland.refreshWorkspaces();
-        Hyprland.refreshTopLevels();
+        Hyprland.refreshToplevels();
     }
 
     Component.onCompleted: {
@@ -48,6 +50,8 @@ ShellRoot {
     }
 
     function toggleSurface(mon, surface) {
+        if (!mon || mon.length === 0)
+            mon = Hyprland.focusedMonitor ? Hyprland.focusedMonitor.name : "";
         if (root.openMon === mon && root.openSurface === surface) {
             root.close();
             return;
@@ -61,12 +65,36 @@ ShellRoot {
         root.openSurface = "";
     }
 
+    /**
+     * Toggle keyboard navigation on the focused (or given) monitor's pill,
+     * mirroring how surfaces are toggled. Escape clears it from the pill.
+     */
+    function toggleKeyboard(mon) {
+        if (!mon || mon.length === 0)
+            mon = Hyprland.focusedMonitor ? Hyprland.focusedMonitor.name : "";
+        root.keyboardMon = (root.keyboardMon === mon) ? "" : mon;
+    }
+
+    Binding {
+        target: Notifs
+        property: "dnd"
+        value: Flags.doNotDisturb
+    }
+
     IpcHandler {
         target: "pill"
         function calendar(mon: string): void { root.toggleSurface(mon, "calendar"); }
         function launcher(mon: string): void { root.toggleSurface(mon, "launcher"); }
+        function link(mon: string): void { root.toggleSurface(mon, "link"); }
+        function network(mon: string): void { root.toggleSurface(mon, "network"); }
         function power(mon: string): void { root.toggleSurface(mon, "power"); }
+        function mixer(mon: string): void { root.toggleSurface(mon, "mixer"); }
+        function keyboard(mon: string): void { root.toggleKeyboard(mon); }
         function hide(): void { root.close(); }
+        function dnd(): void { Flags.doNotDisturb = !Flags.doNotDisturb; }
+        function notifMode(mode: string): void {
+            Flags.notifMode = (mode === "corner") ? "corner" : "pill";
+        }
     }
 
     Variants {
@@ -103,6 +131,7 @@ ShellRoot {
             readonly property real mVert: 6 * s
             readonly property string surface: root.openMon === modelData.name ? root.openSurface : ""
             readonly property bool surfaceOpen: surface.length > 0
+            readonly property bool keyboardNav: root.keyboardMon === modelData.name
             readonly property bool modal: surfaceOpen || pill.held
 
             Text {
@@ -130,6 +159,7 @@ ShellRoot {
 
             onMonFullscreenChanged: if (monFullscreen) {
                 if (root.openMon === modelData.name) root.close();
+                if (root.keyboardMon === modelData.name) root.keyboardMon = "";
                 pill.pinned = false;
             }
 
@@ -137,11 +167,7 @@ ShellRoot {
             color: "transparent"
             exclusionMode: ExclusionMode.Ignore
             WlrLayershell.layer: WlrLayer.Overlay
-
-            // Doesn't work -
-            // https://github.com/AvengeMedia/DankMaterialShell/issues/2561
-            // https://github.com/hyprwm/Hyprland/discussions/13116
-            // WlrLayershell.keyboardFocus: surfaceOpen ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
+            WlrLayershell.keyboardFocus: (surfaceOpen || keyboardNav) ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
 
             WlrLayershell.namespace: "pill"
 
@@ -179,14 +205,34 @@ ShellRoot {
             FocusScope {
                 id: focusScope
                 anchors.fill: parent
-                focus: overlay.surfaceOpen
+                focus: overlay.surfaceOpen || overlay.keyboardNav
 
                 HoverHandler {
+                    id: overlayHover
+                    onPointChanged: {
+                        // Keep the pill's copy of the pointer position current
+                        // so it can resolve stale hover state on surface close.
+                        pill.pointerX = point.position.x
+                        pill.pointerY = point.position.y
+                    }
                     onHoveredChanged: {
                         pill.hovered = hovered
                     }
                 }
-                Keys.onEscapePressed: root.close()
+                Keys.onPressed: (e) => {
+                    if (pill.handleKey(e, true))
+                        e.accepted = true;
+                }
+                Keys.onReleased: (e) => {
+                    if (pill.handleKey(e, false))
+                        e.accepted = true;
+                }
+                Keys.onEscapePressed: {
+                    if (overlay.surfaceOpen)
+                        root.close();
+                    else if (pill.keyboardNav)
+                        root.keyboardMon = "";
+                }
 
                 ThePill {
                     id: pill
@@ -197,8 +243,9 @@ ShellRoot {
                     screenName: overlay.modelData.name
                     barWindow: overlay
                     surface: overlay.surface
+                    keyboardNav: overlay.keyboardNav
 
-                    opacity: overlay.monFullscreen ? 0 : 1
+                    opacity: overlay.monFullscreen ? 0 : pill.swipeFade
                     Behavior on opacity {
                         NumberAnimation {
                             duration: Motion.morph
@@ -206,16 +253,22 @@ ShellRoot {
                             easing.bezierCurve: Motion.morphCurve
                         }
                     }
-                    transform: Translate {
-                        y: overlay.monFullscreen ? -(pill.height + overlay.mVert) : 0
-                        Behavior on y {
-                            NumberAnimation {
-                                duration: Motion.morph
-                                easing.type: Motion.easeMorph
-                                easing.bezierCurve: Motion.morphCurve
+                    transform: [
+                        Translate {
+                            x: pill.swipeX
+                            y: pill.swipeY
+                        },
+                        Translate {
+                            y: overlay.monFullscreen ? -(pill.height + overlay.mVert) : 0
+                            Behavior on y {
+                                NumberAnimation {
+                                    duration: Motion.morph
+                                    easing.type: Motion.easeMorph
+                                    easing.bezierCurve: Motion.morphCurve
+                                }
                             }
                         }
-                    }
+                    ]
 
                     onRequestSurface: (name) => root.toggleSurface(overlay.modelData.name, name)
                     onRequestClose: root.close()
@@ -223,6 +276,13 @@ ShellRoot {
             }
 
             onSurfaceOpenChanged: if (surfaceOpen) focusScope.forceActiveFocus()
+            onKeyboardNavChanged: if (keyboardNav) focusScope.forceActiveFocus()
         }
+    }
+
+    Variants {
+        model: Quickshell.screens
+
+        NotifCorner {}
     }
 }

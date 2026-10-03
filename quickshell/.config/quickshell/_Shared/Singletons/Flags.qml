@@ -10,23 +10,26 @@ Singleton {
     id: root
 
     property alias doNotDisturb: json.doNotDisturb
+    /** Notification popup presentation: "pill" (morph toast) or "corner". */
+    property alias notifMode: json.notifMode
 
     FileView {
         id: file
         path: Quickshell.env("HOME") + "/.local/state/LiquoRice/flags.json"
-        blockLoading: true
         watchChanges: true
         printErrors: false
 
         onFileChanged: reload()
         onAdapterUpdated: writeAdapter()
+        onLoadFailed: function(error) {
+            if (error === FileViewError.FileNotFound)
+                writeAdapter();
+        }
 
         JsonAdapter {
             id: json
             property bool doNotDisturb: false
+            property string notifMode: "pill"
         }
     }
-
-    Component.onCompleted: if (!file.loaded)
-        file.writeAdapter()
 }

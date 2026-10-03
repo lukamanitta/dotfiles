@@ -6,8 +6,13 @@ import Quickshell
 Singleton {
     readonly property color surfaceDefault: "#{{hex: base01 || hex: background}}"
     readonly property color surfaceLight: "#{{hex: multiply_brightness(base01, 1.2) || hex: multiply_brightness(background, 1.2)}}"
+    readonly property color surfaceOverlay: "#{{hex: base02 || hex: multiply_brightness(base01, 1.3) || hex: multiply_brightness(background, 1.3)}}"
     readonly property color foregroundDefault: "#{{hex: base05 || hex: foreground}}"
+    readonly property color foregroundSubtle: "#{{hex: base04 || hex: multiply_brightness(foreground, 0.7)}}"
     readonly property color foregroundMuted: "#{{hex: base03 || hex: bright.black}}"
+    readonly property color border: "#{{hex: base03 || hex: base02 || hex: multiply_brightness(base01, 1.5)}}"
+    readonly property color shadow: "#{{hex: base11 || hex: base00 || hex: background}}"
+    readonly property color critical: "#{{hex: base08 || hex: regular.red}}"
     readonly property color accent: "#{{hex: accent}}"
     readonly property color accentMuted: "#{{hex: multiply_brightness(accent, 0.5)}}"
 

@@ -39,8 +39,19 @@ Item {
     property real heat: 0
     property point wake: Qt.point(0, 0)
     property real wickDir: -1
+    /**
+     * Hide the bead without entering the "off" state, so its position is kept
+     * and a later retarget flies *from* where it was concealed rather than
+     * re-appearing at the wake point. Used by Ame-fill hand-offs.
+     */
+    property bool concealed: false
+    /** Increments each time a flight/morph settles onto a target. */
+    property int arrivalTick: 0
 
-    opacity: form === "off" ? 0 : 1
+    onPhaseChanged: if (phase === "idle")
+        arrivalTick++
+
+    opacity: (form === "off" || concealed) ? 0 : 1
     Behavior on opacity {
         NumberAnimation {
             duration: Motion.fast
@@ -53,6 +64,8 @@ Item {
     readonly property real flightThreshold: 30 * s
     readonly property real pAntic: 0.146
     readonly property real pFly: 0.658
+    /** Move progress at which a hand-off fill may begin, a little before landing. */
+    readonly property real pFill: 0.5
 
     property real bx: 0
     property real by: 0
@@ -80,6 +93,26 @@ Item {
     readonly property bool gliding: glideT < 1
     readonly property bool blinking: activeForm === "caret"
     readonly property bool busy: timelineLive || gliding
+    /** True once a flight/glide has finished and the bead sits on its target. */
+    readonly property bool atTarget: !timelineLive && !gliding && prog >= 1 && !hidden
+    /**
+     * True from the moment the bead physically reaches its target (end of the
+     * flight, before the settle/splash). Fill-style consumers want this rather
+     * than `atTarget`, which only flips after the settle completes.
+     */
+    readonly property bool arrived: !hidden && prog >= pFly
+    /**
+     * Current move's normalized progress toward the target, whether the bead is
+     * flying (`prog`) or gliding (`glideT`); 1 at rest.
+     */
+    readonly property real approach: gliding ? glideT : prog
+    /**
+     * True while the bead is moving and close to its target — the point at which
+     * a hand-off fill should begin, a little before `arrived`. Unlike `arrived`
+     * this is false at rest, so a fresh hover does not fill until the bead sets
+     * off, and it stays true through the settle.
+     */
+    readonly property bool arriving: !hidden && busy && approach >= pFill
 
     function clamp01(u) {
         return Math.max(0, Math.min(1, u));
@@ -140,6 +173,7 @@ Item {
         activeForm = targetForm;
         stopGlide();
         settleAnim.stop();
+        prog = 0;
         flightAnim.restart();
         if (remnant > 0)
             remnantAnim.restart();
@@ -389,11 +423,11 @@ Item {
             ctx.restore();
             ctx.beginPath();
             ctx.ellipse(-R * 0.34 - R * 0.30, -R * 0.42 - R * 0.18, R * 0.60, R * 0.36);
-            ctx.fillStyle = "rgba(255,246,240,0.6)";
+            ctx.fillStyle = Qt.rgba(Theme.colour.flameCore.r, Theme.colour.flameCore.g, Theme.colour.flameCore.b, 0.6);
             ctx.fill();
             ctx.beginPath();
             ctx.arc(0, 0, Math.max(0.5, R - 0.8 * root.s), Math.PI * 0.25, Math.PI * 0.75);
-            ctx.strokeStyle = "rgba(255,217,194,0.45)";
+            ctx.strokeStyle = Qt.rgba(Theme.colour.flameCore.r, Theme.colour.flameCore.g, Theme.colour.flameCore.b, 0.45);
             ctx.lineWidth = 1.2 * root.s;
             ctx.stroke();
             ctx.restore();
@@ -503,8 +537,8 @@ Item {
                 const wl = 7 * S * fadeIn;
                 const wy0 = by + root.wickDir * (r + 1.5 * S);
                 const wg = ctx.createLinearGradient(0, wy0, 0, wy0 + root.wickDir * wl);
-                wg.addColorStop(0, Qt.rgba(1, 0.851, 0.761, 0.55 * fadeIn));
-                wg.addColorStop(1, Qt.rgba(0.878, 0.337, 0.231, 0));
+                wg.addColorStop(0, Qt.rgba(Theme.colour.flameCore.r, Theme.colour.flameCore.g, Theme.colour.flameCore.b, 0.55 * fadeIn));
+                wg.addColorStop(1, Qt.rgba(Theme.colour.verm.r, Theme.colour.verm.g, Theme.colour.verm.b, 0));
                 ctx.beginPath();
                 ctx.moveTo(bx, wy0);
                 ctx.lineTo(bx, wy0 + root.wickDir * wl);
@@ -535,7 +569,7 @@ Item {
                 ctx.restore();
                 ctx.beginPath();
                 ctx.ellipse(bx - rx * 0.55, by - ry * 0.75, rx * 0.55, ry * 0.4);
-                ctx.fillStyle = Qt.rgba(1, 0.965, 0.941, 0.55 * fadeIn);
+                ctx.fillStyle = Qt.rgba(Theme.colour.flameCore.r, Theme.colour.flameCore.g, Theme.colour.flameCore.b, 0.55 * fadeIn);
                 ctx.fill();
                 return;
             }
@@ -544,9 +578,9 @@ Item {
                 const sh = 18 * S * (settling ? (0.6 + 0.4 * e) : 1);
                 const sw = 4.2 * S;
                 const sg3 = ctx.createLinearGradient(0, by - sh / 2, 0, by + sh / 2);
-                sg3.addColorStop(0, Qt.rgba(0.878, 0.337, 0.231, 0.92));
+                sg3.addColorStop(0, Qt.rgba(Theme.colour.verm.r, Theme.colour.verm.g, Theme.colour.verm.b, 0.92));
                 sg3.addColorStop(0.5, Theme.colour.flameInk);
-                sg3.addColorStop(1, Qt.rgba(0.878, 0.337, 0.231, 0.92));
+                sg3.addColorStop(1, Qt.rgba(Theme.colour.verm.r, Theme.colour.verm.g, Theme.colour.verm.b, 0.92));
                 ctx.beginPath();
                 ctx.roundedRect(bx - sw / 2, by - sh / 2, sw, sh, sw / 2, sw / 2);
                 ctx.fillStyle = sg3;
@@ -554,7 +588,7 @@ Item {
                 ctx.fill();
                 ctx.beginPath();
                 ctx.ellipse(bx - sw * 0.26, by - sh * 0.3, sw * 0.28, sh * 0.18);
-                ctx.fillStyle = Qt.rgba(1, 0.965, 0.941, 0.6);
+                ctx.fillStyle = Qt.rgba(Theme.colour.flameCore.r, Theme.colour.flameCore.g, Theme.colour.flameCore.b, 0.6);
                 ctx.fill();
                 ctx.globalAlpha = 1;
                 if (fadeIn < 0.7)
@@ -572,7 +606,7 @@ Item {
                 ctx.stroke();
                 ctx.beginPath();
                 ctx.arc(bx, by, Math.max(2 * S, R), -1.2, 0.4);
-                ctx.strokeStyle = Qt.rgba(1, 0.851, 0.761, 0.7 * fadeIn);
+                ctx.strokeStyle = Qt.rgba(Theme.colour.flameCore.r, Theme.colour.flameCore.g, Theme.colour.flameCore.b, 0.7 * fadeIn);
                 ctx.lineWidth = 1.4 * S;
                 ctx.stroke();
                 if (fadeIn < 0.6)

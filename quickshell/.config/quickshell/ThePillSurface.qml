@@ -17,6 +17,16 @@ Item {
 
     property string ameForm: "off"
     property point amePoint: Qt.point(width / 2, height / 2)
+    /** Set by the pill: true once its Ame bead has arrived at `amePoint`. */
+    property bool ameArrived: false
+    /** Set by the pill: true while its Ame bead is closing on `amePoint`. */
+    property bool ameArriving: false
+    /** Set by the pill: true while its Ame bead sits at rest on `amePoint`. */
+    property bool ameAtTarget: false
+    /** Hide the pill's Ame without resetting its position (Ame-fill hand-off). */
+    property bool ameConcealed: false
+    /** Bumped by the pill each time its Ame settles onto a target. */
+    property int ameTick: 0
 
     readonly property bool active: open
 
