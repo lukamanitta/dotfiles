@@ -4,3 +4,6 @@ lazygit/.config/lazygit/state.yml
 fish/.config/fish/env/*
 ncspot/.config/ncspot/userstate.cbor
 quickshell/.config/quickshell/.qmlls.ini
+opencode/.config/opencode/node_modules/
+opencode/.config/opencode/package.json
+opencode/.config/opencode/package-lock.json
