@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+target=${1:-$PWD}
+mount=$(findmnt -no TARGET --target "$target")
+
+if [ -z "$mount" ]; then
+    echo "no mount found for $target" >&2
+    exit 1
+fi
+
+case "$mount" in
+    /run/media/"$USER"/*) exec udiskie-umount "$mount" ;;
+    *)
+        echo "not a removable mount: $mount" >&2
+        exit 1
+        ;;
+esac

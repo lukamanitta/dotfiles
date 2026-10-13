@@ -2,3 +2,13 @@
 on   = [ "<C-d>" ]
 run  = "shell -- ripdrag %s -x 2>/dev/null &"
 desc = "Drag files"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "m" ]
+run  = "cd /run/media/luka"
+desc = "Go to mounted drives"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "u" ]
+run  = "shell -- unmount %s"
+desc = "Unmount hovered drive"
