@@ -23,6 +23,7 @@ Singleton {
     property var heldIds: ({})
     property var closedHeld: ({})
     property bool historyLoaded: false
+    property int desktopTick: 0
     property string historyFile: (Quickshell.env("XDG_RUNTIME_DIR") || "/tmp") + "/quickshell-notif-history.json"
 
     readonly property var tracked: server.trackedNotifications.values
@@ -40,14 +41,15 @@ Singleton {
         var order = [];
         for (var i = 0; i < tracked.length; i++) {
             var n = tracked[i];
-            var app = (n.appName && n.appName.length) ? n.appName : "System";
+            var app = appLabel(n);
             if (map[app] === undefined) { map[app] = []; order.push(app); }
             map[app].push({ live: true, n: n, t: arrivalMs[n.id] || 0 });
         }
         for (var j = 0; j < history.length; j++) {
             var h = history[j];
-            if (map[h.app] === undefined) { map[h.app] = []; order.push(h.app); }
-            map[h.app].push({ live: false, n: h, t: h.ts || 0 });
+            var happ = historyLabel(h);
+            if (map[happ] === undefined) { map[happ] = []; order.push(happ); }
+            map[happ].push({ live: false, n: h, t: h.ts || 0 });
         }
         function coalesce(list, it) {
             var last = list.length > 0 ? list[list.length - 1] : null;
@@ -100,8 +102,37 @@ Singleton {
         return "";
     }
 
+    /**
+     * Display name for the app behind a notification. Flatpak/portal senders
+     * (Spotify, for instance) leave app_name empty by design and only set the
+     * desktop-entry hint, so resolve that to the entry's Name instead of
+     * collapsing every sandboxed app into "System".
+     */
+    function appLabel(n) {
+        void root.desktopTick;
+        if (!n) return "System";
+        if (n.appName && n.appName.length) return n.appName;
+        var id = (n.desktopEntry || "").replace(/\.desktop$/, "");
+        if (id.length) {
+            var entry = DesktopEntries.byId(id);
+            if (entry && entry.name && entry.name.length) return entry.name;
+            return id;
+        }
+        return "System";
+    }
+
     function appKey(n) {
-        return (n && n.appName && n.appName.length) ? n.appName : "System";
+        return appLabel(n);
+    }
+
+    /**
+     * History rows persist only the resolved label, so rows captured before the
+     * desktop-entry fallback existed still say "System". Re-resolve those from
+     * their stored desktopEntry instead.
+     */
+    function historyLabel(h) {
+        if (h.app && h.app !== "System") return h.app;
+        return appLabel(h);
     }
 
     function muteApp(app, ms) {
@@ -202,7 +233,7 @@ Singleton {
 
     function dismissApp(app) {
         var doomed = tracked.filter(function(n) {
-            return ((n.appName && n.appName.length) ? n.appName : "System") === app;
+            return appLabel(n) === app;
         });
         var d = Object.assign({}, userDismissed);
         for (var i = 0; i < doomed.length; i++) {
@@ -212,7 +243,7 @@ Singleton {
         }
         root.userDismissed = d;
         for (var j = 0; j < doomed.length; j++) doomed[j].dismiss();
-        root.history = root.history.filter(function(h) { return h.app !== app; });
+        root.history = root.history.filter(function(h) { return historyLabel(h) !== app; });
     }
 
     function markAllSeen() {
@@ -256,7 +287,7 @@ Singleton {
     function pushHistory(n) {
         if (!n) return;
         root.history = [{
-            app: (n.appName && n.appName.length) ? n.appName : "System",
+            app: appLabel(n),
             summary: n.summary,
             body: n.body,
             appIcon: n.appIcon,
@@ -376,6 +407,11 @@ Singleton {
 
     onHistoryChanged: if (root.historyLoaded)
         historyStore.setText(JSON.stringify(root.history))
+
+    Connections {
+        target: DesktopEntries
+        function onApplicationsChanged() { root.desktopTick++; }
+    }
 
     Timer {
         interval: 30000

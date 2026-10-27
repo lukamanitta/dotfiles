@@ -26,7 +26,7 @@ Item {
     readonly property Item actionHover: (muteBtn && muteBtn.hovered) ? muteBtn : ((openBtn && openBtn.hovered) ? openBtn : null)
     /** Latched once the Ame is closing on the hovered action; drives the fill. */
     property bool actionFilled: false
-    readonly property string app: (notif.appName && notif.appName.length) ? notif.appName : "System"
+    readonly property string app: Notifs.appLabel(notif)
     readonly property bool muted: Notifs.isMuted(root.app)
 
     signal activate()
@@ -109,7 +109,7 @@ Item {
 
         Text {
             width: parent.width
-            text: (root.notif.appName && root.notif.appName.length) ? root.notif.appName : "System"
+            text: root.app
             color: Theme.colour.foregroundMuted
             font.family: Theme.font
             font.pixelSize: 10 * root.s

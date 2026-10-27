@@ -265,7 +265,7 @@ ThePillSurface {
         readonly property var n: entry.n
         readonly property bool expanded: root.expandedRows[nrow.n.id] === true
         readonly property var acts: (nrow.n.actions || []).filter(function(a) { return a.text.length > 0; })
-        readonly property string app: (nrow.n.appName && nrow.n.appName.length) ? nrow.n.appName : "System"
+        readonly property string app: Notifs.appLabel(nrow.n)
         readonly property bool muted: Notifs.isMuted(nrow.app)
         readonly property string navKey: "e" + nrow.n.id
         readonly property bool keyFocused: root.navRows.length > 0 && root.navIndex >= 0 && root.navIndex < root.navRows.length && root.navRows[root.navIndex].key === nrow.navKey

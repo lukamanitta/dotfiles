@@ -59,32 +59,44 @@ ThePillSurface {
         root.navIndex = Math.max(0, Math.min(root.actions.length - 1, base + d));
         root.hovered = root.actions[root.navIndex].key;
         root.soulKey = root.actions[root.navIndex].key;
-        root.focusNavTile();
     }
 
-    /**
-     * Anchor the keyboard focus bead under the focused tile. The tiles are laid
-     * out after navIndex is first set (on open), so callers defer this via
-     * Qt.callLater when entering the surface.
-     */
-    function focusNavTile() {
-        const cell = tileRep.itemAt(root.navIndex);
-        if (!cell || !cell.tileRef)
-            return;
-        const c = cell.tileRef.mapToItem(root, cell.tileRef.width / 2, 0);
-        root.hoverX = c.x;
-        root.hoverY = c.y - 9 * root.s;
+    /** The tile currently owning the bead, chosen by its action key. */
+    function tileForKey(key) {
+        for (var i = 0; i < root.actions.length; i++) {
+            if (root.actions[i].key === key) {
+                const cell = tileRep.itemAt(i);
+                return cell ? cell.tileRef : null;
+            }
+        }
+        return null;
     }
+
+    readonly property Item soulTile: tileForKey(soulKey)
 
     readonly property real anchorX: tiles.x + tiles.width / 2
     readonly property real anchorY: tiles.y - 10 * root.s
+
+    /**
+     * Bead anchor on the focused tile. The `void root.width/height` reads make
+     * this binding re-run while the pill's open morph animates its size: the
+     * tiles are centred, so they slide as the surface widens, and mapToItem
+     * alone does not track that. Without them the bead targets the tile's
+     * mid-morph position and lands beside the button.
+     */
+    readonly property point soulPoint: {
+        void root.width;
+        void root.height;
+        if (!soulTile)
+            return Qt.point(anchorX, anchorY);
+        return soulTile.mapToItem(root, soulTile.width / 2, 0);
+    }
+
     property real tileHeatX: 0
     property real tileHeatY: 0
     property string soulKey: ""
-    property real hoverX: 0
-    property real hoverY: 0
-    readonly property real heatX: holdingIndex >= 0 ? tileHeatX : (soulKey.length ? hoverX : anchorX)
-    readonly property real heatY: holdingIndex >= 0 ? tileHeatY : (soulKey.length ? hoverY : anchorY)
+    readonly property real heatX: holdingIndex >= 0 ? tileHeatX : (soulKey.length ? soulPoint.x : anchorX)
+    readonly property real heatY: holdingIndex >= 0 ? tileHeatY : (soulKey.length ? soulPoint.y - 9 * root.s : anchorY)
 
     ameForm: holdingIndex >= 0 ? "dock" : (soulKey.length ? "soul" : "off")
     amePoint: Qt.point(heatX, heatY)
@@ -133,7 +145,6 @@ ThePillSurface {
             navIndex = actions.length - 1;
             hovered = actions[navIndex].key;
             soulKey = actions[navIndex].key;
-            Qt.callLater(root.focusNavTile);
         } else {
             hovered = "";
             soulKey = "";
@@ -290,9 +301,6 @@ ThePillSurface {
                         onEntered: {
                             root.hovered = cell.modelData.key;
                             root.soulKey = cell.modelData.key;
-                            const c = tile.mapToItem(root, tile.width / 2, 0);
-                            root.hoverX = c.x;
-                            root.hoverY = c.y - 9 * root.s;
                         }
                         onExited: {
                             if (root.hovered === cell.modelData.key) {
