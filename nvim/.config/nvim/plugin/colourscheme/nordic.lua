@@ -8,5 +8,4 @@ if vim.g.colourscheme == "Nordic" then
     })
 
     vim.cmd.colorscheme("nordic")
-    require("ui.colourscheme_common")()
 end

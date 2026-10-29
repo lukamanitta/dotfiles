@@ -74,6 +74,4 @@ if vim.g.colourscheme == "Kanagawa" then
     require("h").set_hl("DiagnosticSignInfo", { link = "DiagnosticInfo" })
     require("h").set_hl("DiagnosticSignWarn", { link = "DiagnosticWarn" })
     require("h").set_hl("DiagnosticSignError", { link = "DiagnosticError" })
-
-    require("ui.colourscheme_common")()
 end

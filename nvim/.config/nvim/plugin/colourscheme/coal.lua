@@ -32,5 +32,4 @@ if vim.g.colourscheme == "Coal" then
     vim.api.nvim_set_hl(0, "WarningMsg", { fg = status_colours.hint })
     vim.api.nvim_set_hl(0, "ErrorMsg", { fg = status_colours.error })
 
-    require("ui.colourscheme_common")()
 end

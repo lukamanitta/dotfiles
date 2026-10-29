@@ -25,6 +25,4 @@ if vim.g.colourscheme == "Mini Base16" then
         require("h").mod_hl(hl, { bg = "NONE" })
         require("h").mod_hl(mini_hl, { bg = "NONE" })
     end
-
-    require("ui.colourscheme_common")()
 end

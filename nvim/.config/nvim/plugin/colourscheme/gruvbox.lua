@@ -17,6 +17,4 @@ if vim.g.colourscheme == "Gruvbox" then
             { fg = require("h").get_hl(hl, "fg#"), bg = "NONE" }
         )
     end
-
-    require("ui.colourscheme_common")()
 end

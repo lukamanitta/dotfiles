@@ -6,5 +6,4 @@ if vim.g.colourscheme == "Everforest Medium" then
     require("everforest").setup({})
 
     vim.cmd.colorscheme("everforest")
-    require("ui.colourscheme_common")()
 end

@@ -1,1 +1,0 @@
--- vim.api.nvim_set_hl(0, "<PluginHlGroup>", { fg = "#<color>", bg = "#<color>" })
