@@ -3,4 +3,4 @@ vim.pack.add({
 })
 
 vim.o.timeout = true
-vim.o.timeoutlen = 3000
+vim.o.timeoutlen = 500
