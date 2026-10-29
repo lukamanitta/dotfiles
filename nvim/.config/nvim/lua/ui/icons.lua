@@ -186,6 +186,7 @@ I.git = ({
         Added = "",
         Modified = "󱗜",
         Renamed = "󱥪",
+        Staged = I.general.CheckCircle,
         Removed = "",
     },
     outline = {
@@ -197,6 +198,7 @@ I.git = ({
         Added = "",
         Modified = "",
         Renamed = "󱥫",
+        Staged = I.general.CheckCircleOutline,
         Removed = "",
     },
     text = {
@@ -208,6 +210,7 @@ I.git = ({
         Added = "A",
         Modified = "M",
         Renamed = "R",
+        Staged = "S",
         Removed = "D",
     },
 })[vim.g.icon_style]
