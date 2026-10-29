@@ -78,21 +78,19 @@ vim.api.nvim_create_autocmd({ "TextChangedI", "TextChangedP" }, {
 
 vim.keymap.set("n", "<LEADER>ff", function()
     state_tracked_picker("find_files", { cwd = require("h").git_root_or_cwd() })
-end)
+end, { desc = "Find files" })
 
 vim.keymap.set("n", "<LEADER>fg", function()
     state_tracked_picker("live_grep")
-end)
+end, { desc = "Live grep" })
 
 vim.keymap.set("v", "<LEADER>fg", function()
     local selection = require("h").get_visual_selection()
     state_tracked_picker("live_grep", { query = selection })
-end)
+end, { desc = "Live grep selection" })
 
 vim.keymap.set("n", "<LEADER>fc", function()
     state_tracked_picker("find_files", { query = "git:modified " })
-end)
+end, { desc = "Find modified files" })
 
-vim.keymap.set("n", "<LEADER>fr", function()
-    resume_picker()
-end)
+vim.keymap.set("n", "<LEADER>fr", resume_picker, { desc = "Resume picker" })

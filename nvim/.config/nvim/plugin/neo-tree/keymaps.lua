@@ -1,10 +1,13 @@
 vim.keymap.set(
     "n",
     "<LEADER>e",
-    "<CMD>Neotree focus filesystem float toggle reveal<CR>"
+    ":Neotree focus filesystem float toggle reveal<CR>",
+    { desc = "Toggle Neo-tree filesystem" }
 )
+
 vim.keymap.set(
     "n",
     "<LEADER>b",
-    "<CMD>Neotree focus buffers float toggle reveal<CR>"
+    ":Neotree focus buffers float toggle reveal<CR>",
+    { desc = "Toggle Neo-tree buffers" }
 )
