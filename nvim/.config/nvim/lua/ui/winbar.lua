@@ -1,11 +1,14 @@
+local icons = require("ui.icons")
+
+vim.api.nvim_set_hl(0, "Winbar", { link = "StatusLine" })
+
 local U = {}
 
 function U.render()
-    vim.api.nvim_set_hl(0, "Winbar", { link = "StatusLine" })
-    local prefix = require("ui.icons").filesystem.Folder
+    local prefix = icons.filesystem.Folder
     local filepath = vim.fn.expand("%:f")
     local separator = " %#StatusLine#"
-        .. require("ui.icons").general.ArrowRight
+        .. icons.general.ArrowRight
         .. " %#Winbar#"
 
     if vim.api.nvim_win_get_width(0) < 50 then

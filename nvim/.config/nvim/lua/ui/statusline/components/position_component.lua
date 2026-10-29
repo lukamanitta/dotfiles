@@ -1,12 +1,3 @@
 return function()
-    local line = vim.fn.line(".")
-    local line_count = vim.api.nvim_buf_line_count(0)
-    local col = vim.fn.virtcol(".")
-
-    return table.concat({
-        -- "%#Italic#l: ",
-        " %2(%3l%):%-2c",
-        -- string.format("%%#StatuslineTitle#%d", line),
-        -- string.format("%%#Italic#/%d c: %d", line_count, col),
-    })
+    return " %2(%3l%):%-2c"
 end

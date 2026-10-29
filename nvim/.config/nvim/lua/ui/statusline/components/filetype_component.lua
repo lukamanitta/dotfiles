@@ -1,16 +1,9 @@
+local U = require("h")
+local hl = require("ui.statusline.hl")
+
 return function()
-    local icon, icon_hl = require("h").get_buf_icon()
+    local icon, icon_hl = U.get_buf_icon()
 
-    return string.format(
-        "%%#%s#%s %%#Statusline#%s",
-        icon_hl,
-        icon,
-        require("h").get_buf_filetype()
-    )
-
-    -- return table.concat({
-    --     require("h").get_buf_icon(),
-    --     " ",
-    --     require("h").get_buf_filetype(),
-    -- })
+    return hl.hl(icon_hl, icon .. " ")
+        .. hl.hl("StatusLine", U.get_buf_filetype())
 end

@@ -1,20 +1,23 @@
+local mode = require("ui.statusline.components.mode_component")
+local git_head = require("ui.statusline.components.git_head_component")
+local diagnostics =
+    require("ui.statusline.components.lsp_diagnostics_component")
+local lsp_server = require("ui.statusline.components.lsp_server_name")
+local filetype = require("ui.statusline.components.filetype_component")
+local file_progress =
+    require("ui.statusline.components.file_progress_component")
+
 local U = {}
 
 function U.render()
     return table.concat({
-        require("ui.statusline.components.mode_component")(),
-        require("ui.statusline.components.git_head_component")(),
-        require("ui.statusline.components.lsp_diagnostics_component")(),
+        mode(),
+        git_head(),
+        diagnostics(),
         "%#StatusLine#%=",
-        require("ui.statusline.components.lsp_server_name")(),
-        require("ui.statusline.components.filetype_component")(),
-        table.concat({
-            table.concat({
-                require("ui.statusline.components.file_progress_component")(),
-                " ",
-            }),
-            -- require("ui.statusline.components.position_component")(),
-        }),
+        lsp_server(),
+        filetype(),
+        file_progress() .. " ",
     }, "   ")
 end
 
