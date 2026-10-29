@@ -6,47 +6,48 @@ pcall(vim.keymap.del, "n", "grn")
 pcall(vim.keymap.del, { "n", "v" }, "gra")
 pcall(vim.keymap.del, "n", "grx")
 
+-- Treesitter highlighting is preferred over LSP semantic highlighting.
+vim.lsp.semantic_tokens.enable(false)
+
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("lsp_attach_config", { clear = true }),
     callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
         local bufnr = args.buf
-        local opts = { buf = bufnr, noremap = true, silent = true }
-
-        -- Navigation
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-        vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
-        vim.keymap.set("n", "[e", function()
-            vim.diagnostic.jump({ count = -1 })
-        end, opts)
-        vim.keymap.set("n", "]e", function()
-            vim.diagnostic.jump({ count = 1 })
-        end, opts)
-
-        -- Information
-        vim.keymap.set({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help, opts)
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        vim.keymap.set("n", "<LEADER>K", vim.diagnostic.open_float, opts)
-
-        -- Modification
-        vim.keymap.set("n", "<LEADER>rn", vim.lsp.buf.rename, opts)
-        vim.keymap.set(
-            { "n", "v" },
-            "<LEADER>ca",
-            vim.lsp.buf.code_action,
-            opts
-        )
-        vim.keymap.set({ "n", "v" }, "<LEADER>cl", vim.lsp.codelens.run, opts)
-
-        if client.server_capabilities.inlayHintProvider then
-            vim.lsp.inlay_hint.enable(true)
+        local function map(mode, lhs, rhs, desc)
+            vim.keymap.set(
+                mode,
+                lhs,
+                rhs,
+                { buf = bufnr, silent = true, desc = desc }
+            )
         end
 
-        if client.server_capabilities.semanticTokensProvider then
-            client.server_capabilities.semanticTokensProvider = nil
+        -- Navigation
+        map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+        map("n", "gd", vim.lsp.buf.definition, "Go to definition")
+        map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
+        map("n", "gt", vim.lsp.buf.type_definition, "Go to type definition")
+        map("n", "[e", function()
+            vim.diagnostic.jump({ count = -1 })
+        end, "Previous diagnostic")
+        map("n", "]e", function()
+            vim.diagnostic.jump({ count = 1 })
+        end, "Next diagnostic")
+
+        -- Information
+        map({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help, "Signature help")
+        map("n", "gr", vim.lsp.buf.references, "References")
+        map("n", "K", vim.lsp.buf.hover, "Hover")
+        map("n", "<LEADER>K", vim.diagnostic.open_float, "Show diagnostics")
+
+        -- Modification
+        map("n", "<LEADER>rn", vim.lsp.buf.rename, "Rename symbol")
+        map({ "n", "v" }, "<LEADER>ca", vim.lsp.buf.code_action, "Code action")
+        map({ "n", "v" }, "<LEADER>cl", vim.lsp.codelens.run, "Run codelens")
+
+        if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
         end
     end,
 })
