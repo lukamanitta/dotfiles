@@ -41,49 +41,105 @@ vim.cmd(
 )
 
 if vim.g.is_hypr_scratch == 1 then
-    vim.g.last_line_count = nil
-    vim.api.nvim_create_autocmd({ "BufEnter", "TextChanged", "TextChangedI" }, {
-        callback = function()
-            local line_count = vim.api.nvim_buf_line_count(0)
-            if vim.g.last_line_count ~= line_count then
-                vim.g.last_line_count = line_count
-                local LINE_HEIGHT = 25
-                local CELL_WIDTH = 9
-                local WINDOW_PADDING = LINE_HEIGHT * 3
+    local LINE_HEIGHT = 25
+    local WINDOW_PADDING = LINE_HEIGHT * 3
+    local MIN_HEIGHT = (6 * LINE_HEIGHT) + WINDOW_PADDING
+    local MAX_HEIGHT = (30 * LINE_HEIGHT) + WINDOW_PADDING
+    local MAX_VISUAL_LINES =
+        math.floor((MAX_HEIGHT - WINDOW_PADDING) / LINE_HEIGHT)
+    local WINDOW_SELECTOR = "title:^scratch$"
 
-                local new_height = (line_count * LINE_HEIGHT) + WINDOW_PADDING
+    local last_visual_lines
+    local pending_height
+    local resize_in_flight = false
+    local resize_failed = false
 
-                local MIN_HEIGHT, MAX_HEIGHT =
-                    (6 * LINE_HEIGHT) + WINDOW_PADDING,
-                    (30 * LINE_HEIGHT) + WINDOW_PADDING
+    local function resize_window(height)
+        if resize_in_flight then
+            pending_height = height
+            return
+        end
 
-                -- Clamp
-                new_height =
-                    math.max(MIN_HEIGHT, math.min(MAX_HEIGHT, new_height))
+        resize_in_flight = true
 
-                local WINDOW_NAME = "scratch"
+        local code = string.format(
+            'local w = hl.get_window("%s"); if not w then return end; hl.dispatch(hl.dsp.window.resize({ x = w.size.x, y = %d, relative = false, window = "%s" })); hl.dispatch(hl.dsp.window.center({ window = "%s" }))',
+            WINDOW_SELECTOR,
+            height,
+            WINDOW_SELECTOR,
+            WINDOW_SELECTOR
+        )
 
-                local scratch_width_str = vim.fn.system(
-                    string.format(
-                        "hyprctl -j clients | jq -r '.[] | select(.title == \"%s\") | .size[0]'",
-                        WINDOW_NAME
-                    )
-                )
-                local scratch_width = tonumber(scratch_width_str)
+        local ok, spawn_err = pcall(
+            vim.system,
+            { "hyprctl", "eval", code },
+            { text = true },
+            function(result)
+                vim.schedule(function()
+                    resize_in_flight = false
 
-                -- Round to nearest multiple of CELL_WIDTH
-                scratch_width = math.ceil(scratch_width / CELL_WIDTH)
-                    * CELL_WIDTH
+                    if result.code ~= 0 and not resize_failed then
+                        resize_failed = true
+                        vim.notify(
+                            "Scratch resize failed: " .. (result.stderr or ""),
+                            vim.log.levels.WARN,
+                            { title = "Scratch" }
+                        )
+                    end
 
-                vim.fn.system(
-                    string.format(
-                        "hyprctl --batch 'dispatch resizewindowpixel exact %d %d,title:^%s$ ; dispatch centerwindow'",
-                        scratch_width,
-                        new_height,
-                        WINDOW_NAME
-                    )
+                    if pending_height then
+                        local next_height = pending_height
+                        pending_height = nil
+                        resize_window(next_height)
+                    end
+                end)
+            end
+        )
+
+        if not ok then
+            resize_in_flight = false
+            if not resize_failed then
+                resize_failed = true
+                vim.notify(
+                    "Scratch resize failed: " .. tostring(spawn_err),
+                    vim.log.levels.WARN,
+                    { title = "Scratch" }
                 )
             end
-        end,
-    })
+        end
+    end
+
+    local function update_size()
+        local ok, text_height = pcall(
+            vim.api.nvim_win_text_height,
+            0,
+            { start_row = 0, max_height = MAX_VISUAL_LINES }
+        )
+        if not ok then
+            return
+        end
+
+        local visual_lines = text_height.all
+        if visual_lines == last_visual_lines then
+            return
+        end
+
+        last_visual_lines = visual_lines
+
+        local new_height = (visual_lines * LINE_HEIGHT) + WINDOW_PADDING
+        new_height = math.max(MIN_HEIGHT, math.min(MAX_HEIGHT, new_height))
+
+        resize_window(new_height)
+    end
+
+    vim.api.nvim_create_autocmd(
+        { "BufEnter", "TextChanged", "TextChangedI", "VimResized" },
+        {
+            group = vim.api.nvim_create_augroup(
+                "hypr_scratch_resize",
+                { clear = true }
+            ),
+            callback = update_size,
+        }
+    )
 end
