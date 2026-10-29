@@ -8,5 +8,9 @@ require("ui.theme").register(function()
         { bg = background, fg = background }
     )
     vim.api.nvim_set_hl(0, "NeoTreeFloatTitle", { bg = background })
-    vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { bg = background, fg = background })
+    vim.api.nvim_set_hl(
+        0,
+        "NeoTreeTitleBar",
+        { bg = background, fg = background }
+    )
 end)

@@ -53,11 +53,7 @@ local function mode_highlight(mode)
         return "MiniStatuslineModeVisual"
     elseif mode:find("PENDING") then
         return "MiniStatuslineModeReplace"
-    elseif
-        mode:find("COMMAND")
-        or mode:find("TERMINAL")
-        or mode:find("EX")
-    then
+    elseif mode:find("COMMAND") or mode:find("TERMINAL") or mode:find("EX") then
         return "MiniStatuslineModeCommand"
     end
 

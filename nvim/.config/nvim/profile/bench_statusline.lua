@@ -1,6 +1,12 @@
 local iterations = 10000
 
-vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.fn["repeat"]({ "local x = 1" }, 100))
+vim.api.nvim_buf_set_lines(
+    0,
+    0,
+    -1,
+    false,
+    vim.fn["repeat"]({ "local x = 1" }, 100)
+)
 vim.api.nvim_win_set_cursor(0, { 50, 0 })
 
 local render = require("ui.statusline").render

@@ -20,7 +20,10 @@ local function fallback_name(path)
 end
 
 local function refresh()
-    if vim.bo.filetype == "TelescopePrompt" or vim.bo.filetype == "neo-tree" then
+    if
+        vim.bo.filetype == "TelescopePrompt"
+        or vim.bo.filetype == "neo-tree"
+    then
         return
     end
 

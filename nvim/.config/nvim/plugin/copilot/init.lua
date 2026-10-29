@@ -1,5 +1,5 @@
 vim.pack.add({
-    { src = "https://github.com/github/copilot.vim" }
+    { src = "https://github.com/github/copilot.vim" },
 })
 
 require("h").overwrite_keys(vim.g, {

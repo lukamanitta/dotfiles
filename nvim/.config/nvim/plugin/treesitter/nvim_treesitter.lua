@@ -93,10 +93,7 @@ local function run_update()
             if err or not ok then
                 state.last_prompt = os.time()
                 write_state(state)
-                notify(
-                    "Treesitter parser update failed",
-                    vim.log.levels.ERROR
-                )
+                notify("Treesitter parser update failed", vim.log.levels.ERROR)
                 return
             end
 
