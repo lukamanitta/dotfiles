@@ -1,3 +1,4 @@
+-- Emergency fallback config. init.lua does not load this file.
 -- Map <leader> to space
 vim.keymap.set("n", "<Space>", "<Nop>")
 -- Mapleader

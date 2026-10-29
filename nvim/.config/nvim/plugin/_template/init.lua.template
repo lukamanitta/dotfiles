@@ -1,3 +1,4 @@
+-- Template: copy into a plugin directory and remove the .template suffix.
 -- vim.api.nvim_create_autocmd("PackChanged", {
 --     callback = function(ev)
 --         if ev.data.spec.name == "<plugin-name>" then

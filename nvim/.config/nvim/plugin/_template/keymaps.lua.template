@@ -1,0 +1,7 @@
+-- Template: copy into a plugin directory and remove the .template suffix.
+-- vim.keymap.set(
+--     "n",
+--     "<LEADER>x",
+--     ":<plugin-command><CR>",
+--     { desc = "<description>" }
+-- )
