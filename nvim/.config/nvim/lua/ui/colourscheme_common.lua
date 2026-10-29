@@ -16,7 +16,19 @@ return function()
     })
 
     U.set_hl("SignColumn", { link = "Normal" })
-    U.set_hl("ColorColumn", { link = "Normal" })
+
+    local normal_bg = U.get_hl("Normal", "bg#")
+    local colorcolumn_bg = U.get_hl("CursorLine", "bg#")
+    if colorcolumn_bg == "" or colorcolumn_bg == normal_bg then
+        colorcolumn_bg = U.get_hl("Visual", "bg#")
+    end
+
+    if colorcolumn_bg ~= "" then
+        U.set_hl("ColorColumn", { bg = colorcolumn_bg })
+    else
+        U.set_hl("ColorColumn", { link = "Visual" })
+    end
+
     U.set_hl("LineNr", {
         bg = U.get_hl("Normal", "bg#"),
         fg = U.get_hl("LineNr", "fg#"),

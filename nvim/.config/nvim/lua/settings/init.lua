@@ -1,4 +1,5 @@
 require("settings.options")
+require("settings.colorcolumn")
 require("settings.keybinds")
 require("settings.autocmds")
 require("settings.filetype")

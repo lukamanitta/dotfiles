@@ -29,37 +29,25 @@ conform.formatters_by_ft.ruby = { "rubocop" }
 -- Installation: pip3 install "gdtoolkit==4.*"
 conform.formatters_by_ft.gdscript = { "gdformat" }
 
--- Installation: npm install -g eslint_d
+-- Installation: npm install -g eslint_d @fsouza/prettierd
 for _, ft in ipairs({
     "javascript",
     "typescript",
     "javascriptreact",
     "typescriptreact",
 }) do
-    conform.formatters_by_ft[ft] = { "eslint_d" }
+    conform.formatters_by_ft[ft] = { "eslint_d", "prettierd" }
 end
 
--- Installation: npm install -g @fsouza/prettierd
 for _, ft in ipairs({
     "html",
     "css",
     "scss",
     "json",
     "svelte",
-    "typescript",
-    "javascript",
 }) do
     conform.formatters_by_ft[ft] = { "prettierd" }
 end
-
--- for _, ft in ipairs({
---     "javascript",
---     "typescript",
---     "javascriptreact",
---     "typescriptreact",
--- }) do
---     conform.formatters_by_ft[ft] = { "prettierd" }
--- end
 
 -- Terraform
 conform.formatters_by_ft.terraform = { "terraform_fmt" }

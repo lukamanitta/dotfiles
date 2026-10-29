@@ -29,13 +29,11 @@ require("h").overwrite_keys(vim.o, {
     spelloptions = "camel,noplainbuffer",
     splitkeep = "screen",
     completeopt = "fuzzy,menu,menuone,noinsert,popup",
-    exrc = true,
+    exrc = true, -- Project-local configs, only after :trust
 })
 
 -- Recognise _ as a word separator
 vim.opt.iskeyword:remove("_")
-
-vim.fn.matchadd("ColorColumn", "\\%80v", 100) -- DANGER ZONE FUCK NOT 80 CHARAC
 
 -- Window separators to accomodate global statusline (laststatus=3)
 vim.opt.fillchars:append({
