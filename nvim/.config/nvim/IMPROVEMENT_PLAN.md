@@ -5,8 +5,8 @@ Last updated: 2026-10-29
 Scope: `~/.config/nvim`
 
 This document tracks the review of the Neovim config. It separates completed
-work, remaining proposals, and the measurements used to judge whether the work
-actually helped. W2–W4 are implemented; W5–W7 are the remaining backlog.
+work, the remaining W8 sweep, and the measurements used to judge whether the
+work actually helped. W2–W7 are implemented.
 
 ## Decisions
 
@@ -255,59 +255,133 @@ Status: implemented.
 
 ### W5 — Dead code and broken files
 
-- Delete `after/ftplugin/markdown/unilatex.vim` (~1661 lines, entirely
-  commented).
-- Delete `after/ftplugin/gdscript.lua` (comments only).
-- Delete or rewrite `after/indent/pseudo.vim`; it uses `python#GetIndent` and
-  guards on a different function name, and there is no pseudo ftdetect.
-- Remove empty stubs: `plugin/colourscheme/{cole,monochrome,zenbones}.lua`,
-  empty `plugin/*/theme.lua` files, and commented-only keymap files.
-- Move `plugin/_template/` out of `plugin/`; `plugin/**/*.lua` is recursive, so
-  the template is loaded at startup despite the underscore.
-- Remove stale commented blocks: `settings/autocmds.lua:1-15`,
-  `telescope/keymaps.lua`, `kanagawa.lua:54-62`, `minimal-init.lua` (or keep
-  `minimal-init.lua` explicitly as a fallback and document it).
-- Remove empty `after/lsp/*.lua` configs that only `return {}`, keeping the
-  ones with real settings.
+Status: implemented.
+
+- Deleted unused legacy syntax/indent files for JFlex, Dafny, and pseudo:
+  - `after/syntax/{jflex,dafny,pseudo}.vim`
+  - `after/indent/pseudo.vim`
+  - `after/ftplugin/dafny.vim`
+- Deleted `after/syntax/markdown.vim` (Markdown conceal/strikethrough) because
+  the legacy syntax path was inactive; a treesitter-based solution can replace
+  it later if needed. `after/ftplugin/markdown/markdown.vim` remains.
+- Deleted unused `after/ftplugin/gdscript.lua` and
+  `after/ftplugin/markdown/unilatex.vim`.
+- Deleted empty `after/lsp/*.lua` stubs that only returned `{}`.
+- Deleted empty colourscheme stubs (`cole`, `monochrome`, `zenbones`) and
+  comment-only `plugin/oil/{keymaps,theme}.lua`.
+- Removed stale commented blocks from `settings/autocmds.lua`,
+  `plugin/colourscheme/kanagawa.lua`, `plugin/telescope/keymaps.lua`, and
+  `init.lua`.
+- Kept `minimal-init.lua` and documented it as an emergency fallback.
+- Renamed `plugin/_template/*.lua` to `*.lua.template` so the recursive
+  `plugin/**/*.lua` loader does not source them. They remain in the same
+  directory for copy-paste.
 
 ### W6 — Helper module cleanup
 
-File: `lua/h.lua`
+Status: implemented.
 
-- `table_has_value`: remove the always-false `if t == {}` check; use
-  `vim.tbl_contains`.
-- `table_merge`: unused; remove and use `vim.tbl_deep_extend` if needed.
-- `set_hl`: remove the unused `nvim_get_hl(..., create = true)` call.
-- `get_buf_icon_colour`: unused and duplicates `get_buf_icon`; merge or remove.
-- `h.lua` currently calls `vim.pack.add` for devicons; move that side effect into
-  a plugin init file. Utility modules should not install plugins.
-- Consider splitting into `lib/table.lua`, `lib/highlight.lua`, and
-  `lib/buffer.lua`; rename `h` to something descriptive if the require churn is
-  acceptable.
+- Removed unused `table_has_value`, `table_merge`, and `get_buf_icon_colour`
+  from `lua/h.lua`.
+- Removed the pointless `nvim_get_hl(..., create = true)` call from `set_hl`.
+- Kept `h.lua` as one module; future splitting/renaming is optional.
+- Moved `nvim-web-devicons` installation into
+  `plugin/devicons/init.lua`, removing the plugin side effect from `h.lua`.
 
 ### W7 — Correctness and consistency fixes
 
-- `plugin/conform/init.lua:33-53`: the prettierd loop overwrites `eslint_d` for
-  JavaScript/TypeScript. Define the desired formatter lists explicitly.
-- `lua/settings/options.lua:38` + `colourscheme_common.lua:17`: the 80-column
-  `matchadd` is window-local, and `ColorColumn` is linked to `Normal`, so the
-  marker is invisible. Prefer `vim.opt.colorcolumn = "80"` with a visible
-  `ColorColumn` highlight.
-- `after/ftplugin/fish.lua:1`: uses global `vim.opt.iskeyword`; use
-  `vim.opt_local` or remove it because `options.lua:36` already removes `_`.
-- `after/syntax/markdown.vim`: `matchadd` is window-local and leaks across
-  buffers; `conceallevel` is set globally. Use `setlocal` and buffer/syntax
-  regions. Also verify whether these `after/syntax` files run at all while
-  `syntax = "off"` and treesitter is active.
-- `lua/settings/options.lua:32`: revisit `exrc = true` from a security
-  perspective.
-- `init.lua:4`: `set packpath=` replaces the default packpath; prefer
-  `vim.opt.packpath:append(...)`.
-- `lsp/init.lua:44-50`: make inlay hints buffer-local and avoid mutating
-  `client.server_capabilities.semanticTokensProvider` after attach.
-- Standardise keymap style and add `desc` metadata where missing.
-- Run `stylua` (currently not installed in this environment) to normalise the
-  files that differ from `.stylua.toml`.
+Status: implemented.
+
+- Conform: JS/TS/JSX/TSX now use `{ "eslint_d", "prettierd" }`; HTML/CSS/SCSS/
+  JSON/Svelte use `{ "prettierd" }`.
+- 80-column marker: replaced the global `matchadd` with
+  `lua/settings/colorcolumn.lua`, which adds a window-local match to normal
+  windows. `ColorColumn` now uses the `CursorLine` background, falling back to
+  `Visual` when that is unset or equal to `Normal`.
+- Fish `iskeyword` ftplugin removed; it was global and redundant.
+- Removed the Markdown `matchadd`/global `conceallevel` file along with the
+  inactive legacy syntax path.
+- Kept `exrc = true`; Neovim only loads trusted project configs, and the option
+  is now commented accordingly.
+- Removed the custom `packpath` override from `init.lua`; the default packpath
+  already includes the `vim.pack` directory.
+- LSP: semantic tokens are disabled cleanly via
+  `vim.lsp.semantic_tokens.enable(false)`; inlay hints are buffer-local.
+- Keymaps: normalised to `<LEADER>` and `:cmd<CR>`, added `desc` metadata across
+  settings, LSP, DAP, FFF, Hop, Neo-tree, Outline, Telescope, and Copilot
+  mappings.
+- Installed `stylua 2.6.0` via mise and ran `stylua .` across the config.
+
+### W8 — Post-W7 sweep (planned)
+
+Status: not started. These are findings from a second review after W7.
+
+High priority:
+
+- Fix `lua/h.lua` `mod_hl`: it currently reads linked groups and then adds
+  attributes, but `link` wins, so the change is discarded for linked groups.
+  Fetch with `{ link = false }` or resolve the link before modifying.
+- Resolve Telescope theme override ordering. `plugin/telescope/theme.lua` applies
+  generic Telescope colours after scheme-specific overrides, so Kanagawa and
+  Tokyo Night Telescope colours are overwritten. Either remove the generic theme
+  or give scheme-specific themes higher priority.
+- FFF live grep root: `base_path` is pinned to the startup cwd, while
+  `find_files` passes the current git root and `live_grep` does not. Pass
+  `cwd = require("h").git_root_or_cwd()` to live grep as well; consider
+  `wait_for_index_ms = 0` to avoid blocking during reindex.
+- Remove FFF resume-cursor dead code. `last_row` is never assigned and the
+  `BufEnter` autocmd fires for picker buffers, not the selected file.
+- Filter `PackChanged` hooks by `ev.data.kind` (`install`/`update`) in Blink,
+  FFF, Hexokinase, and Telescope. Building on `delete` is wrong.
+
+Cleanup and structure:
+
+- Delete unused `lua/lib/telescope_finders.lua` and
+  `lua/ui/statusline/components/position_component.lua`.
+- Use `ui.icons.types` for `plugin/outline/init.lua`, or remove `I.types` if it
+  will not be used. This also removes Outline's dependency on the private Blink
+  appearance module.
+- Simplify `mode_component`: the `mini.statusline` branch is dead and the
+  fallback is `RedrawDebugNormal`. Define proper mode groups or use a stable
+  existing group.
+- Trim `plugin/dap/dap_ui.lua` and `plugin/dap/dap_virtual_text.lua` to
+  intentional overrides instead of restating plugin defaults and upstream
+  comments.
+- Extract the ~100-line Hypr scratch block from `lua/settings/autocmds.lua` into
+  its own module.
+- Generate the repeated FFF git highlight groups with a small mapping table.
+- Deduplicate colourscheme helpers:
+  - diagnostic-sign background loops in gruvbox/mini-base16/kanagawa
+  - git-sign background loops in mini-base16/kanagawa
+  - Rose Pine and Tokyo Night variant branching
+- Table-drive the repeated link definitions in `lua/ui/colourscheme_common.lua`.
+- Convert the raw `TermClose` command string in `lua/settings/autocmds.lua` to an
+  autocmd callback using `nvim_buf_delete`.
+- Add `clear = true` to the `jump_to_last_pos`, `yank_highlight`, `ui/winbar`,
+  and `plugin/outline/autocmds` augroups.
+- `lua/ui/winbar.lua`: use `relative == ""` instead of `not zindex`, handle
+  unnamed buffers, and consider adding `WinEnter`.
+- Review `plugin/colourscheme/coal.lua`: `WarningMsg` uses the hint colour and
+  `OkMsg` is a nonstandard unused group.
+- Review the custom if-statement surrounding in `plugin/mini-surround/init.lua`;
+  it is hardcoded to one tree-sitter node and may be unused.
+- Optionally split `lua/h.lua` into table/highlight/buffer helpers.
+- Conditionally add `/usr/share/hypr/stubs` in `after/lsp/lua_ls.lua` only when
+  the directory exists.
+- Remove stale commented LSP setup in `lua/lsp/init.lua`.
+
+Performance/UX:
+
+- FFF reindexing can block up to 10 seconds when `cwd` changes; decide whether
+  to use `wait_for_index_ms = 0`.
+- Consider `update_in_insert = false` in `lua/lsp/theme.lua` if diagnostics feel
+  noisy while typing.
+- Outline's private Blink require adds startup coupling; using `ui.icons.types`
+  should simplify it.
+
+Suggested first batch: `mod_hl` fix, Telescope theme ordering, FFF root/resume
+cleanup, delete unused files, use `ui.icons.types`, and PackChanged kind
+filtering.
 
 ## Reproducing the benchmarks
 
