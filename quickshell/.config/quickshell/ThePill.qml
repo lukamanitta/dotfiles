@@ -25,6 +25,7 @@ Item {
     readonly property bool calendarOpen: surface === "calendar"
     readonly property bool launcherOpen: surface === "launcher"
     readonly property bool linkOpen: surface === "link"
+    readonly property bool clipboardOpen: surface === "clipboard"
     readonly property bool networkOpen: surface === "network"
     readonly property bool powerOpen: surface === "power"
     readonly property bool mixerOpen: surface === "mixer"
@@ -177,6 +178,8 @@ Item {
     readonly property real launcherH: 332 * s
     readonly property real linkW: link.desiredW
     readonly property real linkH: link.implicitHeight + 26 * s
+    readonly property real clipboardW: 360 * s
+    readonly property real clipboardH: clipboard.implicitHeight + 29 * s
     readonly property real networkW: 330 * s
     readonly property real networkH: network.implicitHeight + 26 * s
     readonly property real toastW: 342 * s
@@ -195,6 +198,8 @@ Item {
             return "launcher";
         if (linkOpen)
             return "link";
+        if (clipboardOpen)
+            return "clipboard";
         if (networkOpen)
             return "network";
         if (powerOpen)
@@ -260,6 +265,7 @@ Item {
             calendar: () => Qt.size(calendarW, calendarH),
             launcher: () => Qt.size(launcherW, launcherH),
             link: () => Qt.size(linkW, linkH),
+            clipboard: () => Qt.size(clipboardW, clipboardH),
             network: () => Qt.size(networkW, networkH),
             power: () => Qt.size(powerW, powerH),
             mixer: () => Qt.size(mixerW, mixerH),
@@ -424,6 +430,8 @@ Item {
             return launcher;
         if (linkOpen)
             return link;
+        if (clipboardOpen)
+            return clipboard;
         if (networkOpen)
             return network;
         if (powerOpen)
@@ -826,6 +834,15 @@ Item {
         ameArriving: ame.arriving
         ameAtTarget: ame.atTarget
         ameTick: ame.arrivalTick
+        onRequestClose: pill.requestClose()
+    }
+
+    ThePillClipboard {
+        id: clipboard
+        s: pill.s
+        open: pill.clipboardOpen
+        morphCloseness: pill.morphCloseness
+        ameArrived: ame.arrived
         onRequestClose: pill.requestClose()
     }
 

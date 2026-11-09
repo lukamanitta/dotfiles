@@ -109,6 +109,13 @@ ThePillSurface {
             run: () => root.runIpc("link")
         },
         {
+            title: "Open clipboard",
+            subtitle: "clipboard",
+            glyph: "clipboard",
+            keywords: "clipboard history copy paste",
+            run: () => root.runIpc("clipboard")
+        },
+        {
             title: "Open power menu",
             subtitle: "power",
             glyph: "shutdown",

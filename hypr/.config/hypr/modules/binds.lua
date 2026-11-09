@@ -22,10 +22,7 @@ hl.bind(
     )
 )
 
-hl.bind(
-    mainMod .. " + V",
-    hl.dsp.exec_cmd("cliphist list | wofi --dmenu | cliphist decode | wl-copy")
-)
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(programs.clipboard))
 
 hl.bind(
     mainMod .. " + SHIFT + S",

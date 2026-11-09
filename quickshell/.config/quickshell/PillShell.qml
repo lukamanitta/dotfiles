@@ -86,6 +86,7 @@ ShellRoot {
         function calendar(mon: string): void { root.toggleSurface(mon, "calendar"); }
         function launcher(mon: string): void { root.toggleSurface(mon, "launcher"); }
         function link(mon: string): void { root.toggleSurface(mon, "link"); }
+        function clipboard(mon: string): void { root.toggleSurface(mon, "clipboard"); }
         function network(mon: string): void { root.toggleSurface(mon, "network"); }
         function power(mon: string): void { root.toggleSurface(mon, "power"); }
         function mixer(mon: string): void { root.toggleSurface(mon, "mixer"); }
