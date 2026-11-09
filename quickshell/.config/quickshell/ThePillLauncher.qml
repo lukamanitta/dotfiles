@@ -7,13 +7,16 @@ import Quickshell.Hyprland
 import "_Shared/Singletons"
 import "_Shared/Components"
 import "lib/fuzzy.js" as Fuzzy
+import "lib/calc.js" as Calc
 
 /**
- * Launcher surface built on the reusable Palette. Three providers, switched by
- * a leading prefix:
+ * Launcher surface built on the reusable Palette. Providers, switched by a
+ * leading prefix:
  *   (none) desktop applications (ranked by fuzzy match + launch usage)
  *   >      shell commands (open other surfaces, lock/reboot, …)
  *   :      flags (Do Not Disturb, notification position, …)
+ *   @      open windows, most recently focused first
+ *   =      calculator (also auto-detected for a bare expression)
  */
 ThePillSurface {
     id: root
@@ -34,6 +37,8 @@ ThePillSurface {
      * focused (and focus follows it if it maps a moment later).
      */
     property string pendingFocusWs: ""
+    /** Window to focus after the launcher's layer surface releases the keyboard. */
+    property string pendingFocusAddr: ""
 
     Timer {
         id: focusRestore
@@ -46,12 +51,28 @@ ThePillSurface {
         }
     }
 
+    Timer {
+        id: focusWindow
+        interval: 220
+        onTriggered: {
+            if (root.pendingFocusAddr.length === 0)
+                return;
+            var addr = root.pendingFocusAddr;
+            root.pendingFocusAddr = "";
+            Hyprland.dispatch('hl.dsp.focus({ window = "address:' + addr + '" })');
+        }
+    }
+
     readonly property string mode: {
         const q = palette.query;
         if (q.indexOf(">") === 0)
             return "cmd";
         if (q.indexOf(":") === 0)
             return "flags";
+        if (q.indexOf("@") === 0)
+            return "windows";
+        if (q.indexOf("=") === 0)
+            return "calc";
         return "apps";
     }
     readonly property string effectiveQuery: {
@@ -75,6 +96,11 @@ ThePillSurface {
 
     function runIpc(name) {
         Quickshell.execDetached([root.surfaceScript, name]);
+    }
+
+    /** Set the search text (IPC/debug hooks and tests). */
+    function setQuery(q) {
+        palette.input.text = q;
     }
 
     function luaString(s) {
@@ -201,6 +227,63 @@ ThePillSurface {
         });
     }
 
+    /** Resolve a window class to an icon name the Palette can load, or "". */
+    function appIconForClass(cls) {
+        var id = String(cls || "").toLowerCase();
+        if (id.length === 0)
+            return "";
+        var entry = DesktopEntries.byId(id + ".desktop") || DesktopEntries.byId(id);
+        var name = entry && entry.icon ? entry.icon : id;
+        return Quickshell.iconPath(name, true) ? name : "";
+    }
+
+    /**
+     * Open windows, most recently focused first. HyprlandToplevel.class is empty
+     * in this Quickshell build, but lastIpcObject carries the full client JSON,
+     * including class and focusHistoryID.
+     */
+    function windowResults(q) {
+        var tops = Hyprland.toplevels.values.slice();
+        tops.sort(function(a, b) {
+            var fa = a.lastIpcObject && typeof a.lastIpcObject.focusHistoryID === "number" ? a.lastIpcObject.focusHistoryID : 1e9;
+            var fb = b.lastIpcObject && typeof b.lastIpcObject.focusHistoryID === "number" ? b.lastIpcObject.focusHistoryID : 1e9;
+            return fa - fb;
+        });
+
+        var needle = (q || "").toLowerCase();
+        var out = [];
+        for (var i = 0; i < tops.length; i++) {
+            var t = tops[i];
+            var ipc = t.lastIpcObject || {};
+            var cls = String(ipc.class || ipc.initialClass || "");
+            var ws = t.workspace ? t.workspace.name : "";
+            var title = String(t.title || cls || "Untitled");
+            if (needle.length > 0 && (title + " " + cls + " " + ws).toLowerCase().indexOf(needle) === -1)
+                continue;
+            var current = typeof ipc.focusHistoryID === "number" && ipc.focusHistoryID === 0;
+            out.push({
+                title: title,
+                subtitle: ws.length > 0 ? ("ws " + ws + (current ? " · current" : "")) : (current ? "current" : ""),
+                icon: root.appIconForClass(cls),
+                glyph: "app-window",
+                address: t.address
+            });
+        }
+        return out;
+    }
+
+    function calcRow(expr, force) {
+        var c = Calc.evaluate(expr, force === true);
+        if (!c.ok)
+            return null;
+        return { title: "= " + c.display, subtitle: "copy", glyph: "calc", calc: c.display };
+    }
+
+    function calcResults(q) {
+        var row = root.calcRow(q, true);
+        return row ? [row] : [];
+    }
+
     function matchItems(items, q) {
         q = (q || "").toLowerCase();
         if (q.length === 0)
@@ -215,14 +298,31 @@ ThePillSurface {
             return matchItems(commandItems, effectiveQuery);
         if (mode === "flags")
             return matchItems(flagItems(), effectiveQuery);
-        return appResults(effectiveQuery);
+        if (mode === "windows")
+            return windowResults(effectiveQuery);
+        if (mode === "calc")
+            return calcResults(effectiveQuery);
+
+        var apps = appResults(effectiveQuery);
+        var c = calcRow(effectiveQuery, false);
+        if (c)
+            apps.unshift(c);
+        return apps;
     }
 
     function activate() {
         var it = results[palette.selectedIndex];
         if (!it)
             return;
-        if (it.entry) {
+        if (it.calc !== undefined) {
+            Quickshell.execDetached(["sh", "-c", "printf '%s' \"$1\" | wl-copy", "_", it.calc]);
+        } else if (it.address) {
+            var addr = String(it.address);
+            if (addr.indexOf("0x") !== 0)
+                addr = "0x" + addr;
+            root.pendingFocusAddr = addr;
+            focusWindow.restart();
+        } else if (it.entry) {
             root.pendingFocusWs = Hyprland.focusedMonitor && Hyprland.focusedMonitor.activeWorkspace ? Hyprland.focusedMonitor.activeWorkspace.name : "";
             if (it.entry.id) {
                 root.usage[it.entry.id] = (root.usage[it.entry.id] || 0) + 1;
@@ -238,6 +338,7 @@ ThePillSurface {
 
     onActiveChanged: {
         if (active) {
+            Hyprland.refreshToplevels();
             palette.reset();
             Qt.callLater(palette.focusField);
         }
@@ -270,9 +371,14 @@ ThePillSurface {
                 return "Run a command";
             if (root.mode === "flags")
                 return "Toggle a flag";
-            return "Search apps  (> commands  : flags)";
+            if (root.mode === "windows")
+                return "Switch to a window";
+            if (root.mode === "calc")
+                return "Calculate";
+            return "Search apps  (> cmds  : flags  @ windows  = calc)";
         }
-        emptyText: root.mode === "apps" ? "No apps found" : "No matches"
+        emptyText: root.mode === "apps" ? "No apps found"
+            : (root.mode === "windows" ? "No windows found" : "No matches")
         onAccepted: root.activate()
         onDismissed: root.requestClose()
     }
