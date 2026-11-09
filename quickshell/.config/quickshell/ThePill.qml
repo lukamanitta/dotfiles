@@ -841,6 +841,13 @@ Item {
 
             readonly property bool shown: pill.mediaBudVisible
             property real budR: (budArea.containsMouse ? 15 : 12) * pill.s
+            readonly property real progress: Players.lengthKnown
+                ? Math.max(0, Math.min(1, Players.positionSec / Players.lengthSec))
+                : 0
+            property real shownProgress: progress
+            Behavior on shownProgress {
+                NumberAnimation { duration: Motion.fast; easing.type: Easing.Linear }
+            }
 
             width: budR * 2
             height: budR * 2
@@ -882,6 +889,35 @@ Item {
                     color: Theme.colour.foregroundSubtle
                     visible: budArt.status !== Image.Ready
                 }
+            }
+
+            /** Thin play-progress arc on the bud's perimeter. */
+            Shape {
+                anchors.fill: parent
+                visible: mediaBud.progress > 0
+
+                ShapePath {
+                    strokeColor: Theme.colour.accent
+                    strokeWidth: 1.6 * pill.s
+                    fillColor: "transparent"
+                    capStyle: ShapePath.RoundCap
+
+                    PathAngleArc {
+                        centerX: mediaBud.width / 2
+                        centerY: mediaBud.height / 2
+                        radiusX: mediaBud.width / 2 - 1 * pill.s
+                        radiusY: mediaBud.height / 2 - 1 * pill.s
+                        startAngle: -90
+                        sweepAngle: mediaBud.shownProgress * 360
+                    }
+                }
+            }
+
+            Timer {
+                interval: 500
+                running: mediaBud.shown && Players.playing
+                repeat: true
+                onTriggered: if (Players.active) Players.active.positionChanged()
             }
 
             MouseArea {
