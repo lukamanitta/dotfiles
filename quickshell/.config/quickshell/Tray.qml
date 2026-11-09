@@ -118,7 +118,10 @@ Item {
         property var entryData
         property real indent: 0
         property bool expanded: false
+        /** Keyboard/hover selection, owned by the menu. */
+        property bool selected: false
         signal activated
+        signal hovered
 
         height: entryData.isSeparator ? 9 * tray.s : 32 * tray.s
 
@@ -138,7 +141,7 @@ Item {
             anchors.fill: parent
             anchors.leftMargin: mrow.indent
             radius: 8 * tray.s
-            color: mrowArea.containsMouse && mrow.entryData.enabled ? Theme.frameBg : "transparent"
+            color: (mrow.selected || mrowArea.containsMouse) && mrow.entryData.enabled ? Theme.frameBg : "transparent"
 
             Rectangle {
                 anchors.left: parent.left
@@ -148,7 +151,7 @@ Item {
                 height: parent.height * 0.46
                 radius: width / 2
                 color: Theme.vermLit
-                opacity: mrowArea.containsMouse && mrow.entryData.enabled ? 1 : 0
+                opacity: (mrow.selected || mrowArea.containsMouse) && mrow.entryData.enabled ? 1 : 0
                 Behavior on opacity {
                     NumberAnimation {
                         duration: Motion.fast
@@ -206,10 +209,10 @@ Item {
                 anchors.right: chevron.visible ? chevron.left : parent.right
                 anchors.rightMargin: 14 * tray.s
                 text: mrow.entryData.text
-                color: !mrow.entryData.enabled ? Theme.dim : (mrowArea.containsMouse ? Theme.cream : Theme.creamMenu)
+                color: !mrow.entryData.enabled ? Theme.dim : ((mrow.selected || mrowArea.containsMouse) ? Theme.cream : Theme.creamMenu)
                 font.family: Theme.font
                 font.pixelSize: 13 * tray.s
-                font.weight: mrowArea.containsMouse ? Font.DemiBold : Font.Normal
+                font.weight: (mrow.selected || mrowArea.containsMouse) ? Font.DemiBold : Font.Normal
                 elide: Text.ElideRight
             }
 
@@ -249,6 +252,7 @@ Item {
                 hoverEnabled: true
                 enabled: mrow.entryData.enabled
                 cursorShape: Qt.PointingHandCursor
+                onContainsMouseChanged: if (containsMouse) mrow.hovered()
                 onClicked: mrow.activated()
             }
         }
@@ -261,8 +265,14 @@ Item {
         property real anchorX: 0
 
         onOpenChanged: {
-            if (!open) {
+            if (open) {
                 card.expandedIdx = -1;
+                card.selectedIdx = 0;
+                Qt.callLater(card.ensureSelection);
+                Qt.callLater(menuFocus.forceActiveFocus);
+            } else {
+                card.expandedIdx = -1;
+                card.selectedIdx = 0;
                 opener.menu = null;
             }
         }
@@ -289,10 +299,29 @@ Item {
         }
 
         FocusScope {
+            id: menuFocus
             anchors.fill: parent
             focus: menu.open
 
             Keys.onEscapePressed: menu.open = false
+            Keys.onPressed: (e) => {
+                if (e.key === Qt.Key_Up || e.key === Qt.Key_K) {
+                    card.move(-1);
+                    e.accepted = true;
+                } else if (e.key === Qt.Key_Down || e.key === Qt.Key_J) {
+                    card.move(1);
+                    e.accepted = true;
+                } else if (e.key === Qt.Key_Return || e.key === Qt.Key_Enter) {
+                    card.activateSelected();
+                    e.accepted = true;
+                } else if (e.key === Qt.Key_Right || e.key === Qt.Key_L) {
+                    card.expandSelected();
+                    e.accepted = true;
+                } else if (e.key === Qt.Key_Left || e.key === Qt.Key_H) {
+                    card.collapseSelected();
+                    e.accepted = true;
+                }
+            }
 
             Rectangle {
                 id: card
@@ -317,6 +346,119 @@ Item {
                 border.color: Theme.border
 
                 property int expandedIdx: -1
+                property int selectedIdx: 0
+                property int childParent: -1
+                property var childRows: []
+
+                readonly property var topRows: opener.children ? opener.children.values : []
+
+                /**
+                 * Flat list of what the keyboard can reach: every top-level row
+                 * plus the children of the one expanded submenu. Keeping one
+                 * index over this list makes Up/Down/hjkl unambiguous even
+                 * though the menu is built from nested Repeaters.
+                 */
+                readonly property var navRows: {
+                    var out = [];
+                    for (var i = 0; i < topRows.length; i++) {
+                        out.push({ kind: "top", top: i, child: -1, data: topRows[i] });
+                        if (i === expandedIdx && childParent === i) {
+                            for (var j = 0; j < childRows.length; j++)
+                                out.push({ kind: "child", top: i, child: j, data: childRows[j] });
+                        }
+                    }
+                    return out;
+                }
+
+                function flatIndex(top, child) {
+                    for (var i = 0; i < navRows.length; i++)
+                        if (navRows[i].top === top && navRows[i].child === child)
+                            return i;
+                    return -1;
+                }
+
+                function selectable(row) {
+                    return !!row && !!row.data && row.data.enabled !== false && row.data.isSeparator !== true;
+                }
+
+                function ensureSelection() {
+                    if (navRows.length === 0) {
+                        selectedIdx = 0;
+                        return;
+                    }
+                    if (selectedIdx < 0 || selectedIdx >= navRows.length)
+                        selectedIdx = 0;
+                    if (!selectable(navRows[selectedIdx]))
+                        move(1);
+                }
+
+                function move(d) {
+                    if (navRows.length === 0)
+                        return;
+                    var i = selectedIdx;
+                    for (var step = 0; step < navRows.length; step++) {
+                        i = (i + d + navRows.length) % navRows.length;
+                        if (selectable(navRows[i])) {
+                            selectedIdx = i;
+                            return;
+                        }
+                    }
+                }
+
+                function activateSelected() {
+                    var r = navRows[selectedIdx];
+                    if (!selectable(r))
+                        return;
+                    if (r.kind === "top" && r.data.hasChildren) {
+                        expandedIdx = (expandedIdx === r.top) ? -1 : r.top;
+                        return;
+                    }
+                    if (r.data.hasChildren)
+                        return;
+                    r.data.triggered();
+                    menu.open = false;
+                }
+
+                function expandSelected() {
+                    var r = navRows[selectedIdx];
+                    if (!r)
+                        return;
+                    if (r.kind !== "top")
+                        return;
+                    if (r.data.hasChildren && expandedIdx !== r.top) {
+                        expandedIdx = r.top;
+                    } else if (childRows.length > 0 && childParent === r.top) {
+                        selectedIdx = flatIndex(r.top, 0);
+                    }
+                }
+
+                function collapseSelected() {
+                    var r = navRows[selectedIdx];
+                    if (!r) {
+                        menu.open = false;
+                        return;
+                    }
+                    if (r.kind === "child") {
+                        var parent = flatIndex(r.top, -1);
+                        expandedIdx = -1;
+                        if (parent >= 0)
+                            selectedIdx = parent;
+                    } else if (expandedIdx === r.top) {
+                        expandedIdx = -1;
+                    } else {
+                        menu.open = false;
+                    }
+                }
+
+                onExpandedIdxChanged: {
+                    if (expandedIdx < 0) {
+                        childParent = -1;
+                        childRows = [];
+                    }
+                    ensureSelection();
+                }
+                onNavRowsChanged: ensureSelection()
+                onChildRowsChanged: ensureSelection()
 
                 implicitHeight: col.implicitHeight + 12 * tray.s
                 height: implicitHeight
@@ -368,6 +510,8 @@ Item {
                                 width: parent.width
                                 entryData: entry.modelData
                                 expanded: entry.expanded
+                                selected: card.selectedIdx === card.flatIndex(entry.index, -1)
+                                onHovered: card.selectedIdx = card.flatIndex(entry.index, -1)
                                 onActivated: {
                                     if (entry.modelData.hasChildren) {
                                         card.expandedIdx = entry.expanded ? -1 : entry.index;
@@ -383,14 +527,37 @@ Item {
                                 menu: entry.expanded ? entry.modelData : null
                             }
 
+                            onExpandedChanged: {
+                                if (entry.expanded) {
+                                    card.childParent = entry.index;
+                                    card.childRows = childOpener.children ? childOpener.children.values : [];
+                                    Qt.callLater(card.ensureSelection);
+                                }
+                            }
+
+                            Connections {
+                                target: childOpener
+                                enabled: entry.expanded
+
+                                function onChildrenChanged() {
+                                    if (!entry.expanded)
+                                        return;
+                                    card.childParent = entry.index;
+                                    card.childRows = childOpener.children ? childOpener.children.values : [];
+                                }
+                            }
+
                             Repeater {
                                 model: childOpener.children ? childOpener.children.values : []
 
                                 delegate: MenuRow {
                                     required property var modelData
+                                    required property int index
                                     width: entry.width
                                     indent: 14 * tray.s
                                     entryData: modelData
+                                    selected: card.selectedIdx === card.flatIndex(entry.index, index)
+                                    onHovered: card.selectedIdx = card.flatIndex(entry.index, index)
                                     onActivated: {
                                         if (!modelData.hasChildren) {
                                             modelData.triggered();
