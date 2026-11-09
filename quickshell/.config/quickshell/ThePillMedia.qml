@@ -230,7 +230,9 @@ ThePillSurface {
             }
 
             Image {
+                id: coverImage
                 anchors.fill: parent
+                visible: false
                 source: root.coverSource
                 sourceSize: Qt.size(Math.ceil(width * 2), Math.ceil(height * 2))
                 fillMode: Image.PreserveAspectCrop
@@ -238,6 +240,18 @@ ThePillSurface {
                 retainWhileLoading: true
                 cache: String(source).indexOf("file:") !== 0
                 onStatusChanged: if (status === Image.Ready) root.everReady = true
+            }
+
+            /**
+             * Fade the art itself out into the card instead of painting a flat
+             * colour over it: the shader drops the image's alpha to zero at the
+             * cover edge, revealing the blurred bleed and wash underneath.
+             */
+            ShaderEffect {
+                anchors.fill: parent
+                property variant source: coverImage
+                property real fadeStart: 0.55
+                fragmentShader: "shaders/coverfade.frag.qsb"
             }
 
             GlyphIcon {
@@ -250,19 +264,7 @@ ThePillSurface {
             }
         }
 
-        // Fade the cover into the wash instead of ending on a hard vertical edge.
-        Rectangle {
-            x: coverBox.width - 72 * root.s
-            width: 98 * root.s
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            gradient: Gradient {
-                orientation: Gradient.Horizontal
-                GradientStop { position: 0.0; color: Qt.alpha(root.washMid, 0) }
-                GradientStop { position: 0.55; color: Qt.alpha(root.washMid, 0.7) }
-                GradientStop { position: 1.0; color: root.washMid }
-            }
-        }
+
     }
 
     Column {

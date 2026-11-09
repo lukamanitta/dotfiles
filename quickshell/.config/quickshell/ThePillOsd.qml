@@ -26,6 +26,8 @@ Item {
     property string kind: "volume"
     property bool flashing: false
     property bool armed: false
+    /** Identity of the currently shown flash, to ignore duplicate announces. */
+    property string flashKey: ""
 
     readonly property var sink: Pipewire.defaultAudioSink
     readonly property bool muted: sink && sink.audio ? sink.audio.muted : false
@@ -36,9 +38,25 @@ Item {
     readonly property real desiredW: kind === "track" ? 344 * s : 248 * s
     readonly property real desiredH: kind === "track" ? 68 * s : 44 * s
 
+    function trackKey() {
+        var p = Players.active;
+        return p ? ((p.dbusName || "") + "|" + (p.trackTitle || "") + "|" + p.isPlaying) : "";
+    }
+
     function flash(which) {
         if (!armed || suppressed || !onFocusedMonitor)
             return false;
+
+        // A pause can make MPRIS emit more than one announce (state + metadata
+        // churn). Re-flashing the same track/state used to restart the hide
+        // timer and stretch the linger; only genuine changes restart it.
+        var key = which === "track"
+            ? "track|" + trackKey()
+            : "volume|" + Math.round(root.volume * 100) + "|" + root.muted;
+        if (flashing && kind === which && flashKey === key)
+            return false;
+
+        flashKey = key;
         kind = which;
         flashing = true;
         hideTimer.interval = 1200;
