@@ -511,8 +511,7 @@ Item {
                 AudioIndicator {
                     id: heroFill
                     anchors.verticalCenter: parent.verticalCenter
-                    width: 17 * pill.s
-                    height: 17 * pill.s
+                    s: pill.s
                     isAudioPlaying: Players.playing
                 }
 

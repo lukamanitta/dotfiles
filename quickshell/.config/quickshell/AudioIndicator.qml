@@ -1,51 +1,46 @@
 import QtQuick
 import "_Shared/Singletons"
 
-Row {
+/**
+ * Rest-pill level visualiser: four rounded bars fed by the default sink's
+ * PipeWire peak monitor. Idle they collapse into the same four dots the pill
+ * always had; while audio plays they chase real levels with a short ease so the
+ * motion stays liquid instead of strobing.
+ */
+Item {
     id: root
-    spacing: 2
-    // property real implicitHeight: 20
 
-    // Change this variable to true/false based on audio status
+    property real s: 1
     property bool isAudioPlaying: Players.playing
 
-    // Repeater generates 4 vertical bars
-    Repeater {
-        model: 4
-        delegate: Rectangle {
-            width: 4
-            anchors.verticalCenter: parent.verticalCenter
-            color: Theme.colour.accent
-            radius: 2
-            property bool isAudioPlaying: root.isAudioPlaying
+    implicitWidth: bars.implicitWidth
+    implicitHeight: 17 * s
 
-            // Default flat state height
-            height: 4
+    Row {
+        id: bars
+        anchors.centerIn: parent
+        width: implicitWidth
+        height: 17 * root.s
+        spacing: 2 * root.s
 
-            onIsAudioPlayingChanged: {
-                if (!isAudioPlaying) {
-                    height = 4
-                }
-            }
+        Repeater {
+            model: AudioLevels.bars
 
-            // Continuous animation loops while audio is playing
-            SequentialAnimation on height {
-                running: isAudioPlaying
-                loops: Animation.Infinite
+            delegate: Rectangle {
+                required property int index
 
-                NumberAnimation {
-                    to: Math.random() * 16 + 4 // Random peak height
-                    duration: 500 + (index * 30) // Staggered speeds
-                }
-                NumberAnimation {
-                    to: 3 // Resets down to flat limit
-                    duration: 500 + (index * 30)
-                }
-            }
-
-            Behavior on height {
-                NumberAnimation {
-                    duration: 150
+                width: 4 * root.s
+                radius: width / 2
+                anchors.verticalCenter: parent.verticalCenter
+                color: Theme.colour.accent
+                height: root.isAudioPlaying
+                    ? Math.max(4 * root.s, 4 * root.s + (AudioLevels.levels[index] || 0) * 11 * root.s)
+                    : 4 * root.s
+                Behavior on height {
+                    NumberAnimation {
+                        duration: 110
+                        easing.type: Easing.OutQuad
+                    }
                 }
             }
         }
