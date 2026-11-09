@@ -22,6 +22,21 @@ Item {
     clip: true
 
     readonly property bool overflowing: label.implicitWidth > width
+    readonly property real maxScroll: Math.max(0, label.implicitWidth - width)
+    readonly property bool leftOverflow: overflowing && scrollX < -0.5
+    readonly property bool rightOverflow: overflowing && -scrollX < maxScroll - 0.5
+
+    /**
+     * Vignette the clipped edges only where there is hidden content, so the
+     * marquee never ends on a hard line. The layer shader fades the text's own
+     * alpha, revealing whatever card background is underneath.
+     */
+    layer.enabled: true
+    layer.effect: ShaderEffect {
+        property real leftFade: root.leftOverflow ? 0.12 : 0
+        property real rightFade: root.rightOverflow ? 0.12 : 0
+        fragmentShader: "../../shaders/edgefade.frag.qsb"
+    }
 
     Text {
         id: label

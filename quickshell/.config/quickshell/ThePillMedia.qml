@@ -67,7 +67,7 @@ ThePillSurface {
 
     /** Square, matching the card height, so album art is not cropped to a sliver. */
     readonly property real coverW: 150 * s
-    readonly property real textX: coverW + 14 * s
+    readonly property real textX: coverW + 6 * s
     readonly property real edgePad: 16 * s
     readonly property color washMid: mix(Theme.cardTop, Theme.cardBot, 0.5)
 
@@ -232,7 +232,6 @@ ThePillSurface {
             Image {
                 id: coverImage
                 anchors.fill: parent
-                visible: false
                 source: root.coverSource
                 sourceSize: Qt.size(Math.ceil(width * 2), Math.ceil(height * 2))
                 fillMode: Image.PreserveAspectCrop
@@ -240,18 +239,17 @@ ThePillSurface {
                 retainWhileLoading: true
                 cache: String(source).indexOf("file:") !== 0
                 onStatusChanged: if (status === Image.Ready) root.everReady = true
-            }
 
-            /**
-             * Fade the art itself out into the card instead of painting a flat
-             * colour over it: the shader drops the image's alpha to zero at the
-             * cover edge, revealing the blurred bleed and wash underneath.
-             */
-            ShaderEffect {
-                anchors.fill: parent
-                property variant source: coverImage
-                property real fadeStart: 0.55
-                fragmentShader: "shaders/coverfade.frag.qsb"
+                /**
+                 * Layer the *displayed* image (PreserveAspectCrop already
+                 * applied) so the shader fades its alpha without stretching the
+                 * raw texture. Sampling an Image directly changed the aspect.
+                 */
+                layer.enabled: true
+                layer.effect: ShaderEffect {
+                    property real fadeStart: 0.55
+                    fragmentShader: "shaders/coverfade.frag.qsb"
+                }
             }
 
             GlyphIcon {

@@ -217,6 +217,11 @@ ShellRoot {
                         // so it can resolve stale hover state on surface close.
                         pill.pointerX = point.position.x
                         pill.pointerY = point.position.y
+                        // A real move re-arms hover; a stale `hovered` alone
+                        // must not keep the pill open after a surface closes.
+                        pill.hoverArmed = true
+                        if (hovered && pill.pointerInHover)
+                            pill.hoverLatch = true
                     }
                     onHoveredChanged: {
                         pill.hovered = hovered

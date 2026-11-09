@@ -49,6 +49,12 @@ Item {
 
     readonly property bool surfaceOpen: surface.length > 0
     property bool hoverLatch: false
+    /**
+     * The HoverHandler's state is stale right after a surface closes. Ignore
+     * its changes until the pointer actually moves; otherwise a stale `true`
+     * re-latches the pill in hover forever.
+     */
+    property bool hoverArmed: true
     /** The tray menu is a separate window; keep the pill open under it. */
     property bool trayMenuOpen: false
     readonly property bool expanded: surfaceOpen || hoverLatch || held || keyboardNav || trayMenuOpen
@@ -231,8 +237,10 @@ Item {
     onSurfaceOpenChanged: {
         if (surfaceOpen) {
             pinned = false;
+            hoverArmed = true;
             closeRest.stop();
         } else {
+            hoverArmed = false;
             // Show the expanded hover state first, then ease back to rest.
             // Escape / mask changes leave the HoverHandler stale until the
             // pointer moves, so use the last known pointer position to decide
@@ -464,6 +472,10 @@ Item {
     }
 
     onHoveredChanged: {
+        // A stale `true` right after close must not re-latch, but a genuine
+        // leave must still start the grace collapse.
+        if (!hoverArmed && hovered)
+            return;
         if (hovered) {
             hoverLatch = true;
             graceTimer.stop();
