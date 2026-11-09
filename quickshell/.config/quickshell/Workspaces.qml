@@ -14,10 +14,29 @@ Item {
     property real dotW: 5 * s
     property real gap: 4 * s
 
+    /**
+     * Workspaces shown on this monitor: the assigned persistent ones from
+     * Hyprland's workspace rules, else the live workspaces on this monitor.
+     * Reading the rules keeps monitors.lua the single source of truth and stops
+     * a dock, laptop panel or renamed port from emptying the row.
+     */
     readonly property var range: {
-        if (screenName === "DP-2") return [1, 3, 5, 7, 9];
-        if (screenName === "HDMI-A-2") return [2, 4, 6, 8, 10];
-        return [];
+        var assigned = Workspacerules.byMonitor[screenName];
+        if (assigned && assigned.length > 0)
+            return assigned;
+
+        var out = [];
+        var all = Hyprland.workspaces.values;
+        for (var i = 0; i < all.length; i++) {
+            var ws = all[i];
+            if (!ws || !ws.monitor || ws.monitor.name !== screenName)
+                continue;
+            var n = parseInt(ws.name, 10);
+            if (!isNaN(n) && out.indexOf(n) < 0)
+                out.push(n);
+        }
+        out.sort(function (a, b) { return a - b; });
+        return out;
     }
 
     readonly property string activeName: {
