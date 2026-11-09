@@ -13,6 +13,7 @@ hl.bind(
 )
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(programs.launcher))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(programs.pill_keyboard))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(programs.media))
 hl.bind("ALT + Tab", hl.dsp.focus({ workspace = "previous," }))
 
 hl.bind(

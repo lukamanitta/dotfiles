@@ -17,6 +17,10 @@ Rectangle {
 
     property real s: 1
     property string text: ""
+    /** Icon-only target (media transport); overrides `text` when set. */
+    property string glyph: ""
+    /** Diameter in scaled units; 24 matches the notification action pills. */
+    property real size: 24
     /** Set by the host once its Ame has arrived; drives the accent fill. */
     property bool filled: false
     /** Immediate pointer state. */
@@ -24,8 +28,8 @@ Rectangle {
 
     signal clicked()
 
-    implicitWidth: label.implicitWidth + 22 * s
-    implicitHeight: 24 * s
+    implicitWidth: glyph.length > 0 ? implicitHeight : label.implicitWidth + 22 * s
+    implicitHeight: size * s
     radius: implicitHeight / 2
     color: root.filled ? Theme.colour.accentMuted : Theme.colour.surfaceOverlay
     border.width: 1
@@ -59,11 +63,23 @@ Rectangle {
     Text {
         id: label
         anchors.centerIn: parent
+        visible: root.glyph.length === 0
         text: root.text
         color: root.filled ? Theme.colour.surfaceDefault : (root.hovered ? Theme.colour.accent : Theme.colour.foregroundSubtle)
         font.family: Theme.font
         font.pixelSize: 12 * root.s
         font.weight: Font.DemiBold
+        Behavior on color { ColorAnimation { duration: Motion.fast } }
+    }
+
+    GlyphIcon {
+        anchors.centerIn: parent
+        visible: root.glyph.length > 0
+        width: 14 * root.s
+        height: 14 * root.s
+        name: root.glyph
+        stroke: 1.9
+        color: root.filled ? Theme.colour.surfaceDefault : (root.hovered ? Theme.colour.accent : Theme.colour.foregroundSubtle)
         Behavior on color { ColorAnimation { duration: Motion.fast } }
     }
 

@@ -87,6 +87,7 @@ ShellRoot {
         function launcher(mon: string): void { root.toggleSurface(mon, "launcher"); }
         function link(mon: string): void { root.toggleSurface(mon, "link"); }
         function clipboard(mon: string): void { root.toggleSurface(mon, "clipboard"); }
+        function media(mon: string): void { root.toggleSurface(mon, "media"); }
         function network(mon: string): void { root.toggleSurface(mon, "network"); }
         function power(mon: string): void { root.toggleSurface(mon, "power"); }
         function mixer(mon: string): void { root.toggleSurface(mon, "mixer"); }
@@ -178,10 +179,11 @@ ShellRoot {
             Region { id: hiddenRegion }
             Region {
                 id: pillRegion
-                readonly property real baseW: Math.max(pill.width, pill.targetW)
-                x: pill.x + (pill.width - baseW) / 2
+                /** Body width, including the media bud that sticks out right. */
+                readonly property real bodyW: Math.max(pill.width, pill.targetW)
+                x: pill.x + (pill.width - bodyW) / 2
                 y: pill.y
-                width: baseW
+                width: bodyW + pill.mediaBudPad
                 height: Math.max(pill.height, pill.targetH)
             }
             Region {

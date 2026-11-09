@@ -7,7 +7,7 @@ Row {
     // property real implicitHeight: 20
 
     // Change this variable to true/false based on audio status
-    property bool isAudioPlaying: MprisState.isPlaying
+    property bool isAudioPlaying: Players.playing
 
     // Repeater generates 4 vertical bars
     Repeater {

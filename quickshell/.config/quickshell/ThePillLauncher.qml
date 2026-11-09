@@ -116,6 +116,13 @@ ThePillSurface {
             run: () => root.runIpc("clipboard")
         },
         {
+            title: "Open media",
+            subtitle: "media",
+            glyph: "music",
+            keywords: "media music player now playing song video",
+            run: () => root.runIpc("media")
+        },
+        {
             title: "Open power menu",
             subtitle: "power",
             glyph: "shutdown",

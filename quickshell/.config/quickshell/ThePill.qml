@@ -4,6 +4,7 @@ import QtQuick
 import QtQuick.Effects
 import QtQuick.Shapes
 import Quickshell
+import Quickshell.Widgets
 import "_Shared/Components"
 import "_Shared/Singletons"
 
@@ -26,6 +27,7 @@ Item {
     readonly property bool launcherOpen: surface === "launcher"
     readonly property bool linkOpen: surface === "link"
     readonly property bool clipboardOpen: surface === "clipboard"
+    readonly property bool mediaOpen: surface === "media"
     readonly property bool networkOpen: surface === "network"
     readonly property bool powerOpen: surface === "power"
     readonly property bool mixerOpen: surface === "mixer"
@@ -171,6 +173,9 @@ Item {
     readonly property real hoverPad: 20 * s
     readonly property real hoverW: hoverRow.implicitWidth + (hoverPad * 2)
     readonly property real hoverH: 58 * s
+    /** The album-art bud only exists in hover mode, but its mask pad matters. */
+    readonly property bool mediaBudVisible: mode === "hover" && Players.list.length > 0
+    readonly property real mediaBudPad: mediaBudVisible ? 16 * s : 0
 
     readonly property real calendarW: 318 * s
     readonly property real calendarH: calendar.implicitHeight + 32 * s
@@ -180,6 +185,8 @@ Item {
     readonly property real linkH: link.implicitHeight + 26 * s
     readonly property real clipboardW: 360 * s
     readonly property real clipboardH: clipboard.implicitHeight + 29 * s
+    readonly property real mediaW: (Players.pickable.length > 1 ? 430 : 390) * s
+    readonly property real mediaH: 150 * s
     readonly property real networkW: 330 * s
     readonly property real networkH: network.implicitHeight + 26 * s
     readonly property real toastW: 342 * s
@@ -200,6 +207,8 @@ Item {
             return "link";
         if (clipboardOpen)
             return "clipboard";
+        if (mediaOpen)
+            return "media";
         if (networkOpen)
             return "network";
         if (powerOpen)
@@ -266,6 +275,7 @@ Item {
             launcher: () => Qt.size(launcherW, launcherH),
             link: () => Qt.size(linkW, linkH),
             clipboard: () => Qt.size(clipboardW, clipboardH),
+            media: () => Qt.size(mediaW, mediaH),
             network: () => Qt.size(networkW, networkH),
             power: () => Qt.size(powerW, powerH),
             mixer: () => Qt.size(mixerW, mixerH),
@@ -432,6 +442,8 @@ Item {
             return link;
         if (clipboardOpen)
             return clipboard;
+        if (mediaOpen)
+            return media;
         if (networkOpen)
             return network;
         if (powerOpen)
@@ -497,7 +509,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     width: 17 * pill.s
                     height: 17 * pill.s
-                    isAudioPlaying: MprisState.isPlaying
+                    isAudioPlaying: Players.playing
                 }
 
                 // Text {
@@ -581,7 +593,7 @@ Item {
             //         anchors.verticalCenter: parent.verticalCenter
             //         width: 17 * pill.s
             //         height: 17 * pill.s
-            //         isAudioPlaying: MprisState.isPlaying
+            //         isAudioPlaying: Players.playing
             //     }
 
             // Text {
@@ -815,6 +827,70 @@ Item {
                 }
             }
         }
+
+        /**
+         * Media bud: the active player's art in a circle that half-sticks out of
+         * the pill's right edge. Clicking it opens the media surface; it is a
+         * shortcut, not a mini-player, and only exists while the pill is hovered.
+         */
+        Rectangle {
+            id: mediaBud
+
+            readonly property bool shown: pill.mediaBudVisible
+            property real budR: (budArea.containsMouse ? 15 : 12) * pill.s
+
+            width: budR * 2
+            height: budR * 2
+            radius: budR
+            x: pill.width - budR
+            y: (pill.height - height) / 2
+            visible: opacity > 0.01
+            opacity: shown ? 1 : 0
+            border.width: 1
+            border.color: Theme.colour.border
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: Theme.colour.surfaceLight }
+                GradientStop { position: 1.0; color: Theme.colour.surfaceDefault }
+            }
+            Behavior on budR { NumberAnimation { duration: Motion.fast; easing.type: Motion.easeStandard } }
+            Behavior on opacity { NumberAnimation { duration: Motion.standard } }
+
+            ClippingRectangle {
+                anchors.fill: parent
+                anchors.margins: 2 * pill.s
+                radius: width / 2
+                color: Theme.colour.surfaceOverlay
+
+                Image {
+                    id: budArt
+                    anchors.fill: parent
+                    source: Players.artUrl
+                    sourceSize: Qt.size(Math.ceil(width * 2), Math.ceil(height * 2))
+                    fillMode: Image.PreserveAspectCrop
+                    asynchronous: true
+                    visible: status === Image.Ready
+                }
+
+                GlyphIcon {
+                    anchors.centerIn: parent
+                    width: 12 * pill.s
+                    height: 12 * pill.s
+                    name: "music"
+                    color: Theme.colour.foregroundSubtle
+                    visible: budArt.status !== Image.Ready
+                }
+            }
+
+            MouseArea {
+                id: budArea
+                anchors.fill: parent
+                anchors.margins: -2 * pill.s
+                enabled: mediaBud.shown
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: pill.requestSurface("media")
+            }
+        }
     }
     ThePillLauncher {
         id: launcher
@@ -843,6 +919,18 @@ Item {
         open: pill.clipboardOpen
         morphCloseness: pill.morphCloseness
         ameArrived: ame.arrived
+        onRequestClose: pill.requestClose()
+    }
+
+    ThePillMedia {
+        id: media
+        s: pill.s
+        open: pill.mediaOpen
+        morphCloseness: pill.morphCloseness
+        ameArrived: ame.arrived
+        ameArriving: ame.arriving
+        ameAtTarget: ame.atTarget
+        ameTick: ame.arrivalTick
         onRequestClose: pill.requestClose()
     }
 
