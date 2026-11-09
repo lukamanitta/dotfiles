@@ -2,6 +2,7 @@ pragma Singleton
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import Quickshell.Hyprland
 import Quickshell.Services.Notifications
 
 Singleton {
@@ -198,14 +199,66 @@ Singleton {
     /**
      * Focus the app's Hyprland window (workspace switch included) by matching the
      * notification's desktopEntry/appName against the live window classes.
+     *
+     * The old implementation forked `hyprctl clients -j | jq` on every open. The
+     * Hyprland model already carries the full client object, so match in-process:
+     * desktopEntry is often reverse-DNS (`app.zen_browser.zen`) while the class
+     * is the last segment (`zen`), so accept either spelling and prefer exact
+     * class matches. focusHistoryID breaks ties in favour of the window the user
+     * touched most recently.
      */
+    function windowFor(n) {
+        if (!n)
+            return null;
+        var token = String(n.desktopEntry && n.desktopEntry.length ? n.desktopEntry : (n.appName || ""))
+            .toLowerCase().replace(/\.desktop$/, "");
+        if (token.length === 0)
+            return null;
+        var short = token.indexOf(".") >= 0 ? token.substring(token.lastIndexOf(".") + 1) : token;
+
+        function scoreField(raw) {
+            var f = String(raw || "").toLowerCase();
+            if (f.length === 0)
+                return -1;
+            if (f === token || f === short)
+                return 3;
+            if (f.indexOf(token) >= 0)
+                return 2;
+            if (short.length >= 3 && f.indexOf(short) >= 0)
+                return 1;
+            return -1;
+        }
+
+        var tops = Hyprland.toplevels.values;
+        var best = null;
+        var bestScore = 0;
+        var bestFocus = 1e9;
+        for (var i = 0; i < tops.length; i++) {
+            var t = tops[i];
+            var ipc = t.lastIpcObject || {};
+            var score = Math.max(scoreField(ipc.class), scoreField(ipc.initialClass));
+            if (score < bestScore)
+                continue;
+            var focus = typeof ipc.focusHistoryID === "number" ? ipc.focusHistoryID : 1e9;
+            if (score === bestScore && focus >= bestFocus)
+                continue;
+            best = t;
+            bestScore = score;
+            bestFocus = focus;
+        }
+        return bestScore > 0 ? best : null;
+    }
+
     function raiseWindow(n) {
-        if (!n) return;
-        var token = String(n.desktopEntry && n.desktopEntry.length ? n.desktopEntry : (n.appName || "")).toLowerCase();
-        if (token.length === 0) return;
-        Quickshell.execDetached(["sh", "-c",
-            "addr=$(hyprctl clients -j | jq -r --arg q \"$1\" 'first(.[] | select(((.class | if . then ascii_downcase else \"\" end) | contains($q)) or ((.initialClass | if . then ascii_downcase else \"\" end) | contains($q))) | .address)'); [ -n \"$addr\" ] && hyprctl dispatch \"hl.dsp.focus({ window = \\\"address:$addr\\\" })\"",
-            "sh", token]);
+        var best = windowFor(n);
+        if (!best)
+            return;
+        var addr = String(best.address || "");
+        if (addr.length === 0)
+            return;
+        if (addr.indexOf("0x") !== 0)
+            addr = "0x" + addr;
+        Hyprland.dispatch('hl.dsp.focus({ window = "address:' + addr + '" })');
     }
 
     /**
