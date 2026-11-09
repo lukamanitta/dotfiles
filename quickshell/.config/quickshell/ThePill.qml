@@ -49,7 +49,9 @@ Item {
 
     readonly property bool surfaceOpen: surface.length > 0
     property bool hoverLatch: false
-    readonly property bool expanded: surfaceOpen || hoverLatch || held || keyboardNav
+    /** The tray menu is a separate window; keep the pill open under it. */
+    property bool trayMenuOpen: false
+    readonly property bool expanded: surfaceOpen || hoverLatch || held || keyboardNav || trayMenuOpen
 
     /**
      * Whether the last known pointer position sits inside the pill's hover
@@ -186,7 +188,7 @@ Item {
     readonly property real linkH: link.implicitHeight + 26 * s
     readonly property real clipboardW: 360 * s
     readonly property real clipboardH: clipboard.implicitHeight + 29 * s
-    readonly property real mediaW: (Players.pickable.length > 1 ? 430 : 390) * s
+    readonly property real mediaW: (Players.pickable.length > 1 ? 470 : 430) * s
     readonly property real mediaH: 150 * s
     readonly property real networkW: 330 * s
     readonly property real networkH: network.implicitHeight + 26 * s
@@ -263,7 +265,11 @@ Item {
         id: closeRest
         interval: Motion.morph + Motion.glide
         onTriggered: {
-            if (pill.hovered || pill.pointerInHover) {
+            // The HoverHandler's `hovered` is stale right after a surface or
+            // tray menu closes (the mask shrinks under a stationary pointer).
+            // Trust the last pointer position instead: if it is not on the
+            // pill, collapse even if `hovered` still reads true.
+            if (pill.pointerInHover) {
                 pill.hoverLatch = true;
                 return;
             }
@@ -511,7 +517,8 @@ Item {
                 AudioIndicator {
                     id: heroFill
                     anchors.verticalCenter: parent.verticalCenter
-                    s: pill.s
+                    width: 17 * pill.s
+                    height: 17 * pill.s
                     isAudioPlaying: Players.playing
                 }
 
@@ -677,10 +684,12 @@ Item {
                 }
 
                 Tray {
+                    id: trayItems
                     anchors.verticalCenter: parent.verticalCenter
                     s: pill.s
                     barWindow: pill.barWindow
                     enabled: hover.live
+                    onMenuOpenChanged: pill.trayMenuOpen = menuOpen
                 }
 
                 Item {

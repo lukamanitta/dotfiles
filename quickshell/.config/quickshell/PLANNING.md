@@ -27,12 +27,13 @@ Ideas and their status. **Done** items are implemented; the rest are backlog.
   bud on the hover pill opens it; `SUPER+M` does the same. `Players` replaces
   the old single-player `MprisState`.
 - **Pill OSD** — the pill morphs briefly for sink volume/mute and for the
-  active player's play/pause/track changes. Volume is observed from PipeWire,
-  so any source produces feedback; the OSD also shows over fullscreen video.
+  active player's play/pause/track changes (1.2 s linger). Volume is observed
+  from PipeWire, so any source produces feedback; the OSD also shows over
+  fullscreen video.
 - **Window and calculator providers** — `@` lists open windows by
   `focusHistoryID` with app icon, title and workspace; `=` evaluates arithmetic
   through the safe parser in `lib/calc.js`, and bare expressions are
-  auto-detected.
+  auto-detected. Enter on a result copies it.
 - **Rule-derived workspace dots** — `Workspaces.qml` reads
   `hyprctl workspacerules -j` instead of hardcoding `DP-2`/`HDMI-A-2`, falling
   back to the live workspaces on that monitor.
@@ -56,15 +57,22 @@ Ideas and their status. **Done** items are implemented; the rest are backlog.
 - Wallpaper picker provider (or surface).
 - Optional calculator history or unit conversion.
 
-## 2. Media — follow-ups
+## 2. Rest-pill audio visualiser
 
-- True frequency spectrum (cava) if the amplitude bars are not enough;
-  `PwNodePeakMonitor` gives per-channel peaks, not bands.
-- Seek/source-picker polish for players that report a length (Spotify). Firefox
-  and YouTube expose no `mpris:length`, so the card has no scrubber there.
+The original random-bar indicator is back: a real PipeWire peak visualiser felt
+busier and more distracting. If it is revisited, keep it calm — fewer bars,
+slower easing, and only while something is actually playing. A true spectrum
+(cava) is an option if amplitude bars are not enough; `PwNodePeakMonitor` only
+gives per-channel peaks.
+
+## 3. Media — follow-ups
+
+- Seek/source-picker polish for players that report a length. Some
+  Firefox/YouTube videos expose no `mpris:length` (the flag is per-video), so
+  those have no scrubber.
 - Optional "raise player app" action from the media card.
 
-## 3. Mixer / monitors
+## 4. Mixer / monitors
 
 - DDC validation: the ARZOPA panel (bus 7) returns `EIO` on `getvcp`, but
   `Display.detect()` still lists it, so its brightness fader is dead. Probe each
@@ -72,15 +80,13 @@ Ideas and their status. **Done** items are implemented; the rest are backlog.
 - Brightness keys are intentionally unbound: there is no internal backlight,
   `brightnessctl` is missing, and only the Acer answers DDC.
 
-## 4. Notifications
+## 5. Notifications
 
 - `mutedApps` is memory-only by choice; persist it in `Flags` if losing mutes
   on a shell restart becomes annoying.
 - `seenIds` is ephemeral; history survives reloads through the runtime dir.
 
-## 5. Performance / testing
+## 6. Performance / testing
 
-- Re-measure the peak monitor's playback-only cost; fall back to an
-  MPRIS-gated monitor if the 60 Hz callback shows up in profiling.
 - Add a small `scripts/test-quickshell.sh` wrapper around the load test and the
   `lib` JS checks if the harness loop grows.

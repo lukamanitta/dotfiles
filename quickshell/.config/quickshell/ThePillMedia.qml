@@ -65,7 +65,9 @@ ThePillSurface {
     property Item ameHoverItem: null
     property bool ameFilled: false
 
-    readonly property real textX: 124 * s
+    /** Square, matching the card height, so album art is not cropped to a sliver. */
+    readonly property real coverW: 150 * s
+    readonly property real textX: coverW + 14 * s
     readonly property real edgePad: 16 * s
     readonly property color washMid: mix(Theme.cardTop, Theme.cardBot, 0.5)
 
@@ -218,7 +220,7 @@ ThePillSurface {
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            width: 112 * root.s
+            width: root.coverW
             clip: true
 
             Rectangle {
@@ -248,16 +250,16 @@ ThePillSurface {
             }
         }
 
-        // Fade the cover into the wash.
+        // Fade the cover into the wash instead of ending on a hard vertical edge.
         Rectangle {
-            anchors.left: coverBox.right
-            anchors.leftMargin: -32 * root.s
+            x: coverBox.width - 72 * root.s
+            width: 98 * root.s
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            width: 44 * root.s
             gradient: Gradient {
                 orientation: Gradient.Horizontal
                 GradientStop { position: 0.0; color: Qt.alpha(root.washMid, 0) }
+                GradientStop { position: 0.55; color: Qt.alpha(root.washMid, 0.7) }
                 GradientStop { position: 1.0; color: root.washMid }
             }
         }

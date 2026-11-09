@@ -106,8 +106,8 @@ input:
   carries them: `onExited: (code, status) => { ... }`.
 - A singleton instantiated lazily inside a Timer/JS expression can report
   `Process.running === true` without ever spawning the child. Reference it from
-  a live item at startup (as `AudioIndicator` does with `AudioLevels`), or give
-  the Process a static `running: true`. This bit `Workspacerules`.
+  a live item at startup (as `Workspaces` does with `Workspacerules`), or give
+  the Process a static `running: true`.
 - `MprisPlayer.lengthSupported` is the reliable length signal. Firefox/YouTube
   reports a bogus `length` with `lengthSupported === false`; gate the scrubber
   on the flag, not the number.

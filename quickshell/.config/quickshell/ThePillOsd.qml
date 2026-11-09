@@ -41,7 +41,7 @@ Item {
             return false;
         kind = which;
         flashing = true;
-        hideTimer.interval = which === "track" ? 2200 : 1500;
+        hideTimer.interval = 1200;
         hideTimer.restart();
         return true;
     }
@@ -61,7 +61,7 @@ Item {
 
     Timer {
         id: hideTimer
-        interval: 1500
+        interval: 1200
         onTriggered: root.flashing = false
     }
 

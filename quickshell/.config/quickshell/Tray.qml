@@ -20,6 +20,8 @@ Item {
 
     property real s: 1
     property var barWindow
+    /** True while a native tray menu is open; the pill stays expanded for it. */
+    readonly property bool menuOpen: menu.open
 
     visible: SystemTray.items.values.length > 0
     implicitWidth: visible ? row.implicitWidth : 0
