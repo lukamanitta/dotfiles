@@ -27,6 +27,8 @@ Item {
     property bool ameConcealed: false
     /** Bumped by the pill each time its Ame settles onto a target. */
     property int ameTick: 0
+    /** Heat (0..1) for surfaces with a hold-to-confirm target. */
+    property real holdHeat: 0
 
     readonly property bool active: open
 

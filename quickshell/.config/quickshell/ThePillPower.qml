@@ -20,6 +20,8 @@ ThePillSurface {
     property int holdingIndex: -1
     property real holdProgress: 0
 
+    holdHeat: root.holdProgress
+
     /** Keyboard focus over the action tiles (rightmost on entry). */
     property int navIndex: -1
     signal navActivate()

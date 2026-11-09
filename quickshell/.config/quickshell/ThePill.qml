@@ -1081,7 +1081,7 @@ Item {
         id: ame
         anchors.fill: parent
         s: pill.s
-        heat: pill.powerOpen ? power.holdProgress : 0
+        heat: pill.ameSurface ? pill.ameSurface.holdHeat : 0
         wake: pill.wakePoint
         wickDir: pill.powerOpen ? 1 : -1
         form: pill.ameSurface ? pill.ameSurface.ameForm : (pill.mode === "hover" && pill.hoverSoulGate ? "soul" : "off")

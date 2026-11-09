@@ -47,8 +47,12 @@ ThePillSurface {
     readonly property real caretX: caretPoint.x
     readonly property real caretY: caretPoint.y
 
-    ameForm: "caret"
-    amePoint: Qt.point(caretX, caretY)
+    readonly property bool wiping: wipeBtn.holding
+    ameForm: wiping ? "dock" : "caret"
+    amePoint: wiping
+        ? wipeBtn.mapToItem(root, wipeBtn.width / 2, wipeBtn.height / 2)
+        : Qt.point(caretX, caretY)
+    holdHeat: wiping ? wipeBtn.hold : 0
 
     readonly property var results: {
         var all = Cliphist.entries;
