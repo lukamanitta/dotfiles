@@ -1,7 +1,9 @@
 # Debugging the pill
 
-The live desktop is Hyprland (Lua config) plus a Quickshell pill/bar. Both are
-stow-linked from this repo, so edit the repo paths, not `~/.config`.
+The live desktop is Hyprland (Lua config) plus a Quickshell pill. Both are
+stow-linked from this repo, so edit the repo paths, not `~/.config`. The config
+entry is `shell.qml` → `PillShell.qml` → `ThePill.qml`; the pill is the only
+shell root (the old bar was removed).
 
 Read this before touching the shell or the compositor: it is the test loop,
 the toolkit for driving a UI you cannot click, and the Hyprland 0.56 traps
@@ -52,7 +54,12 @@ input:
 - **Component harness** — drop `_ztest.qml` in the config dir: a `ShellRoot`
   with a `Timer` that inspects a service, prints via `console.log`, then
   `Qt.quit()`. Point the load test at that file, read the output, delete it.
-  (Used to learn PipeWire's `isSink`/`isStream`/`type` for the mixer.)
+  (Used to learn PipeWire's `isSink`/`isStream`/`type` for the mixer, and to
+  validate the window/calculator providers.)
+- **Drive a menu** — a temporary `IpcHandler` can call `tray.showMenu(...)` and
+  then `card.move(1)` / `card.expandSelected()` / `card.activateSelected()`,
+  exercising the exact keyboard path. Give the tray Repeater an id so the
+  handler can pass an anchor item, then delete the handler.
 
 ## Hyprland 0.56 (Lua config) changed the commands
 
@@ -89,6 +96,26 @@ input:
   repeat, both `isAutoRepeat = true`; the real release is
   `isAutoRepeat = false`. Filter `e.isAutoRepeat` for press/release holds
   instead of timing heuristics (`qwaylandinputdevice.cpp`).
+
+## Quickshell 0.3.2 traps
+
+- `HyprlandToplevel.class` is empty in this build. The full client JSON lives on
+  `lastIpcObject` (`class`, `initialClass`, `focusHistoryID`, `address`); use
+  that for the window provider and notification matching.
+- `Process` has no `exitCode`/`exitStatus` properties. The `exited` signal
+  carries them: `onExited: (code, status) => { ... }`.
+- A singleton instantiated lazily inside a Timer/JS expression can report
+  `Process.running === true` without ever spawning the child. Reference it from
+  a live item at startup (as `AudioIndicator` does with `AudioLevels`), or give
+  the Process a static `running: true`. This bit `Workspacerules`.
+- `MprisPlayer.lengthSupported` is the reliable length signal. Firefox/YouTube
+  reports a bogus `length` with `lengthSupported === false`; gate the scrubber
+  on the flag, not the number.
+- `PwNodePeakMonitor` works against `Pipewire.defaultAudioSink`; `peaks` is
+  per-channel. Use it for level bars instead of adding cava.
+- `hyprctl reload` re-applies the Lua binds and re-runs `config.reloaded`.
+  `hyprctl binds -j` shows the key/mods, but Lua dispatchers appear as
+  `__lua <id>`; verify the argument in the Lua source instead.
 
 ## Leave the session as you found it
 
