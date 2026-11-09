@@ -33,6 +33,7 @@ Item {
     readonly property bool mixerOpen: surface === "mixer"
 
     readonly property bool toastActive: Notifs.popups.length > 0 && Notifs.popupMode === "pill"
+    readonly property bool osdActive: osd.flashing
 
     property real swipeX: 0
     property real swipeY: 0
@@ -215,6 +216,8 @@ Item {
             return "power";
         if (mixerOpen)
             return "mixer";
+        if (osdActive && !held)
+            return "osd";
         if (toastActive && !held)
             return "toast";
         return expanded ? "hover" : "rest";
@@ -279,6 +282,7 @@ Item {
             network: () => Qt.size(networkW, networkH),
             power: () => Qt.size(powerW, powerH),
             mixer: () => Qt.size(mixerW, mixerH),
+            osd: () => Qt.size(osd.desiredW, osd.desiredH),
             toast: () => Qt.size(toastW, (toastLoader.item ? toastLoader.item.implicitHeight : 0) + 24 * s),
             hover: () => Qt.size(hoverW, hoverH)
         })
@@ -486,7 +490,7 @@ Item {
     Item {
         id: rest
         anchors.fill: parent
-        opacity: (pill.expanded || pill.mode === "toast") ? 0 : Math.pow(pill.morphCloseness, 1.5)
+        opacity: (pill.expanded || pill.mode === "toast" || pill.mode === "osd") ? 0 : Math.pow(pill.morphCloseness, 1.5)
         visible: opacity > 0.01
         Behavior on opacity {
             NumberAnimation {
@@ -1012,6 +1016,25 @@ Item {
         morphCloseness: pill.morphCloseness
         ameArrived: ame.arrived
         onRequestClose: pill.requestClose()
+    }
+
+    ThePillOsd {
+        id: osd
+        anchors.fill: parent
+        anchors.topMargin: 12 * pill.s
+        anchors.leftMargin: 18 * pill.s
+        anchors.rightMargin: 18 * pill.s
+        anchors.bottomMargin: 12 * pill.s
+        s: pill.s
+        screenName: pill.screenName
+        suppressed: pill.surfaceOpen || pill.held || pill.keyboardNav
+        expanded: pill.expanded
+        enabled: pill.mode === "osd"
+        opacity: pill.mode === "osd" ? 1 : 0
+        visible: opacity > 0.01
+        Behavior on opacity {
+            NumberAnimation { duration: Motion.standard; easing.type: Motion.easeStandard }
+        }
     }
 
     /**

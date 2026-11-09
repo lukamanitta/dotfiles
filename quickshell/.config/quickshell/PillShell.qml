@@ -175,7 +175,7 @@ ShellRoot {
 
             anchors { top: true; left: true; right: true; bottom: true }
 
-            mask: monFullscreen ? hiddenRegion : (modal ? fullRegion : pillRegion)
+            mask: (monFullscreen && !pill.osdActive) ? hiddenRegion : (modal ? fullRegion : pillRegion)
             Region { id: hiddenRegion }
             Region {
                 id: pillRegion
@@ -248,7 +248,7 @@ ShellRoot {
                     surface: overlay.surface
                     keyboardNav: overlay.keyboardNav
 
-                    opacity: overlay.monFullscreen ? 0 : pill.swipeFade
+                    opacity: (overlay.monFullscreen && !pill.osdActive) ? 0 : pill.swipeFade
                     Behavior on opacity {
                         NumberAnimation {
                             duration: Motion.morph
@@ -262,7 +262,7 @@ ShellRoot {
                             y: pill.swipeY
                         },
                         Translate {
-                            y: overlay.monFullscreen ? -(pill.height + overlay.mVert) : 0
+                            y: (overlay.monFullscreen && !pill.osdActive) ? -(pill.height + overlay.mVert) : 0
                             Behavior on y {
                                 NumberAnimation {
                                     duration: Motion.morph
