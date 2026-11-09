@@ -3,6 +3,5 @@
 import Quickshell
 
 Scope {
-    // Bar {}
-    BarTest {}
+    PillShell {}
 }

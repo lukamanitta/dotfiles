@@ -57,7 +57,7 @@ PanelWindow {
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
     WlrLayershell.namespace: "notif-corner"
 
-    /** Same gap the pill leaves from the top edge (BarTest.mVert). */
+    /** Same gap the pill leaves from the top edge (PillShell.mVert). */
     anchors {
         top: true
         right: true
