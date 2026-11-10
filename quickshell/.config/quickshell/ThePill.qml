@@ -138,19 +138,27 @@ Item {
         return false;
     }
 
+    /**
+     * Give the open surface first refusal on Escape (inline pickers close before
+     * the whole surface). Returns true when the key was consumed.
+     */
+    function handleEscape() {
+        return !!(pill.ameSurface && pill.ameSurface.handleEscape && pill.ameSurface.handleEscape());
+    }
+
     function handleNavKey(e, pressed) {
         if (!pressed)
             return false;
-        const k = e.key;
-        if (k === Qt.Key_Left || k === Qt.Key_H || k === Qt.Key_Up || k === Qt.Key_K) {
+        const d = KeyNav.direction(e);
+        if (d === KeyNav.left || d === KeyNav.up) {
             pill.navMove(-1);
             return true;
         }
-        if (k === Qt.Key_Right || k === Qt.Key_L || k === Qt.Key_Down || k === Qt.Key_J) {
+        if (d === KeyNav.right || d === KeyNav.down) {
             pill.navMove(1);
             return true;
         }
-        if (k === Qt.Key_Return || k === Qt.Key_Enter) {
+        if (KeyNav.isActivate(e)) {
             if (!e.isAutoRepeat)
                 pill.navActivateKey(pill.navKeys[pill.navIndex]);
             return true;

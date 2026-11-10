@@ -243,9 +243,16 @@ ShellRoot {
                         e.accepted = true;
                 }
                 Keys.onEscapePressed: {
+                    // The surface may consume Escape first (e.g. close an inline
+                    // picker). Otherwise one Escape dismisses everything: an open
+                    // surface and, if it was opened through tray nav, the nav pose
+                    // too. Leaving keyboardNav set would strand the pill in its
+                    // hover pose.
+                    if (pill.handleEscape())
+                        return;
                     if (overlay.surfaceOpen)
                         root.close();
-                    else if (pill.keyboardNav)
+                    if (overlay.keyboardNav)
                         root.keyboardMon = "";
                 }
 

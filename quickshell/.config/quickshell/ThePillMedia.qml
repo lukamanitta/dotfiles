@@ -65,7 +65,18 @@ ThePillSurface {
     /** Source picker: only worth offering when there is a real choice. */
     property bool picking: false
     readonly property bool canPick: Players.pickable.length > 1
-    onCanPickChanged: if (!canPick) picking = false
+    onCanPickChanged: {
+        if (!canPick) {
+            picking = false;
+            if (keyFocus === "source")
+                keyFocus = "bar";
+        }
+    }
+
+    /** Keyboard focus: the progress bar, or the player-select chip above it. */
+    property string keyFocus: "bar"
+    /** Index into Players.pickable while the source picker is open. */
+    property int pickIndex: 0
 
     /** Ame hover-fill hand-off over the transport buttons. */
     property Item ameHoverItem: null
@@ -100,6 +111,76 @@ ThePillSurface {
         }
     }
 
+    function seekBy(delta) {
+        if (!player || !lengthKnown || !player.canSeek || !player.positionSupported)
+            return;
+        player.position = Math.max(0, Math.min(lengthSec, positionSec + delta));
+    }
+
+    function openPicker() {
+        if (!canPick)
+            return;
+        const list = Players.pickable;
+        const i = list.indexOf(Players.active);
+        pickIndex = i >= 0 ? i : 0;
+        picking = true;
+        keyFocus = "source";
+        ensurePickVisible();
+    }
+
+    function closePicker() {
+        picking = false;
+        keyFocus = canPick ? "source" : "bar";
+    }
+
+    function movePick(delta) {
+        const n = Players.pickable.length;
+        if (n === 0)
+            return;
+        pickIndex = Math.max(0, Math.min(n - 1, pickIndex + delta));
+        ensurePickVisible();
+    }
+
+    function choosePick() {
+        const list = Players.pickable;
+        if (pickIndex >= 0 && pickIndex < list.length)
+            Players.select(list[pickIndex]);
+        closePicker();
+    }
+
+    /** Keep the keyboard-selected player visible in the horizontal picker. */
+    function ensurePickVisible() {
+        if (!picking)
+            return;
+        const n = Players.pickable.length;
+        if (n === 0) {
+            picking = false;
+            return;
+        }
+        if (pickIndex >= n)
+            pickIndex = n - 1;
+        const it = pickRepeater.itemAt(pickIndex);
+        if (!it || pickFlick.width <= 0) {
+            Qt.callLater(root.ensurePickVisible);
+            return;
+        }
+        const maxX = Math.max(0, pickFlick.contentWidth - pickFlick.width);
+        const left = it.x;
+        const right = it.x + it.width;
+        if (left < pickFlick.contentX)
+            pickFlick.contentX = Math.max(0, left);
+        else if (right > pickFlick.contentX + pickFlick.width)
+            pickFlick.contentX = Math.min(maxX, right - pickFlick.width);
+    }
+
+    /** Let an open picker swallow Escape before the pill closes the surface. */
+    function handleEscape() {
+        if (!picking)
+            return false;
+        closePicker();
+        return true;
+    }
+
     onAmeArrivingChanged: if (ameArriving && ameHoverItem)
         ameFilled = true
     onAmeTickChanged: if (ameTick > 0 && ameHoverItem)
@@ -127,26 +208,57 @@ ThePillSurface {
         if (!pressed)
             return false;
         const k = e.key;
+        const dir = KeyNav.direction(e);
+
+        // The picker takes over horizontal keys and Enter while it is open.
+        if (picking) {
+            if (dir === KeyNav.left)
+                movePick(-1);
+            else if (dir === KeyNav.right)
+                movePick(1);
+            else if (KeyNav.isActivate(e)) {
+                if (!e.isAutoRepeat)
+                    choosePick();
+            }
+            return true;
+        }
+
         if (k === Qt.Key_Space) {
             if (player && player.canTogglePlaying)
                 player.togglePlaying();
             return true;
         }
-        if (k === Qt.Key_Left) {
-            if (player && player.canGoPrevious)
-                player.previous();
+
+        // h/l (and arrows) scrub; Shift makes them previous/next track.
+        if (dir === KeyNav.left || dir === KeyNav.right) {
+            const forward = dir === KeyNav.right;
+            if (e.modifiers & Qt.ShiftModifier) {
+                if (forward) {
+                    if (player && player.canGoNext)
+                        player.next();
+                } else if (player && player.canGoPrevious) {
+                    player.previous();
+                }
+            } else {
+                seekBy(forward ? 5 : -5);
+            }
             return true;
         }
-        if (k === Qt.Key_Right) {
-            if (player && player.canGoNext)
-                player.next();
+
+        // j/k move keyboard focus between the bar and the player-select chip.
+        if (dir === KeyNav.up || dir === KeyNav.down) {
+            if (canPick)
+                keyFocus = dir === KeyNav.up ? "source" : "bar";
             return true;
         }
-        if (k === Qt.Key_Up || k === Qt.Key_Down) {
-            if (!player || !lengthKnown || !player.canSeek || !player.positionSupported)
-                return true;
-            const delta = k === Qt.Key_Up ? 10 : -10;
-            player.position = Math.max(0, Math.min(lengthSec, positionSec + delta));
+
+        if (KeyNav.isActivate(e)) {
+            if (!e.isAutoRepeat) {
+                if (keyFocus === "source" && canPick)
+                    openPicker();
+                else if (player && player.canTogglePlaying)
+                    player.togglePlaying();
+            }
             return true;
         }
         return false;
@@ -155,6 +267,8 @@ ThePillSurface {
     onActiveChanged: {
         if (!active) {
             picking = false;
+            keyFocus = "bar";
+            pickIndex = 0;
             dragging = false;
             ameHoverItem = null;
             ameFilled = false;
@@ -334,9 +448,10 @@ ThePillSurface {
                 height: 20 * root.s
                 width: bubbleRow.width + 14 * root.s
                 radius: height / 2
-                color: Qt.alpha(Theme.vermLit, 0.16)
-                border.width: 1
-                border.color: Qt.alpha(Theme.vermLit, 0.55)
+                color: root.keyFocus === "source" ? Qt.alpha(Theme.vermLit, 0.24)
+                    : Qt.alpha(Theme.vermLit, 0.16)
+                border.width: root.keyFocus === "source" ? 1.6 : 1
+                border.color: root.keyFocus === "source" ? Theme.cream : Qt.alpha(Theme.vermLit, 0.55)
 
                 Row {
                     id: bubbleRow
@@ -370,7 +485,7 @@ ThePillSurface {
                     anchors.margins: -5 * root.s
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
-                    onClicked: root.picking = true
+                    onClicked: root.openPicker()
                 }
             }
 
@@ -403,6 +518,9 @@ ThePillSurface {
             flickableDirection: Flickable.HorizontalFlick
             boundsBehavior: Flickable.StopAtBounds
 
+            onWidthChanged: if (root.picking) Qt.callLater(root.ensurePickVisible)
+            onContentWidthChanged: if (root.picking) Qt.callLater(root.ensurePickVisible)
+
             WheelHandler {
                 acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
                 onWheel: (e) => {
@@ -418,20 +536,39 @@ ThePillSurface {
                 spacing: 7 * root.s
 
                 Repeater {
+                    id: pickRepeater
                     model: root.picking ? Players.pickable : []
 
                     delegate: Rectangle {
                         id: bub
                         required property var modelData
+                        required property int index
                         readonly property bool isActive: modelData === Players.active
+                        readonly property bool isKeyFocus: root.picking && index === root.pickIndex
 
                         anchors.verticalCenter: parent.verticalCenter
                         height: 32 * root.s
                         width: bubInner.width + 18 * root.s
                         radius: 11 * root.s
-                        color: isActive ? Qt.alpha(Theme.vermLit, 0.2) : Qt.alpha(Theme.cream, 0.045)
-                        border.width: 1
-                        border.color: isActive ? Theme.vermLit : Qt.alpha(Theme.cream, 0.12)
+                        scale: isKeyFocus ? 1.045 : 1
+                        color: isKeyFocus ? Qt.alpha(Theme.cream, 0.14)
+                            : (isActive ? Qt.alpha(Theme.vermLit, 0.2) : Qt.alpha(Theme.cream, 0.045))
+                        border.width: isKeyFocus ? 2 * root.s : 1
+                        border.color: isKeyFocus ? Theme.cream
+                            : (isActive ? Theme.vermLit : Qt.alpha(Theme.cream, 0.12))
+                        Behavior on scale { NumberAnimation { duration: Motion.fast } }
+
+                        /** Caret marking the keyboard cursor inside the picker. */
+                        Rectangle {
+                            anchors.left: parent.left
+                            anchors.leftMargin: 3 * root.s
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: 2.5 * root.s
+                            height: 12 * root.s
+                            radius: width / 2
+                            color: Theme.cream
+                            visible: bub.isKeyFocus
+                        }
 
                         Row {
                             id: bubInner
@@ -471,8 +608,8 @@ ThePillSurface {
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
-                                Players.select(bub.modelData);
-                                root.picking = false;
+                                root.pickIndex = index;
+                                root.choosePick();
                             }
                         }
                     }

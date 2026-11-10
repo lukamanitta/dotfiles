@@ -85,16 +85,12 @@ ThePillSurface {
     function handleKey(e, pressed) {
         if (!pressed)
             return false;
-        const k = e.key;
-        if (k === Qt.Key_Up || k === Qt.Key_K) {
-            root.moveNav(-1);
+        const v = KeyNav.vertical(e);
+        if (v !== 0) {
+            root.moveNav(v);
             return true;
         }
-        if (k === Qt.Key_Down || k === Qt.Key_J) {
-            root.moveNav(1);
-            return true;
-        }
-        if (k === Qt.Key_Return || k === Qt.Key_Enter) {
+        if (KeyNav.isActivate(e)) {
             if (!e.isAutoRepeat)
                 root.activateNav();
             return true;

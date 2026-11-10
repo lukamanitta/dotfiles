@@ -191,21 +191,14 @@ ThePillSurface {
     function handleKey(e, pressed) {
         if (!pressed || root.page !== "main")
             return false;
-        const k = e.key;
-        if (k === Qt.Key_Left || k === Qt.Key_H) {
-            root.moveFocus(-1);
+        const h = KeyNav.horizontal(e);
+        if (h !== 0) {
+            root.moveFocus(h);
             return true;
         }
-        if (k === Qt.Key_Right || k === Qt.Key_L) {
-            root.moveFocus(1);
-            return true;
-        }
-        if (k === Qt.Key_Up || k === Qt.Key_K) {
-            root.stepFocused(5);
-            return true;
-        }
-        if (k === Qt.Key_Down || k === Qt.Key_J) {
-            root.stepFocused(-5);
+        const v = KeyNav.vertical(e);
+        if (v !== 0) {
+            root.stepFocused(v < 0 ? 5 : -5);
             return true;
         }
         return false;

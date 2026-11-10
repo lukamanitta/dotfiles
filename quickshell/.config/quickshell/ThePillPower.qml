@@ -30,18 +30,13 @@ ThePillSurface {
     function handleKey(e, pressed) {
         if (root.actions.length === 0)
             return true;
-        const k = e.key;
-        if (k === Qt.Key_Left || k === Qt.Key_H || k === Qt.Key_Up || k === Qt.Key_K) {
+        const step = KeyNav.horizontal(e) || KeyNav.vertical(e);
+        if (step !== 0) {
             if (pressed)
-                root.moveNav(-1);
+                root.moveNav(step);
             return true;
         }
-        if (k === Qt.Key_Right || k === Qt.Key_L || k === Qt.Key_Down || k === Qt.Key_J) {
-            if (pressed)
-                root.moveNav(1);
-            return true;
-        }
-        if (k === Qt.Key_Return || k === Qt.Key_Enter) {
+        if (KeyNav.isActivate(e)) {
             // Qt wayland synthesizes an auto-repeat as a KeyRelease + KeyPress
             // pair, both flagged isAutoRepeat. Ignore those so a held Enter is
             // exactly one press and one (immediately reactive) real release.

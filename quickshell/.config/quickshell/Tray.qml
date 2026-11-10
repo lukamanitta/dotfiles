@@ -307,19 +307,18 @@ Item {
 
             Keys.onEscapePressed: menu.open = false
             Keys.onPressed: (e) => {
-                if (e.key === Qt.Key_Up || e.key === Qt.Key_K) {
-                    card.move(-1);
+                const v = KeyNav.vertical(e);
+                const d = KeyNav.direction(e);
+                if (v !== 0) {
+                    card.move(v);
                     e.accepted = true;
-                } else if (e.key === Qt.Key_Down || e.key === Qt.Key_J) {
-                    card.move(1);
-                    e.accepted = true;
-                } else if (e.key === Qt.Key_Return || e.key === Qt.Key_Enter) {
+                } else if (KeyNav.isActivate(e)) {
                     card.activateSelected();
                     e.accepted = true;
-                } else if (e.key === Qt.Key_Right || e.key === Qt.Key_L) {
+                } else if (d === KeyNav.right) {
                     card.expandSelected();
                     e.accepted = true;
-                } else if (e.key === Qt.Key_Left || e.key === Qt.Key_H) {
+                } else if (d === KeyNav.left) {
                     card.collapseSelected();
                     e.accepted = true;
                 }
