@@ -9,12 +9,18 @@ import "_Shared/Components"
 /**
  * Now-playing surface. Album art bleeds in on the left, faded into a blurred
  * copy behind a warm wash; the active player's title and artist scroll if they
- * overflow, and transport controls sit above a progress line. The line is
- * straight while paused and gently wavy while playing. Players that do not
- * report a length (Firefox/YouTube) simply have no line.
+ * overflow, and transport controls sit above a progress line. The elapsed part
+ * of the line is a fine travelling wave in the accent colour, the future part a
+ * flat muted rail, and the seam between them carries the Ame playhead; paused,
+ * the whole line goes flat. Players that do not report a length
+ * (Firefox/YouTube) simply have no line.
  *
- * Ame rides the head of the progress line and flies to a transport button when
+ * Ame rides the seam of the progress line and flies to a transport button when
  * one is hovered, filling it the same way the inbox fills its Open button.
+ *
+ * Keyboard: h/l (or arrows) scrub ±5 s, Shift+h/l skip tracks, j/k move focus
+ * between the progress bar and the player chip, and Enter opens the chip's
+ * picker (or toggles playback while the bar is focused).
  */
 ThePillSurface {
     id: root
@@ -111,7 +117,7 @@ ThePillSurface {
         return stroke.mapToItem(root, stroke.headX, stroke.headY);
     }
 
-    ameForm: ameHoverItem !== null ? "dock" : (lengthKnown ? "seam" : "off")
+    ameForm: ameHoverItem !== null ? "dock" : (lengthKnown ? "rowseam" : "off")
     amePoint: ameHoverItem !== null
         ? ameHoverItem.mapToItem(root, ameHoverItem.width / 2, ameHoverItem.height / 2)
         : seamPoint
@@ -522,8 +528,10 @@ ThePillSurface {
     }
 
     /**
-     * Progress line, hidden when the player reports no usable length. The wave
-     * is a travelling sine while playing and a straight line while paused.
+     * Progress line, hidden when the player reports no usable length. While
+     * playing the elapsed run is a short-period travelling wave tinted with the
+     * accent; the unplayed run is a flat muted rail. Both flatten on pause. The
+     * Ame playhead is a vertical seam at the join.
      */
     Canvas {
         id: stroke
@@ -542,12 +550,42 @@ ThePillSurface {
         readonly property real inset: 3 * root.s
         readonly property real usable: Math.max(1, width - 2 * inset)
         readonly property real headX: inset + drawF * usable
-        readonly property real headY: waveY(drawF)
+        readonly property real centreY: height / 2
+        /** The seam sits on the straight rail, not on the wave's local crest. */
+        readonly property real headY: centreY
+        readonly property real waveAmp: 2.8 * root.s
 
+        /**
+         * Wave height at `u` (0..1 across the whole track). The envelope fades
+         * the wave into the centreline at both ends of the elapsed run, so it
+         * grows out of the left edge and meets the flat future rail cleanly.
+         */
         function waveY(u) {
-            if (!root.playing)
-                return height / 2;
-            return height / 2 + Math.sin(u * Math.PI * 4 + phase) * 2.2 * root.s;
+            if (!root.playing || drawF <= 0)
+                return centreY;
+            const env = Math.min(1, u / 0.06) * Math.min(1, Math.max(0, drawF - u) / 0.06);
+            return centreY + Math.sin(u * Math.PI * 16 + phase) * waveAmp * env;
+        }
+
+        function traceWave(ctx, from, to) {
+            ctx.beginPath();
+            const m = Math.max(2, Math.ceil(48 * (to - from)));
+            for (let i = 0; i <= m; i++) {
+                const u = from + ((to - from) * i) / m;
+                const x = inset + u * usable;
+                if (i === 0)
+                    ctx.moveTo(x, waveY(u));
+                else
+                    ctx.lineTo(x, waveY(u));
+            }
+        }
+
+        function traceFlat(ctx, from, to) {
+            ctx.beginPath();
+            const x1 = inset + from * usable;
+            const x2 = inset + to * usable;
+            ctx.moveTo(x1, centreY);
+            ctx.lineTo(x2, centreY);
         }
 
         onDrawFChanged: requestPaint()
@@ -570,33 +608,22 @@ ThePillSurface {
             if (width <= 0 || height <= 0)
                 return;
 
-            const n = 48;
-            function trace(from, to) {
-                ctx.beginPath();
-                const m = Math.max(2, Math.ceil(n * (to - from)));
-                for (let i = 0; i <= m; i++) {
-                    const u = from + ((to - from) * i) / m;
-                    const x = inset + u * usable;
-                    if (i === 0)
-                        ctx.moveTo(x, waveY(u));
-                    else
-                        ctx.lineTo(x, waveY(u));
-                }
-            }
-
             ctx.lineCap = "round";
             ctx.lineJoin = "round";
 
-            ctx.strokeStyle = Theme.border;
-            ctx.lineWidth = 2.2 * root.s;
-            trace(0, 1);
-            ctx.stroke();
+            // Unplayed rail first: straight and muted, from the seam to the end.
+            if (drawF < 0.998) {
+                ctx.strokeStyle = Theme.border;
+                ctx.lineWidth = 2.2 * root.s;
+                traceFlat(ctx, drawF, 1);
+                ctx.stroke();
+            }
 
             if (drawF <= 0.002)
                 return;
             ctx.strokeStyle = Theme.vermLit;
             ctx.lineWidth = 2.6 * root.s;
-            trace(0, drawF);
+            traceWave(ctx, 0, drawF);
             ctx.stroke();
         }
 
