@@ -161,6 +161,33 @@ Singleton {
         return until !== undefined && until > Date.now();
     }
 
+    /**
+     * True for a player's own now-playing notification (Spotify sends one on
+     * every track change). The pill already flashes the track OSD for these, so
+     * the notification is a duplicate: dropping it also keeps it out of the
+     * history and the unread badge.
+     */
+    function isTrackAnnounce(n) {
+        if (!n || !n.summary)
+            return false;
+        var summary = String(n.summary);
+        var label = appLabel(n).toLowerCase();
+        var entry = String(n.desktopEntry || "").toLowerCase().replace(/\.desktop$/, "");
+        var l = Players.list;
+        for (var i = 0; i < l.length; i++) {
+            var p = l[i];
+            if (!p || !p.trackTitle || p.trackTitle !== summary)
+                continue;
+            var identity = String(p.identity || "").toLowerCase();
+            var pentry = String(p.desktopEntry || "").toLowerCase().replace(/\.desktop$/, "");
+            var appMatches = (identity.length > 0 && (label.indexOf(identity) >= 0 || identity.indexOf(label) >= 0))
+                || (pentry.length > 0 && (entry.indexOf(pentry) >= 0 || pentry.indexOf(entry) >= 0));
+            if (appMatches)
+                return true;
+        }
+        return false;
+    }
+
     function dismissNotif(n) {
         if (!n) return;
         if (typeof n.dismiss === "function") {
@@ -491,6 +518,12 @@ Singleton {
         }
 
         onNotification: function(n) {
+            // A media player's own now-playing notice duplicates the pill's
+            // track OSD; swallow it before it enters history or the popup stack.
+            if (root.isTrackAnnounce(n)) {
+                n.dismiss();
+                return;
+            }
             var a = Object.assign({}, root.arrivalMs);
             a[n.id] = Date.now();
             root.arrivalMs = a;

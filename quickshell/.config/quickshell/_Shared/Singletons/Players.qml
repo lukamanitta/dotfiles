@@ -134,6 +134,7 @@ Singleton {
     /** Falls back to the service label so a titleless DRM stream still names its source. */
     readonly property string title: has ? (active.trackTitle || labelOf(active)) : ""
     readonly property string artist: has ? joinArtists(active.trackArtists, active.trackArtist) : ""
+    readonly property string album: has && active.trackAlbum ? active.trackAlbum : ""
     readonly property string artUrl: artUrlFor(active)
     readonly property string serviceLabel: has ? labelOf(active) : ""
 

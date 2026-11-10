@@ -35,8 +35,17 @@ Item {
 
     readonly property bool onFocusedMonitor: !Hyprland.focusedMonitor || Hyprland.focusedMonitor.name === screenName
 
-    readonly property real desiredW: kind === "track" ? 344 * s : 248 * s
+    readonly property real desiredW: kind === "track" ? 380 * s : 248 * s
     readonly property real desiredH: kind === "track" ? 68 * s : 44 * s
+
+    /** Artist and album together, like a player's own now-playing notice. */
+    readonly property string subtitle: {
+        const artist = Players.artist;
+        const album = Players.album;
+        if (artist.length === 0)
+            return album;
+        return album.length > 0 ? artist + " · " + album : artist;
+    }
 
     function trackKey() {
         var p = Players.active;
@@ -224,7 +233,7 @@ Item {
 
             Text {
                 width: parent.width
-                text: Players.artist
+                text: root.subtitle
                 color: Theme.dim
                 font.family: Theme.font
                 font.pixelSize: 11 * root.s
