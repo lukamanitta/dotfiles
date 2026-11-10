@@ -52,6 +52,10 @@ ShellRoot {
     function toggleSurface(mon, surface) {
         if (!mon || mon.length === 0)
             mon = Hyprland.focusedMonitor ? Hyprland.focusedMonitor.name : "";
+        // Opening a surface ends tray keyboard-nav. If it were left on, the
+        // pill would stay expanded in its hover pose after the surface closes
+        // (Escape cleared only the surface).
+        root.keyboardMon = "";
         if (root.openMon === mon && root.openSurface === surface) {
             root.close();
             return;
@@ -63,6 +67,9 @@ ShellRoot {
     function close() {
         root.openMon = "";
         root.openSurface = "";
+        // Dismissing a surface also ends tray nav; otherwise its expanded
+        // hover pose has nothing left to close it.
+        root.keyboardMon = "";
     }
 
     /**
